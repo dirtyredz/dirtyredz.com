@@ -1,0 +1,95 @@
+/*aside.Angles__Angles__DR16 {
+    height: calc(100% - 164px);
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+}*/
+
+/*svg.Angles__ScrollBars__DR16.Angles__Right__DR16 {
+    right: 0;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    -webkit-filter: FlipH;
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    float: right;
+}
+
+svg.Angles__ScrollBars__DR16 {
+    fill: #8a1315;
+    background-color: transparent;
+    position: relative;
+    float: left;
+    width: 500px;
+    z-index: -1;
+    clear: both;
+    margin-bottom: -250px;
+    -webkit-transition: margin-left 1s, margin-right 1s, margin-bottom 1s;
+    transition: margin-left 1s, margin-right 1s, margin-bottom 1s;
+}*/
+
+/*svg.Angles__ScrollBars__DR16 rect {
+    width: 300px;
+    -webkit-transition: x 1s;
+    transition: x 1s;
+    height: 65px;
+}*/
+
+/*rect.Angles__One__DR16 {
+    transform: translate(30px, 90px) skewY(-47deg);
+}
+
+rect.Angles__Two__DR16 {
+    transform: translate(-3px, 124px) skewY(-47deg);
+    opacity: 0.75;
+}
+
+rect.Angles__Three__DR16 {
+    transform: translate(20px, 98px) skewY(-47deg);
+    opacity: 0.57;
+}
+
+rect.Angles__Four__DR16 {
+    transform: translate(57px, 57px) skewY(-47deg);
+}*/
+/*
+@media (max-width: 789px) {
+    svg.Angles__ScrollBars__DR16 {
+        margin-left: -353px;
+        margin-bottom: -90px;
+    }
+    svg.Angles__ScrollBars__DR16.Angles__Right__DR16 {
+        margin-right: -353px;
+    }
+}
+
+@media (min-width: 780px) and (max-width: 1099px) {
+    svg.Angles__ScrollBars__DR16 {
+        margin-left: -297px;
+        margin-bottom: -250px;
+    }
+    svg.Angles__ScrollBars__DR16.Angles__Right__DR16 {
+        margin-right: -325px;
+    }
+}
+
+@media (min-width: 1100px) and (max-width: 1299px) {
+    svg.Angles__ScrollBars__DR16 {
+        margin-left: -171px;
+        margin-bottom: -250px;
+    }
+    svg.Angles__ScrollBars__DR16.Angles__Right__DR16 {
+        margin-right: -262px;
+    }
+}
+
+@media (min-width: 1300px) and (max-width: 1599px) {
+    svg.Angles__ScrollBars__DR16 {
+        margin-left: -82px;
+        margin-bottom: -250px;
+    }
+    svg.Angles__ScrollBars__DR16.Angles__Right__DR16 {
+        margin-right: -195px;
+    }
+}*/

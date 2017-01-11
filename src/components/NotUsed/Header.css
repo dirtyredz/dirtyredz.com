@@ -1,0 +1,36 @@
+.enter {
+  /*background-color: rgba(25, 25, 25, 0);*/
+  transform: scaleX(0);
+}
+.enter.enterActive {
+  /*background-color: rgba(25, 25, 25, 1);*/
+  transform: scaleX(1);
+  transition: transform 2s;
+}
+.leave {
+  /*background-color: rgba(25, 25, 25, 1);*/
+  transform: scaleX(1);
+  transition: transform 2s;
+}
+.leave.leaveActive {
+  /*background-color: rgba(25, 25, 25, 0);*/
+  transform: scaleX(0);
+}
+.appear {
+  /*background-color: rgba(25, 25, 25, 0);*/
+  transform: translateY(-50px);
+}
+.appear.appearActive {
+  /*background-color: rgba(25, 25, 25, 1);*/
+  transform: translateY(0px);
+  transition: transform 2s;
+}
+
+body.Overflow { overflow: hidden; }
+
+header.Nav {
+    clear: both;
+    display: block;
+    font-size: 1.3em;
+    height: 50px;
+}

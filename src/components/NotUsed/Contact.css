@@ -1,0 +1,160 @@
+/*@media (min-width: 1025px) {
+    .Contact_Content_DR16{max-width: 50%;}
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .Contact_Content_DR16{max-width: 80%;}
+}
+@media (max-width: 767px) {
+    .Contact_Content_DR16{max-width: 100%;}
+}
+.Contact_Content_DR16{
+    margin: 0 auto;
+}*/
+/*#Contact_Contact_DR16 header span.Contact_BackgroundText_DR16{
+    padding-left: 50px;
+    color: #111010;
+    font-size: 4em;
+}
+#Contact_Contact_DR16 header  span.Contact_TitlePop_DR16{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #8a1315;
+    font-size: 3em;
+}*/
+/*#Contact_Contact_DR16{
+    width: 100%;
+    padding-top:15vh;
+    padding-bottom: 17.37vh;
+    opacity: 1;
+    top: 0;
+    transition: all 500ms, opacity 2s, padding-top 2s, top 2s;
+    font-size: calc(18px + 11 * ((100vw - 320px) / 1360));
+    position: relative;
+}*/
+/*#Contact_Contact_DR16 header{
+    margin-bottom: 60px;
+    position: relative;
+    padding-bottom: 25px;
+}
+#Contact_Contact_DR16 p{
+    font-size: 0.7em;
+    padding-bottom: 100px;
+    padding-left: 5%;
+    padding-right: 1%;
+}
+#Contact_Contact_DR16 p a{
+    color: #8a1315;
+    transition: color 500ms;
+}
+#Contact_Contact_DR16 p a:hover{
+    color: #6b6b6b;
+}
+#Contact_Contact_DR16 ul{
+    position: relative;
+    height: 60px;
+    max-height: 260px;
+}
+#Contact_Contact_DR16 li{
+    float: none;
+}
+#Contact_Contact_DR16 textarea{
+    height: 37px;
+    resize: none;
+    max-height: 250px;
+}
+#Contact_Contact_DR16 textarea,
+#Contact_Contact_DR16 input{
+    width: 85%;
+    position: absolute;
+    font-size: 22px;
+    line-height: 1.7;
+    padding-left: 24px;
+    background: none;
+    color: white;
+    border-width: 0px 0 2px 0;
+    outline-style: none;
+    z-index: 5;
+    display: block;
+    transition: width 1s ease 1s, padding-left 250ms ease 1250ms;
+}*/
+/*#Contact_Contact_DR16 li[data-active="false"] textarea,
+#Contact_Contact_DR16 li[data-active="false"] input{
+    width: 0;
+    padding-left: 0;
+    z-index: 1;
+    transition: width 1s ease 0s, padding-left 250ms ease 1000ms;
+}*/
+/*.Contact_LabelContainer_DR16{
+  transform-origin: left;
+    position: absolute;
+    opacity: 1;
+    color: #8a1315;
+    font-size: 27px;
+    padding: 3px 25px 3px 25px;
+    transition: transform 250ms, background-color 250ms, opacity 1s ease 1s;
+    display: block;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    border-radius: 4px;
+}*/
+/*.Contact_LabelContainer_DR16 label{
+    cursor: inherit;
+}*/
+/*#Contact_Contact_DR16 li[data-active="false"] div.Contact_LabelContainer_DR16{
+    opacity: 0;
+}
+#Contact_Contact_DR16 li[data-active="false"][data-transitioned="true"] div.Contact_LabelContainer_DR16{
+    opacity: 1;
+}*/
+/*.Contact_LabelContainer_DR16 svg{
+    margin-bottom: -4px
+}*/
+/*#Contact_Contact_DR16 li[data-error="true"] textarea,
+#Contact_Contact_DR16 li[data-error="true"] input{
+    color: #864646;
+    border-color: #864646;
+}
+#Contact_Contact_DR16 li[data-error="true"] div{
+    color: #864646;
+}*/
+/*#Contact_Contact_DR16 .Contact_Button_DR16{
+    width: 150px;
+    text-align: center;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+    transition: background-color 500ms;
+}
+#Contact_Contact_DR16 button[data-validate=true],
+#Contact_Contact_DR16 .Contact_Button_DR16[data-validate=true]{
+    background-color: #8a1315;
+}
+#Contact_Contact_DR16 button[data-validate=false],
+#Contact_Contact_DR16 .Contact_Button_DR16[data-validate=false]{
+    background-color: #111010;
+}
+#Contact_Contact_DR16 button[data-validate=false]{
+    pointer-events: none;
+}*/
+/*#Contact_Contact_DR16 button{
+    background-color: #8a1315;
+    width: 150px;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border: none;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    transition: background-color 500ms;
+}*/
+/*#Contact_Contact_DR16 button:hover,
+#Contact_Contact_DR16 .Contact_Button_DR16:hover{
+    transform: rotate(1deg);
+}*/

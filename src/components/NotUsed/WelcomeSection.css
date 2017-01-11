@@ -1,0 +1,112 @@
+/*.WelcomeSection_RemoveOnScroll {
+    top: 300px !important;
+    opacity: 0 !important;
+}*/
+/*section#WelcomeSection_Welcome_DR16 div#WelcomeSection_EGA {
+    float: right;
+    opacity: 0.05;
+    margin-top: -100px;
+}*/
+/*@media (min-width: 1025px) {
+    section>div.WelcomeSection_Content_DR16 {
+        max-width: 60%;
+    }
+    section>div.WelcomeSection_Content_DR16.Larger {
+        max-width: 80%;
+    }
+}*/
+
+
+/*Tablet*/
+/*
+@media (min-width: 768px) and (max-width: 1024px) {
+    section>div.WelcomeSection_Content_DR16 {
+        max-width: 80%;
+    }
+}*/
+
+
+/*Mobile*/
+/*
+@media (max-width: 767px) {
+    section>div.WelcomeSection_Content_DR16 {
+        max-width: 100%;
+    }
+    .WelcomeSection_DownArrow{
+      display: none;
+    }
+}*/
+
+/*section {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    opacity: 1;
+    top: 0;
+    transition: all 500ms, opacity 2s, padding-top 2s, top 2s;
+    -webkit-transition: all 500ms, opacity 2s, padding-top 2s, top 2s;
+    font-size: calc(18px + 11 * ((100vw - 320px) / 1360));
+    position: relative;
+}*/
+
+/*section>div.WelcomeSection_Content_DR16 {
+    margin: 0 auto;
+}
+
+section>div.WelcomeSection_Content_DR16 header {
+    position: relative;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+section>div.WelcomeSection_Content_DR16 p {
+    padding-left: 5%;
+    padding-right: 1%;
+}*/
+
+/*section>div.WelcomeSection_Content_DR16 h1.WelcomeSection_BackgroundText{
+    padding-left: 50px;
+    color: #111010;
+    font-size: 4em;
+}*/
+
+/*section>div.WelcomeSection_Content_DR16 h2.WelcomeSection_TitlePop{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #8a1315;
+    font-size: 3em;
+}*/
+
+/*section>div.WelcomeSection_Content_DR16 div.WelcomeSection_DownArrow {
+    text-align: center;
+    clear: both;
+    opacity: 0.5;
+    -webkit-transform: scaleX(3);
+    transform: scaleX(3);
+}*/
+
+/*section>div.WelcomeSection_Content_DR16 div.WelcomeSection_DownArrow svg{
+    display: inline-block;
+    width: 0.642578125em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: white;
+    fill: white;
+}*/
+
+/*span.WelcomeSection_WordPop {
+    color: #8a1315;
+}
+
+span.WelcomeSection_WordPop a {
+    color: #8a1315;
+    text-decoration: none;
+    border-bottom: 1px solid #8a1315;
+    transition: border-bottom 0.5s linear;
+    z-index: 1;
+    position: relative;
+}
+
+span.WelcomeSection_WordPop a:hover {
+    border-bottom: 1px solid #fff;
+}*/

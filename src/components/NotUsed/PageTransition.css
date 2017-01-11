@@ -1,0 +1,61 @@
+/*svg.ScrollBars {
+    fill: #8a1315;
+    background-color: transparent;
+    position: relative;
+    float: left;
+    width: 100%;
+    z-index: -1;
+    clear: both;
+    margin-bottom: -250px;
+    -webkit-transition: margin-left 1s, margin-right 1s, margin-bottom 1s;
+    transition: margin-left 1s, margin-right 1s, margin-bottom 1s;
+}*/
+/*svg.ScrollBars rect {
+    width: 507px;
+    -webkit-transition: x 1s ease-out;
+    transition: x 1s ease-out;
+    height: 22px;
+    stroke: rgb(12,12,12);
+    stroke-width: 1.8;
+}*/
+/*svg.ScrollBars rect.One {
+    -webkit-transform: translate(30px, 90px) skewY(-47deg);
+    transform: translate(30px, 90px) skewY(-47deg);
+}
+
+svg.ScrollBars rect.Two {
+    -webkit-transform: translate(-3px, 124px) skewY(-47deg);
+    transform: translate(-3px, 124px) skewY(-47deg);
+    fill: #6a1112;
+}
+
+svg.ScrollBars rect.Three {
+    -webkit-transform: translate(20px, 98px) skewY(-47deg);
+    transform: translate(20px, 98px) skewY(-47deg);
+    fill: #530f10;
+}
+
+svg.ScrollBars rect.Four {
+    -webkit-transform: translate(57px, 57px) skewY(-47deg);
+    transform: translate(57px, 57px) skewY(-47deg);
+}*/
+/*.PageTransition{
+  display: none;
+  position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 10;
+    height: 100%;
+}*/
+/*@media (min-width: 768px) and (max-width: 1024px) {
+  svg.ScrollBars {
+      width: 150%;
+  }
+}
+
+@media (max-width: 767px) {
+  svg.ScrollBars {
+      width: 200%;
+  }
+}*/

@@ -1,0 +1,6 @@
+nav.DesktopMenu ul {
+    opacity: 1;
+    height: 50px;
+    transition: opacity 2s;
+    float: right;
+}
