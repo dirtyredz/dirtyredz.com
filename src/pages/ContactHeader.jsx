@@ -71,33 +71,29 @@ injectGlobal`
     padding-bottom: calc(35vh + eval('querySelector("textarea").offsetHeight')px);
   }
 }
-.example-enter {
+.ContactChild-enter {
   opacity: 0.01;
   top:300px;
 }
-
-.example-enter.example-enter-active {
+.ContactChild-enter.ContactChild-enter-active {
   opacity: 1;
   top:0;
   transition: opacity 1s ease-out, top 1s ease-out;
 }
-
-.example-leave {
+.ContactChild-leave {
   opacity: 1;
   top:0;
 }
-
-.example-leave.example-leave-active {
+.ContactChild-leave.ContactChild-leave-active {
   opacity: 0.01;
   top:300px;
   transition: opacity 1s ease-in, top 1s ease-in;
 }
-.example-appear {
+.ContactChild-appear {
   opacity: 0.01;
   top:300px;
 }
-
-.example-appear.example-appear-active {
+.ContactChild-appear.ContactChild-appear-active {
   opacity: 1;
   top:0;
   transition: opacity 1s ease-out, top 1s ease-out;
@@ -143,7 +139,7 @@ export default class Contact extends React.Component {
                   </p>
                   <ContactContainer id="ChildContainer">
                     <ReactCSSTransitionGroup
-                      transitionName="example"
+                      transitionName="ContactChild"
                       transitionAppear={true}
                       transitionAppearTimeout={1500}
                       transitionEnterTimeout={1500}

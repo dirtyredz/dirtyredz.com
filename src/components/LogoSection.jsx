@@ -68,10 +68,7 @@ const Quote = styled(Typist)`
     font-weight: 900;
   }
 `;
-const RemoveOnScroll = {
-  top:300,
-  opacity:0
-}
+
 export default class LogoSection extends React.Component {
     constructor(){
       super()
@@ -85,7 +82,7 @@ export default class LogoSection extends React.Component {
     }
     render() {
         return (
-          <Logo style={(this.state.RemoveOnScroll) ? RemoveOnScroll : {}}>
+          <Logo>
               <Content>
                   <ImgContainer>
                       <img data-eqcss_logosection_a1="" src="../img/david logo.png" height="500px" width="500px" />
