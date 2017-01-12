@@ -104,7 +104,7 @@ export default class Contact extends React.Component {
       super(props);
 
       this.state = {
-        Success: false
+        Success: null
       };
     }
     handleSubmit(FormData){
@@ -122,6 +122,9 @@ export default class Contact extends React.Component {
           }
       };
       xhr.send(FormData);
+    }
+    componentWillMount(){
+      this.setState({Success: false});
     }
     render() {
         return (

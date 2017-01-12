@@ -3,6 +3,7 @@ import React from "react";
 import styled, {injectGlobal} from 'styled-components';
 
 const Form = styled.form`
+  opacity: 0;
   position: relative;
   & li{
     float: none;
@@ -158,7 +159,7 @@ injectGlobal`
   }
 `;
 
-export default class ContactFormReact extends React.Component {
+export default class ContactForm extends React.Component {
     constructor(props){
       super(props);
       this.state = {
