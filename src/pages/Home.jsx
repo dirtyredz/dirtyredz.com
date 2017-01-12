@@ -45,9 +45,8 @@ export default class Home extends React.Component {
                   transitionAppearTimeout={1500}
                   transitionEnterTimeout={1500}
                   transitionLeaveTimeout={1500}>
-                {this.state.Success === false ? <ContactForm key="123" handleSubmit={this.handleSubmit.bind(this)}/> : <ContactSuccess key="456"/>}
+                  <LogoSection />
                 </ReactCSSTransitionGroup>
-                <LogoSection />
                 <WelcomeSection />
                 <ProjectSection max="3"/>
                 <br class="clear" />
