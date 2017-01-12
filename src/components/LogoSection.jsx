@@ -16,13 +16,10 @@ injectGlobal`
 const Logo = styled.section`
   width: 100%;
   padding-top: 50px;
-  opacity: 1;
-  top: 0;
   font-size: calc(18px + 11 * ((100vw - 320px) / 1360));
   position: relative;
   padding-bottom: 200px;
   z-index: -1;
-  transition: all 500ms, opacity 2s, top 2s;
   @media (max-width: 767px) {
     padding-bottom: 50px;
   }
