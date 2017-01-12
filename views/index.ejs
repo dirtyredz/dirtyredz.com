@@ -78,11 +78,18 @@
             border-radius: 10px;
             -webkit-box-shadow: inset 0 0 6px rgba(250, 50, 50, 0.5);
         }
+        noscript{
+          width: 80%;
+          left: 10%;
+          top: 6%;
+          position: absolute;
+          text-align: center;
+          font-size: 35px;
+        }
     </style>
   </head>
   <body>
     <style type="text/css" ><%- styles -%></style>
-    <noscript>If you're seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>, please <strong>enable JS</strong> to make this app work.</noscript>
     <div id="Wrapper"><%- markup -%></div>
     <script src="/js/react.min.js"></script>
     <link href="/css/main.css" rel="stylesheet" data-eqcss-ignore="true" />
