@@ -53,7 +53,7 @@ app.get('*', (req, res) => {
       //Generates the styleSheet for the styled-components
       const styles = styleSheet.rules().map(rule => rule.cssText).join('\n');
       // render the index template with the embedded React markup
-      return res.render('index', { markup, styles });
+      return res.render(path.join(__dirname, '../static'), { markup, styles });
     }
   );
 });
