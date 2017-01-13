@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
-import routes from './routes/routes.js';
+import routes from './routes.js';
 
 var ReactGA = require('react-ga');
 ReactGA.initialize('UA-90091454-1');

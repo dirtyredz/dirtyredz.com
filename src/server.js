@@ -6,7 +6,7 @@ import Express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import routes from './routes/routes';
+import routes from './routes';
 import NotFound from "./pages/NotFound";
 import styleSheet from 'styled-components/lib/models/StyleSheet';
 

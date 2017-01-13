@@ -1,16 +1,16 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 
-import Layout from "../pages/Layout";
-import Home from "../pages/Home";
-import Projects from "../pages/Projects";
-import About from "../pages/About";
-import ContactHeader from "../pages/ContactHeader";
-import LoreleiMcClain from "../pages/LoreleiMcClain";
-import CostcoQuotes from "../pages/CostcoQuotes";
-import ZipCV from "../pages/ZipCV";
-import ReactScrollUpButton from "../pages/ReactScrollUpButton";
-import NotFound from "../pages/NotFound";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import Projects from "./pages/Projects";
+import About from "./pages/About";
+import ContactHeader from "./pages/ContactHeader";
+import LoreleiMcClain from "./pages/LoreleiMcClain";
+import CostcoQuotes from "./pages/CostcoQuotes";
+import ZipCV from "./pages/ZipCV";
+import ReactScrollUpButton from "./pages/ReactScrollUpButton";
+import NotFound from "./pages/NotFound";
 
 const routes = (
   <Route path="/" component={Layout}>
