@@ -40,8 +40,8 @@
     "dev-server": "SET NODE_ENV=production && babel-node src/server.js",
     "clean-server": "rm -r ./build",
     "build-server": "npm run clean-server && babel src -d build",
-    "start-server": "forever start -a -p /var/www/html/dirtyredz.com/react2 -l forever.log -o out.log -e err.log /var/www/html/dirtyredz.com/react2/build/server.js",
-    "stop-server": "forever stop /var/www/html/dirtyredz.com/react2/build/server.js"
+    "start-server": "forever start -a -p ./ -l forever.log -o out.log -e err.log ./build/server.js",
+    "stop-server": "forever stop ./build/server.js"
   },
   "author": "David McClain | Dirtyredz - http://dirtyredz.com",
   "license": "ISC"
