@@ -16,8 +16,7 @@ import styleSheet from 'styled-components/lib/models/StyleSheet';
 const app = new Express();
 const server = new Server(app);
 
-//set the directory to finds the views
-app.set('views', path.join(__dirname, '../static'));
+
 app.engine('html', require('ejs').renderFile);
 //set the view engine type
 app.set('view engine', 'html');
@@ -53,7 +52,7 @@ app.get('*', (req, res) => {
       //Generates the styleSheet for the styled-components
       const styles = styleSheet.rules().map(rule => rule.cssText).join('\n');
       // render the index template with the embedded React markup
-      return res.render(path.join(__dirname, '../static'), { markup, styles });
+      return res.render(path.join(__dirname, '../static/index.html'), { markup, styles });
     }
   );
 });
