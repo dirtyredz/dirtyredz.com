@@ -22,24 +22,6 @@ export default class Layout extends React.Component {
             Arr.item(i).classList.remove(ClassName);
         }
     }
-    LoadingHandler(){
-      var self = this;//Refrence this
-      var FailSafe = 0;//Stop if Intervall keeps running past its expected end time.
-      var Elem = document.getElementById('loader');
-      //Watch loader opacity, when opacity hits 0.5,
-      //Hide loader and Show Wrapper
-      //Opacity  is apart of an animation for the loading screen.
-      var X = setInterval(function () {
-          if (window.getComputedStyle(Elem).opacity < 0.5 || FailSafe >= 50) {
-              //Remove Class from Wrapper, remove display none
-              //Remove Class from loader, removing display block forcing display none;
-              self.RemoveClass('RemoveOnLoad');
-              self.setState({Loading: false});
-              clearInterval(X);//Stop Intervall
-          }
-          FailSafe += 1;
-      }, 100);
-    }
     componentDidUpdate() {
       console.log('Update');
       window.scrollTo(0,0);
