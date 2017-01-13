@@ -37,7 +37,7 @@ export default class Layout extends React.Component {
                 <div>
                     <Header />
                     {this.props.children.props.route.Angle != "false" && <Angles />}
-                    <noscript>If you're seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>, please <strong>enable JS</strong> to make this app work.</noscript>
+                    
                     {this.props.children}
                     <ScrollUpButton />
                     <Footer />
