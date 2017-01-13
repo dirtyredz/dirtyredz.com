@@ -6,9 +6,6 @@ module.exports = {
     root: path.resolve(__dirname),
     extensions: ['', '.js', '.jsx']
   },
-  stats: {
-    children: false
-  },
   context: path.join(__dirname, "src"),
   entry: "./client.js",
   module: {

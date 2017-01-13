@@ -16,9 +16,11 @@ import styleSheet from 'styled-components/lib/models/StyleSheet';
 const app = new Express();
 const server = new Server(app);
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views'));
-
+//set the directory to finds the views
+app.set('views', path.join(__dirname, '../static'));
+app.engine('html', require('ejs').renderFile);
+//set the view engine type
+app.set('view engine', 'html');
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, '../static')));
 
