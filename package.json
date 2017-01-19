@@ -36,7 +36,7 @@
   "scripts": {
     "webpack": "webpack",
     "webpack-production": "webpack --config webpack-production.config.js",
-    "dev": "webpack-dev-server --content-base static --inline --hot --history-api-fallback",
+    "dev": "webpack-dev-server --content-base ./ --inline --hot --history-api-fallback",
     "dev-server": "SET NODE_ENV=production && babel-node src/server.js",
     "clean-server": "rm -r ./build",
     "build-server": "npm run clean-server && babel src -d build",

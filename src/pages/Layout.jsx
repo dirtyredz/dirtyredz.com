@@ -37,7 +37,7 @@ export default class Layout extends React.Component {
                 <div>
                     <Header />
                     {this.props.children.props.route.Angle != "false" && <Angles />}
-                    
+
                     {this.props.children}
                     <ScrollUpButton />
                     <Footer />

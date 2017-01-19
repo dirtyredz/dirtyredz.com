@@ -3,7 +3,6 @@ import React from "react";
 import styled, {injectGlobal} from 'styled-components';
 
 const Form = styled.form`
-  opacity: 0;
   position: relative;
   & li{
     float: none;
@@ -326,6 +325,7 @@ export default class ContactForm extends React.Component {
       var FormData = "Name="+this.state.NameInput+"&Email="+this.state.EmailInput + "&Message="+this.state.MessageInput;
       this.props.handleSubmit(FormData);
     }
+
     render() {
         return (
             <Form id="ContactForm" onKeyUp={this.handleFormKeyUp.bind(this)} onKeyDown={this.handleFormKeyDown.bind(this)}>
