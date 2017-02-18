@@ -9,12 +9,14 @@ import ContactHeader from "./pages/ContactHeader";
 import LoreleiMcClain from "./pages/LoreleiMcClain";
 import CostcoQuotes from "./pages/CostcoQuotes";
 import ZipCV from "./pages/ZipCV";
+import Services from "./pages/Services";
 import ReactScrollUpButton from "./pages/ReactScrollUpButton";
 import NotFound from "./pages/NotFound";
 
 const routes = (
   <Route path="/" component={Layout}>
     <IndexRoute component={Home}></IndexRoute>
+    <Route path="Services" component={Services}></Route>
     <Route path="Projects">
       <IndexRoute component={Projects}></IndexRoute>
       <Route Angle="false" path="LoreleiMcClain" component={LoreleiMcClain}></Route>

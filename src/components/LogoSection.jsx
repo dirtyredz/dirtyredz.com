@@ -91,9 +91,7 @@ export default class LogoSection extends React.Component {
                       <img data-eqcss_logosection_a1="" src="../img/david logo.png" height="500px" width="500px" />
                   </ImgContainer>
                   <Title data-eqcss_logosection_a2="">DIRTYREDZ</Title>
-                  <Quote cursor={{show: true,blink: true,element: '|',hideWhenDone: true,hideWhenDoneDelay: 1000,}}>
-                    Web Design, Front-End, Back-End, and everything in-between.
-                  </Quote>
+  
               </Content>
           </Logo>
         );

@@ -79,6 +79,7 @@ const StyledHeader = styled.header`
   position: relative;
   padding-bottom: 25px;
   margin-bottom: 25px;
+  font-family: 'Anton';
 `;
 const StyledP = styled.p`
   padding-left: 5%;

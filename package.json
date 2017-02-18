@@ -26,7 +26,8 @@
     "react-scroll-up-button": "^1.5.3",
     "react-typist": "^1.0.3",
     "react-waypoint": "^4.1.0",
-    "styled-components": "^1.2.1"
+    "styled-components": "^1.2.1",
+    "tween-functions": "^1.2.0"
   },
   "devDependencies": {
     "webpack": "^1.12.9",
@@ -36,7 +37,7 @@
   "scripts": {
     "webpack": "webpack",
     "webpack-production": "webpack --config webpack-production.config.js",
-    "dev": "webpack-dev-server --content-base ./ --inline --hot --history-api-fallback",
+    "dev": "webpack-dev-server --content-base ./ --inline --hot --history-api-fallback --host 192.168.1.245",
     "dev-server": "SET NODE_ENV=production && babel-node src/server.js",
     "clean-server": "rm -r ./build",
     "build-server": "npm run clean-server && babel src -d build",

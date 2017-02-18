@@ -61,6 +61,9 @@ export default class MobileNavigation extends React.Component {
                       <Link onClick={this.props.handleMenuClick} to="/" onlyActiveOnIndex activeClassName="DR_ERROR">HOME</Link>
                     </LinkLi>
                     <LinkLi>
+                      <Link onClick={this.props.handleMenuClick} to="/SERVICES" onlyActiveOnIndex activeClassName="DR_ERROR">SERVICES</Link>
+                    </LinkLi>
+                    <LinkLi>
                       <Link onClick={this.props.handleMenuClick} to="/PROJECTS" onlyActiveOnIndex activeClassName="DR_ERROR">PROJECTS</Link>
                     </LinkLi>
                     <LinkLi>

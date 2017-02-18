@@ -117,6 +117,9 @@ export default class Angles extends React.Component {
       Element.style.transform = transform;
     }
     componentDidMount(){
+        SVGElement.prototype.getElementsByClassName = function(search) {
+          return this.querySelectorAll("." + search) 
+        }
         window.addEventListener('scroll', this.AnglesScroll.bind(this));
         //Setting Timeout for 1ms allows transition effects to work.
         var self=this;

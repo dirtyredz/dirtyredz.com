@@ -73,6 +73,9 @@ export default class DesktopNavigation extends React.Component {
                       <StyledLink to="/" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">HOME</StyledLink>
                     </LinkLi>
                     <LinkLi>
+                      <StyledLink to="/Services" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">SERVICES</StyledLink>
+                    </LinkLi>
+                    <LinkLi>
                       <StyledLink to="/Projects" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">PROJECTS</StyledLink>
                     </LinkLi>
                     <LinkLi>

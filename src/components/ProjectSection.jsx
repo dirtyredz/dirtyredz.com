@@ -37,6 +37,7 @@ const StyledHeader = styled.header`
   position: relative;
   padding-bottom: 25px;
   margin-bottom: 25px;
+  font-family: 'Anton';
 `;
 const TitlePop = styled.span`
   position: absolute;
@@ -154,6 +155,7 @@ const Container = styled.div`
 
 `;
 const Display = styled.div`
+  font-family: 'Anton';
   height: 210px;
   width: 40%;
   background-color: rgb(19, 18, 18);
