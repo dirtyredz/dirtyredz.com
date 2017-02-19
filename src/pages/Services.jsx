@@ -91,6 +91,7 @@ export default class About extends React.Component {
       this.Consultation.style.backgroundColor = null;
       this.Hosting.style.backgroundColor = null;
       Elem.style.backgroundColor = "rgba(138, 19, 21, 1)";
+      
       switch (Service) {
         case 'Design':
           this.setState({Content:
