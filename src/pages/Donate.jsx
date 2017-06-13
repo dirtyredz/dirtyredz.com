@@ -8,6 +8,7 @@ const AboutSection = styled.section`
   padding-top: 50px;
   padding-bottom: 50px;
   opacity: 1;
+      height: 700px;
   top: 0;
   transition: all 500ms, opacity 2s, top 2s;
   font-size: calc(18px + 11 * ((100vw - 320px) / 1360));
