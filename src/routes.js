@@ -10,19 +10,23 @@ import LoreleiMcClain from "./pages/LoreleiMcClain";
 import CostcoQuotes from "./pages/CostcoQuotes";
 import ZipCV from "./pages/ZipCV";
 import Services from "./pages/Services";
+import Donate from "./pages/Donate";
 import ReactScrollUpButton from "./pages/ReactScrollUpButton";
+import DirtyServerManager from "./pages/DirtyServerManager";
 import NotFound from "./pages/NotFound";
 
 const routes = (
   <Route path="/" component={Layout}>
     <IndexRoute component={Home}></IndexRoute>
     <Route path="Services" component={Services}></Route>
+    <Route path="Donate" component={Donate}></Route>
     <Route path="Projects">
       <IndexRoute component={Projects}></IndexRoute>
       <Route Angle="false" path="LoreleiMcClain" component={LoreleiMcClain}></Route>
       <Route Angle="false" path="CostcoQuotes" component={CostcoQuotes}></Route>
       <Route Angle="false" path="ZipCV" component={ZipCV}></Route>
       <Route Angle="false" path="ReactScrollUpButton" component={ReactScrollUpButton}></Route>
+      <Route Angle="false" path="DirtyServerManager" component={DirtyServerManager}></Route>
       <Route path="*" component={NotFound}></Route>
     </Route>
     <Route Angle="false" path="About" component={About}></Route>

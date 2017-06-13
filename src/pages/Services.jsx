@@ -91,7 +91,7 @@ export default class About extends React.Component {
       this.Consultation.style.backgroundColor = null;
       this.Hosting.style.backgroundColor = null;
       Elem.style.backgroundColor = "rgba(138, 19, 21, 1)";
-      
+
       switch (Service) {
         case 'Design':
           this.setState({Content:
@@ -134,9 +134,7 @@ export default class About extends React.Component {
       if (window.pageYOffset <= 0) {
           this.StopScrolling();
       } else {
-        let YPos = TweenFunctions['easeOutCubic'](
-                        this.Animation.CurrentAnimationTime,window.pageYOffset,0,500
-                    );
+        let YPos = TweenFunctions['easeOutCubic'](this.Animation.CurrentAnimationTime,window.pageYOffset,0,500);
         window.scrollTo(0, YPos);
         this.Animation.AnimationFrame = window.requestAnimationFrame(this.ScrollingFrame.bind(this));
       }
@@ -144,7 +142,7 @@ export default class About extends React.Component {
     }
     StopScrolling(){
       //Stop the Animation Frames.
-        window.cancelAnimationFrame(this.Animation.AnimationFrame);
+      window.cancelAnimationFrame(this.Animation.AnimationFrame);
     }
     HandleMouseDown(Elem){
       Elem.style.boxShadow = "1px 1px 1px #000";

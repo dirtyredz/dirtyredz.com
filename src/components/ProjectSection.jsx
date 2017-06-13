@@ -112,10 +112,12 @@ export default class ProjectSection extends React.Component {
             <Content>
                   {this.renderHeader()}
                   <div>
-                      {TheMax >= 1 && <div><ProjectContainer id="ProjectContainer_1" to="Projects/LoreleiMcClain" title="Lorelei McClain" year="2016" context="Website Development" role="FRONT-END/UI/UX, BACK-END DEVELOPER"/><br/><br/></div>}
+                      {TheMax >= 1 && <div><ProjectContainer id="ProjectContainer_1" to="Projects/DirtyServerManager" title="Dirty Server Manager" year="2017" context="Developer" role="Project Lead"/><br/><br/></div>}
                       {TheMax >= 2 && <div><ProjectContainer id="ProjectContainer_2" right={this.props.right} to="Projects/CostcoQuotes" title="Costco Quotes" year="2016" context="Website Redesign" role="FRONT-END/UX DEVELOPER"/><br/><br/></div>}
-                      {TheMax >= 3 && <div><ProjectContainer id="ProjectContainer_3" to="Projects/ZipCV" title="ZipCV" year="2015 - 2016" context="Website Development" role="FRONT-END/UX, BACK-END DEVELOPER"/><br/><br/></div>}
-                      {TheMax >= 4 && <div><ProjectContainer id="ProjectContainer_4" right={this.props.right} to="Projects/ReactScrollUpButton" title="react-scroll-up-button" year="2016" context="React Component" role="React Developer"/><br/><br/></div>}
+
+                      {TheMax >= 3 && <div><ProjectContainer id="ProjectContainer_3" to="Projects/ReactScrollUpButton" title="react-scroll-up-button" year="2016" context="React Component" role="React Developer"/><br/><br/></div>}
+                      {TheMax >= 4 && <div><ProjectContainer id="ProjectContainer_4" right={this.props.right} to="Projects/ZipCV" title="ZipCV" year="2015 - 2016" context="Website Development" role="FRONT-END/UX, BACK-END DEVELOPER"/><br/><br/></div>}
+                      {TheMax >= 5 && <div><ProjectContainer id="ProjectContainer_5" to="Projects/LoreleiMcClain" title="Lorelei McClain" year="2016" context="Website Development" role="FRONT-END/UI/UX, BACK-END DEVELOPER"/><br/><br/></div>}
                   </div>
                   <b>View all my  <WorpPop><Link to="/Projects">PROJECTS</Link></WorpPop>.</b>
               </Content>
