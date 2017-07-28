@@ -21,6 +21,11 @@ module.exports = {
                 presets: ['react', 'es2015', 'stage-0'],
                 plugins: ['react-html-attrs', 'transform-class-properties'],
             }
+        },
+        {
+          test: /\.js$/,
+          loader: 'ify-loader',
+          enforce: 'post'
         }
     ]
   },

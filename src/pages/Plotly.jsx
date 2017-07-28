@@ -1,20 +1,7 @@
 import React from "react";
 // import styles from "./About.css"
 import styled, { keyframes } from 'styled-components';
-import createPlotlyComponent from 'react-plotlyjs';
-import PlotlyBasic from 'plotly.js/dist/plotly-basic';
 
-const PlotlyComponent = styled(createPlotlyComponent(PlotlyBasic))`
-  height: 500px;
-  text-align: center;
-  width: 100%;
-  position: relative;
-`;
-const PlotlyHalfPie = styled(createPlotlyComponent(PlotlyBasic))`
-  text-align: center;
-  width: 225px;
-  position: relative;
-`;
 const AboutSection = styled.section`
   width: 100%;
   padding-top: 50px;
@@ -95,6 +82,22 @@ const StyledP2 = styled.p`
     width: 90% !important;
   }
 `;
+const Button = styled.button`
+  background-color: #8a1315;
+  width: 190px;
+  margin: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  border: none;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  transition: background-color 500ms;
+  &:hover{
+    transform: rotate(1deg);
+  }
+`;
 const RemoveOnScroll = {
   top:300,
   opacity:0
@@ -107,6 +110,7 @@ export default class Plotly extends React.Component {
       if(!this.is_server()){
         this.WindowObject = window;
       }
+      this.Plotly = null;
     }
     is_server() {
       return ! (typeof window != 'undefined' && window.document);
@@ -123,8 +127,9 @@ export default class Plotly extends React.Component {
         this.setState({RemoveOnScroll: false})
       },1);
 
-    }
-    render() {
+      //this.PlotlyBasic = require('plotly.js/dist/plotly-basic');
+      this.Plotly = require('../components/CustomPlotly');
+
       let trace1 = {
         x: ['JAN', 'FEB', 'MARCH', 'APRIL', 'MAY', 'JUNE'],
         y: [100.00, 180.00, 320.00, 380.00, 570.00, 310.00],
@@ -178,40 +183,40 @@ export default class Plotly extends React.Component {
       };
 
       var data2 = [{
-      values: [81,11,8],
-      type: 'pie',
-      labels: ['Gross Plan Costs', 'Fixed Costs', 'Stop Loss'],
-      direction: 'counterclockwise',
-      roation: 1,
-      hole: 0,
-      textposition: 'inside',
-      textfont: {
+        values: [81,11,8],
+        type: 'pie',
+        labels: ['Gross Plan Costs', 'Fixed Costs', 'Stop Loss'],
+        direction: 'counterclockwise',
+        roation: 1,
+        hole: 0,
+        textposition: 'inside',
+        textfont: {
         color: 'rgba(0,0,0,1)',
         size: '30'
-      },
-      marker: {
-        colors: ['rgba(11, 2, 180, 1)', 'rgba(19, 174, 223, 1)','rgba(224, 127, 26, 1)']
-      }
+        },
+        marker: {
+          colors: ['rgba(11, 2, 180, 1)', 'rgba(19, 174, 223, 1)','rgba(224, 127, 26, 1)']
+        }
       }];
 
       var layout2 = {
-      height: 400,
-      width: 500,
-      showlegend: true,
-      paper_bgcolor:'rgba(0,0,0,0)',
-      plot_bgcolor:'rgba(0,0,0,0)',
-      margin: {
-          l: 30,
-          r: 30,
-          t: 30,
-          b: 30
-      },
-      legend: {
-        font:{
-          color: '#cccccc'
-        }
-      },
-      hovermode: !1
+        height: 400,
+        width: 500,
+        showlegend: true,
+        paper_bgcolor:'rgba(0,0,0,0)',
+        plot_bgcolor:'rgba(0,0,0,0)',
+        margin: {
+            l: 30,
+            r: 30,
+            t: 30,
+            b: 30
+        },
+        legend: {
+          font:{
+            color: '#cccccc'
+          }
+        },
+        hovermode: !1
       };
 
       let trace3 = {
@@ -251,6 +256,57 @@ export default class Plotly extends React.Component {
             b: 60
         },
       };
+
+      this.Plotly.newPlot('Plot1', data,layout,config);
+      this.Plotly.newPlot('Plot2', data2,layout2,config);
+      this.Plotly.newPlot('Plot3', data3,layout3,config);
+    }
+    getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }
+    Randomize(){
+      this.Plotly.animate('Plot1', {
+        data: [{y: [this.getRandomInt(1,700), this.getRandomInt(1,700), this.getRandomInt(1,700), this.getRandomInt(1,700), this.getRandomInt(1,700), this.getRandomInt(1,700)]},{y: [this.getRandomInt(1,700), this.getRandomInt(1,700), this.getRandomInt(1,700), this.getRandomInt(1,700), this.getRandomInt(1,700), this.getRandomInt(1,700)]}],
+        traces: [0,1],
+        layout: {}
+      }, {
+        transition: {
+          duration: 500,
+          easing: 'cubic-in-out'
+        }
+      })
+    }
+    Randomize2(){
+      let rand1 = this.getRandomInt(1,60)
+      let rand2 = this.getRandomInt(1,30)
+      let rand3 = 100 - (rand2 + rand1)
+      this.Plotly.animate('Plot2', {
+        data: [{values:[rand1, rand2, rand3]}],
+        traces: [0],
+        layout: {}
+      }, {
+        transition: {
+          duration: 500,
+          easing: 'cubic-in-out'
+        }
+      })
+    }
+    Randomize3(){
+      this.Plotly.animate('Plot3', {
+        data: [{y: [this.getRandomInt(200000.00,1000000.00), this.getRandomInt(200000.00,1000000.00), this.getRandomInt(200000.00,1000000.00), this.getRandomInt(200000.00,1000000.00), this.getRandomInt(200000.00,1000000.00), this.getRandomInt(200000.00,1000000.00)]}],
+        traces: [0],
+        layout: {}
+      }, {
+        transition: {
+          duration: 500,
+          easing: 'cubic-in-out'
+        }
+      })
+    }
+    render() {
+
         return (
           <AboutSection style={(this.state.RemoveOnScroll) ? RemoveOnScroll : {}}>
             <Content>
@@ -260,30 +316,33 @@ export default class Plotly extends React.Component {
                 </StyledHeader>
                 <div>
                     <StyledP>
-                      Here is a set of examples where I use <WorpPop><a href="http://google.com" target="_blank">plotly.js</a></WorpPop> to create dynamic, besutifuul graphs, and charts.
+                      Here is a set of examples where I use <WorpPop><a href="http://google.com" target="_blank">plotly.js</a></WorpPop> to create dynamic, beautiful graphs, and charts.
                       <br/>
                       <br/>
                     </StyledP>
                     <br class="clear"/>
-                    <PlotlyComponent data={data} layout={layout} config={config}/>
+                    <div id="Plot1"></div>
+                    <Button onClick={this.Randomize.bind(this)} >Randomize</Button>
                     <StyledP2>
                       <br/>
                       <br/>
-                      These graphs are compltly dynamic. Only requiring an array for both X and Y axis, and an Array of labels.  Every aspect of these graphs can be styled.
+                      These graphs are completely dynamic. Only requiring an array for both X and Y axis, and an Array of labels.  Every aspect of these graphs can be styled.
                       <br/>
                       <br/>
                     </StyledP2>
                     <br class="clear"/>
-                    <PlotlyHalfPie className="HalfPie" data={data2} layout={layout2} config={config}/>
+                    <div id="Plot2"></div>
+                    <Button onClick={this.Randomize2.bind(this)} >Randomize</Button>
                     <StyledP>
                       <br/>
                       <br/>
-                      You can also have a combinations of diffrent graph types, shown below is a combination of a scatter plot and a line graph. There is also a wide range of customizable option not shown here such as annotations, Error bars, Map graphs, 3D Graphs, and many more.
+                      You can also have a combinations of different graph types, shown below is a combination of a scatter plot and a line graph. There is also a wide range of customizable option not shown here such as annotations, Error bars, Map graphs, 3D Graphs, and many more.
                       <br/>
                       <br/>
                     </StyledP>
                     <br class="clear"/>
-                    <PlotlyComponent data={data3} layout={layout3} config={config}/>
+                    <div id="Plot3"></div>
+                    <Button onClick={this.Randomize3.bind(this)} >Randomize</Button>
                 </div>
             </Content>
         </AboutSection>
