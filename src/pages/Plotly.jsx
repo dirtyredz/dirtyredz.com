@@ -101,11 +101,21 @@ const RemoveOnScroll = {
 }
 export default class Plotly extends React.Component {
     constructor(){
-      super()
+      super();
       this.state = {RemoveOnScroll: true};
+      this.WindowObject = null;
+      if(!this.is_server()){
+        this.WindowObject = window;
+      }
+    }
+    is_server() {
+      return ! (typeof window != 'undefined' && window.document);
     }
     componentWillMount(){
-
+        if(this.WindowObject === null){
+          return false;
+        }
+        return true;
     }
     componentDidMount(){
       //Run on next tick to allow styles to take effect
