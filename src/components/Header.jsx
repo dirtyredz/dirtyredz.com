@@ -8,10 +8,13 @@ import MobileNavigation from "./MobileNavigation";
 import styled, {injectGlobal} from 'styled-components';
 
 const Nav = styled.header`
-clear: both;
-display: block;
-font-size: 1.3em;
-height: 50px;
+  clear: both;
+  display: block;
+  font-size: 1.3em;
+  height: 50px;
+  @media print{
+    height: 120px;
+  }
 `;
 injectGlobal`
   body.OverFlow{
@@ -38,7 +41,7 @@ export default class Header extends React.Component {
     render() {
         return (
             <Nav>
-                <Small_DR_Logo />
+                <Small_DR_Logo/>
                 <DesktopNavigation handleMenuClick={this.handleMenuClick} />
                 <MobileNavigation MenuToggled={this.state.MenuToggled} handleMenuClick={this.handleMenuClick.bind(this)}/>
             </Nav>

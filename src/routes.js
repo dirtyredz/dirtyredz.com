@@ -11,7 +11,10 @@ import CostcoQuotes from "./pages/CostcoQuotes";
 import ZipCV from "./pages/ZipCV";
 import Services from "./pages/Services";
 import Donate from "./pages/Donate";
+import Skills from "./pages/Skills";
 import Plotly from "./pages/Plotly";
+import PlotlyDemo from "./pages/PlotlyDemo";
+import AmChartsDemo from "./pages/AmChartsDemo";
 import ReactScrollUpButton from "./pages/ReactScrollUpButton";
 import DirtyServerManager from "./pages/DirtyServerManager";
 import NotFound from "./pages/NotFound";
@@ -21,7 +24,10 @@ const routes = (
     <IndexRoute component={Home}></IndexRoute>
     <Route path="Services" component={Services}></Route>
     <Route path="Donate" component={Donate}></Route>
+    <Route path="Skills" component={Skills}></Route>
     <Route path="Plotly" component={Plotly}></Route>
+    <Route Angle="false" path="PlotlyDemo" component={PlotlyDemo}></Route>
+    <Route Angle="false" path="AmChartsDemo" component={AmChartsDemo}></Route>
     <Route path="Projects">
       <IndexRoute component={Projects}></IndexRoute>
       <Route Angle="false" path="LoreleiMcClain" component={LoreleiMcClain}></Route>

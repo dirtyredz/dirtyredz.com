@@ -14,6 +14,7 @@ const LinkLi = styled.li`
   @media (max-width: 767px){
     display: none;
   }
+
 `;
 const StyledLink = styled(Link)`
   padding: 0 20px;
@@ -23,10 +24,13 @@ const StyledLink = styled(Link)`
   transition: color 0.5s linear;
   font-weight: bold;
   cursor: pointer;
-
+  @media (max-width: 890px){
+    font-size: 0.7em;
+  }
   &:after {
     width: 100%;
     background-color: #8a1315;
+
     position: absolute;
     content: '';
     height: 0px;
@@ -67,7 +71,7 @@ injectGlobal`
 export default class DesktopNavigation extends React.Component {
     render() {
         return (
-            <nav>
+            <nav class="amChartsDemoPrintOnly">
                 <DesktopMenu>
                     <LinkLi>
                       <StyledLink to="/" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">HOME</StyledLink>
@@ -79,7 +83,13 @@ export default class DesktopNavigation extends React.Component {
                       <StyledLink to="/Projects" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">PROJECTS</StyledLink>
                     </LinkLi>
                     <LinkLi>
+                      <StyledLink to="/Skills" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">SKILLS</StyledLink>
+                    </LinkLi>
+                    <LinkLi>
                       <StyledLink to="/About" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">ABOUT</StyledLink>
+                    </LinkLi>
+                    <LinkLi>
+                      <StyledLink to="/Donate" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">DONATE</StyledLink>
                     </LinkLi>
                     <LinkLi>
                       <StyledLink to="/Contact" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">CONTACT</StyledLink>

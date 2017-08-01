@@ -15,9 +15,8 @@ module.exports = {
             loader: 'babel-loader'
         },
         {
-          test: /\.js$/,
-          loader: 'ify-loader',
-          enforce: 'post'
+          test: /\.css$/,
+          loader: "style-loader!css-loader"
         }
     ]
   },

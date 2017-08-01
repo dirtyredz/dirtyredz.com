@@ -6,6 +6,7 @@ const AboutSection = styled.section`
   width: 100%;
   padding-top: 50px;
   padding-bottom: 50px;
+  background-color: #ccc;
   opacity: 1;
   top: 0;
   transition: all 500ms, opacity 2s, top 2s;

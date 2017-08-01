@@ -1,12 +1,5 @@
 import React from "react";
 import { browserHistory } from "react-router"
-
-// import styles from "./PageTransition.css";
-
-
-
-
-
 import styled from 'styled-components';
 
 const Angles = styled.svg`

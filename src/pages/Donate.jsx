@@ -8,7 +8,7 @@ const AboutSection = styled.section`
   padding-top: 50px;
   padding-bottom: 50px;
   opacity: 1;
-      height: 700px;
+      height: 750px;
   top: 0;
   transition: all 500ms, opacity 2s, top 2s;
   font-size: calc(18px + 11 * ((100vw - 320px) / 1360));
@@ -60,10 +60,6 @@ const StyledP = styled.p`
     width: 90% !important;
   }
 `;
-const StyledP2 = styled.p`
-  padding-left: 5%;
-  padding-right: 1%;
-`;
 const DonateButton = styled.a`
   text-align: center;
   margin: 10px;
@@ -106,6 +102,15 @@ export default class Donate extends React.Component {
                       <br/>
                       <br/>
                       <DonateButton href="https://www.paypal.me/Dirtyredz" target="_blank">paypal.me/Dirtyredz</DonateButton>
+                    </StyledP>
+                    <br class="clear"/>
+                    <br/>
+                    <br/>
+                    <StyledP>
+                      I also have a Patreon that you can sign up and become a patron of mine.
+                      <br/>
+                      <br/>
+                      <DonateButton href="https://www.patreon.com/Dirtyredz" target="_blank">patreon.com/Dirtyredz</DonateButton>
                     </StyledP>
                     <br class="clear"/>
                 </div>
