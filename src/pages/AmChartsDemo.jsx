@@ -1131,11 +1131,11 @@ export default class AmChartsDemo extends React.Component {
                       <br/>
                       <br/>
                       <h1>Printing Settings:</h1>
-                      &nbsp;&nbsp;&nbsp;&nbsp;Margins:&nbsp;&nbsp;&nbsp;&nbsp;none,<br/>
-                      &nbsp;&nbsp;&nbsp;&nbsp;Orientation:&nbsp;&nbsp;&nbsp;&nbsp;Landscape,<br/>
-                      &nbsp;&nbsp;&nbsp;&nbsp;Backround Graphics:&nbsp;&nbsp;&nbsp;&nbsp;Enabled <span>(https://its.yale.edu/how-to/article-printing-web-page-background-colors-and-images)</span><br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp; Margins:&nbsp;&nbsp;&nbsp;&nbsp; none,<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp; Orientation:&nbsp;&nbsp;&nbsp;&nbsp; Landscape,<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp; Background Graphics:&nbsp;&nbsp;&nbsp;&nbsp; Enabled <span>(https://its.yale.edu/how-to/article-printing-web-page-background-colors-and-images)</span><br/>
                       <br/>
-                      &nbsp;&nbsp;&nbsp;&nbsp;Refresh page to ensure no graphical erros prior to printing.<br/>
+                      &nbsp;&nbsp;&nbsp;&nbsp; Refresh page to ensure no graphical errors prior to printing.<br/>
                       <br/>
                       <br/>
                     </BottomMessage>
