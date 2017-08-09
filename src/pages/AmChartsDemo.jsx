@@ -1,6 +1,7 @@
 import React from "react";
 // import styles from "./About.css"
 import styled, {injectGlobal} from 'styled-components';
+//import FuturaPT from '../fonts/FuturaPT-Book.ttf';
 
 const AboutSection = styled.section`
   width: 100%;
@@ -15,6 +16,7 @@ const AboutSection = styled.section`
   @media print{
     padding-top:0;
   }
+  font-family: "FuturaPTLight";
 `;
 const Content = styled.div`
   margin: 0 auto;
@@ -81,7 +83,6 @@ const chartdiv = styled.div`
   height: 500px;
 `;
 const DemoBox = styled.div`
-  border: 1px solid black;
   color: black;
   display: flex;
   flex-direction: column;
@@ -105,7 +106,11 @@ const DemoBox57 = styled(DemoBox)`
 `;
 const DemoBoxContent = styled.div`
   padding: 5px;
-  font-size: 50%;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  font-size: 70%;
+  line-height: 1.3;
   flex-grow: 1;
   height: 200px;
   overflow: hidden;
@@ -128,7 +133,7 @@ const DemoBoxContent50Space = styled(DemoBoxContent)`
 const DemoBoxRow = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 20px;
+
 `;
 const Catagory = styled.div`
   order: 1;
@@ -139,12 +144,17 @@ const Catagory = styled.div`
 const CatagoryValue = styled.div`
   font-weight: bold;
   order: 2;
+    font-family: "FuturaPTBook";
 `;
 const LossCatagory = styled(Catagory)`
   font-weight: bold;
 `;
+const CatagoryNoUnderline = styled(Catagory)`
+  border-bottom: none;
+`;
 const LossCatagoryValue = styled(CatagoryValue)`
   color: green;
+  font-family: "FuturaPTBook";
 `;
 const UnBoldCatagoryValue = styled(CatagoryValue)`
   font-weight: normal;
@@ -153,9 +163,10 @@ const DemoBoxHeader = styled.div`
   background-color: #1e6a95;
   color: white;
   height: 30px;
-  font-size: 60%;
-  padding: 5px;
-  width: calc(100% - 10px);
+  font-size: 70%;
+  padding: 5px 5px 5px 10px;
+
+  width: calc(100% - 15px);
 `;
 const DemoSection = styled.div`
   display: flex;
@@ -174,6 +185,14 @@ const RemoveOnScroll = {
   opacity:0
 }
 injectGlobal`
+@font-face {
+  font-family: FuturaPTLight;
+  src: url('./fonts/FuturaPT-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: FuturaPTBook;
+  src: url('./fonts/FuturaPT-Book.ttf') format('truetype');
+}
   #chartdiv {
     height: 500px;
     width: 100%;
@@ -342,6 +361,7 @@ export default class AmChartsDemo extends React.Component {
         "valueAxes": [{
             "unit": "$",
             "unitPosition": "left",
+            "fontSize": 18
         }],
         "graphs": [{
             "fillAlphas": 0.6,
@@ -369,7 +389,8 @@ export default class AmChartsDemo extends React.Component {
         "categoryField": "month",
         "categoryAxis": {
             "gridPosition": "start",
-            "labelRotation": 0
+            "labelRotation": 0,
+            "fontSize": 18
         },
         "listeners": [{
           "event": "drawn",
@@ -381,7 +402,7 @@ export default class AmChartsDemo extends React.Component {
         "type": "gauge",
         "axes": [{
           "topTextFontSize": 30,
-          "topTextYOffset": 30,
+          "topTextYOffset": 33,
           "topTextColor": '#fff',
           "axisColor": "#31d6ea",
           "tickAlpha": 0,
@@ -440,7 +461,7 @@ export default class AmChartsDemo extends React.Component {
         "type": "gauge",
         "axes": [{
           "topTextFontSize": 30,
-          "topTextYOffset": 30,
+          "topTextYOffset": 33,
           "topTextColor": '#fff',
           "axisColor": "#31d6ea",
           "tickAlpha": 0,
@@ -530,9 +551,9 @@ export default class AmChartsDemo extends React.Component {
         "angle": 30,
         "autoMargins": false,
         "marginBottom": 70,
-        "marginLeft": 50,
+        "marginLeft": 70,
       	"startDuration": 2,
-        "fontSize": 12,
+        "fontSize": 16,
         "dataProvider": [{
             "enrollmentType": "EE ONLY",
             "enrollmentAmount": 1430,
@@ -552,6 +573,7 @@ export default class AmChartsDemo extends React.Component {
         }],
         "valueAxes": [{
             "unitPosition": "left",
+            "fontSize": 18
         }],
         "graphs": [{
             "fillAlphas": 0.6,
@@ -611,10 +633,12 @@ export default class AmChartsDemo extends React.Component {
           "autoMarginOffset": 20,
           "categoryField": "date",
           "categoryAxis": {
-              "axisAlpha": 0
+              "axisAlpha": 0,
+              "fontSize": 14
           },
           "valueAxes": [{
-              "axisAlpha": 0
+              "axisAlpha": 0,
+              "fontSize": 18
           }],
           "graphs": [{
               "bullet": "round",
@@ -660,6 +684,7 @@ export default class AmChartsDemo extends React.Component {
               "useGraphSettings": true,
               "valueAlign": "left",
               "valueWidth": 0,
+              "fontSize": 14,
               "data": [{'title':'Anthem $4,500 Accrual','color':"#42beb9"},{'title':'Anthem $4,500 Paid Claims','color':"#ee9750"}]
           },
           "dataProvider": [{
@@ -702,6 +727,7 @@ export default class AmChartsDemo extends React.Component {
           "valueAxes": [{
               "unit": "$",
               "unitPosition": "left",
+              "fontSize": 18
           }],
           "graphs": [{
               "alphaField": "alpha",
@@ -743,6 +769,7 @@ export default class AmChartsDemo extends React.Component {
               "axisColor": "#555555",
               "gridAlpha": 0.1,
               "gridColor": "#FFFFFF",
+              "fontSize": 14,
               "gridCount": 50
           },
           "listeners": [{
@@ -875,11 +902,11 @@ export default class AmChartsDemo extends React.Component {
       var parent = label.parentNode;
       var svgRect = label.getBBox();
       var width = event.chart.containerDiv.parentNode.offsetWidth / 8.5
-      var fontSize = width / 2
+      var fontSize = width
       label.setAttribute('font-size',fontSize)
       var ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");;
       ellipse.setAttribute("cx", svgRect.x+45);
-      ellipse.setAttribute("cy", svgRect.y+20);
+      ellipse.setAttribute("cy", svgRect.y+17);
       ellipse.setAttribute("rx", width+10);
       ellipse.setAttribute("ry", width+10);
       ellipse.setAttribute("transform", label.getAttribute("transform"))
@@ -889,7 +916,7 @@ export default class AmChartsDemo extends React.Component {
       parent.insertBefore(ellipse, label);
       var ellipse = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");;
       ellipse.setAttribute("cx", svgRect.x+45);
-      ellipse.setAttribute("cy", svgRect.y+20);
+      ellipse.setAttribute("cy", svgRect.y+17);
       ellipse.setAttribute("rx", width);
       ellipse.setAttribute("ry", width);
       ellipse.setAttribute("transform", label.getAttribute("transform"))
@@ -897,7 +924,8 @@ export default class AmChartsDemo extends React.Component {
       ellipse.setAttribute("fill", "#818286");
       ellipse.setAttribute("opacity", 1);
       parent.insertBefore(ellipse, label);
-
+      label.setAttribute('font-family','FuturaPTLight');
+      label.innerHTML = '<tspan>'+label.innerHTML.replace(' %','')+'<tspan font-size="'+(width/2)+'px" style="baseline-shift: super;">%</tspan></tspan>';
     }
     render() {
         return (
@@ -917,13 +945,13 @@ export default class AmChartsDemo extends React.Component {
                               Gross Accrual
                             </Catagory><CatagoryValue>$6,961,548.00</CatagoryValue>
                           </DemoBoxRow>
-                          <br/>
+
                           <DemoBoxRow>
-                            <Catagory>
+                            <CatagoryNoUnderline>
                               Gross Plan Cost
-                            </Catagory><CatagoryValue>$4,158,885.04</CatagoryValue>
+                            </CatagoryNoUnderline><CatagoryValue>$4,158,885.04</CatagoryValue>
                           </DemoBoxRow>
-                          <br/>
+
                           <SolidBar/>
                           <br/>
                           <DemoBoxRow>
@@ -940,25 +968,24 @@ export default class AmChartsDemo extends React.Component {
                               Gross Accrual
                             </Catagory><CatagoryValue>$6,961,548.00</CatagoryValue>
                           </DemoBoxRow>
-                          <br/>
+
                           <DemoBoxRow>
                             <Catagory>
                               UHC Runout
                             </Catagory><CatagoryValue>$1,333,630.00</CatagoryValue>
                           </DemoBoxRow>
-                          <br/>
+
                           <DemoBoxRow>
                             <Catagory>
                               Gross Plan Cost
                             </Catagory><CatagoryValue>$4,158,885.04</CatagoryValue>
                           </DemoBoxRow>
-                          <br/>
+
                           <DemoBoxRow>
-                            <Catagory>
+                            <CatagoryNoUnderline>
                               Total Cost
-                            </Catagory><CatagoryValue>$5,508,904.04</CatagoryValue>
+                            </CatagoryNoUnderline><CatagoryValue>$5,508,904.04</CatagoryValue>
                           </DemoBoxRow>
-                          <br/>
                           <SolidBar/>
                           <br/>
                           <DemoBoxRow>
@@ -1009,9 +1036,9 @@ export default class AmChartsDemo extends React.Component {
                             </Catagory><UnBoldCatagoryValue>$ .</UnBoldCatagoryValue>
                           </DemoBoxRow>
                           <DemoBoxRow>
-                            <Catagory>
+                            <CatagoryNoUnderline>
                               Rebates
-                            </Catagory><UnBoldCatagoryValue>$ .</UnBoldCatagoryValue>
+                            </CatagoryNoUnderline><UnBoldCatagoryValue>$ .</UnBoldCatagoryValue>
                           </DemoBoxRow>
                           <SolidBar/>
                           <DemoBoxRow>
@@ -1025,11 +1052,11 @@ export default class AmChartsDemo extends React.Component {
                             </Catagory><UnBoldCatagoryValue>$429,821.58</UnBoldCatagoryValue>
                           </DemoBoxRow>
                           <DemoBoxRow>
-                            <Catagory>
+                            <CatagoryNoUnderline>
                               Fixed Costs
-                            </Catagory><UnBoldCatagoryValue>$544,491.01</UnBoldCatagoryValue>
+                            </CatagoryNoUnderline><UnBoldCatagoryValue>$544,491.01</UnBoldCatagoryValue>
                           </DemoBoxRow>
-                          <br/>
+
                           <SolidBar/>
                           <DemoBoxRow>
                             <LossCatagory>
@@ -1055,11 +1082,11 @@ export default class AmChartsDemo extends React.Component {
                             </Catagory><UnBoldCatagoryValue>$2,438,311.89</UnBoldCatagoryValue>
                           </DemoBoxRow>
                           <DemoBoxRow>
-                            <Catagory>
+                            <CatagoryNoUnderline>
                               RX
-                            </Catagory><UnBoldCatagoryValue>$746,260.56</UnBoldCatagoryValue>
+                            </CatagoryNoUnderline><UnBoldCatagoryValue>$746,260.56</UnBoldCatagoryValue>
                           </DemoBoxRow>
-                          <br/>
+
                           <SolidBar/>
                           <br/>
                           <DemoBoxRow>
