@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ContactHeader from '../ContactHeader';
+import Contact from '../Contact';
 import { shallow } from 'enzyme';
 
 const mockXHR = {
@@ -14,13 +14,13 @@ const oldXMLHttpRequest = window.XMLHttpRequest;
 window.XMLHttpRequest = jest.fn(() => mockXHR);
 
 it('renders without crashing', () => {
-  const wrapper = shallow(<ContactHeader/>);
+  const wrapper = shallow(<Contact/>);
 
-  const spy = jest.spyOn(ContactHeader.prototype, 'componentWillMount');
+  const spy = jest.spyOn(Contact.prototype, 'componentWillMount');
   wrapper.instance().componentWillMount();
   expect(spy).toHaveBeenCalled();
 
-  const spy2 = jest.spyOn(ContactHeader.prototype, 'handleSubmit');
+  const spy2 = jest.spyOn(Contact.prototype, 'handleSubmit');
   wrapper.instance().handleSubmit();
   expect(spy2).toHaveBeenCalled();
   mockXHR.onload();

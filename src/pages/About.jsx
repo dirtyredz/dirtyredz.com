@@ -1,6 +1,5 @@
 import React from "react";
-// import styles from "./About.css"
-
+import { Helmet } from "react-helmet";
 import styled, { keyframes } from 'styled-components';
 
 const ScaleX = keyframes`
@@ -160,6 +159,9 @@ export default class About extends React.Component {
     render() {
         return (
           <AboutSection style={(this.state.RemoveOnScroll) ? RemoveOnScroll : {}}>
+            <Helmet>
+                <title>Dirtyredz - About</title>
+            </Helmet>
             <Content>
                 <StyledHeader>
                     <BackgroundText><b>Who I am</b></BackgroundText>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import ProjectSection from "../components/ProjectSection";
 import styled from 'styled-components';
 
@@ -34,6 +35,9 @@ export default class Projects extends React.Component {
     render() {
         return (
             <div>
+                <Helmet>
+                    <title>Dirtyredz - Projects</title>
+                </Helmet>
                 <ProjectSection max="10" right='true'>
                     <Project>
                       <StyledHeader>

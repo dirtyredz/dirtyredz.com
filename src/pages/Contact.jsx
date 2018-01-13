@@ -1,9 +1,8 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-
 import ContactForm from "../components/ContactForm";
 import ContactSuccess from "../components/ContactSuccess";
-// require("./Contact.css");
 import styled, { injectGlobal } from 'styled-components';
 
 const ContactSection = styled.section`
@@ -123,6 +122,9 @@ export default class Contact extends React.Component {
     render() {
         return (
           <ContactSection id="FormHeader">
+              <Helmet>
+                  <title>Dirtyredz - Contact</title>
+              </Helmet>
               <Content>
                   <header>
                       <BackgroundText><b>Lets Talk</b></BackgroundText>

@@ -1,6 +1,5 @@
 import React from "react";
-// import styles from "./About.css"
-
+import { Helmet } from "react-helmet";
 import styled from 'styled-components';
 
 const AboutSection = styled.section`
@@ -85,6 +84,9 @@ export default class Donate extends React.Component {
     render() {
         return (
           <AboutSection style={(this.state.RemoveOnScroll) ? RemoveOnScroll : {}}>
+            <Helmet>
+                <title>Dirtyredz - Donate</title>
+            </Helmet>
             <Content>
                 <StyledHeader>
                     <BackgroundText><b>Help me out</b></BackgroundText>

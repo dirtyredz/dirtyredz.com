@@ -8,7 +8,7 @@ import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import About from "./pages/About";
-import ContactHeader from "./pages/ContactHeader";
+import Contact from "./pages/Contact";
 import LoreleiMcClain from "./pages/LoreleiMcClain";
 import CostcoQuotes from "./pages/CostcoQuotes";
 import ZipCV from "./pages/ZipCV";
@@ -35,7 +35,7 @@ const App = ({ match }) => (
                     </Switch>
                 )}/>
                 <Route Angle="false" path="/About" component={About}/>
-                <Route path="/Contact" component={ContactHeader}/>
+                <Route path="/Contact" component={Contact}/>
                 <Route path="*" component={NotFound}/>
             </Switch>
         </Layout>
