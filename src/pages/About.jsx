@@ -177,7 +177,7 @@ export default class About extends React.Component {
                       I&#39;ve been expanding my knowledge on other technologies as of late. Specifically I&#39;ve recently started learning: reacte.js, NodeJS, Webpack, ES6, and varius loaders.  I actually tried to avoid as much of the javascript language as I could, so I could work more with PHP.
                       Unfortunately the web development world headed down a different path. Single page application and javascript backend, like NodeJS, are expanding drastically. It&#39;s my hope to keep up with the web development world so that I can provide modern and powerful applications to my clients.
                     </StyledP>
-                    <br class="clear"/>
+                    <br className="clear"/>
                     <Title>So Whats with the Dirtyredz?</Title>
                     <br/>
                     <StyledP2>
@@ -185,8 +185,8 @@ export default class About extends React.Component {
                       Naturally the longer I was out in the field training the dirtier I became. Thus I was given the nickname Dirty Red Head by my comrades. Which of course eventually turned to Dirtyredz.
                       I&#39;ve been using that name for my online presence no matter what I&#39;m doing on the net.
                     </StyledP2>
-                    <br class="clear"/>
-                    <br class="clear"/>
+                    <br className="clear"/>
+                    <br className="clear"/>
                 </div>
             </Content>
         </AboutSection>

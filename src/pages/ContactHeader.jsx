@@ -1,5 +1,6 @@
 import React from "react";
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+
 import ContactForm from "../components/ContactForm";
 import ContactSuccess from "../components/ContactSuccess";
 // require("./Contact.css");
@@ -64,10 +65,10 @@ const ContactContainer = styled.div`
 `;
 injectGlobal`
 @element '#FormHeader' {
-  $this #ChildContainer {
+  #FormHeader #ChildContainer {
     height: eval('querySelector("ul").offsetHeight')px;
   }
-  $this {
+  #FormHeader {
     padding-bottom: calc(35vh + eval('querySelector("textarea").offsetHeight')px);
   }
 }
@@ -102,23 +103,16 @@ injectGlobal`
 export default class Contact extends React.Component {
     constructor(props){
       super(props);
-
-      this.state = {
-        Success: null
-      };
+      this.state = {Success: null};
     }
     handleSubmit(FormData){
-      let self = this;
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'http://api.dirtyredz.com/Email',true);
       //Send the proper header information along with the request
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xhr.onload = function() {
-          console.log(xhr.responseText);
-          if (xhr.status==200) {
-            self.setState({Success:true});
-          }else{
-
+      xhr.onload = () => {
+          if (xhr.status === 200) {
+            this.setState({Success:true});
           }
       };
       xhr.send(FormData);
@@ -136,19 +130,19 @@ export default class Contact extends React.Component {
                   </header>
                   <p>
                       I am currently doing freelance work. Do you need a website or even some consultation done?
-                      Talk to me by either filling out the form below or you can send an email to <a target="_blank" href="mailto:david.mcclain@dirtyredz.com">david.mcclain@dirtyredz.com</a>
+                      Talk to me by either filling out the form below or you can send an email to <a target="_blank" rel="noopener noreferrer" href="mailto:david.mcclain@dirtyredz.com">david.mcclain@dirtyredz.com</a>
                     <br/>
                     Thank you for visiting my site. I look forward to talking to you!
                   </p>
                   <ContactContainer id="ChildContainer">
-                    <ReactCSSTransitionGroup
+                    <CSSTransitionGroup
                       transitionName="ContactChild"
                       transitionAppear={true}
                       transitionAppearTimeout={1500}
                       transitionEnterTimeout={1500}
                       transitionLeaveTimeout={1500}>
                     {this.state.Success === false ? <ContactForm key="123" handleSubmit={this.handleSubmit.bind(this)}/> : <ContactSuccess key="456"/>}
-                    </ReactCSSTransitionGroup>
+                    </CSSTransitionGroup>
                 </ContactContainer>
               </Content>
           </ContactSection>

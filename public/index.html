@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/dirtyredz logo.ico">
 
     <title>Dirtyredz - Developer/Designer/Websites/Servers/</title>
     <meta name="viewport" content=" width=device-width, initial-scale=1, minimum-scale=1" />
@@ -32,7 +41,6 @@
     <meta name="twitter:description" content="David McClain is a self taught Developer with over 5 years experience. I started my programming career while I was serving in the Unites States Marine Corps. Not many say they Love the work they do, and in both  my careers that&#39;s what I&#39;ve done.."
     />
     <meta name="twitter:image" content="http://static.dirtyredz.com/dirtyredz logo.png" />
-    <link rel="icon" href="http://static.dirtyredz.com/dirtyredz%20logo.ico" />
     <style data-eqcss-ignore="true">
         * { padding-bottom: 0px; padding-left: 0px; padding-right: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; }
         img { border: none; }
@@ -97,11 +105,19 @@
     </style>
   </head>
   <body>
-    <style type="text/css" ><%- styles -%></style>
-    <noscript>If you're seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>, please <strong>enable JS</strong> to make this app work.</noscript>
-    <div id="Wrapper"><%- markup -%></div>
-    <script src="/js/react.min.js"></script>
-    <link rel="stylesheet" href="/css/highlight.css" data-eqcss-ignore="true" />
-    <link href="https://fonts.googleapis.com/css?family=Anton|Montserrat:400,500,600,700" rel="stylesheet">
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
   </body>
 </html>

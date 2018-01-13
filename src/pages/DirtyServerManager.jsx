@@ -3,12 +3,11 @@ import React from "react";
 import ProjectPage from "../components/ProjectPage";
 
 export default class DirtyServerManager extends React.Component {
-
     render() {
         const Skills = ['CSS','HTML','JS','bash','lua','php','apache','linux','Ubuntu','Debian','Centos','Github']
         return (
             <ProjectPage Title="Dirty Server Manager" SubTitle1="Avorion" SubTitle2="Server" SubTitle3="Web Interface"
-              Role="Project Lead" Context="Developer"
+              ProjectRole="Project Lead" Context="Developer"
               Year="2017"
               Description="This is a project dedicated to server deployment, management, and exposing features to the client, for the game 'Avorion'"
               Experience="After getting invloved in a MP/SP game named Avorion, I quickly realized that there was an oppurtunity for me. I could take my knowledge of linux servers and web development and create a project that many can use.  This project is still in development, and available as an alpha release."

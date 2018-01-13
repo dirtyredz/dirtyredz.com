@@ -126,32 +126,32 @@ const ListItem = styled.li`
 `;
 injectGlobal`
   @element '#Message' {
-    $this {
+    #Message {
       height: eval("style.height='inherit';style.height=scrollHeight+'px';");
     }
   }
   @element '#FormGroup' {
-    $this {
+    #FormGroup {
       min-height: 60px;
       height: eval('querySelector("textarea").offsetHeight')px !important;
     }
-    $this [data-transitioned="true"] #EmailLabel{
+    #FormGroup [data-transitioned="true"] #EmailLabel{
       transform: translateY(-50px) scale(0.8) translateX( eval('querySelector("#NameLabel").offsetWidth + 10')px )!important;
     }
-    $this [data-transitioned="true"] #MessageLabel{
+    #FormGroup [data-transitioned="true"] #MessageLabel{
       transform: translateY(-50px) scale(0.8) translateX( eval('querySelector("#NameLabel").offsetWidth + querySelector("#EmailLabel").offsetWidth + 19')px )!important;
     }
-    $this [data-transitioned="true"] div{
+    #FormGroup [data-transitioned="true"] div{
       max-width: 33ew !important;
     }
     @media (max-width: 960px) {
-      $this [data-transitioned="true"] #EmailLabel{
+      #FormGroup [data-transitioned="true"] #EmailLabel{
         transform: translateY(-85px) scale(0.8) translateX( 17px )!important;
       }
-      $this [data-transitioned="true"] #MessageLabel{
+      #FormGroup [data-transitioned="true"] #MessageLabel{
         transform: translateY(-50px) scale(0.8) translateX( 17px )!important;
       }
-      $this [data-transitioned="true"] div{
+      #FormGroup [data-transitioned="true"] div{
         max-width: 100ew !important;
       }
     }
@@ -233,7 +233,7 @@ export default class ContactForm extends React.Component {
     }
     handleNameChange(e){
       let Value = e.target.value;
-      if(Value != ''){
+      if(Value !== ''){
         this.setState({NameInput: Value, NameTransitioned: true});
         //Validate Name
         if(this.IsNameValid(Value)){//Validated, Set Next Button as clickable
@@ -251,7 +251,7 @@ export default class ContactForm extends React.Component {
     }
     handleEmailChange(e){
       let Value = e.target.value;
-      if(Value != ''){
+      if(Value !== ''){
         this.setState({EmailInput: Value, EmailTransitioned: true});
         //Validate Email
         if (this.IsEmailValid(Value)) {//Validated, Set Next Button as clickable
@@ -269,7 +269,7 @@ export default class ContactForm extends React.Component {
     }
     handleMessageChange(e){
       let Value = e.target.value;
-      if(Value != ''){
+      if(Value !== ''){
         this.setState({MessageInput: Value, MessageTransitioned: true});
         //Validate Email
         if (this.IsMessageValid(Value)) {//Validated, Set Next Button as clickable
@@ -279,7 +279,7 @@ export default class ContactForm extends React.Component {
                 this.setState({SubmitButton: true});
             }
         }else{//Not Validated
-            this.setState({SubmitButton: false, MessageError: true, SubmitButton: false});
+            this.setState({SubmitButton: false, MessageError: true});
         }
       }else{
         //User removed last charecter in input set label to default
@@ -288,7 +288,7 @@ export default class ContactForm extends React.Component {
     }
     handleNextButton(){
       if(this.state.NextButton){
-        if(this.state.CurrentActive == 'Name'){
+        if(this.state.CurrentActive === 'Name'){
           this.setState({CurrentActive: 'Email', NextButton: false})
           if(this.IsEmailValid(this.state.EmailInput)){
             this.setState({NextButton: true})
@@ -296,7 +296,7 @@ export default class ContactForm extends React.Component {
               this.setState({SubmitButton: true});
             }
           }
-        }else if(this.state.CurrentActive == 'Email'){
+      }else if(this.state.CurrentActive === 'Email'){
           this.setState({CurrentActive: 'Message', NextButton: false})
           if(this.IsMessageValid(this.state.MessageInput)){
             if(this.IsAllValid(this.state.NameInput,this.state.EmailInput,this.state.MessageInput)){
@@ -308,14 +308,14 @@ export default class ContactForm extends React.Component {
     }
     handleFormKeyUp(e){
       var key = e.charCode || e.keyCode || 0;
-      if (key == 9) {
+      if (key === 9) {
         e.preventDefault();
         this.handleNextButton();
       }
     }
     handleFormKeyDown(e){
       var key = e.charCode || e.keyCode || 0;
-      if (this.state.CurrentActive != 'Message' && key == 13) {
+      if (this.state.CurrentActive !== 'Message' && key === 13) {
         e.preventDefault();
         this.handleNextButton();
       }
@@ -330,9 +330,9 @@ export default class ContactForm extends React.Component {
         return (
             <Form id="ContactForm" onKeyUp={this.handleFormKeyUp.bind(this)} onKeyDown={this.handleFormKeyDown.bind(this)}>
                 <StyleUL innerRef={(ul) => { this.UL = ul; }} id="FormGroup">
-                    <FormInput id="Name" onClick={this.NameLabelClick.bind(this)} onChange={this.handleNameChange.bind(this)} active={this.state.CurrentActive == 'Name'? true : false} error={this.state.NameError} transitioned={this.state.NameTransitioned} text={this.state.NameInput}/>
-                    <FormInput id="Email" onClick={this.EmailLabelClick.bind(this)} onChange={this.handleEmailChange.bind(this)} active={this.state.CurrentActive == 'Email'? true : false} error={this.state.EmailError} transitioned={this.state.EmailTransitioned} text={this.state.EmailInput}/>
-                    <FormInput textarea id="Message" onClick={this.MessageLabelClick.bind(this)} onChange={this.handleMessageChange.bind(this)} active={this.state.CurrentActive == 'Message'? true : false} error={this.state.MessageError} transitioned={this.state.MessageTransitioned} text={this.state.MessageInput}/>
+                    <FormInput id="Name" onClick={this.NameLabelClick.bind(this)} onChange={this.handleNameChange.bind(this)} active={this.state.CurrentActive === 'Name'? true : false} error={this.state.NameError} transitioned={this.state.NameTransitioned} text={this.state.NameInput}/>
+                    <FormInput id="Email" onClick={this.EmailLabelClick.bind(this)} onChange={this.handleEmailChange.bind(this)} active={this.state.CurrentActive === 'Email'? true : false} error={this.state.EmailError} transitioned={this.state.EmailTransitioned} text={this.state.EmailInput}/>
+                    <FormInput textarea id="Message" onClick={this.MessageLabelClick.bind(this)} onChange={this.handleMessageChange.bind(this)} active={this.state.CurrentActive === 'Message'? true : false} error={this.state.MessageError} transitioned={this.state.MessageTransitioned} text={this.state.MessageInput}/>
                 </StyleUL>
                 <div>
                     <ContactButtonDiv onClick={this.handleNextButton.bind(this)} data-validate={this.state.NextButton}>Next</ContactButtonDiv>
@@ -346,7 +346,7 @@ export default class ContactForm extends React.Component {
 
 class FormInput extends React.Component {
     componentDidUpdate(prevProps, prevState){
-      if(this.props.active == true){
+      if(this.props.active === true){
         this.refs.input.focus();
       }
     }

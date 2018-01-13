@@ -1,6 +1,6 @@
 import React from "react";
 
-import Small_DR_Logo from "./Small_DR_Logo";
+import SmallDRLogo from "./SmallDRLogo";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 // import styles from './Header.css';
@@ -28,8 +28,7 @@ export default class Header extends React.Component {
       super(props);
       this.state = {MenuToggled: false};
     }
-    handleMenuClick = () =>{
-      console.log('Called');
+    handleMenuClick(){
       if(this.state.MenuToggled){
         this.setState({MenuToggled: false});
         document.body.className = '';
@@ -41,8 +40,8 @@ export default class Header extends React.Component {
     render() {
         return (
             <Nav>
-                <Small_DR_Logo/>
-                <DesktopNavigation handleMenuClick={this.handleMenuClick} />
+                <SmallDRLogo/>
+                <DesktopNavigation handleMenuClick={this.handleMenuClick.bind(this)} />
                 <MobileNavigation MenuToggled={this.state.MenuToggled} handleMenuClick={this.handleMenuClick.bind(this)}/>
             </Nav>
         );

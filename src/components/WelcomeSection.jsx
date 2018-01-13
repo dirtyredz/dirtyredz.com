@@ -1,6 +1,6 @@
 import React from "react";
 import Waypoint from "react-waypoint";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 // require("./WelcomeSection.css");
 import styled from 'styled-components'
@@ -101,7 +101,7 @@ export default class WelcomeSection extends React.Component {
       }
     }
     is_server() {
-      return ! (typeof window != 'undefined' && window.document);
+      return ! (typeof window !== 'undefined' && window.document);
     }
     GetYearsExperienc(){
         var todayDate = new Date();
@@ -115,7 +115,7 @@ export default class WelcomeSection extends React.Component {
           Years--;
         }
 
-        if (1 - 1 == todayMonth && todayDay < 1)
+        if (1 - 1 === todayMonth && todayDay < 1)
         {
           Years--;
         }
@@ -155,11 +155,11 @@ export default class WelcomeSection extends React.Component {
                   <br />
                   <b>LEARN MORE <WorpPop><Link to="/About">ABOUT ME</Link></WorpPop>.</b>
                   <EGA>
-                      <img height="378" src="http://static.dirtyredz.com/Globeanchor.png" />
+                      <img height="378" src="http://static.dirtyredz.com/Globeanchor.png" alt=""/>
                   </EGA>
                   <DownArrow>
                       <svg viewBox="0 0 21 32">
-                          <path class="path1" d="M19.196 15.429q0 0.232-0.179 0.411l-8.321 8.321q-0.179 0.179-0.411 0.179t-0.411-0.179l-8.321-8.321q-0.179-0.179-0.179-0.411t0.179-0.411l0.893-0.893q0.179-0.179 0.411-0.179t0.411 0.179l7.018 7.018 7.018-7.018q0.179-0.179 0.411-0.179t0.411 0.179l0.893 0.893q0.179 0.179 0.179 0.411zM19.196 8.571q0 0.232-0.179 0.411l-8.321 8.321q-0.179 0.179-0.411 0.179t-0.411-0.179l-8.321-8.321q-0.179-0.179-0.179-0.411t0.179-0.411l0.893-0.893q0.179-0.179 0.411-0.179t0.411 0.179l7.018 7.018 7.018-7.018q0.179-0.179 0.411-0.179t0.411 0.179l0.893 0.893q0.179 0.179 0.179 0.411z"></path>
+                          <path className="path1" d="M19.196 15.429q0 0.232-0.179 0.411l-8.321 8.321q-0.179 0.179-0.411 0.179t-0.411-0.179l-8.321-8.321q-0.179-0.179-0.179-0.411t0.179-0.411l0.893-0.893q0.179-0.179 0.411-0.179t0.411 0.179l7.018 7.018 7.018-7.018q0.179-0.179 0.411-0.179t0.411 0.179l0.893 0.893q0.179 0.179 0.179 0.411zM19.196 8.571q0 0.232-0.179 0.411l-8.321 8.321q-0.179 0.179-0.411 0.179t-0.411-0.179l-8.321-8.321q-0.179-0.179-0.179-0.411t0.179-0.411l0.893-0.893q0.179-0.179 0.411-0.179t0.411 0.179l7.018 7.018 7.018-7.018q0.179-0.179 0.411-0.179t0.411 0.179l0.893 0.893q0.179 0.179 0.179 0.411z"></path>
                       </svg>
                   </DownArrow>
               </Content>

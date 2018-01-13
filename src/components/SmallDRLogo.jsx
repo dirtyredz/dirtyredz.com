@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router"
+import { Link } from "react-router-dom"
 // import styles from './Small_DR_Logo.css';
 import styled from 'styled-components';
 
@@ -23,12 +23,8 @@ export default class Small_DR_Logo extends React.Component {
     render() {
         return (
             <StyledDiv>
-                <div class="amChartsDemoPrint">
-                  <h1>MEDICAL & PHARMACY</h1>
-                  <span>Year to Date (YTD) June 2017</span>
-                </div>
-                <Link to="/"  class="amChartsDemoPrintOnly">
-                  <StyledSVG data viewBox="0 0 32 32">
+                <Link to="/"  className="amChartsDemoPrintOnly">
+                  <StyledSVG viewBox="0 0 32 32">
                     <path d="M0 16v16h4.008v-32h-4.008v16z"></path>
                     <path d="M6.83 8.593v8.593h4.165c4.146 0 4.713-0.013 5.534-0.115 1.51-0.189 2.921-0.728 3.896-1.485 1.283-0.994 2.261-2.645 2.642-4.457 0.366-1.728 0.285-4.107-0.192-5.784-0.279-0.968-0.818-2.004-1.43-2.732-1.109-1.327-2.507-2.126-4.248-2.421-0.991-0.17-1.013-0.17-5.852-0.183l-4.515-0.013v8.596zM14.541 2.95c1.517 0.080 2.254 0.285 3.004 0.84 0.693 0.51 1.241 1.449 1.449 2.479 0.122 0.606 0.154 0.965 0.17 2.036 0.029 1.767-0.096 2.738-0.468 3.687-0.426 1.093-1.036 1.674-2.119 2.014-0.715 0.224-1.247 0.263-3.755 0.263h-2.017v-11.351h1.565c0.859 0 1.837 0.016 2.171 0.032z"></path>
                     <path d="M22.541 0.16c-0.131 0.087-0.24 0.173-0.24 0.186s0.080 0.096 0.176 0.183c0.34 0.298 0.956 0.955 1.18 1.25 0.112 0.151 0.552 0.814 0.552 0.837 0 0.010 0.042 0.077 0.090 0.151 0.051 0.074 0.16 0.273 0.244 0.439s0.157 0.308 0.164 0.314c0.003 0.006 1.138-0.728 2.52-1.632s2.6-1.699 2.703-1.767l0.189-0.122h-7.336l-0.24 0.16z"></path>

@@ -1,7 +1,5 @@
 import React from "react";
-import { Link } from "react-router"
-// import Li from "./Li.jsx";
-// import styles from './MobileNavigation.css';
+import { NavLink } from "react-router-dom"
 import styled, {injectGlobal} from 'styled-components';
 
 injectGlobal`
@@ -16,10 +14,10 @@ const MobileMenu = styled.nav`
   position: absolute;
   padding-top: 0;
   z-index: 10;
-  left: ${props => props.MenuToggled ? '0' : '1000px'};
+  left: 1000px;
   margin-top: 50px;
   opacity: 1;
-  visibility: ${props => props.MenuToggled ? 'visible' : 'hidden'};
+  visibility: hidden;
   transition: left 500ms ease-in-out, visibility 500ms;
   height: 100vh;
 `;
@@ -33,7 +31,7 @@ const StyledUl = styled.ul`
   overflow-y: scroll;
   overflow-x: hidden;
 `;
-const LinkLi = styled.li`
+const NavLinkLi = styled.li`
   position: relative;
   width: 100%;
   height: 100px;
@@ -42,42 +40,30 @@ const LinkLi = styled.li`
     display: block !important;
   }
 `;
-const StyledLink = styled(Link)`
-  padding: 0 20px;
-  line-height: 50px;
-  display: block;
-  font-size: 1em;
-  transition: color 0.5s linear;
-  -webkit-transition: color 0.5s linear;
-  font-weight: bold;
-  cursor: pointer;
-`;
+const ToggleMenu = {
+  left: 0,
+  visibility: 'visible'
+}
 export default class MobileNavigation extends React.Component {
     render() {
         return (
-            <MobileMenu MenuToggled={this.props.MenuToggled}>
+            <MobileMenu style={(this.props.MenuToggled) ? ToggleMenu : {}}>
                 <StyledUl>
-                    <LinkLi>
-                      <Link onClick={this.props.handleMenuClick} to="/" onlyActiveOnIndex activeClassName="DR_ERROR">HOME</Link>
-                    </LinkLi>
-                    <LinkLi>
-                      <Link onClick={this.props.handleMenuClick} to="/SERVICES" onlyActiveOnIndex activeClassName="DR_ERROR">SERVICES</Link>
-                    </LinkLi>
-                    <LinkLi>
-                      <Link onClick={this.props.handleMenuClick} to="/PROJECTS" onlyActiveOnIndex activeClassName="DR_ERROR">PROJECTS</Link>
-                    </LinkLi>
-                    <LinkLi>
-                      <Link onClick={this.props.handleMenuClick} to="/SKILLS" onlyActiveOnIndex activeClassName="DR_ERROR">SKILLS</Link>
-                    </LinkLi>
-                    <LinkLi>
-                      <Link onClick={this.props.handleMenuClick} to="/DONATE" onlyActiveOnIndex activeClassName="DR_ERROR">DONATE</Link>
-                    </LinkLi>
-                    <LinkLi>
-                      <Link onClick={this.props.handleMenuClick} to="/ABOUT" onlyActiveOnIndex activeClassName="DR_ERROR">ABOUT</Link>
-                    </LinkLi>
-                    <LinkLi>
-                      <Link onClick={this.props.handleMenuClick} to="/CONTACT" onlyActiveOnIndex activeClassName="DR_ERROR">CONTACT</Link>
-                    </LinkLi>
+                    <NavLinkLi>
+                      <NavLink onClick={this.props.handleMenuClick} to="/" exact activeClassName="DR_ERROR">HOME</NavLink>
+                    </NavLinkLi>
+                    <NavLinkLi>
+                      <NavLink onClick={this.props.handleMenuClick} to="/PROJECTS" exact activeClassName="DR_ERROR">PROJECTS</NavLink>
+                    </NavLinkLi>
+                    <NavLinkLi>
+                      <NavLink onClick={this.props.handleMenuClick} to="/DONATE" exact activeClassName="DR_ERROR">DONATE</NavLink>
+                    </NavLinkLi>
+                    <NavLinkLi>
+                      <NavLink onClick={this.props.handleMenuClick} to="/ABOUT" exact activeClassName="DR_ERROR">ABOUT</NavLink>
+                    </NavLinkLi>
+                    <NavLinkLi>
+                      <NavLink onClick={this.props.handleMenuClick} to="/CONTACT" exact activeClassName="DR_ERROR">CONTACT</NavLink>
+                    </NavLinkLi>
                 </StyledUl>
             </MobileMenu>
         );

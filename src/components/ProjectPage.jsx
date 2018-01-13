@@ -1,7 +1,6 @@
 import React from "react";
 import Highlight from "react-highlight";
-
-// import style from "./ProjectPage.css";
+import './highlight.css';
 import styled from 'styled-components';
 
 const TitleSection = styled.section`
@@ -352,12 +351,12 @@ export default class ProjectPage extends React.Component {
                   </TitleContainer>
                   {this.props.ImageSource &&
                     <TitleImgContainer>
-                      <img src={this.props.ImageSource}/>
+                      <img alt="" src={this.props.ImageSource}/>
                     </TitleImgContainer>
                   }
               </Container>
               <Details>
-                  <li><RedDetails>ROLE  </RedDetails>{this.props.Role}</li>
+                  <li><RedDetails>ROLE  </RedDetails>{this.props.ProjectRole}</li>
                   <li><RedDetails>CONTEXT  </RedDetails>{this.props.Context}</li>
                   <li><RedDetails>YEAR  </RedDetails>{this.props.Year}</li>
               </Details>
@@ -388,13 +387,13 @@ export default class ProjectPage extends React.Component {
             {this.props.CodeExample &&
               <CodeSection>
                 <div>
-                  <Highlight class='javascript'>
+                  <Highlight className='Markdown'>
                     {this.props.CodeExampleBash}
                   </Highlight>
                 </div>
                 <br/>
                 <div>
-                  <Highlight class='javascript'>
+                  <Highlight className='javascript'>
                     {this.props.CodeExampleJS}
                   </Highlight>
                 </div>
@@ -402,7 +401,7 @@ export default class ProjectPage extends React.Component {
             }
             <ButtonSection>
                 <div>
-                    <a target="_blank" href={this.props.href}>
+                    <a target="_blank" rel="noopener noreferrer" href={this.props.href}>
                         <StyledSvg viewBox="0 0 400 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                           <rect x="140" y="20" height="20px" width="60%"/>
                           <rect x="150" y="42" height="20px" width="60%"/>

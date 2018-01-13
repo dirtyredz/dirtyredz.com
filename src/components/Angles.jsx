@@ -87,9 +87,6 @@ const Rect = styled.rect`
   height: 65px;
 `;
 export default class Angles extends React.Component {
-    constructor(){
-        super()
-    }
     AnglesScroll(){
         var obj = document.getElementsByClassName("Angles__ScrollBars__DR16");
         //Loop through all SVG's
@@ -118,59 +115,59 @@ export default class Angles extends React.Component {
     }
     componentDidMount(){
         SVGElement.prototype.getElementsByClassName = function(search) {
-          return this.querySelectorAll("." + search) 
+            return this.querySelectorAll("." + search)
         }
         window.addEventListener('scroll', this.AnglesScroll.bind(this));
+
         //Setting Timeout for 1ms allows transition effects to work.
-        var self=this;
-        setTimeout(function(){
-          var obj = document.getElementsByClassName("Angles__ScrollBars__DR16");
-          for (var i = 0; i < obj.length; i++) {
-              self.SetAngle(obj[i].getElementsByClassName("Angles__One__DR16")[0],0,0)
-          }
-          setTimeout(function(){
+        setTimeout(() => {
+            var obj = document.getElementsByClassName("Angles__ScrollBars__DR16");
             for (var i = 0; i < obj.length; i++) {
-                self.SetAngle(obj[i].getElementsByClassName("Angles__Two__DR16")[0],0,0)
+              this.SetAngle(obj[i].getElementsByClassName("Angles__One__DR16")[0],0,0)
             }
-          },100)
-          setTimeout(function(){
-            for (var i = 0; i < obj.length; i++) {
-                self.SetAngle(obj[i].getElementsByClassName("Angles__Three__DR16")[0],0,0)
-            }
-          },200)
-          setTimeout(function(){
-            for (var i = 0; i < obj.length; i++) {
-                self.SetAngle(obj[i].getElementsByClassName("Angles__Four__DR16")[0],0,0)
-            }
-          },300)
-      }, 1);
+            setTimeout(() => {
+                for (var i = 0; i < obj.length; i++) {
+                    this.SetAngle(obj[i].getElementsByClassName("Angles__Two__DR16")[0],0,0)
+                }
+            },100)
+            setTimeout(() => {
+                for (var i = 0; i < obj.length; i++) {
+                    this.SetAngle(obj[i].getElementsByClassName("Angles__Three__DR16")[0],0,0)
+                }
+            },200)
+            setTimeout(() => {
+                for (var i = 0; i < obj.length; i++) {
+                    this.SetAngle(obj[i].getElementsByClassName("Angles__Four__DR16")[0],0,0)
+                }
+            },300)
+        }, 1);
     }
     render() {
         return (
           <Aside>
-              <ScrollBars class="Angles__ScrollBars__DR16" viewBox="0 0 400 700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                  <Rect class="Angles__One__DR16" x="30" y="390" height="65px" width="300px" data-divisible="1.5"></Rect>
-                  <Rect class="Angles__Two__DR16" x="-25" y="460" height="65px" width="300px" data-divisible="2"></Rect>
-                  <Rect class="Angles__Three__DR16" x="-5" y="530" height="65px" width="300px" data-divisible="2.5"></Rect>
-                  <Rect class="Angles__Four__DR16" x="40" y="600" height="65px" width="300px" data-divisible="3"></Rect>
+              <ScrollBars className="Angles__ScrollBars__DR16" viewBox="0 0 400 700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                  <Rect className="Angles__One__DR16" x="30" y="390" height="65px" width="300px" data-divisible="1.5"></Rect>
+                  <Rect className="Angles__Two__DR16" x="-25" y="460" height="65px" width="300px" data-divisible="2"></Rect>
+                  <Rect className="Angles__Three__DR16" x="-5" y="530" height="65px" width="300px" data-divisible="2.5"></Rect>
+                  <Rect className="Angles__Four__DR16" x="40" y="600" height="65px" width="300px" data-divisible="3"></Rect>
               </ScrollBars>
-              <ScrollBarsRight class="Angles__ScrollBars__DR16" viewBox="0 0 400 700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                  <Rect class="Angles__One__DR16" x="30" y="390" height="65px" width="300px" data-divisible="1.5"></Rect>
-                  <Rect class="Angles__Two__DR16" x="-25" y="460" height="65px" width="300px" data-divisible="2"></Rect>
-                  <Rect class="Angles__Three__DR16" x="-5" y="530" height="65px" width="300px" data-divisible="2.5"></Rect>
-                  <Rect class="Angles__Four__DR16" x="40" y="600" height="65px" width="300px" data-divisible="3"></Rect>
+              <ScrollBarsRight className="Angles__ScrollBars__DR16" viewBox="0 0 400 700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                  <Rect className="Angles__One__DR16" x="30" y="390" height="65px" width="300px" data-divisible="1.5"></Rect>
+                  <Rect className="Angles__Two__DR16" x="-25" y="460" height="65px" width="300px" data-divisible="2"></Rect>
+                  <Rect className="Angles__Three__DR16" x="-5" y="530" height="65px" width="300px" data-divisible="2.5"></Rect>
+                  <Rect className="Angles__Four__DR16" x="40" y="600" height="65px" width="300px" data-divisible="3"></Rect>
               </ScrollBarsRight>
-              <ScrollBars class="Angles__ScrollBars__DR16" viewBox="0 0 400 700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                  <Rect class="Angles__One__DR16" x="30" y="390" height="65px" width="300px" data-divisible="1.5"></Rect>
-                  <Rect class="Angles__Two__DR16" x="-25" y="460" height="65px" width="300px" data-divisible="2"></Rect>
-                  <Rect class="Angles__Three__DR16" x="-5" y="530" height="65px" width="300px" data-divisible="2.5"></Rect>
-                  <Rect class="Angles__Four__DR16" x="40" y="600" height="65px" width="300px" data-divisible="3"></Rect>
+              <ScrollBars className="Angles__ScrollBars__DR16" viewBox="0 0 400 700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                  <Rect className="Angles__One__DR16" x="30" y="390" height="65px" width="300px" data-divisible="1.5"></Rect>
+                  <Rect className="Angles__Two__DR16" x="-25" y="460" height="65px" width="300px" data-divisible="2"></Rect>
+                  <Rect className="Angles__Three__DR16" x="-5" y="530" height="65px" width="300px" data-divisible="2.5"></Rect>
+                  <Rect className="Angles__Four__DR16" x="40" y="600" height="65px" width="300px" data-divisible="3"></Rect>
               </ScrollBars>
-              <ScrollBarsRight class="Angles__ScrollBars__DR16" viewBox="0 0 400 700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                  <Rect class="Angles__One__DR16" x="30" y="390" height="65px" width="300px" data-divisible="1.5"></Rect>
-                  <Rect class="Angles__Two__DR16" x="-25" y="460" height="65px" width="300px" data-divisible="2"></Rect>
-                  <Rect class="Angles__Three__DR16" x="-5" y="530" height="65px" width="300px" data-divisible="2.5"></Rect>
-                  <Rect class="Angles__Four__DR16" x="40" y="600" height="65px" width="300px" data-divisible="3"></Rect>
+              <ScrollBarsRight className="Angles__ScrollBars__DR16" viewBox="0 0 400 700" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                  <Rect className="Angles__One__DR16" x="30" y="390" height="65px" width="300px" data-divisible="1.5"></Rect>
+                  <Rect className="Angles__Two__DR16" x="-25" y="460" height="65px" width="300px" data-divisible="2"></Rect>
+                  <Rect className="Angles__Three__DR16" x="-5" y="530" height="65px" width="300px" data-divisible="2.5"></Rect>
+                  <Rect className="Angles__Four__DR16" x="40" y="600" height="65px" width="300px" data-divisible="3"></Rect>
               </ScrollBarsRight>
           </Aside>
         );

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router"
+import { NavLink } from "react-router-dom"
 // import styles from './DesktopNavigation.css';
 import styled, { injectGlobal } from 'styled-components'
 
@@ -16,7 +16,7 @@ const LinkLi = styled.li`
   }
 
 `;
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
   padding: 0 20px;
   line-height: 50px;
   display: block;
@@ -71,28 +71,22 @@ injectGlobal`
 export default class DesktopNavigation extends React.Component {
     render() {
         return (
-            <nav class="amChartsDemoPrintOnly">
+            <nav className="amChartsDemoPrintOnly">
                 <DesktopMenu>
                     <LinkLi>
-                      <StyledLink to="/" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">HOME</StyledLink>
+                      <StyledLink to="/" exact activeClassName="Desktop_Nav_Active">HOME</StyledLink>
                     </LinkLi>
                     <LinkLi>
-                      <StyledLink to="/Services" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">SERVICES</StyledLink>
+                      <StyledLink to="/Projects" exact activeClassName="Desktop_Nav_Active">PROJECTS</StyledLink>
                     </LinkLi>
                     <LinkLi>
-                      <StyledLink to="/Projects" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">PROJECTS</StyledLink>
+                      <StyledLink to="/About" exact activeClassName="Desktop_Nav_Active">ABOUT</StyledLink>
                     </LinkLi>
                     <LinkLi>
-                      <StyledLink to="/Skills" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">SKILLS</StyledLink>
+                      <StyledLink to="/Donate" exact activeClassName="Desktop_Nav_Active">DONATE</StyledLink>
                     </LinkLi>
                     <LinkLi>
-                      <StyledLink to="/About" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">ABOUT</StyledLink>
-                    </LinkLi>
-                    <LinkLi>
-                      <StyledLink to="/Donate" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">DONATE</StyledLink>
-                    </LinkLi>
-                    <LinkLi>
-                      <StyledLink to="/Contact" onlyActiveOnIndex activeClassName="Desktop_Nav_Active">CONTACT</StyledLink>
+                      <StyledLink to="/Contact" exact activeClassName="Desktop_Nav_Active">CONTACT</StyledLink>
                     </LinkLi>
                     <li>
                       <StyledSpan onClick={this.props.handleMenuClick} >MENU</StyledSpan>

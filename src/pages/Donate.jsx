@@ -1,7 +1,7 @@
 import React from "react";
 // import styles from "./About.css"
 
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const AboutSection = styled.section`
   width: 100%;
@@ -36,12 +36,6 @@ const BackgroundText = styled.span`
   padding-left: 50px;
   color: #111010;
   font-size: 4em;
-`;
-const Title = styled.h1`
-  padding-top: 50px;
-  @media (max-width: 700px) {
-    text-align: center;
-  }
 `;
 const TitlePop = styled.span`
   left: 20%;
@@ -103,7 +97,7 @@ export default class Donate extends React.Component {
                       <br/>
                       <DonateButton href="https://www.paypal.me/Dirtyredz" target="_blank">paypal.me/Dirtyredz</DonateButton>
                     </StyledP>
-                    <br class="clear"/>
+                    <br className="clear"/>
                     <br/>
                     <br/>
                     <StyledP>
@@ -112,7 +106,7 @@ export default class Donate extends React.Component {
                       <br/>
                       <DonateButton href="https://www.patreon.com/Dirtyredz" target="_blank">patreon.com/Dirtyredz</DonateButton>
                     </StyledP>
-                    <br class="clear"/>
+                    <br className="clear"/>
                 </div>
             </Content>
         </AboutSection>
