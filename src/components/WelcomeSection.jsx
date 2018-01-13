@@ -155,7 +155,7 @@ export default class WelcomeSection extends React.Component {
                   <br />
                   <b>LEARN MORE <WorpPop><Link to="/About">ABOUT ME</Link></WorpPop>.</b>
                   <EGA>
-                      <img height="378" src="http://static.dirtyredz.com/Globeanchor.png" alt=""/>
+                      <img height="378" src="../img/Globeanchor.png" alt=""/>
                   </EGA>
                   <DownArrow>
                       <svg viewBox="0 0 21 32">

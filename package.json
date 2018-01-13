@@ -25,6 +25,8 @@
     "build": "react-scripts build && react-snapshot",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom"
+    "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
+    "start:server": "tmux new-session -s dirtyredz 'serve -s build'",
+    "stop:server": "tmux kill-session -t dirtyredz"
   }
 }
