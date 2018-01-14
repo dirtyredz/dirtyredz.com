@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
+import Angles from "../components/Angles";
 import { Link } from 'react-router-dom';
 
 export default class NotFound extends React.Component {
@@ -23,6 +24,7 @@ export default class NotFound extends React.Component {
             <Helmet>
                 <title>Dirtyredz - Not Found</title>
             </Helmet>
+            <Angles/>
             <div style={Object.assign({}, styles.NotFoundWrapper)}>
               <div  style={Object.assign({}, styles.NotFoundContent)}>
                 <h1>404</h1>

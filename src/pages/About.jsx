@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import Angles from "../components/Angles";
 import styled, { keyframes } from 'styled-components';
 
 const ScaleX = keyframes`
@@ -162,6 +163,7 @@ export default class About extends React.Component {
             <Helmet>
                 <title>Dirtyredz - About</title>
             </Helmet>
+            <Angles/>
             <Content>
                 <StyledHeader>
                     <BackgroundText><b>Who I am</b></BackgroundText>

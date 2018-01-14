@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom"
-// import styles from './DesktopNavigation.css';
 import styled, { injectGlobal } from 'styled-components'
 
 const DesktopMenu = styled.ul`
@@ -71,7 +70,7 @@ injectGlobal`
 export default class DesktopNavigation extends React.Component {
     render() {
         return (
-            <nav className="amChartsDemoPrintOnly">
+            <nav>
                 <DesktopMenu>
                     <LinkLi>
                       <StyledLink to="/" exact activeClassName="Desktop_Nav_Active">HOME</StyledLink>

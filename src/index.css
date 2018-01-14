@@ -3,3 +3,13 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+@element .ProjectContainer_EQCSS_1{
+    .ProjectContainer_EQCSS_1 {
+        font-size: 2.5ew !important;
+    }
+}
+@element .ProjectContainer_EQCSS_2 {
+    .ProjectContainer_EQCSS_2 {
+        font-size: 7ew !important;
+    }
+}

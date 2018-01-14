@@ -1,5 +1,4 @@
 import React from "react";
-// require("./Contact.css");
 import styled, {injectGlobal} from 'styled-components';
 
 const Form = styled.form`

@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import Angles from "../components/Angles";
 import styled from 'styled-components';
 
 const AboutSection = styled.section`
@@ -87,6 +88,7 @@ export default class Donate extends React.Component {
             <Helmet>
                 <title>Dirtyredz - Donate</title>
             </Helmet>
+            <Angles/>
             <Content>
                 <StyledHeader>
                     <BackgroundText><b>Help me out</b></BackgroundText>

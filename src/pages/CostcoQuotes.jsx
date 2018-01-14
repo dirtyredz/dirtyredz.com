@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import ProjectPage from "../components/ProjectPage";
 
 export default class CostcoQuotes extends React.Component {
-
     render() {
         const Skills = ['CSS','HTML','JS','FRONT END','JQuery', 'Inputmask.js']
         const Swatchs = ['#8cb7d7','#e03a40','#01539c','#94ce58','#ffffff']

@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import ProjectPage from "../components/ProjectPage";
 
 export default class LoreleiMcClain extends React.Component {
-
     render() {
         const Skills = ['PHP','CSS','HTML','JS','FRONT END','BACK END','DNS','SERVER','APACHE','PHP FRAMEWORK','RESPONSIVE']
         const Swatchs = ['#000000','#3e2719','#52aedd','#727272','#ffffff']

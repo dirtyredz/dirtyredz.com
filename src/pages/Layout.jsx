@@ -2,25 +2,16 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import ScrollUpButton from "react-scroll-up-button";
 import Header from "../components/Header";
-import Angles from "../components/Angles";
 import Footer from "../components/Footer";
+import EQCSS from "eqcss";
 
 export default class Layout extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {Loading: false, showWelcome: false,showProject: false}
-
-        this.EQCSS = null;
-    }
     componentDidUpdate() {
       window.scrollTo(0,0);
-      this.EQCSS.apply();
-    }
-    componentDidMount(){
-      //Called here instead of head because it uses, the window/document object.
-      this.EQCSS = require('eqcss');
+      EQCSS.apply();
     }
     render() {
+        console.log(this.props.children)
         return (
             <div>
                 <Helmet>
@@ -53,9 +44,8 @@ export default class Layout extends React.Component {
                     <meta name="twitter:image" content="http://static.dirtyredz.com/dirtyredz logo.png" />
                 </Helmet>
                 <Header />
-                {this.props.children && this.props.children.props.Angle !== "false" && <Angles />}
                 {this.props.children}
-                <ScrollUpButton />
+                <ScrollUpButton/>
                 <Footer />
             </div>
         );

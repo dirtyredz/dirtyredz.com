@@ -44,6 +44,7 @@ const ToggleMenu = {
   left: 0,
   visibility: 'visible'
 }
+
 export default class MobileNavigation extends React.Component {
     render() {
         return (

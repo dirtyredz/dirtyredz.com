@@ -1,6 +1,4 @@
 import React from "react";
-
-// import styles from './Footer.css';
 import styled from 'styled-components';
 
 const Icon = styled.svg`

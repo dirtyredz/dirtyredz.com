@@ -1,20 +1,8 @@
 import React from "react";
 import Waypoint from "react-waypoint";
 import { Link } from "react-router-dom";
-import styled, { injectGlobal } from 'styled-components'
+import styled from 'styled-components'
 
-injectGlobal`
-  @element '.ProjectContainer_EQCSS_1' {
-      .ProjectContainer_EQCSS_1 {
-          font-size: 2.5ew !important;
-      }
-  }
-  @element '.ProjectContainer_EQCSS_2' {
-      .ProjectContainer_EQCSS_2 {
-          font-size: 7ew !important;
-      }
-  }
-`;
 const Container = styled.div`
   width: 75%;
   height: 200px;
@@ -124,30 +112,18 @@ const RemoveOnScroll = {
   top:300,
   opacity:0
 }
+
 export default class ProjectContainer extends React.Component {
     constructor(){
       super();
       this.state = {RemoveOnScroll: true};
-      this.WindowObject = null;
-      if(!this.is_server()){
-        this.WindowObject = window;
-      }
-    }
-    is_server() {
-      return ! (typeof window !== 'undefined' && window.document);
-    }
-    componentWillMount(){
-        if(this.WindowObject === null){
-            return false;
-        }
-        return true;
     }
     render() {
         return (
             <Container id={this.props.id} style={(this.state.RemoveOnScroll) ? RemoveOnScroll : {}} className="ProjectContainer_EQCSS_1">
                 <Waypoint
                   bottomOffset='-400px'
-                  scrollableAncestor={this.WindowObject}
+                  scrollableAncestor={window}
                   onEnter={()=> this.setState({RemoveOnScroll: false})}
                 />
               <Link to={this.props.to}>
@@ -163,10 +139,10 @@ export default class ProjectContainer extends React.Component {
                             <path d="M6.862 25.94v6.060h4.008v-12.12h-4.008v6.060z"></path>
                             <path d="M30.81 28.896l-1.177 0.77 0.391 1.167 0.388 1.167h1.587v-1.94c0-1.068-0.003-1.94-0.006-1.937-0.006 0-0.539 0.349-1.183 0.773z"></path>
                         </svg>
-                        <span className="ProjectContainer_EQCSS_2A">{this.props.title}</span>
+                        <span>{this.props.title}</span>
                     </Display>
                 </Link>
-                <Overview className="ProjectContainer_EQCSS_1A">
+                <Overview>
                     <Row><Highlight>Year</Highlight><span>{this.props.year}</span></Row>
                     <Row><Highlight>Context</Highlight><span>{this.props.context}</span></Row>
                     <Row><Highlight>Role</Highlight><span>{this.props.projectRole}</span></Row>

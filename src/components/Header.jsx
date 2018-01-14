@@ -1,10 +1,7 @@
 import React from "react";
-
 import SmallDRLogo from "./SmallDRLogo";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
-// import styles from './Header.css';
-
 import styled, {injectGlobal} from 'styled-components';
 
 const Nav = styled.header`

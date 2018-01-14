@@ -1,6 +1,4 @@
 import React from "react";
-
-// require("./Angles.css");
 import styled from 'styled-components';
 
 const Aside = styled.aside`
