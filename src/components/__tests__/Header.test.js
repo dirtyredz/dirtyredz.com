@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../Header';
 import ReactDOM from 'react-dom';
-
 import { shallow } from 'enzyme';
 
 it('renders without crashing', () => {
@@ -16,5 +15,5 @@ it('renders without crashing', () => {
     wrapper.instance().handleMenuClick();
     expect(spy).toHaveBeenCalled();
     expect(wrapper.instance().state.MenuToggled).toBe(false);
-    
+
 });

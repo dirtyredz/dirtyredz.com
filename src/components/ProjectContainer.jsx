@@ -126,7 +126,7 @@ export default class ProjectContainer extends React.Component {
                   scrollableAncestor={window}
                   onEnter={()=> this.setState({RemoveOnScroll: false})}
                 />
-              <Link to={this.props.to}>
+                <Link to={this.props.to}>
                     <Display className="ProjectContainer_EQCSS_2">
                         <svg viewBox="0 0 32 32">
                             <path d="M0 16v16h4.008v-32h-4.008v16z"></path>

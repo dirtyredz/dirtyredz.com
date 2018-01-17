@@ -2,38 +2,38 @@ import React from 'react';
 import { Helmet } from "react-helmet";
 import Angles from "../components/Angles";
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const NotFoundWrapper = styled.div`
+    display: table;
+    height: 83vh;
+    width: 100%;
+`;
+const NotFoundContent = styled.div`
+    display: table-cell;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2.5em;
+`;
 
 export default class NotFound extends React.Component {
   render() {
-    var styles={
-        NotFoundWrapper: {
-          display: 'table',
-          height: '83vh',
-          width: '100%',
-        },
-        NotFoundContent: {
-          display: 'table-cell',
-          width: '100%',
-          textAlign: 'center',
-          verticalAlign: 'middle',
-          fontSize: '2.5em',
-        }
-      }
     return (
         <div>
             <Helmet>
                 <title>Dirtyredz - Not Found</title>
             </Helmet>
             <Angles/>
-            <div style={Object.assign({}, styles.NotFoundWrapper)}>
-              <div  style={Object.assign({}, styles.NotFoundContent)}>
+            <NotFoundWrapper>
+              <NotFoundContent>
                 <h1>404</h1>
                 <h2>Page not found!</h2>
                 <p>
                   <Link to="/">Go back to the main page</Link>
                 </p>
-              </div>
-            </div>
+              </NotFoundContent>
+            </NotFoundWrapper>
         </div>
 
     );

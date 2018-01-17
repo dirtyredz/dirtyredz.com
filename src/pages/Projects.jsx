@@ -1,7 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Waypoint from "react-waypoint";
-import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import Angles from "../components/Angles";
 import ProjectContainer from "../components/ProjectContainer";
@@ -55,20 +54,6 @@ const Content = styled.div`
     max-width: 80%;
   }
 `;
-const WorpPop = styled.span`
-  color: #8a1315;
-  & a{
-    color: #8a1315;
-    text-decoration: none;
-    border-bottom: 1px solid #8a1315;
-    transition: border-bottom 0.5s linear;
-    z-index: 1;
-    position: relative;
-  }
-  & a:hover{
-    border-bottom: 1px solid #fff;
-  }
-`;
 const RemoveOnScroll = {
   top:300,
   opacity:0
@@ -107,7 +92,6 @@ export default class Projects extends React.Component {
                         <ProjectContainer to="Projects/ReactScrollUpButton" title="react-scroll-up-button" year="2016" context="React Component" projectRole="React Developer"/><br/><br/>
                         <ProjectContainer right={true} to="Projects/ZipCV" title="ZipCV" year="2015 - 2016" context="Website Development" projectRole="FRONT-END/UX, BACK-END DEVELOPER"/><br/><br/>
                         <ProjectContainer to="Projects/LoreleiMcClain" title="Lorelei McClain" year="2016" context="Website Development" projectRole="FRONT-END/UI/UX, BACK-END DEVELOPER"/><br/><br/>
-                        <b>View all my  <WorpPop><Link to="/Projects">PROJECTS</Link></WorpPop>.</b>
                     </Content>
                 </StyledSection>
             </div>

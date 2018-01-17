@@ -71,6 +71,7 @@ const RemoveOnScroll = {
   top:300,
   opacity:0
 }
+
 export default class Donate extends React.Component {
     constructor(){
       super()

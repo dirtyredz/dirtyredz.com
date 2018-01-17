@@ -30,5 +30,23 @@
     "start:server": "tmux new-session -s dirtyredz 'serve -p 3000 build'",
     "update:server": "git pull origin",
     "stop:server": "tmux kill-session -t dirtyredz"
-  }
+    },
+    "jest": {
+        "coverageThreshold": {
+            "global": {
+                "branches": 50,
+                "functions": 50,
+                "lines": 50,
+                "statements": 50
+            },
+            "./src/components/": {
+                "branches": 40,
+                "statements": 40
+            },
+            "./src/pages/": {
+                "branches": 40,
+                "statements": 40
+            }
+        }
+    }
 }

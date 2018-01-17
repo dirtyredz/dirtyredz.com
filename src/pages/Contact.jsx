@@ -100,6 +100,7 @@ injectGlobal`
   transition: opacity 1s ease-out, top 1s ease-out;
 }
 `;
+
 export default class Contact extends React.Component {
     constructor(props){
       super(props);

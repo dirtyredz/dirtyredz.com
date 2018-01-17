@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 
 const Aside = styled.aside`
-  height: calc(100% - 164px);
+  height: calc(100% - 50px);
   width: 100%;
   position: absolute;
   overflow: hidden;
@@ -108,8 +108,20 @@ export default class Angles extends React.Component {
         }
     }
     SetAngle(Element,X,Y){
-      var transform = "translate("+X+"px, "+Y+"px) skewY(-47deg)";
+      let transform = "translate("+X+"px, "+Y+"px) skewY(-47deg)";
       Element.style.transform = transform;
+    }
+    ResetAngle(obj,AngleClass){
+        for (let i = 0; i < obj.length; i++) {
+          this.SetAngle(obj[i].getElementsByClassName(AngleClass)[0],0,0)
+        }
+    }
+    ResetAllAngles(SvgClass){
+        let obj = document.getElementsByClassName(SvgClass);
+        this.ResetAngle(obj,"Angles__One__DR16")
+        setTimeout(this.ResetAngle(obj,"Angles__Two__DR16"),100)
+        setTimeout(this.ResetAngle(obj,"Angles__Three__DR16"),200)
+        setTimeout(this.ResetAngle(obj,"Angles__Four__DR16"),300)
     }
     componentDidMount(){
         SVGElement.prototype.getElementsByClassName = function(search) {
@@ -118,27 +130,7 @@ export default class Angles extends React.Component {
         window.addEventListener('scroll', this.AnglesScroll.bind(this));
 
         //Setting Timeout for 1ms allows transition effects to work.
-        setTimeout(() => {
-            var obj = document.getElementsByClassName("Angles__ScrollBars__DR16");
-            for (var i = 0; i < obj.length; i++) {
-              this.SetAngle(obj[i].getElementsByClassName("Angles__One__DR16")[0],0,0)
-            }
-            setTimeout(() => {
-                for (var i = 0; i < obj.length; i++) {
-                    this.SetAngle(obj[i].getElementsByClassName("Angles__Two__DR16")[0],0,0)
-                }
-            },100)
-            setTimeout(() => {
-                for (var i = 0; i < obj.length; i++) {
-                    this.SetAngle(obj[i].getElementsByClassName("Angles__Three__DR16")[0],0,0)
-                }
-            },200)
-            setTimeout(() => {
-                for (var i = 0; i < obj.length; i++) {
-                    this.SetAngle(obj[i].getElementsByClassName("Angles__Four__DR16")[0],0,0)
-                }
-            },300)
-        }, 1);
+        setTimeout(this.ResetAllAngles("Angles__ScrollBars__DR16"), 1);
     }
     render() {
         return (

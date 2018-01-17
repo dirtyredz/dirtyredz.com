@@ -6,12 +6,15 @@ import Footer from "../components/Footer";
 import EQCSS from "eqcss";
 
 export default class Layout extends React.Component {
+    UpdatePage() {
+        this.EQCSS = EQCSS
+        window.scrollTo(0,0);
+        this.EQCSS.apply();
+    }
     componentDidUpdate() {
-      window.scrollTo(0,0);
-      EQCSS.apply();
+      setTimeout(this.UpdatePage,1);
     }
     render() {
-        console.log(this.props.children)
         return (
             <div>
                 <Helmet>

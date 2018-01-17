@@ -19,7 +19,7 @@ const MobileMenu = styled.nav`
   opacity: 1;
   visibility: hidden;
   transition: left 500ms ease-in-out, visibility 500ms;
-  height: 100vh;
+  height: calc(100vh - 50px);
 `;
 const StyledUl = styled.ul`
   width: 100%;

@@ -1,5 +1,6 @@
 import React from "react";
-import styled, {injectGlobal} from 'styled-components';
+import styled from 'styled-components';
+import FormInput from "./FormInput";
 
 const Form = styled.form`
   position: relative;
@@ -76,86 +77,7 @@ const ContactButtonDiv = styled.div`
     transform: rotate(1deg);
   }
 `;
-const LabelContainer = styled.div`
-  transform-origin: left;
-  position: absolute;
-  opacity: 1;
-  color: #8a1315;
-  font-size: 27px;
-  padding: 3px 25px 3px 25px;
-  transition: transform 250ms, background-color 250ms, opacity 1s ease 1s;
-  display: block;
-  max-width: 300px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  cursor: pointer;
-  border-radius: 4px;
-  & label{
-    cursor: inherit;
-  }
-`;
-const ListItem = styled.li`
-  &[data-active="false"] textarea,&[data-active="false"] input{
-    width: 0;
-    padding-left: 0;
-    z-index: 1;
-    transition: width 1s ease 0s, padding-left 250ms ease 1000ms;
-  }
-  &[data-error="true"] textarea,&[data-error="true"] input{
-    color: #864646;
-    border-color: #864646;
-  }
-  &[data-error="true"] div{
-    color: #864646;
-  }
-  &[data-active="false"] div{
-    opacity: 0;
-  }
-  &[data-active="false"][data-transitioned="true"] div{
-    opacity: 1;
-  }
-  &[data-transitioned="true"] div{
-    @media (max-width: 960px) {
-      transform: translateY(-120px) scale(0.8) translateX(17px);
-    }
-    transform: translateY(-50px) scale(0.8) translateX(2px);
-    background-color: #252525;
-  }
-`;
-injectGlobal`
-  @element '#Message' {
-    #Message {
-      height: eval("style.height='inherit';style.height=scrollHeight+'px';");
-    }
-  }
-  @element '#FormGroup' {
-    #FormGroup {
-      min-height: 60px;
-      height: eval('querySelector("textarea").offsetHeight')px !important;
-    }
-    #FormGroup [data-transitioned="true"] #EmailLabel{
-      transform: translateY(-50px) scale(0.8) translateX( eval('querySelector("#NameLabel").offsetWidth + 10')px )!important;
-    }
-    #FormGroup [data-transitioned="true"] #MessageLabel{
-      transform: translateY(-50px) scale(0.8) translateX( eval('querySelector("#NameLabel").offsetWidth + querySelector("#EmailLabel").offsetWidth + 19')px )!important;
-    }
-    #FormGroup [data-transitioned="true"] div{
-      max-width: 33ew !important;
-    }
-    @media (max-width: 960px) {
-      #FormGroup [data-transitioned="true"] #EmailLabel{
-        transform: translateY(-85px) scale(0.8) translateX( 17px )!important;
-      }
-      #FormGroup [data-transitioned="true"] #MessageLabel{
-        transform: translateY(-50px) scale(0.8) translateX( 17px )!important;
-      }
-      #FormGroup [data-transitioned="true"] div{
-        max-width: 100ew !important;
-      }
-    }
-  }
-`;
+
 
 export default class ContactForm extends React.Component {
     constructor(props){
@@ -273,7 +195,6 @@ export default class ContactForm extends React.Component {
         //Validate Email
         if (this.IsMessageValid(Value)) {//Validated, Set Next Button as clickable
             this.setState({MessageError: false});
-            console.log(this.state.MessageInput);
             if(this.IsAllValid(this.state.NameInput,this.state.EmailInput,Value)){
                 this.setState({SubmitButton: true});
             }
@@ -286,24 +207,24 @@ export default class ContactForm extends React.Component {
       }
     }
     handleNextButton(){
-      if(this.state.NextButton){
-        if(this.state.CurrentActive === 'Name'){
-          this.setState({CurrentActive: 'Email', NextButton: false})
-          if(this.IsEmailValid(this.state.EmailInput)){
-            this.setState({NextButton: true})
-            if(this.IsAllValid(this.state.NameInput,this.state.EmailInput,this.state.MessageInput)){
-              this.setState({SubmitButton: true});
+        if(this.state.NextButton){
+            if(this.state.CurrentActive === 'Name'){
+                this.setState({CurrentActive: 'Email', NextButton: false})
+                if(this.IsEmailValid(this.state.EmailInput)){
+                    this.setState({NextButton: true})
+                    if(this.IsAllValid(this.state.NameInput,this.state.EmailInput,this.state.MessageInput)){
+                        this.setState({SubmitButton: true});
+                    }
+                }
+            }else if(this.state.CurrentActive === 'Email'){
+                this.setState({CurrentActive: 'Message', NextButton: false})
+                if(this.IsMessageValid(this.state.MessageInput)){
+                    if(this.IsAllValid(this.state.NameInput,this.state.EmailInput,this.state.MessageInput)){
+                        this.setState({SubmitButton: true});
+                    }
+                }
             }
-          }
-      }else if(this.state.CurrentActive === 'Email'){
-          this.setState({CurrentActive: 'Message', NextButton: false})
-          if(this.IsMessageValid(this.state.MessageInput)){
-            if(this.IsAllValid(this.state.NameInput,this.state.EmailInput,this.state.MessageInput)){
-              this.setState({SubmitButton: true});
-            }
-          }
         }
-      }
     }
     handleFormKeyUp(e){
       var key = e.charCode || e.keyCode || 0;
@@ -339,25 +260,5 @@ export default class ContactForm extends React.Component {
                 </div>
             </Form>
         );
-    }
-}
-
-
-class FormInput extends React.Component {
-    componentDidUpdate(prevProps, prevState){
-      if(this.props.active === true){
-        this.refs.input.focus();
-      }
-    }
-    render() {
-      return (
-          <ListItem data-active={this.props.active} data-error={this.props.error} data-transitioned={this.props.transitioned}>
-              <LabelContainer onClick={this.props.onClick} id={this.props.id + 'Label'}>
-                  <label>{this.props.text}</label>
-              </LabelContainer>
-              {this.props.textarea && <textarea ref="input" rows="1" onChange={this.props.onChange} id={this.props.id} autoComplete="off" name={this.props.id} type="text"></textarea>}
-              {!this.props.textarea && <input ref="input" onChange={this.props.onChange} id={this.props.id} autoComplete="off" name={this.props.id} type="text"/>}
-          </ListItem>
-      );
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import ProjectContainer from '../ProjectContainer';
 import { shallow } from 'enzyme';
+import ProjectContainer from '../ProjectContainer';
 
 it('renders without crashing', () => {
-    const wrapper = shallow(<ProjectContainer/>);
+    shallow(<ProjectContainer id='MockTest' to='MockTest' title='MockTest' year='MockTest' context='MockTest' ProjectRole='MockTest'/>);
 });
