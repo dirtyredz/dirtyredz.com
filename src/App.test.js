@@ -16,8 +16,4 @@ it('renders without crashing', () => {
         <App/>
       </MemoryRouter>
     );
-
-    console.log(wrapper.html())
-    let x = wrapper.html()
-    debugger
 });

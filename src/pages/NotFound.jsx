@@ -17,8 +17,7 @@ const NotFoundContent = styled.div`
     font-size: 2.5em;
 `;
 
-export default class NotFound extends React.Component {
-  render() {
+export default () => {
     return (
         <div>
             <Helmet>
@@ -37,5 +36,4 @@ export default class NotFound extends React.Component {
         </div>
 
     );
-  }
 }

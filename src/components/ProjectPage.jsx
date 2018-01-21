@@ -1,6 +1,7 @@
 import React from "react";
 import Highlight from "react-highlight";
 import './highlight.css';
+import LazyLoad from "react-lazyload";
 import styled from 'styled-components';
 
 const TitleSection = styled.section`
@@ -339,79 +340,80 @@ const StyledSvg = styled.svg`
   }
 `;
 
-export default class ProjectPage extends React.Component {
-    render() {
-        return (
-          <div>
-            <TitleSection>
-              <Container>
-                  <TitleContainer>
-                      <Title>{this.props.Title}</Title>
-                      <SubTitle>{this.props.SubTitle1}<RedTitle> | </RedTitle>{this.props.SubTitle2}<RedTitle> | </RedTitle>{this.props.SubTitle3}</SubTitle>
-                  </TitleContainer>
-                  {this.props.ImageSource &&
-                    <TitleImgContainer>
-                      <img alt="" src={this.props.ImageSource}/>
-                    </TitleImgContainer>
-                  }
-              </Container>
-              <Details>
-                  <li><RedDetails>ROLE  </RedDetails>{this.props.ProjectRole}</li>
-                  <li><RedDetails>CONTEXT  </RedDetails>{this.props.Context}</li>
-                  <li><RedDetails>YEAR  </RedDetails>{this.props.Year}</li>
-              </Details>
-            </TitleSection>
-            <DescriptionSection>
-                <p>{this.props.Description}</p>
-            </DescriptionSection>
-            <ExperienceSection>
-                <div>
-                    <p>{this.props.Experience}</p>
-                    <SkillsContainer>
-                        <div><span>SKILLS</span></div>
-                        {this.props.Skills.map((item,index) =>(
-                          <Skill key={index}>{item}</Skill>
-                        ))}
-                    </SkillsContainer>
-                </div>
-            </ExperienceSection>
-            {this.props.Swatchs &&
-              <DesignSection>
-                  <div>
-                      {this.props.Swatchs.map((item,index) =>(
-                        <ColorSwatchContainer key={index}><div style={{backgroundColor: item}}></div>{item}</ColorSwatchContainer>
-                      ))}
-                  </div>
-              </DesignSection>
-            }
-            {this.props.CodeExample &&
-              <CodeSection>
-                <div>
-                  <Highlight className='Markdown'>
-                    {this.props.CodeExampleBash}
-                  </Highlight>
-                </div>
-                <br/>
-                <div>
-                  <Highlight className='javascript'>
-                    {this.props.CodeExampleJS}
-                  </Highlight>
-                </div>
-              </CodeSection>
-            }
-            <ButtonSection>
-                <div>
-                    <a target="_blank" rel="noopener noreferrer" href={this.props.href}>
-                        <StyledSvg viewBox="0 0 400 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-                          <rect x="140" y="20" height="20px" width="60%"/>
-                          <rect x="150" y="42" height="20px" width="60%"/>
-                          <rect x="160" y="64" height="20px" width="60%"/>
-                          <text x="170" y="57">{this.props.hrefText}</text>
-                        </StyledSvg>
-                    </a>
-                </div>
-            </ButtonSection>
+export default (props) => {
+    return (
+      <div>
+        <TitleSection>
+          <Container>
+              <TitleContainer>
+                  <Title>{props.Title}</Title>
+                  <SubTitle>{props.SubTitle1}<RedTitle> | </RedTitle>{props.SubTitle2}<RedTitle> | </RedTitle>{props.SubTitle3}</SubTitle>
+              </TitleContainer>
+              {props.ImageSource &&
+
+                <TitleImgContainer>
+                    <LazyLoad height={200}>
+                        <img alt="" src={props.ImageSource}/>
+                    </LazyLoad>
+                </TitleImgContainer>
+              }
+          </Container>
+          <Details>
+              <li><RedDetails>ROLE  </RedDetails>{props.ProjectRole}</li>
+              <li><RedDetails>CONTEXT  </RedDetails>{props.Context}</li>
+              <li><RedDetails>YEAR  </RedDetails>{props.Year}</li>
+          </Details>
+        </TitleSection>
+        <DescriptionSection>
+            <p>{props.Description}</p>
+        </DescriptionSection>
+        <ExperienceSection>
+            <div>
+                <p>{props.Experience}</p>
+                <SkillsContainer>
+                    <div><span>SKILLS</span></div>
+                    {props.Skills.map((item,index) =>(
+                      <Skill key={index}>{item}</Skill>
+                    ))}
+                </SkillsContainer>
             </div>
-        );
-    }
+        </ExperienceSection>
+        {props.Swatchs &&
+          <DesignSection>
+              <div>
+                  {props.Swatchs.map((item,index) =>(
+                    <ColorSwatchContainer key={index}><div style={{backgroundColor: item}}></div>{item}</ColorSwatchContainer>
+                  ))}
+              </div>
+          </DesignSection>
+        }
+        {props.CodeExample &&
+          <CodeSection>
+            <div>
+              <Highlight className='Markdown'>
+                {props.CodeExampleBash}
+              </Highlight>
+            </div>
+            <br/>
+            <div>
+              <Highlight className='javascript'>
+                {props.CodeExampleJS}
+              </Highlight>
+            </div>
+          </CodeSection>
+        }
+        <ButtonSection>
+            <div>
+                <a target="_blank" rel="noopener noreferrer" href={props.href}>
+                    <StyledSvg viewBox="0 0 400 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                      <rect x="140" y="20" height="20px" width="60%"/>
+                      <rect x="150" y="42" height="20px" width="60%"/>
+                      <rect x="160" y="64" height="20px" width="60%"/>
+                      <text x="170" y="57">{props.hrefText}</text>
+                    </StyledSvg>
+                </a>
+            </div>
+        </ButtonSection>
+        </div>
+    );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import Angles from "../components/Angles";
+import LazyLoad from 'react-lazyload';
 import styled, { keyframes } from 'styled-components';
 
 const ScaleX = keyframes`
@@ -171,9 +172,11 @@ export default class About extends React.Component {
                     <TitlePop><b>About Me</b></TitlePop>
                 </StyledHeader>
                 <div>
-                    <ImgWrapper>
-                        <ImgWrapper2><Img src="../img/david one_edited.jpg"/></ImgWrapper2>
-                    </ImgWrapper>
+                    <LazyLoad height={200}>
+                        <ImgWrapper>
+                            <ImgWrapper2><Img src="../img/david one_edited.jpg"/></ImgWrapper2>
+                        </ImgWrapper>
+                    </LazyLoad>
                     <StyledP>Developing websites is my passion. I started programming many years ago; while serving in the United States Marine Corps. I tried many forms of programming eventually landing on web development.
                       I taught myself programming and more specifically web development through trial and error. As well as watching and reading various tutorials. I am constantly improving my
                       skills and working with new technologies.
