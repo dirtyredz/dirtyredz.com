@@ -66,11 +66,11 @@ export default class Projects extends React.Component {
                           <HeaderTitle centered title="Some of my work and personal projects, enjoy!" background="experience"/>
                           <br />
                         </Project>
-                        <ProjectContainer to="Projects/DirtyServerManager" title="Dirty Server Manager" year="2017" context="Developer" projectRole="Project Lead"/><br/><br/>
-                        <ProjectContainer right={true} to="Projects/CostcoQuotes" title="Costco Quotes" year="2016" context="Website Redesign" projectRole="FRONT-END/UX DEVELOPER"/><br/><br/>
-                        <ProjectContainer to="Projects/ReactScrollUpButton" title="react-scroll-up-button" year="2016" context="React Component" projectRole="React Developer"/><br/><br/>
-                        <ProjectContainer right={true} to="Projects/ZipCV" title="ZipCV" year="2015 - 2016" context="Website Development" projectRole="FRONT-END/UX, BACK-END DEVELOPER"/><br/><br/>
-                        <ProjectContainer to="Projects/LoreleiMcClain" title="Lorelei McClain" year="2016" context="Website Development" projectRole="FRONT-END/UI/UX, BACK-END DEVELOPER"/><br/><br/>
+                        <ProjectContainer to="projects/dirtyservermanager" title="Dirty Server Manager" year="2017" context="Developer" projectRole="Project Lead"/><br/><br/>
+                        <ProjectContainer right={true} to="projects/costcoquotes" title="Costco Quotes" year="2016" context="Website Redesign" projectRole="FRONT-END/UX DEVELOPER"/><br/><br/>
+                        <ProjectContainer to="projects/reactscrollupbutton" title="react-scroll-up-button" year="2016" context="React Component" projectRole="React Developer"/><br/><br/>
+                        <ProjectContainer right={true} to="projects/zipcv" title="ZipCV" year="2015 - 2016" context="Website Development" projectRole="FRONT-END/UX, BACK-END DEVELOPER"/><br/><br/>
+                        <ProjectContainer to="projects/loreleimcClain" title="Lorelei McClain" year="2016" context="Website Development" projectRole="FRONT-END/UI/UX, BACK-END DEVELOPER"/><br/><br/>
                     </Content>
                 </StyledSection>
             </div>

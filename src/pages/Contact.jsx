@@ -35,18 +35,6 @@ const ContactSection = styled.section`
     color: #6b6b6b;
   }
 `;
-const BackgroundText = styled.span`
-  padding-left: 50px;
-  color: #111010;
-  font-size: 4em;
-`;
-const TitlePop = styled.span`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  color: #8a1315;
-  font-size: 3em;
-`;
 const Content = styled.div`
   position: relative;
   margin: 0 auto;
