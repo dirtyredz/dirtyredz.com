@@ -22,20 +22,20 @@ const App = ({ match }) => (
         <Layout>
             <Switch>
                 <Route exact path="/" component={Home}/>
-                <Route path="/Donate" component={Donate}/>
+                <Route path="/donate" component={Donate}/>
                 <Route path="/projects" component={({ match }) => (
                     <Switch>
                         <Route exact path={`${match.url}`} component={Projects}/>
-                        <Route path={`${match.url}/LoreleiMcClain`} component={LoreleiMcClain}/>
-                        <Route path={`${match.url}/ZipCV`} component={ZipCV}/>
-                        <Route path={`${match.url}/CostcoQuotes`} component={CostcoQuotes}/>
-                        <Route path={`${match.url}/ReactScrollUpButton`} component={ReactScrollUpButton}/>
-                        <Route path={`${match.url}/DirtyServerManager`} component={DirtyServerManager}/>
+                        <Route path={`${match.url}/loreleimcclain`} component={LoreleiMcClain}/>
+                        <Route path={`${match.url}/zipcv`} component={ZipCV}/>
+                        <Route path={`${match.url}/costcoquotes`} component={CostcoQuotes}/>
+                        <Route path={`${match.url}/reactscrollupbutton`} component={ReactScrollUpButton}/>
+                        <Route path={`${match.url}/dirtyservermanager`} component={DirtyServerManager}/>
                         <Route path="*" component={NotFound}/>
                     </Switch>
                 )}/>
-                <Route path="/About" component={About}/>
-                <Route path="/Contact" component={Contact}/>
+                <Route path="/about" component={About}/>
+                <Route path="/contact" component={Contact}/>
                 <Route path="*" component={NotFound}/>
             </Switch>
         </Layout>

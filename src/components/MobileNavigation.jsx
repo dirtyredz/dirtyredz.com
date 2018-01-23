@@ -53,16 +53,16 @@ export default (props) => {
                   <NavLink onClick={props.handleMenuClick} to="/" exact activeClassName="DR_ERROR">HOME</NavLink>
                 </NavLinkLi>
                 <NavLinkLi>
-                  <NavLink onClick={props.handleMenuClick} to="/PROJECTS" exact activeClassName="DR_ERROR">PROJECTS</NavLink>
+                  <NavLink onClick={props.handleMenuClick} to="/projects" exact activeClassName="DR_ERROR">PROJECTS</NavLink>
                 </NavLinkLi>
                 <NavLinkLi>
-                  <NavLink onClick={props.handleMenuClick} to="/DONATE" exact activeClassName="DR_ERROR">DONATE</NavLink>
+                  <NavLink onClick={props.handleMenuClick} to="/donate" exact activeClassName="DR_ERROR">DONATE</NavLink>
                 </NavLinkLi>
                 <NavLinkLi>
-                  <NavLink onClick={props.handleMenuClick} to="/ABOUT" exact activeClassName="DR_ERROR">ABOUT</NavLink>
+                  <NavLink onClick={props.handleMenuClick} to="/about" exact activeClassName="DR_ERROR">ABOUT</NavLink>
                 </NavLinkLi>
                 <NavLinkLi>
-                  <NavLink onClick={props.handleMenuClick} to="/CONTACT" exact activeClassName="DR_ERROR">CONTACT</NavLink>
+                  <NavLink onClick={props.handleMenuClick} to="/contact" exact activeClassName="DR_ERROR">CONTACT</NavLink>
                 </NavLinkLi>
             </StyledUl>
         </MobileMenu>

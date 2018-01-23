@@ -75,16 +75,16 @@ export default (props) => {
                   <StyledLink to="/" exact activeClassName="Desktop_Nav_Active">HOME</StyledLink>
                 </LinkLi>
                 <LinkLi>
-                  <StyledLink to="/Projects" exact activeClassName="Desktop_Nav_Active">PROJECTS</StyledLink>
+                  <StyledLink to="/projects" exact activeClassName="Desktop_Nav_Active">PROJECTS</StyledLink>
                 </LinkLi>
                 <LinkLi>
-                  <StyledLink to="/About" exact activeClassName="Desktop_Nav_Active">ABOUT</StyledLink>
+                  <StyledLink to="/about" exact activeClassName="Desktop_Nav_Active">ABOUT</StyledLink>
                 </LinkLi>
                 <LinkLi>
-                  <StyledLink to="/Donate" exact activeClassName="Desktop_Nav_Active">DONATE</StyledLink>
+                  <StyledLink to="/donate" exact activeClassName="Desktop_Nav_Active">DONATE</StyledLink>
                 </LinkLi>
                 <LinkLi>
-                  <StyledLink to="/Contact" exact activeClassName="Desktop_Nav_Active">CONTACT</StyledLink>
+                  <StyledLink to="/contact" exact activeClassName="Desktop_Nav_Active">CONTACT</StyledLink>
                 </LinkLi>
                 <li>
                   <StyledSpan onClick={props.handleMenuClick} >MENU</StyledSpan>
