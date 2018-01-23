@@ -5,6 +5,7 @@ import ContactForm from "../components/ContactForm";
 import ContactSuccess from "../components/ContactSuccess";
 import Angles from "../components/Angles";
 import styled, { injectGlobal } from 'styled-components';
+import HeaderTitle from "../components/HeaderTitle";
 
 const ContactSection = styled.section`
   width: 100%;
@@ -129,10 +130,7 @@ export default class Contact extends React.Component {
               </Helmet>
               <Angles/>
               <Content>
-                  <header>
-                      <BackgroundText><b>Lets Talk</b></BackgroundText>
-                      <TitlePop>Contact Me</TitlePop>
-                  </header>
+                  <HeaderTitle background='Lets Talk' title="Contact Me"/>
                   <p>
                       I am currently doing freelance work. Do you need a website or even some consultation done?
                       Talk to me by either filling out the form below or you can send an email to <a target="_blank" rel="noopener noreferrer" href="mailto:david.mcclain@dirtyredz.com">david.mcclain@dirtyredz.com</a>
