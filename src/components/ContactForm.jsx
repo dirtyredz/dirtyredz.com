@@ -97,38 +97,22 @@ export default class ContactForm extends React.Component {
         SubmitButton: false,
       };
     }
-    IsNameValid(Value){
-      if(Value.length > 2){
-        return true;
-      }
-      return false;
-    }
+    IsNameValid(Value){return Value.length > 2}
     IsEmailValid(Value){
       var emailReg = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-      if (emailReg.test(Value)) {
-        return true;
-      }
-      return false;
+      return emailReg.test(Value)
     }
-    IsMessageValid(Value){
-      if(Value.length > 20){
-        return true;
-      }
-      return false;
-    }
+    IsMessageValid(Value){return Value.length > 20}
     IsAllValid(Name = this.state.NameInput, Email = this.state.EmailInput, Message = this.state.MessageInput){
-      if(this.IsNameValid(Name) && this.IsEmailValid(Email) && this.IsMessageValid(Message)){
-        return true;
-      }
-      return false;
+      return this.IsNameValid(Name) && this.IsEmailValid(Email) && this.IsMessageValid(Message)
     }
     NameLabelClick(){
       this.setState({CurrentActive: 'Name', NextButton: false, SubmitButton: false});
       if(this.IsNameValid(this.state.NameInput)){
         this.setState({NextButton: true})
-      }
-      if(this.IsAllValid()){
-          this.setState({SubmitButton: true});
+        if(this.IsAllValid()){
+            this.setState({SubmitButton: true});
+        }
       }
       this.UL.style.maxHeight = '60px';
     }
@@ -136,24 +120,23 @@ export default class ContactForm extends React.Component {
       this.setState({CurrentActive: 'Email', NextButton: false, SubmitButton: false});
       if(this.IsEmailValid(this.state.EmailInput)){
         this.setState({NextButton: true})
-      }
-      if(this.IsAllValid()){
-          this.setState({SubmitButton: true});
+        if(this.IsAllValid()){
+            this.setState({SubmitButton: true});
+        }
       }
       this.UL.style.maxHeight = '60px';
     }
     MessageLabelClick(){
       this.setState({CurrentActive: 'Message', NextButton: false, SubmitButton: false});
       if(this.IsMessageValid(this.state.MessageInput)){
-        this.setState({SubmitButton : true})
-      }
-      if(this.IsAllValid()){
-          this.setState({SubmitButton: true});
+        if(this.IsAllValid()){
+            this.setState({SubmitButton: true});
+        }
       }
       this.UL.style.maxHeight = '260px';
     }
     handleNameChange(e){
-      let Value = e.target.value;
+      const Value = e.target.value;
       if(Value !== ''){
         this.setState({NameInput: Value, NameTransitioned: true});
         //Validate Name
@@ -212,14 +195,14 @@ export default class ContactForm extends React.Component {
                 this.setState({CurrentActive: 'Email', NextButton: false})
                 if(this.IsEmailValid(this.state.EmailInput)){
                     this.setState({NextButton: true})
-                    if(this.IsAllValid(this.state.NameInput,this.state.EmailInput,this.state.MessageInput)){
+                    if(this.IsAllValid()){
                         this.setState({SubmitButton: true});
                     }
                 }
             }else if(this.state.CurrentActive === 'Email'){
                 this.setState({CurrentActive: 'Message', NextButton: false})
                 if(this.IsMessageValid(this.state.MessageInput)){
-                    if(this.IsAllValid(this.state.NameInput,this.state.EmailInput,this.state.MessageInput)){
+                    if(this.IsAllValid()){
                         this.setState({SubmitButton: true});
                     }
                 }
@@ -242,8 +225,7 @@ export default class ContactForm extends React.Component {
     }
     handleSubmit(event){
       event.preventDefault();
-      var FormData = "Name="+this.state.NameInput+"&Email="+this.state.EmailInput + "&Message="+this.state.MessageInput;
-      this.props.handleSubmit(FormData);
+      this.props.handleSubmit("Name="+this.state.NameInput+"&Email="+this.state.EmailInput + "&Message="+this.state.MessageInput);
     }
 
     render() {

@@ -4,24 +4,13 @@ import Waypoint from "react-waypoint";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import Angles from "../components/Angles";
+import HeaderTitle from "../components/HeaderTitle";
 import ProjectContainer from "../components/ProjectContainer";
 
 const EGA = styled.div`
   float: right;
   opacity: 0.05;
   margin-top: -100px;
-`;
-const BackgroundText = styled.h1`
-  padding-left: 50px;
-  color: #111010;
-  font-size: 4em;
-`;
-const TitlePop = styled.h2`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  color: #8a1315;
-  font-size: 3em;
 `;
 const DownArrow = styled.div`
   text-align: center;
@@ -63,12 +52,6 @@ const Welcome = styled.section`
   transition: all 500ms, opacity 2s, padding-top 2s, top 2s;
   font-size: calc(18px + 11 * ((100vw - 320px) / 1360));
   position: relative;
-`;
-const StyledHeader = styled.header`
-  position: relative;
-  padding-bottom: 25px;
-  margin-bottom: 25px;
-  font-family: 'Anton';
 `;
 const StyledP = styled.p`
   padding-left: 5%;
@@ -128,10 +111,7 @@ export default class Home extends React.Component {
                       onEnter={()=> this.setState({RemoveOnScroll: false})}
                     />
                     <Content>
-                        <StyledHeader>
-                            <BackgroundText><b>Welcome</b></BackgroundText>
-                            <TitlePop><b>Hello!</b></TitlePop>
-                        </StyledHeader>
+                        <HeaderTitle background='Welcome' title="Hello!"/>
                         <StyledP>
                             I&#39;m <WorpPop>David McClain</WorpPop> a self taught <WorpPop>Developer</WorpPop> with over {this.GetYearsExperienc()} years experience. I started my <WorpPop>Programming</WorpPop> career while I was serving in the <WorpPop>Unites States Marine Corps</WorpPop>. Not many say they love the work they do, and in both my careers that&#39;s what I&#39;ve done.
                         </StyledP>
@@ -159,10 +139,7 @@ export default class Home extends React.Component {
                 <br className="clear" />
                 <StyledSection>
                   <Content>
-                        <StyledHeader>
-                            <BackgroundText><b>Projects</b></BackgroundText>
-                            <TitlePop><b>My Latest Projects</b></TitlePop>
-                        </StyledHeader>
+                        <HeaderTitle background='Projects' title="My Latest Projects"/>
                         <ProjectContainer to="Projects/DirtyServerManager" title="Dirty Server Manager" year="2017" context="Developer" projectRole="Project Lead"/><br/><br/>
                         <ProjectContainer to="Projects/CostcoQuotes" title="Costco Quotes" year="2016" context="Website Redesign" projectRole="FRONT-END/UX DEVELOPER"/><br/><br/>
                         <ProjectContainer to="Projects/ReactScrollUpButton" title="react-scroll-up-button" year="2016" context="React Component" projectRole="React Developer"/><br/><br/>

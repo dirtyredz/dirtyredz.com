@@ -4,24 +4,8 @@ import Waypoint from "react-waypoint";
 import styled from 'styled-components';
 import Angles from "../components/Angles";
 import ProjectContainer from "../components/ProjectContainer";
+import HeaderTitle from "../components/HeaderTitle";
 
-const StyledHeader = styled.header`
-  position: relative;
-  padding-bottom: 25px;
-  margin-bottom: 25px;
-  text-align: center;
-`;
-const StyledP = styled.p`
-  padding-left: 5%;
-  padding-right: 1%;
-`;
-const Title = styled.span`
-  position: relative;
-  left: 0;
-  bottom: 0;
-  color: #690e10;
-  font-size: 4.5em;
-`;
 const Project = styled.section`
   width: 100%;
   padding-top: 50px;
@@ -79,13 +63,8 @@ export default class Projects extends React.Component {
                     />
                     <Content>
                         <Project>
-                          <StyledHeader>
-                              <Title><b>My Projects</b></Title>
-                          </StyledHeader>
+                          <HeaderTitle centered title="Some of my work and personal projects, enjoy!" background="experience"/>
                           <br />
-                          <StyledP>
-                             From LAMP Installations and Configuring DNS's to Back-End Development and Front-End Development. Take a look at my latest projects.
-                          </StyledP>
                         </Project>
                         <ProjectContainer to="Projects/DirtyServerManager" title="Dirty Server Manager" year="2017" context="Developer" projectRole="Project Lead"/><br/><br/>
                         <ProjectContainer right={true} to="Projects/CostcoQuotes" title="Costco Quotes" year="2016" context="Website Redesign" projectRole="FRONT-END/UX DEVELOPER"/><br/><br/>

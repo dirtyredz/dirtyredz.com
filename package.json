@@ -29,7 +29,7 @@
         "eject": "react-scripts eject",
         "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
         "start:server": "tmux new-session -s dirtyredz 'serve -p 3000 build'",
-        "update:server": "git pull origin && npm run build",
+        "update:server": "git pull origin && npm install && npm run build",
         "stop:server": "tmux kill-session -t dirtyredz"
     },
     "jest": {

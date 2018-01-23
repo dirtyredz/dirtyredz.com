@@ -38,12 +38,6 @@ it('renders without crashing', () => {
     wrapper.instance().SetAngle(Element,0,0);
     expect(spy).toHaveBeenCalled();
 
-
-    spy = jest.spyOn(Angles.prototype, 'ResetAllAngles');
-    wrapper.instance().ResetAllAngles('');
-    expect(spy).toHaveBeenCalled();
-
-
     spy = jest.spyOn(Angles.prototype, 'AnglesScroll');
     wrapper.instance().AnglesScroll();
     expect(spy).toHaveBeenCalled();
@@ -51,6 +45,6 @@ it('renders without crashing', () => {
     spy = jest.spyOn(Angles.prototype, 'AnglesScroll');
     wrapper.instance().AnglesScroll();
     expect(spy).toHaveBeenCalled();
-    
+
     document.getElementsByClassName = OldGetElementsByClassName
 });

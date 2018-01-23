@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import Angles from "../components/Angles";
 import LazyLoad from 'react-lazyload';
 import styled, { keyframes } from 'styled-components';
+import HeaderTitle from "../components/HeaderTitle";
 
 const ScaleX = keyframes`
   from {
@@ -34,39 +35,21 @@ const AboutSection = styled.section`
 `;
 const Content = styled.div`
   margin: 0 auto;
+  @media (max-width: 767px) {
+    max-width: 85%;
+  }
   @media (min-width: 1025px) {
+    max-width: 60%;
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
     max-width: 80%;
   }
-  @media (min-width: 700px) and (max-width: 1024px) {
-    max-width: 90%;
-  }
-  @media (max-width: 699px) {
-    max-width: 100%;
-  }
-`;
-const StyledHeader = styled.header`
-  position: relative;
-  padding-bottom: 25px;
-  margin-bottom: 25px;
-  text-align: center;
-`;
-const BackgroundText = styled.span`
-  padding-left: 50px;
-  color: #111010;
-  font-size: 4em;
 `;
 const Title = styled.h1`
   padding-top: 50px;
   @media (max-width: 700px) {
     text-align: center;
   }
-`;
-const TitlePop = styled.span`
-  left: 20%;
-  position: absolute;
-  bottom: 0;
-  color: #8a1315;
-  font-size: 3em;
 `;
 const StyledP = styled.p`
   padding-left: 5%;
@@ -167,10 +150,7 @@ export default class About extends React.Component {
             </Helmet>
             <Angles/>
             <Content>
-                <StyledHeader>
-                    <BackgroundText><b>Who I am</b></BackgroundText>
-                    <TitlePop><b>About Me</b></TitlePop>
-                </StyledHeader>
+                <HeaderTitle centered background='Who I am' title="About Me"/>
                 <div>
                     <LazyLoad height={200}>
                         <ImgWrapper>

@@ -84,24 +84,25 @@ const Rect = styled.rect`
   transition: transform 1s;
   height: 65px;
 `;
+
 export default class Angles extends React.Component {
     AnglesScroll(){
-        var obj = document.getElementsByClassName("Angles__ScrollBars__DR16");
+        const obj = document.getElementsByClassName("Angles__ScrollBars__DR16");
         //Loop through all SVG's
-        for (var i = 0; i < obj.length; i++) {
+        for (let i = 0; i < obj.length; i++) {
           //Get top of SVG
-          var SvgTop = obj[i].getBoundingClientRect().top + document.body.scrollTop - 200;
+          const SvgTop = obj[i].getBoundingClientRect().top + document.body.scrollTop - 200;
           //If Scroll Position is Greater then SVG top
           if (window.scrollY > SvgTop) {
               //Get all Angles inside SVG
-              var obj2 = obj[i].getElementsByTagName("rect");
+              const obj2 = obj[i].getElementsByTagName("rect");
               //Loop through Angles
-              for (var x = 0; x < obj2.length; x++) {
-                var CurrentObj = obj2[x];
-                var adjust = window.scrollY - SvgTop;
+              for (let x = 0; x < obj2.length; x++) {
+                let CurrentObj = obj2[x];
+                let adjust = window.scrollY - SvgTop;
                 adjust = adjust / CurrentObj.getAttribute('data-divisible');
-                var intY = adjust * 1.07;
-                var intX = -Math.abs(adjust);
+                let intY = adjust * 1.07;
+                let intX = -Math.abs(adjust);
                 this.SetAngle(CurrentObj,intX,intY);
               }
           }
@@ -116,13 +117,6 @@ export default class Angles extends React.Component {
           this.SetAngle(obj[i].getElementsByClassName(AngleClass)[0],0,0)
         }
     }
-    ResetAllAngles(SvgClass){
-        let obj = document.getElementsByClassName(SvgClass);
-        this.ResetAngle(obj,"Angles__One__DR16")
-        setTimeout(this.ResetAngle(obj,"Angles__Two__DR16"),100)
-        setTimeout(this.ResetAngle(obj,"Angles__Three__DR16"),200)
-        setTimeout(this.ResetAngle(obj,"Angles__Four__DR16"),300)
-    }
     componentDidMount(){
         SVGElement.prototype.getElementsByClassName = function(search) {
             return this.querySelectorAll("." + search)
@@ -130,7 +124,13 @@ export default class Angles extends React.Component {
         window.addEventListener('scroll', this.AnglesScroll.bind(this));
 
         //Setting Timeout for 1ms allows transition effects to work.
-        setTimeout(this.ResetAllAngles("Angles__ScrollBars__DR16"), 1);
+        setTimeout(() => {
+            const obj = document.getElementsByClassName("Angles__ScrollBars__DR16");
+            this.ResetAngle(obj,"Angles__One__DR16")
+            setTimeout(this.ResetAngle(obj,"Angles__Two__DR16"),100)
+            setTimeout(this.ResetAngle(obj,"Angles__Three__DR16"),200)
+            setTimeout(this.ResetAngle(obj,"Angles__Four__DR16"),300)}
+        , 1);
     }
     render() {
         return (

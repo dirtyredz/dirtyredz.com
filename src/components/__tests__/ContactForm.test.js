@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ContactForm from '../ContactForm';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 let event = {
     preventDefault: jest.fn(),
@@ -67,6 +67,18 @@ it('Handled Label clicks', () => {
     wrapper.instance().NameLabelClick(event);
     expect(spy).toHaveBeenCalled();
 });
+/*
+it('Handles Name Changes', () =>{
+    const wrapper = mount(<ContactForm  handleSubmit={jest.fn()}/>);
+
+    let spy = jest.spyOn(ContactForm.prototype, 'handleNameChange');
+
+    wrapper.find('input#Name').simulate('change',{
+        target: { value: 'david' }
+    })
+    console.log(wrapper.find('input#Name').text())
+    expect(spy).toHaveBeenCalled();
+})*/
 
 it('Handled input changes', () => {
     const wrapper = shallow(<ContactForm  handleSubmit={jest.fn()}/>);

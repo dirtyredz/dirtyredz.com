@@ -146,7 +146,7 @@ export default class Contact extends React.Component {
                       transitionAppearTimeout={1500}
                       transitionEnterTimeout={1500}
                       transitionLeaveTimeout={1500}>
-                    {this.state.Success === false ? <ContactForm key="123" handleSubmit={this.handleSubmit.bind(this)}/> : <ContactSuccess key="456"/>}
+                    {this.state.Success === false ? <ContactForm handleSubmit={this.handleSubmit.bind(this)}/> : <ContactSuccess />}
                     </CSSTransitionGroup>
                 </ContactContainer>
               </Content>
