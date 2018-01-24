@@ -125,7 +125,7 @@ export default class Home extends React.Component {
                         </StyledP>
                         <br />
                         <br />
-                        <b>LEARN MORE <WorpPop><Link to="/About">ABOUT ME</Link></WorpPop>.</b>
+                        <b>LEARN MORE <WorpPop><Link to="/about">ABOUT ME</Link></WorpPop>.</b>
                         <EGA>
                             <img height="378" src="../img/Globeanchor.png" alt=""/>
                         </EGA>
@@ -140,10 +140,10 @@ export default class Home extends React.Component {
                 <StyledSection>
                   <Content>
                         <HeaderTitle background='Projects' title="My Latest Projects"/>
-                        <ProjectContainer to="Projects/DirtyServerManager" title="Dirty Server Manager" year="2017" context="Developer" projectRole="Project Lead"/><br/><br/>
-                        <ProjectContainer to="Projects/CostcoQuotes" title="Costco Quotes" year="2016" context="Website Redesign" projectRole="FRONT-END/UX DEVELOPER"/><br/><br/>
-                        <ProjectContainer to="Projects/ReactScrollUpButton" title="react-scroll-up-button" year="2016" context="React Component" projectRole="React Developer"/><br/><br/>
-                        <b>View all my <WorpPop><Link to="/Projects">PROJECTS</Link></WorpPop>.</b>
+                        <ProjectContainer to="projects/dirtyservermanager" title="Dirty Server Manager" year="2017" context="Developer" projectRole="Project Lead"/><br/><br/>
+                        <ProjectContainer to="projects/costcoquotes" title="Costco Quotes" year="2016" context="Website Redesign" projectRole="FRONT-END/UX DEVELOPER"/><br/><br/>
+                        <ProjectContainer to="projects/reactscrollupbutton" title="react-scroll-up-button" year="2016" context="React Component" projectRole="React Developer"/><br/><br/>
+                        <b>View all my <WorpPop><Link to="/projects">PROJECTS</Link></WorpPop>.</b>
                     </Content>
                 </StyledSection>
                 <br className="clear" />
