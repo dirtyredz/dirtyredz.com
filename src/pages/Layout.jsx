@@ -4,17 +4,18 @@ import ScrollUpButton from "react-scroll-up-button";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import EQCSS from "eqcss";
+import PreRenderedEQCSS from "../PreRenderedEQCSS"
 
 export default class Layout extends React.Component {
     UpdatePage() {
-        this.EQCSS = EQCSS
         window.scrollTo(0,0);
-        this.EQCSS.apply();
+        EQCSS.apply();
     }
     componentDidUpdate() {
       setTimeout(this.UpdatePage,1);
     }
     render() {
+        EQCSS.process(PreRenderedEQCSS())
         return (
             <div>
                 <Helmet>

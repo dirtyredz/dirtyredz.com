@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import FormInput from "./FormInput";
+//import EQCSS from "eqcss";
 
 const Form = styled.form`
   position: relative;
@@ -77,7 +78,6 @@ const ContactButtonDiv = styled.div`
     transform: rotate(1deg);
   }
 `;
-
 
 export default class ContactForm extends React.Component {
     constructor(props){
@@ -229,6 +229,7 @@ export default class ContactForm extends React.Component {
     }
 
     render() {
+        //EQCSS.process(PreRenderedEqcss)
         return (
             <Form id="ContactForm" onKeyUp={this.handleFormKeyUp.bind(this)} onKeyDown={this.handleFormKeyDown.bind(this)}>
                 <StyleUL innerRef={(ul) => { this.UL = ul; }} id="FormGroup">

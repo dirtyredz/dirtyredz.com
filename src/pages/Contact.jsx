@@ -6,6 +6,7 @@ import ContactSuccess from "../components/ContactSuccess";
 import Angles from "../components/Angles";
 import styled, { injectGlobal } from 'styled-components';
 import HeaderTitle from "../components/HeaderTitle";
+//import EQCSS from "eqcss";
 
 const ContactSection = styled.section`
   width: 100%;
@@ -52,43 +53,6 @@ const ContactContainer = styled.div`
   width: 100%;
   position: absolute;
 `;
-injectGlobal`
-@element '#FormHeader' {
-  #FormHeader #ChildContainer {
-    height: eval('querySelector("ul").offsetHeight')px;
-  }
-  #FormHeader {
-    padding-bottom: calc(35vh + eval('querySelector("textarea").offsetHeight')px);
-  }
-}
-.ContactChild-enter {
-  opacity: 0.01;
-  top:300px;
-}
-.ContactChild-enter.ContactChild-enter-active {
-  opacity: 1;
-  top:0;
-  transition: opacity 1s ease-out, top 1s ease-out;
-}
-.ContactChild-leave {
-  opacity: 1;
-  top:0;
-}
-.ContactChild-leave.ContactChild-leave-active {
-  opacity: 0.01;
-  top:300px;
-  transition: opacity 1s ease-in, top 1s ease-in;
-}
-.ContactChild-appear {
-  opacity: 0.01;
-  top:300px;
-}
-.ContactChild-appear.ContactChild-appear-active {
-  opacity: 1;
-  top:0;
-  transition: opacity 1s ease-out, top 1s ease-out;
-}
-`;
 
 export default class Contact extends React.Component {
     constructor(props){
@@ -111,6 +75,7 @@ export default class Contact extends React.Component {
       this.setState({Success: false});
     }
     render() {
+        //EQCSS.process(PreRenderedEqcss)
         return (
           <ContactSection id="FormHeader">
               <Helmet>

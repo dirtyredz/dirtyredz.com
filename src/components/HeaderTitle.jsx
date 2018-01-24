@@ -1,5 +1,6 @@
 import React from "react"
 import styled from 'styled-components';
+//import EQCSS from "eqcss";
 
 const StyledHeader = styled.header`
   position: relative;
@@ -21,6 +22,7 @@ const TitlePop = styled.h2`
 `;
 
 export default (props) => {
+    //EQCSS.process(PreRenderedEqcss)
     return(
         <StyledHeader style={props.centered ? {textAlign: "center"} : {}} className="LeftTest">
             <div style={props.centered ? {display: "inline-block", textAlign: "left"} : {}}>

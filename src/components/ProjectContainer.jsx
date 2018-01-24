@@ -2,6 +2,7 @@ import React from "react";
 import Waypoint from "react-waypoint";
 import { Link } from "react-router-dom";
 import styled from 'styled-components'
+//import EQCSS from "eqcss";
 
 const Container = styled.div`
   width: 75%;
@@ -119,6 +120,7 @@ export default class ProjectContainer extends React.Component {
       this.state = {RemoveOnScroll: true};
     }
     render() {
+        //EQCSS.process(PreRenderedEqcss)
         return (
             <Container id={this.props.id} style={(this.state.RemoveOnScroll) ? RemoveOnScroll : {}} className="ProjectContainer_EQCSS_1">
                 <Waypoint
