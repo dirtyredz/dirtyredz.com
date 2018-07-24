@@ -37,7 +37,6 @@ module.exports = {
       }
     ]
   },
-  pathPrefix: '/gatsby-starter-blog',
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,

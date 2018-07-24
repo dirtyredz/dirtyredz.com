@@ -1,9 +1,4 @@
-# gatsby-starter-blog
-Gatsby starter for creating a blog
+DIGITALREDZ (Dirtyredz)
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
+https://digitalredz.com
 
-`gatsby new gatsby-blog https://github.com/gatsbyjs/gatsby-starter-blog`
-
-## Running in development
-`gatsby develop`
