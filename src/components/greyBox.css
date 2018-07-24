@@ -1,0 +1,43 @@
+.GreyBox{
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(8vw + 25px);
+  padding-bottom: calc(8vw + 25px);
+  color: #EAE8E8;
+}
+
+.GreyBox .GreyBox_Content{
+  background-color: #413E3E;
+  position: relative;
+  width: 100%;
+  min-height: calc(9vw + 10px);
+}
+
+.GreyBox .GreyBox_BottemEdge{
+  background-color: #413E3E;
+  height: 100%;
+  transition: transform 0.5s linear;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150%;
+  z-index: -1;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.35);
+  transform: rotateZ(-5deg);
+  transform-origin: bottom right;
+}
+
+.GreyBox .GreyBox_UpperEdge{
+  background-color: #413E3E;
+  height: 100%;
+  transition: transform 0.5s linear;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  z-index: -1;
+  box-shadow: 0 -8px 10px rgba(0,0,0,0.35);
+  transform: rotateZ(-5deg);
+  transform-origin: top left;
+}

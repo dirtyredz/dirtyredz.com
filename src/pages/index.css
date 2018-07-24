@@ -1,0 +1,15 @@
+.CenterContent{
+    max-width: 800px;
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.LeftText{
+  padding-left: 20px
+}
+.RedBorderButton{
+  padding: 10px;
+  border: red 2px solid;
+  color: #000;
+  cursor: pointer;
+}

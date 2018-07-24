@@ -1,0 +1,46 @@
+#Footer{
+  padding: 15px;
+  background-color: #C10909;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  box-shadow: 0 -8px 10px rgba(0,0,0,0.35);
+  justify-content: center;
+}
+
+#Footer .Footer_Logo{
+  padding: 10px;
+  max-width: 240px;
+  width: 240px;
+  min-width: 150px;
+}
+.FooterLinks{
+  list-style-type: none;
+  margin: 0;
+}
+.FooterLinks > li{
+  padding: 20px;
+}
+.FooterLinks > li > a:visited{
+  color: black;
+}
+.FooterLinks > li > a{
+  color: black;
+  text-decoration: none;
+  box-shadow: none;
+}
+.FooterIcons{
+  margin: 0 10px;
+}
+@media only screen and (max-width: 550px) {
+  .FooterIcons{
+    display: none;
+  }
+}
+#Footer > .IconContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
