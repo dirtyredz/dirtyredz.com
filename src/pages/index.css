@@ -12,4 +12,6 @@
   border: red 2px solid;
   color: #000;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
 }

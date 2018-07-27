@@ -8,10 +8,29 @@ import { rhythm } from '../utils/typography'
 
 import GreyBox from '../components/greyBox'
 import { Timeline } from 'react-twitter-widgets'
-
 import './index.css'
+import RecentBlogs from '../components/RecentBlogs'
 
 class BlogIndex extends React.Component {
+  componentDidUpdate(){
+    this.updateTwitterCss()
+  }
+  updateTwitterCss(){
+    var widgetCSS = "" +
+      "body{font-family: 'FuturaPT-Light';}" +
+      ".u-floatLeft{display: none;}" +
+      ".timeline-Tweet-text{color: white; font-size: 20px !important;}";
+    let w = document.getElementById("twitter-widget-0")
+    if(!w)
+      w = document.getElementById("twitter-widget-1")
+    if(!w)
+      return false
+    w = w.contentDocument;
+    var s = document.createElement("style");
+    s.innerHTML = widgetCSS;
+    s.type = "text/css";
+    w.head.appendChild(s);
+  }
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allMarkdownRemark.edges')
@@ -34,6 +53,7 @@ class BlogIndex extends React.Component {
         </GreyBox>
         <div className="CenterContent" style={{textAlign: "center"}}>
           <h1>MY RECENT BLOG POSTS</h1>
+          <RecentBlogs/>
         </div>
         <GreyBox NoBottomEdge>
           <div className="CenterContent" style={{textAlign: "center"}}>
@@ -41,33 +61,16 @@ class BlogIndex extends React.Component {
             <Timeline
               dataSource={{
                 sourceType: 'profile',
-                screenName: 'Dirtyredz_DM'
+                screenName: 'DigitalRedz'
               }}
               options={{
-                height: '400'
+                height: '600',
+                chrome: 'transparent noheader',
               }}
-              onLoad={() => console.log('Timeline is loaded!')}
+              onLoad={this.updateTwitterCss}
             />
           </div>
         </GreyBox>
-        {/* {posts.map(({ node }) => {
-          const title = get(node, 'frontmatter.title') || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: 'none' }} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
-            </div>
-          )
-        })} */}
       </Layout>
     )
   }
@@ -98,20 +101,6 @@ export const pageQuery = graphql`
       edges {
         node {
           path
-        }
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "DD MMMM, YYYY")
-            title
-          }
         }
       }
     }
