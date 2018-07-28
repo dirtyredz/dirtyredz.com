@@ -12,7 +12,7 @@ exports.createPages = ({ graphql, actions }) => {
       graphql(
         `
         query BuildQuery {
-          Blogs: allMarkdownRemark(limit: 1,filter: {fileAbsolutePath: { regex: "/blog/"}},sort: { fields: [frontmatter___created], order: DESC }) {
+          Blogs: allMarkdownRemark(limit: 500,filter: {fileAbsolutePath: { regex: "/blog/"}},sort: { fields: [frontmatter___created], order: DESC }) {
             edges {
               node {
                 fields {
@@ -25,7 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        Projects: allMarkdownRemark(limit: 1,filter: {fileAbsolutePath: { regex: "/projects/"}},sort: { fields: [frontmatter___created], order: DESC }) {
+        Projects: allMarkdownRemark(limit: 500,filter: {fileAbsolutePath: { regex: "/projects/"}},sort: { fields: [frontmatter___created], order: DESC }) {
             edges {
               node {
                 fields {
