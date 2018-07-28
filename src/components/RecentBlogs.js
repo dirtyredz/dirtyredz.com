@@ -22,12 +22,23 @@ const RecentBlogs = () => {
               }
             }
           }
+          allSitePage {
+            edges {
+              node {
+                path
+              }
+            }
+          }
         }
       `}
       render={data => {
         return (
           <div>
-              {data.Blogs.edges.map(blog => (
+              {data.Blogs.edges.map(blog => {
+                const DoesPageExsist = data.allSitePage.edges.filter(sitePage => sitePage.node.path == blog.node.frontmatter.path).length > 0
+                if(!DoesPageExsist)
+                  return null
+                return (
                 <div key={blog.node.frontmatter.title}>
                   <Link to={blog.node.frontmatter.path} className="RecentBlog_Container">
                     <header>
@@ -41,7 +52,7 @@ const RecentBlogs = () => {
                   </Link>
                   <br/>
                 </div>
-              ))}
+              )})}
           </div>
       )}}
     />
