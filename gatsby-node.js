@@ -59,6 +59,7 @@ exports.createPages = ({ graphql, actions }) => {
             component: blogPost,
             context: {
               slug: post.node.fields.slug,
+              title: post.node.frontmatter.title,
               previous,
               next,
             },
@@ -80,4 +81,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
   }
+}
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+
+  return new Promise(resolve => {
+    const oldPage = Object.assign({}, page)
+    const Title = page.path.replace("/","");
+
+    page.context = Object.assign({title: Title != "" ? Title : "Home"}, page.context)
+    // console.log(page.path)
+    // deletePage(oldPage)
+    createPage(page)
+    resolve()
+  })
 }
