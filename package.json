@@ -7,6 +7,7 @@
     "url": "https://github.com/gatsbyjs/gatsby-starter-blog/issues"
   },
   "dependencies": {
+    "@babel/core": "^7.0.0-beta.54",
     "gatsby": "next",
     "gatsby-image": "^1.0.55",
     "gatsby-plugin-google-analytics": "next",
