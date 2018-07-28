@@ -1,6 +1,8 @@
 ---
 title: New Beginnings
-date: "2015-05-28T22:40:32.169Z"
+path: "/blog/hi-folks"
+created: "2015-05-28T22:40:32.169Z"
+updated: "2015-05-28T22:40:32.169Z"
 ---
 
 Far far away, behind the word mountains, far from the countries Vokalia and
