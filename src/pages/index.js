@@ -20,12 +20,10 @@ class BlogIndex extends React.Component {
       "body{font-family: 'FuturaPT-Light';}" +
       ".u-floatLeft{display: none;}" +
       ".timeline-Tweet-text{color: white; font-size: 20px !important;}";
-    let w = document.getElementById("twitter-widget-0")
-    if(!w)
-      w = document.getElementById("twitter-widget-1")
-    if(!w)
+    let w = document.querySelectorAll('iframe[id^="twitter-widget-"]');
+    if(w.length == 0)
       return false
-    w = w.contentDocument;
+    w = w[0].contentDocument;
     var s = document.createElement("style");
     s.innerHTML = widgetCSS;
     s.type = "text/css";
