@@ -84,18 +84,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        links {
-          logo
-          url
-          title
-        }
-      }
-    }
-    Links: allSitePage {
-      edges {
-        node {
-          path
-        }
       }
     }
   }

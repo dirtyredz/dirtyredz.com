@@ -20,25 +20,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        links {
-          logo
-          url
-          title
-        }
-      }
-    }
-    Logo: file(relativePath: {eq: "digitalredz.png"}) {
-      childImageSharp {
-        sizes(maxWidth: 340 ) {
-          ...GatsbyImageSharpSizes_noBase64
-        }
-      }
-    }
-    Links: allSitePage {
-      edges {
-        node {
-          path
-        }
       }
     }
   }
