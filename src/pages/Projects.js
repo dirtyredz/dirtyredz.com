@@ -1,13 +1,30 @@
 import React from 'react'
 import Layout from '../components/layout'
 import get from 'lodash/get'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
+import ProjectsQuery from '../components/ProjectsQuery'
 class Projects extends React.Component {
   render() {
     const data = get(this, 'props.data')
     return(
       <Layout data={data} location={this.props.location}>
         <h1>Projects</h1>
+        <ProjectsQuery
+          render={data => {
+            return (
+              <div id="AllProjects_Container">
+                  {data.Projects.edges.map(project => {
+                    const DoesPageExsist = data.allSitePage.edges.filter(sitePage => sitePage.node.path == project.node.frontmatter.path).length > 0
+                    if(!DoesPageExsist)
+                      return null
+                    return (
+                    <Link key={project.node.frontmatter.title} to={project.node.frontmatter.path} className="Recentproject_Container">
+                      <h2>{project.node.frontmatter.title}</h2>
+                    </Link>
+                  )})}
+              </div>
+          )}}
+        />
       </Layout>
     )
   }
