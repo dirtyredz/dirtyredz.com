@@ -1,45 +1,15 @@
 import React from 'react'
-import { StaticQuery, Link } from 'gatsby'
+import { Link } from 'gatsby'
 import './RecentBlogs.css'
+import BlogsQuery from './BlogsQuery'
 
-const RecentBlogs = () => {
+const RecentBlogs = (props) => {
   return (
-    <StaticQuery
-      query={graphql`
-        query {
-          Blogs: allMarkdownRemark(limit: 3, filter: {fileAbsolutePath: { regex: "/blog/"}}, sort: { fields: [frontmatter___created], order: DESC }) {
-            edges {
-              node {
-                excerpt
-                fields {
-                  slug
-                }
-                frontmatter {
-                  created(formatString: "DD MMMM, YYYY")
-                  updated(formatString: "DD MMMM, YYYY")
-                  title
-                  path
-                }
-              }
-            }
-          }
-          allSitePage {
-            edges {
-              node {
-                path
-              }
-            }
-          }
-        }
-      `}
+    <BlogsQuery
       render={data => {
         return (
-          <div>
-              {data.Blogs.edges.map(blog => {
-                const DoesPageExsist = data.allSitePage.edges.filter(sitePage => sitePage.node.path == blog.node.frontmatter.path).length > 0
-                if(!DoesPageExsist)
-                  return null
-                return (
+          <div {...props}>
+              {data.map(blog =>(
                 <div key={blog.node.frontmatter.title}>
                   <Link to={blog.node.frontmatter.path} className="RecentBlog_Container">
                     <header>
@@ -53,7 +23,7 @@ const RecentBlogs = () => {
                   </Link>
                   <br/>
                 </div>
-              )})}
+              ))}
           </div>
       )}}
     />

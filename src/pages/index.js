@@ -54,7 +54,7 @@ class BlogIndex extends React.Component {
         </GreyBox>
         <div className="CenterContent" style={{textAlign: "center"}}>
           <h1>MY RECENT BLOG POSTS</h1>
-          <RecentBlogs/>
+          <RecentBlogs limit={2}/>
         </div>
         <GreyBox NoBottomEdge>
           <div className="CenterContent" style={{textAlign: "center"}}>
