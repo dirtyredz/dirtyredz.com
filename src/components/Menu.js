@@ -103,7 +103,7 @@ class Menu extends React.Component {
             })}
             <hr className="LineBreak"/>
             <div onClick={this.BlogSubMenu.bind(this)} >
-              <span className="MenuLink" >Blog<span class={this.state.BlogSubMenuOpen ? "active arrow" : "arrow"}></span></span>
+              <span className="MenuLink" >Blog<span className={this.state.BlogSubMenuOpen ? "active arrow" : "arrow"}></span></span>
                 <FlipMove
                   staggerDurationBy={50}
                   maintainContainerHeight={true}
@@ -115,7 +115,7 @@ class Menu extends React.Component {
                 </FlipMove>
             </div>
             <div onClick={this.ProjectSubMenu.bind(this)} >
-              <span className="MenuLink" >Projects<span class={this.state.ProjectSubMenuOpen ? "active arrow" : "arrow"}></span></span>
+              <span className="MenuLink" >Projects<span className={this.state.ProjectSubMenuOpen ? "active arrow" : "arrow"}></span></span>
                 <FlipMove
                   staggerDurationBy={50}
                   maintainContainerHeight={true}
