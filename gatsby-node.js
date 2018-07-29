@@ -8,6 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
+    const ProjectComponent = path.resolve('./src/templates/blog-post.js')
     resolve(
       graphql(
         `
@@ -25,7 +26,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        Projects: allMarkdownRemark(limit: 500,filter: {fileAbsolutePath: { regex: "/projects/"}},sort: { fields: [frontmatter___created], order: DESC }) {
+          Projects: allMarkdownRemark(limit: 500,filter: {fileAbsolutePath: { regex: "/project/"}},sort: { fields: [frontmatter___created], order: DESC }) {
             edges {
               node {
                 fields {
@@ -60,6 +61,26 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.node.fields.slug,
               title: post.node.frontmatter.title,
+              previous,
+              next,
+            },
+          })
+        })
+
+        // Create projects pages.
+        const projects = result.data.Projects.edges;
+        
+        _.each(projects, (project, index) => {
+          const previous = index === projects.length - 1 ? null : projects[index + 1].node;
+          const next = index === 0 ? null : projects[index - 1].node;
+
+          createPage({
+            path: project.node.frontmatter.path,
+            name: project.node.frontmatter.title,
+            component: ProjectComponent,
+            context: {
+              slug: project.node.fields.slug,
+              title: project.node.frontmatter.title,
               previous,
               next,
             },

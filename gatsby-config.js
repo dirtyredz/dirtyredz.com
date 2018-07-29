@@ -53,6 +53,13 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options:{
+        path: `${__dirname}/src/pages/project`,
+        name: 'project',
+      }
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
