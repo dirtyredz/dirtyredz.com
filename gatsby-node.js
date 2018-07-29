@@ -51,9 +51,7 @@ exports.createPages = ({ graphql, actions }) => {
         const posts = result.data.Blogs.edges;
 
         _.each(posts, (post, index) => {
-          const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-          const next = index === 0 ? null : posts[index - 1].node;
-
+          
           createPage({
             path: post.node.frontmatter.path,
             name: post.node.frontmatter.title,
@@ -61,8 +59,6 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.node.fields.slug,
               title: post.node.frontmatter.title,
-              previous,
-              next,
             },
           })
         })
@@ -71,8 +67,8 @@ exports.createPages = ({ graphql, actions }) => {
         const projects = result.data.Projects.edges;
         
         _.each(projects, (project, index) => {
-          const previous = index === projects.length - 1 ? null : projects[index + 1].node;
-          const next = index === 0 ? null : projects[index - 1].node;
+          // const previous = index === projects.length - 1 ? null : projects[index + 1].node;
+          // const next = index === 0 ? null : projects[index - 1].node;
 
           createPage({
             path: project.node.frontmatter.path,
@@ -81,8 +77,6 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: project.node.fields.slug,
               title: project.node.frontmatter.title,
-              previous,
-              next,
             },
           })
         })
