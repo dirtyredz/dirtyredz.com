@@ -83,7 +83,7 @@ class Menu extends React.Component {
         const SiteLinks = data.allSitePage ? data.allSitePage.edges.filter(link=>{
           if(link.node.path == "/")
           return false
-          if(link.node.path.includes(".html") || link.node.path.includes("/dev") || link.node.path.includes("/404") || link.node.path.includes("/project/") || link.node.path.includes("/blog/"))
+          if(link.node.path.includes(".html") || link.node.path.includes("/dev") || link.node.path.includes("/404") || link.node.path.includes("/project/") || link.node.path.includes("/blog/") || link.node.path == "/Projects" || link.node.path == "/Blog")
             return false
           return true
         }) : null
@@ -102,30 +102,36 @@ class Menu extends React.Component {
               return <Link key={link.node.path} onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink" to={link.node.path}>{link.node.context.title}</Link>
             })}
             <hr className="LineBreak"/>
-            <div onClick={this.BlogSubMenu.bind(this)} >
-              <span className="MenuLink" >Blog<span className={this.state.BlogSubMenuOpen ? "active arrow" : "arrow"}></span></span>
-                <FlipMove
-                  staggerDurationBy={50}
-                  maintainContainerHeight={true}
-                  style={this.state.BlogSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
-                >
-                  {this.state.BlogSubMenuOpen && BlogPostLinks && BlogPostLinks.map(link=>{
-                    return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
-                  })}
-                </FlipMove>
+            <div className="DropDownLink">
+              <Link to="/Blog" className="MenuLink">Blog</Link>
+              <div className="MenuLink" onClick={this.BlogSubMenu.bind(this)} >
+                <span className={this.state.BlogSubMenuOpen ? "active arrow" : "arrow"}></span>
+              </div>
             </div>
-            <div onClick={this.ProjectSubMenu.bind(this)} >
-              <span className="MenuLink" >Projects<span className={this.state.ProjectSubMenuOpen ? "active arrow" : "arrow"}></span></span>
-                <FlipMove
-                  staggerDurationBy={50}
-                  maintainContainerHeight={true}
-                  style={this.state.ProjectSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
-                >
-                  {this.state.ProjectSubMenuOpen && ProjectLinks && ProjectLinks.map(link=>{
-                    return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
-                  })}
-                </FlipMove>
+            <FlipMove
+              staggerDurationBy={50}
+              maintainContainerHeight={true}
+              style={this.state.BlogSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
+            >
+              {this.state.BlogSubMenuOpen && BlogPostLinks && BlogPostLinks.map(link=>{
+                return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink SubLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
+              })}
+            </FlipMove>
+            <div className="DropDownLink">
+              <Link to="/Projects" className="MenuLink">Projects</Link>
+              <div className="MenuLink" onClick={this.ProjectSubMenu.bind(this)} >
+                <span className={this.state.ProjectSubMenu ? "active arrow" : "arrow"}></span>
+              </div>
             </div>
+            <FlipMove
+              staggerDurationBy={50}
+              maintainContainerHeight={true}
+              style={this.state.ProjectSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
+            >
+              {this.state.ProjectSubMenuOpen && ProjectLinks && ProjectLinks.map(link=>{
+                return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink SubLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
+              })}
+            </FlipMove>
             <hr className="LineBreak"/>
             {data.site.siteMetadata.links && data.site.siteMetadata.links.map(link=>{
               const Logo = Icons[link.logo]

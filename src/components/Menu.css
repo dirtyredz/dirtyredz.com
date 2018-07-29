@@ -40,10 +40,12 @@ hr.LineBreak{
   color: white;
   overflow: hidden;
   outline: none;
-
   display: block;
 }
-#Header div.bm-item div{
+.SubLink{
+  font-size: 75%;
+}
+#Header div.bm-item{
   transition: max-height 0.5s;
   max-height: 300px;
   overflow-y: hidden;
@@ -105,26 +107,13 @@ hr.LineBreak{
   background: rgba(0, 0, 0, 0.3);
 }
 
-
-
-
-/* &.active
-.arrow 
-  transform: rotate(45deg) translate(-5px,-5px)
-  &:before
-    transform: translate(10px,0)
-  &:after
-    transform: rotate(90deg) translate(10px,0)
-ul
-  opacity: 0.3
-  height: 108px */
 .arrow{
   width: 13px;
   height: 13px;
   display: inline-block;
   position: relative;
   bottom: -5px;
-  left: -10px;
+  left: -6px;
   transition: 0.4s ease;
   margin-top: 2px;
   text-align: left;
@@ -146,7 +135,6 @@ ul
   transform: rotate(90deg);
   top: 4.5px;
   left: 9px;
-  height: 2px;
 }
 .active.arrow{
   transform: rotate(45deg) translate(-5px,-5px);
@@ -156,4 +144,16 @@ ul
 }
 .active.arrow:after{
   transform: rotate(90deg) translate(10px,0);
+}
+.DropDownLink{
+  display: flex !important;
+  justify-content: space-between;
+}
+.DropDownLink > a{
+  flex: 1;
+}
+.DropDownLink > div{
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
 }
