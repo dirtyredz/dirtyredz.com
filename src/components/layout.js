@@ -18,9 +18,9 @@ function mapStateToProps(state) {
 
 const WithProvider = props => {
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <Layout {...props}/>
-    </Provider>
+    // {/* </Provider> */}
   )
 }
 
@@ -35,9 +35,9 @@ const Layout = connect(mapStateToProps)(props=>{
   return (
     <div style={props.menu.isOpen ? {overflow: "hidden", height: "100vh"} : {}}>
       <ScrollUpButton style={{zIndex: 1000}}/>
-      <Header siteTitle={title} ExternalLinks={ExternalLinks} InternalLinks={InternalLinks} maxWidth={240} logo={Logo}/>
+      <Header siteTitle={title} maxWidth={240}/>
       {children}
-      <Footer siteTitle={title} ExternalLinks={ExternalLinks} InternalLinks={InternalLinks} logo={Logo}/>
+      <Footer siteTitle={title}/>
     </div>
   )
 })
