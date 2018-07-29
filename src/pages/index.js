@@ -7,9 +7,12 @@ import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
 
 import GreyBox from '../components/greyBox'
+import ParagraphLink from '../components/ParagraphLink'
 import { Timeline } from 'react-twitter-widgets'
 import './index.css'
 import RecentBlogs from '../components/RecentBlogs'
+import RecentProjects from '../components/RecentProjects'
+import { connect } from "react-redux";
 
 class BlogIndex extends React.Component {
   componentDidUpdate(){
@@ -39,15 +42,15 @@ class BlogIndex extends React.Component {
         <Helmet title={siteTitle} />
         <div className="CenterContent" >
           <h1>Full Stack Developer and Veteran</h1>
-          <p>My name is David McClain, I am a web developer currently living in North West Wisconsin area. After serving in the United States Marine Corpse for 9 years, I started my development career.  I enjoy building websites, web apps and mobile apps.  If your a seeking a website or mobile application you can contact me here.  If your an employer looking to hire a developer visit my resume here.</p>
+          <p>My name is David McClain, I am a web developer currently living in North West Wisconsin area. After serving in the United States Marine Corpse for 9 years, I started my development career.  I enjoy building websites, web apps and mobile apps.  If your a seeking a website or mobile application you can contact me <ParagraphLink><Link to="/Contact">here</Link></ParagraphLink>.  If your an employer looking to hire a developer visit my resume <ParagraphLink><Link to="/Resume">here</Link></ParagraphLink>.</p>
           <Link className="RedBorderButton" to="/Contact">CONTACT ME</Link>
         </div>
         <GreyBox>
           <div className="CenterContent" style={{textAlign: "center"}}>
             <h1>MY LATEST PROJECTS</h1>
-            <div style={{height: 100}}></div>
+            <RecentProjects/>
           </div>
-          <h4 className="LeftText">See all my projects <span>Here</span></h4>
+          <h4 className="LeftText">See all my projects <ParagraphLink><Link to="/Projects">Here</Link></ParagraphLink></h4>
         </GreyBox>
         <div className="CenterContent" style={{textAlign: "center"}}>
           <h1>MY RECENT BLOG POSTS</h1>
@@ -74,7 +77,7 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default BlogIndex
+export default connect()(BlogIndex)
 
 export const pageQuery = graphql`
   query IndexQuery {
@@ -85,13 +88,6 @@ export const pageQuery = graphql`
           logo
           url
           title
-        }
-      }
-    }
-    Logo: file(relativePath: {eq: "digitalredz.png"}) {
-      childImageSharp {
-        sizes(maxWidth: 340 ) {
-          ...GatsbyImageSharpSizes_noBase64
         }
       }
     }

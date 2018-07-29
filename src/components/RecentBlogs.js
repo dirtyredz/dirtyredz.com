@@ -1,6 +1,7 @@
 import React from 'react'
 import { StaticQuery, Link } from 'gatsby'
 import './RecentBlogs.css'
+
 const RecentBlogs = () => {
   return (
     <StaticQuery

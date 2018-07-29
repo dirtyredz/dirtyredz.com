@@ -1,0 +1,22 @@
+#RecentProjects_Container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+}
+#RecentProjects_Container > a{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:  5px 10px;
+  color: inherit;
+  text-decoration: none;
+  border-top: solid #C10909 2px;
+  border-bottom: solid #C10909 2px;
+}
+#RecentProjects_Container > a:visited{
+  color: inherit;
+}
+#RecentProjects_Container > a > h2{
+  margin-bottom: 0;
+}

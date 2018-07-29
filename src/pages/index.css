@@ -9,7 +9,7 @@
 }
 .RedBorderButton{
   padding: 10px;
-  border: red 2px solid;
+  border: #C10909 2px solid;
   color: #000;
   cursor: pointer;
   text-decoration: none;
