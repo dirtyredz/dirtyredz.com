@@ -22,7 +22,8 @@ class Menu extends React.Component {
     super()
     this.state = {
       MenuState: false,
-      BlogSubMenuOpen: false
+      BlogSubMenuOpen: false,
+      ProjectSubMenuOpen: false
     }
   }
   TransformLink(link){
@@ -38,11 +39,25 @@ class Menu extends React.Component {
     e.preventDefault()
     this.setState({BlogSubMenuOpen: !this.state.BlogSubMenuOpen})
   }
+  ProjectSubMenu(e){
+    e.preventDefault()
+    this.setState({ProjectSubMenuOpen: !this.state.ProjectSubMenuOpen})
+  }
   render(){
     return (
       <StaticQuery
       query={graphql`
         query {
+          site {
+            siteMetadata {
+              title
+              links {
+                logo
+                url
+                title
+              }
+            }
+          }
           allSitePage {
             edges {
               node {
@@ -58,15 +73,19 @@ class Menu extends React.Component {
       render={data => {
 
         const BlogPostLinks = data.allSitePage ? data.allSitePage.edges.filter(link=>{
-          return link.node.path.includes("/blog")
+          return link.node.path.includes("/blog/")
+        }) : null
+
+        const ProjectLinks = data.allSitePage ? data.allSitePage.edges.filter(link=>{
+          return link.node.path.includes("/project/")
         }) : null
 
         const SiteLinks = data.allSitePage ? data.allSitePage.edges.filter(link=>{
           if(link.node.path == "/")
           return false
-          if(link.node.path.includes(".html") || link.node.path.includes("/dev") || link.node.path.includes("/404"))
+          if(link.node.path.includes(".html") || link.node.path.includes("/dev") || link.node.path.includes("/404") || link.node.path.includes("/project/") || link.node.path.includes("/blog/"))
             return false
-          return !link.node.path.includes("/blog")
+          return true
         }) : null
 
         const HomeTitle = data.allSitePage.edges.filter(link=>link.node.path==="/")[0].node.context.title
@@ -82,20 +101,33 @@ class Menu extends React.Component {
             {SiteLinks && SiteLinks.map(link=>{
               return <Link key={link.node.path} onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink" to={link.node.path}>{link.node.context.title}</Link>
             })}
-
+            <hr className="LineBreak"/>
             <div onClick={this.BlogSubMenu.bind(this)} >
-              <span className="MenuLink" >Blog</span>
+              <span className="MenuLink" >Blog<span class={this.state.BlogSubMenuOpen ? "active arrow" : "arrow"}></span></span>
                 <FlipMove
                   staggerDurationBy={50}
                   maintainContainerHeight={true}
+                  style={this.state.BlogSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
                 >
                   {this.state.BlogSubMenuOpen && BlogPostLinks && BlogPostLinks.map(link=>{
                     return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
                   })}
                 </FlipMove>
             </div>
+            <div onClick={this.ProjectSubMenu.bind(this)} >
+              <span className="MenuLink" >Projects<span class={this.state.ProjectSubMenuOpen ? "active arrow" : "arrow"}></span></span>
+                <FlipMove
+                  staggerDurationBy={50}
+                  maintainContainerHeight={true}
+                  style={this.state.ProjectSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
+                >
+                  {this.state.ProjectSubMenuOpen && ProjectLinks && ProjectLinks.map(link=>{
+                    return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
+                  })}
+                </FlipMove>
+            </div>
             <hr className="LineBreak"/>
-            {this.props.ExternalLinks && this.props.ExternalLinks.map(link=>{
+            {data.site.siteMetadata.links && data.site.siteMetadata.links.map(link=>{
               const Logo = Icons[link.logo]
               return <a  key={link.url} className="MenuLink" key={link.url} rel="noopener noreferrer" target="_blank" href={link.url}><Logo style={{fill: "#fff", paddingRight: 10}} width={34}/>{link.title}</a>
             })}

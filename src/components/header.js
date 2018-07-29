@@ -1,7 +1,7 @@
 import React from 'react'
-import Img from "gatsby-image";
 import "./header.css";
 import Menu from './Menu'
+import Logo from './Logo'
 class Header extends React.Component {
   constructor(){
     super()
@@ -26,13 +26,12 @@ class Header extends React.Component {
     return(
       <div id="Header">
         <div className="Header_TopBar">
-          {this.props.logo && <Img
+          <Logo
             fadeIn={false}
             imgStyle={this.state.ImageStyle}
             outerWrapperClassName="Header_Logo"
-            sizes={this.props.logo.childImageSharp.sizes}
             onLoad={this.ImageLoaded.bind(this)}
-          />}
+          />
           <Menu {...this.props}/>
         </div>
         <div style={{transform: "rotateZ("+this.state+"deg)"}} className={this.state.Rotated ? "Header_BottomBar Rotated" : "Header_BottomBar"}></div>

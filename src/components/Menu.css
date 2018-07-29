@@ -33,8 +33,8 @@ hr.LineBreak{
   background-color: rgba(0,0,0,0.15);
 }
 .MenuLink{
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
   padding: 3px;
   cursor: pointer;
   color: white;
@@ -42,6 +42,11 @@ hr.LineBreak{
   outline: none;
 
   display: block;
+}
+#Header div.bm-item div{
+  transition: max-height 0.5s;
+  max-height: 300px;
+  overflow-y: hidden;
 }
 #Header .bm-burger-button {
   float: right;
@@ -98,4 +103,57 @@ hr.LineBreak{
 /* Styling of overlay */
 #Header .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+/* &.active
+.arrow 
+  transform: rotate(45deg) translate(-5px,-5px)
+  &:before
+    transform: translate(10px,0)
+  &:after
+    transform: rotate(90deg) translate(10px,0)
+ul
+  opacity: 0.3
+  height: 108px */
+.arrow{
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  position: relative;
+  bottom: -5px;
+  left: -10px;
+  transition: 0.4s ease;
+  margin-top: 2px;
+  text-align: left;
+  transform: rotate(45deg);
+  float: right;
+}
+.arrow:before,
+.arrow:after{
+  position: absolute;
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 3px;
+  background-color: #fff;
+  transition: 0.4s ease;
+}
+.arrow:after{
+  position: absolute;
+  transform: rotate(90deg);
+  top: 4.5px;
+  left: 9px;
+  height: 2px;
+}
+.active.arrow{
+  transform: rotate(45deg) translate(-5px,-5px);
+}
+.active.arrow:before{
+  transform: translate(10px,0);
+}
+.active.arrow:after{
+  transform: rotate(90deg) translate(10px,0);
 }

@@ -1,4 +1,5 @@
 // menu
+// Action-Creator
 export function MenuStateChanged(MenuState){
   return {
     type: 'MENU_STATE_CHANGED',
