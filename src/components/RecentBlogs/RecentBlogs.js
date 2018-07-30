@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import './RecentBlogs.css'
-import BlogsQuery from './BlogsQuery'
+import {BlogsQuery} from '..'
 
 const RecentBlogs = (props) => {
   return (

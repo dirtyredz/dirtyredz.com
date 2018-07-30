@@ -1,7 +1,6 @@
 import React from 'react'
 import "./header.css";
-import Menu from './Menu'
-import Logo from './Logo'
+import { Menu, Logo } from '..'
 class Header extends React.Component {
   constructor(){
     super()

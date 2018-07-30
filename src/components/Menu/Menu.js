@@ -1,11 +1,11 @@
 import React from 'react'
-import { MenuStateChanged } from "../redux/menu";
+import { MenuStateChanged } from "../../redux/menu";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { StaticQuery, Link } from "gatsby";
 import { slide as BurgerMenu } from 'react-burger-menu'
 import './Menu.css'
-import * as Icons from '../components/icons'
+import { Icons } from '..'
 import FlipMove from 'react-flip-move';
 
 function mapStateToProps(state) {

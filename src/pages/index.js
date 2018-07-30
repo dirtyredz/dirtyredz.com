@@ -2,16 +2,10 @@ import React from 'react'
 import { Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-
-import Layout from '../components/layout'
 import { rhythm } from '../utils/typography'
-
-import GreyBox from '../components/greyBox'
-import ParagraphLink from '../components/ParagraphLink'
+import { GreyBox, Layout, RecentProjects, RecentBlogs, ParagraphLink } from '../components'
 import { Timeline } from 'react-twitter-widgets'
 import './index.css'
-import RecentBlogs from '../components/RecentBlogs'
-import RecentProjects from '../components/RecentProjects'
 import { connect } from "react-redux";
 
 class BlogIndex extends React.Component {
@@ -54,8 +48,9 @@ class BlogIndex extends React.Component {
         </GreyBox>
         <div className="CenterContent" style={{textAlign: "center"}}>
           <h1>MY RECENT BLOG POSTS</h1>
-          <RecentBlogs limit={2}/>
+          <RecentBlogs/>
         </div>
+        <h4 className="LeftText">See all my blogs <ParagraphLink><Link to="/Blog">Here</Link></ParagraphLink></h4>
         <GreyBox NoBottomEdge>
           <div className="CenterContent" style={{textAlign: "center"}}>
             <h1>TWITTER FEED</h1>

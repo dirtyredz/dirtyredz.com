@@ -2,8 +2,7 @@ import React from 'react'
 import Img from "gatsby-image";
 import "./footer.css";
 import { Link, StaticQuery } from 'gatsby'
-import * as Icons from '../components/icons'
-import Logo from './Logo'
+import { Logo, Icons } from '..'
 
 const Footer = () => (
     <StaticQuery

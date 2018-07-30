@@ -1,9 +1,9 @@
 import React from 'react'
-import Layout from '../components/layout'
+import { Layout, BlogsQuery } from '../components'
 import get from 'lodash/get'
 import { graphql, Link } from 'gatsby'
-import BlogsQuery from '../components/BlogsQuery'
 import './Blog.css'
+
 class Blog extends React.Component {
   render() {
     const x = get(this, 'props.data')

@@ -3,7 +3,8 @@ import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
 import get from 'lodash/get'
 
-import Layout from '../components/layout'
+import { Layout } from '../components'
+
 import { rhythm, scale } from '../utils/typography'
 
 class BlogPostTemplate extends React.Component {

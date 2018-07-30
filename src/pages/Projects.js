@@ -1,8 +1,7 @@
 import React from 'react'
-import Layout from '../components/layout'
+import { Layout, ProjectsQuery } from '../components'
 import get from 'lodash/get'
 import { graphql, Link } from 'gatsby'
-import ProjectsQuery from '../components/ProjectsQuery'
 class Projects extends React.Component {
   render() {
     const data = get(this, 'props.data')

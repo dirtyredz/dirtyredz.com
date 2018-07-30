@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import {VerticleButton as ScrollUpButton} from 'react-scroll-up-button'
-import Header from '../components/header'
-import Footer from '../components/footer'
+import { Footer, Header } from '..'
 import './layout.css'
-import { rhythm, scale } from '../utils/typography'
+import { rhythm, scale } from '../../utils/typography'
 import get from 'lodash/get'
 import { Provider } from 'react-redux'
-import store from '../redux/store'
+import store from '../../redux/store'
 import { connect } from "react-redux";
 
 function mapStateToProps(state) {

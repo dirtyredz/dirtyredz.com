@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import './RecentProjects.css'
-import ProjectsQuery from './ProjectsQuery'
+import {ProjectsQuery} from '..'
+
 const Recentprojects = () => {
   return (
     <ProjectsQuery
