@@ -103,7 +103,7 @@ class Menu extends React.Component {
             })}
             <hr className="LineBreak"/>
             <div className="DropDownLink">
-              <Link to="/Blog" className="MenuLink">Blog</Link>
+              <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} to="/Blog" className="MenuLink">Blog</Link>
               <div className="MenuLink" onClick={this.BlogSubMenu.bind(this)} >
                 <span className={this.state.BlogSubMenuOpen ? "active arrow" : "arrow"}></span>
               </div>
@@ -118,9 +118,9 @@ class Menu extends React.Component {
               })}
             </FlipMove>
             <div className="DropDownLink">
-              <Link to="/Projects" className="MenuLink">Projects</Link>
+              <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} to="/Projects" className="MenuLink">Projects</Link>
               <div className="MenuLink" onClick={this.ProjectSubMenu.bind(this)} >
-                <span className={this.state.ProjectSubMenu ? "active arrow" : "arrow"}></span>
+                <span className={this.state.ProjectSubMenuOpen ? "active arrow" : "arrow"}></span>
               </div>
             </div>
             <FlipMove

@@ -1,7 +1,7 @@
 import React from 'react'
 import Img from "gatsby-image";
 import "./footer.css";
-import { Link, StaticQuery } from 'gatsby'
+import { Link, StaticQuery, graphql } from 'gatsby'
 import { Logo, Icons } from '..'
 
 const Footer = () => (

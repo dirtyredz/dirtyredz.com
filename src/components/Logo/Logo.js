@@ -1,7 +1,7 @@
 import React from 'react'
 import Img from "gatsby-image";
 import PropTypes from 'prop-types'
-import { StaticQuery } from 'gatsby'
+import { StaticQuery, graphql } from 'gatsby'
 
 const Logo = (props) => {
   return (

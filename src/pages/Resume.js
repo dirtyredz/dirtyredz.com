@@ -2,21 +2,21 @@ import React from 'react'
 import { Layout } from '../components'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
-class Work extends React.Component {
+class Resume extends React.Component {
   render() {
     const data = get(this, 'props.data')
     return(
       <Layout data={data} location={this.props.location}>
-        <h1>Work</h1>
+        <h1>Resume</h1>
       </Layout>
     )
   }
 }
 
-export default Work
+export default Resume
 
 export const pageQuery = graphql`
-  query WorkQuery {
+  query ResumeQuery {
     site {
       siteMetadata {
         title

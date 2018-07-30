@@ -19,9 +19,7 @@ hr.LineBreak{
   padding-top: 10px !important;
   padding-bottom: 10px !important;
 }
-.MenuLink span:hover{
-  background-color: rgba(0,0,0,0.15);
-}
+
 .MenuLink:visited{
   color: white;
 }
