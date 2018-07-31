@@ -8,6 +8,7 @@ import get from 'lodash/get'
 import { Provider } from 'react-redux'
 import store from '../../redux/store'
 import { connect } from "react-redux";
+import Helmet from 'react-helmet'
 
 function mapStateToProps(state) {
   return {
@@ -34,6 +35,7 @@ const Layout = connect(mapStateToProps)(props=>{
   return (
     <div style={props.menu.isOpen ? {overflow: "hidden", height: "100vh"} : {}}>
       <ScrollUpButton style={{zIndex: 1000}}/>
+      <Helmet title={title} />
       <Header siteTitle={title} maxWidth={240}/>
       {children}
       <Footer siteTitle={title}/>

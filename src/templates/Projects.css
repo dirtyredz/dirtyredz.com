@@ -1,0 +1,14 @@
+.keywords_container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.keywords_container span{
+  font-size: 115%;
+  padding: 0 10px;
+  border-left: solid 3px #C10909;
+  font-weight: bold;
+}
+.keywords_container span:first-of-type{
+  border-left: none !important;
+}

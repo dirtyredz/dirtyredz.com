@@ -9,5 +9,6 @@ export { default as RecentBlogs } from './RecentBlogs/RecentBlogs'
 export { default as RecentProjects } from './RecentProjects/RecentProjects'
 export { default as ProjectsQuery } from './ProjectsQuery'
 export { default as BlogsQuery } from './BlogsQuery'
+export { default as ProjectSummary } from './ProjectSummary'
 import * as Icons from './Icons/Icons'
 export { Icons }

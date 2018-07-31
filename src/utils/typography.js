@@ -1,6 +1,6 @@
 import Typography from 'typography'
 
-const typography = new Typography({ 
+const typography = new Typography({
   baseFontSize: "25px",
   baseLineHeight: 1.5,
   headerFontFamily: ['Tall & Lean','Avenir Next', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
@@ -8,7 +8,7 @@ const typography = new Typography({
   scaleRatio: 3.3,
   bodyGray: 10,
   letterSpacing: 3
-}); 
+});
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== 'production') {

@@ -1,10 +1,10 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { Layout } from '../components'
 import { rhythm, scale } from '../utils/typography'
-
+require("prismjs/themes/prism-twilight.css")
+import './blog-post.css'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
@@ -13,35 +13,23 @@ class BlogPostTemplate extends React.Component {
     const data = get(this, 'props.data')
     return (
       <Layout data={data} location={this.props.location}>
-        <Helmet title={`${post.frontmatter.title} | ${siteTitle}`} />
-        <h1>{post.frontmatter.title}</h1>
+        <h1 className="CenterContent">{post.frontmatter.title}</h1>
         <p
+          className="CenterContent"
           style={{
             ...scale(-1 / 5),
             display: 'block',
             marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
           }}
         >
           {post.frontmatter.created}
         </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <div className="CenterContent" dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
             marginBottom: rhythm(1),
           }}
         />
-
-        <ul
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            listStyle: 'none',
-            padding: 0,
-          }}
-        >
-        </ul>
       </Layout>
     )
   }

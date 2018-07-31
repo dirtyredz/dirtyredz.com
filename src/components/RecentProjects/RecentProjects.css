@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   margin-bottom: 50px;
+  flex-wrap: wrap;
 }
 #RecentProjects_Container > a{
   display: flex;
@@ -10,6 +11,7 @@
   justify-content: center;
   padding:  5px 10px;
   color: inherit;
+  margin: 5px;
   text-decoration: none;
   border-top: solid #C10909 2px;
   border-bottom: solid #C10909 2px;
@@ -19,4 +21,5 @@
 }
 #RecentProjects_Container > a > h2{
   margin-bottom: 0;
+  white-space:nowrap;
 }

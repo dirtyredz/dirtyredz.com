@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
-    const ProjectComponent = path.resolve('./src/templates/blog-post.js')
+    const ProjectComponent = path.resolve('./src/templates/Projects.js')
     resolve(
       graphql(
         `
@@ -35,6 +35,10 @@ exports.createPages = ({ graphql, actions }) => {
                 frontmatter {
                   title
                   path
+                  skills
+                  keywords
+                  created(formatString: "DD MMMM, YYYY")
+                  updated(formatString: "DD MMMM, YYYY")
                 }
               }
             }
@@ -69,14 +73,14 @@ exports.createPages = ({ graphql, actions }) => {
         _.each(projects, (project, index) => {
           // const previous = index === projects.length - 1 ? null : projects[index + 1].node;
           // const next = index === 0 ? null : projects[index - 1].node;
-
+          const {path, ...rest} = project.node.frontmatter
           createPage({
-            path: project.node.frontmatter.path,
+            path: path,
             name: project.node.frontmatter.title,
             component: ProjectComponent,
             context: {
+              ...rest,
               slug: project.node.fields.slug,
-              title: project.node.frontmatter.title,
             },
           })
         })
