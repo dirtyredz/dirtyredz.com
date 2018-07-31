@@ -12,3 +12,6 @@
 .keywords_container span:first-of-type{
   border-left: none !important;
 }
+pre{
+  max-height: 600px;
+}
