@@ -50,10 +50,10 @@ class BlogIndex extends React.Component {
             My name is David McClain, I am a web developer currently living in North West
             Wisconsin area. After serving in the United States Marine Corpse for 9 years,
             I started my development career.  I enjoy building websites, web apps and mobile apps.
-              If your a seeking a website or mobile application you can contact me
-            <ParagraphLink><Link to="/Contact">here</Link></ParagraphLink>
-            .  If your an employer looking to hire a developer visit my resume
-            <ParagraphLink><Link to="/Resume">here</Link></ParagraphLink>.
+            &nbsp;&nbsp;If your a seeking a website or mobile application you can contact me
+            &nbsp;<ParagraphLink><Link to="/Contact">here</Link></ParagraphLink>
+            .&nbsp;&nbsp;If your an employer looking to hire a developer visit my resume
+            &nbsp;<ParagraphLink><Link to="/Resume">here</Link></ParagraphLink>.
           </p>
           <RedBorderLink title="Contact Me" to="/Contact">CONTACT ME</RedBorderLink>
         </CenterContent>

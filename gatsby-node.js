@@ -122,7 +122,7 @@ exports.onCreatePage = ({ page, actions }) => {
     const Title = page.path.replace('/', '');
     const newPage = {
       ...page,
-      context: Object.assign({ title: Title !== '' ? Title : 'Home' }, page.context)
+      context: Object.assign({ title: Title !== '' ? Title : 'Home' }, page.context),
     }
     // deletePage(oldPage)
     createPage(newPage)
