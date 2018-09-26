@@ -1,11 +1,10 @@
 import React from 'react'
 import { GreyBox } from '..'
-import { StaticQuery, graphql } from 'gatsby'
 import './index.css'
 import get from 'lodash/get'
 
 export default (props) => {
-  const { children, render } = props
+  const { children } = props
   const Skills = get(props, 'data.markdownRemark.frontmatter.skills')
   return (
     <GreyBox id="ProjectSummary">
@@ -16,9 +15,7 @@ export default (props) => {
         <div id="Skills">
           <h4>SKILLS</h4>
           <div>
-            {Skills && Skills.map(skill=>{
-              return <span>{skill}</span>
-            })}
+            {Skills && Skills.map(skill => <span>{skill}</span>)}
           </div>
         </div>
       </div>

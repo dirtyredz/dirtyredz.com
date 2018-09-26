@@ -1,12 +1,10 @@
 import React from 'react'
-import Img from "gatsby-image";
-import PropTypes from 'prop-types'
+import Img from 'gatsby-image';
 import { StaticQuery, graphql } from 'gatsby'
 
-const Logo = (props) => {
-  return (
-    <StaticQuery
-      query={graphql`
+const Logo = props => (
+  <StaticQuery
+    query={graphql`
         query {
           Logo: file(relativePath: {eq: "digitalredz.png"}) {
             childImageSharp {
@@ -17,18 +15,13 @@ const Logo = (props) => {
           }
         }
       `}
-      render={data => (
-        <Img
-          {...props}
-          fluid={data.Logo.childImageSharp.fluid}
-        />
-      )}
-    />
-  )
-}
-
-Logo.propTypes = {
-
-}
+    render={data => (
+      <Img
+        {...props}
+        fluid={data.Logo.childImageSharp.fluid}
+      />
+    )}
+  />
+)
 
 export default Logo

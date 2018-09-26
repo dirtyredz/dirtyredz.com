@@ -1,17 +1,17 @@
 import React from 'react'
-import "./header.css";
+import './header.css';
 import { Menu, Logo } from '..'
+
 class Header extends React.Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
       Rotated: false,
       ImageStyle: {
-        opacity: 0
+        opacity: 0,
       },
-      MenuState: false,
-      BlogSubMenuOpen: false
     }
+    this.ImageLoaded = this.ImageLoaded.bind(this)
   }
 
   componentWillUnmount() {
@@ -20,27 +20,31 @@ class Header extends React.Component {
     }
   }
 
-  ImageLoaded(){
-    this.setState({Rotated: true},()=>{
-      this.Timer = setTimeout(()=>{
-        this.setState({ImageStyle: {opacity: 100}})
-      },500)
+  ImageLoaded() {
+    this.setState({ Rotated: true }, () => {
+      this.Timer = setTimeout(() => {
+        this.setState({ ImageStyle: { opacity: 100 } })
+      }, 500)
     })
   }
 
-  render(){
-    return(
+  render() {
+    const { ImageStyle, Rotated } = this.state
+    return (
       <div id="Header">
         <div className="Header_TopBar">
           <Logo
             fadeIn={false}
-            imgStyle={this.state.ImageStyle}
+            imgStyle={ImageStyle}
             className="Header_Logo"
-            onLoad={this.ImageLoaded.bind(this)}
+            onLoad={this.ImageLoaded}
           />
-          <Menu {...this.props}/>
+          <Menu {...this.props} />
         </div>
-        <div style={{transform: "rotateZ("+this.state+"deg)"}} className={this.state.Rotated ? "Header_BottomBar Rotated" : "Header_BottomBar"}></div>
+        <div
+          style={{ transform: `rotateZ(${this.state}deg)` }}
+          className={Rotated ? 'Header_BottomBar Rotated' : 'Header_BottomBar'}
+        />
       </div>
     )
   }

@@ -1,13 +1,13 @@
 import Typography from 'typography'
 
 const typography = new Typography({
-  baseFontSize: "25px",
+  baseFontSize: '25px',
   baseLineHeight: 1.5,
-  headerFontFamily: ['Tall & Lean','Avenir Next', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
-  bodyFontFamily: ['FuturaPT-Light','Georgia', 'serif'],
+  headerFontFamily: ['Tall & Lean', 'Avenir Next', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+  bodyFontFamily: ['FuturaPT-Light', 'Georgia', 'serif'],
   scaleRatio: 3.3,
   bodyGray: 10,
-  letterSpacing: 3
+  letterSpacing: 3,
 });
 
 // Hot reload typography in development.
@@ -16,5 +16,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default typography
-export const rhythm = typography.rhythm
-export const scale = typography.scale
+export const { rhythm, scale } = typography

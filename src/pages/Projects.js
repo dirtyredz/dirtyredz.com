@@ -1,31 +1,34 @@
 import React from 'react'
-import { Layout, ProjectsQuery, CenterContent } from '../components'
-import get from 'lodash/get'
 import { graphql, Link } from 'gatsby'
+import { Layout, ProjectsQuery, CenterContent } from '../components'
+
 class Projects extends React.Component {
   render() {
-    const data = get(this, 'props.data')
-    return(
-      <Layout data={data} location={this.props.location}>
+    const { data, location } = this.props
+    return (
+      <Layout data={data} location={location}>
         <CenterContent>
           <h1>Projects</h1>
           <ProjectsQuery
-            render={data => {
-              return (
-                <div id="AllProjects_Container">
-                    {data.length > 0
-                      ? data.map(project => (
-                        <Link key={project.node.frontmatter.title} to={project.node.frontmatter.path} className="Recentproject_Container">
-                          <h2>{project.node.frontmatter.title}</h2>
-                        </Link>
-                      ))
-                      : <h2>Projects Coming Soon!</h2>
+            render={data => (
+              <div id="AllProjects_Container">
+                {data.length > 0
+                  ? data.map(project => (
+                    <Link
+                      key={project.node.frontmatter.title}
+                      to={project.node.frontmatter.path}
+                      className="Recentproject_Container"
+                    >
+                      <h2>{project.node.frontmatter.title}</h2>
+                    </Link>
+                  ))
+                  : <h2>Projects Coming Soon!</h2>
                     }
-                </div>
-            )}}
+              </div>
+            )}
           />
-          <br/>
-          <br/>
+          <br />
+          <br />
         </CenterContent>
       </Layout>
     )

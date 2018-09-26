@@ -8,7 +8,7 @@ export default class CenterContent extends Component {
       Comp = tag
     }
     return (
-      <Comp className="CenterContent" { ...rest } >{children}</Comp>
+      <Comp className="CenterContent" {...rest}>{children}</Comp>
     )
   }
 }

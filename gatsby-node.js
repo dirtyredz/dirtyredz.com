@@ -2,14 +2,14 @@ const _ = require('lodash')
 const Promise = require('bluebird')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
-const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
+const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope'); // eslint-disable-line
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
-    const ProjectComponent = path.resolve('./src/templates/Projects.js')
+    const ProjectComponent = path.resolve('./src/templates/Projects.js') // eslint-disable-line
     resolve(
       graphql(
         `
@@ -29,16 +29,16 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
         `
-      ).then(result => {
+      ).then((result) => {
         if (result.errors) {
-          console.log(result.errors)
+          Error(result.errors)
           reject(result.errors)
         }
         if (result.data.Blogs) {
           // Create blog posts pages.
           const posts = result.data.Blogs.edges;
 
-          _.each(posts, (post, index) => {
+          _.each(posts, (post) => {
             createPage({
               path: post.node.frontmatter.path,
               name: post.node.frontmatter.title,
@@ -74,7 +74,7 @@ exports.createPages = ({ graphql, actions }) => {
         // }
 
         // const projects = result.data.Projects.edges;
-        
+
         // _.each(projects, (project, index) => {
         //   console.log(project.node.frontmatter)
 
@@ -91,7 +91,7 @@ exports.createPages = ({ graphql, actions }) => {
         //     ),
         //     context: {
         //       ...rest,
-              
+
         //       // slug: project.node.fields.slug,
         //     },
         //   })
@@ -104,10 +104,10 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === 'MarkdownRemark') {
     const value = createFilePath({ node, getNode })
     createNodeField({
-      name: `slug`,
+      name: 'slug',
       node,
       value,
     })
@@ -115,15 +115,17 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 }
 
 exports.onCreatePage = ({ page, actions }) => {
-  const { createPage, deletePage } = actions
+  const { createPage } = actions
 
-  return new Promise(resolve => {
-    const oldPage = Object.assign({}, page)
-    const Title = page.path.replace("/","");
-
-    page.context = Object.assign({title: Title != "" ? Title : "Home"}, page.context)
+  return new Promise((resolve) => {
+    // const oldPage = Object.assign({}, page)
+    const Title = page.path.replace('/', '');
+    const newPage = {
+      ...page,
+      context: Object.assign({ title: Title !== '' ? Title : 'Home' }, page.context)
+    }
     // deletePage(oldPage)
-    createPage(page)
+    createPage(newPage)
     resolve()
   })
 }

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Layout } from '../components'
-import get from 'lodash/get'
 import { graphql } from 'gatsby'
+import { Layout } from '../components'
+
 class NotFoundPage extends React.Component {
   render() {
-    const data = get(this, 'props.data')
-    return(
-      <Layout data={data} location={this.props.location}>
+    const { data, location } = this.props
+    return (
+      <Layout data={data} location={location}>
         <h1>NOT FOUND</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
       </Layout>

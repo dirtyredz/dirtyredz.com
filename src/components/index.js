@@ -1,3 +1,5 @@
+import * as Icons from './Icons/icons'
+
 export { default as Footer } from './Footer/footer'
 export { default as Header } from './Header/header'
 export { default as GreyBox } from './GreyBox/greyBox'
@@ -12,5 +14,4 @@ export { default as BlogsQuery } from './BlogsQuery'
 export { default as ProjectSummary } from './ProjectSummary'
 export { default as RedBorderLink } from './RedBorderLink/RedBorderLink'
 export { default as CenterContent } from './CenterContent/CenterContent'
-import * as Icons from './Icons/icons'
 export { Icons }

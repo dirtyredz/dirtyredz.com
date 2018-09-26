@@ -1,18 +1,17 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import get from 'lodash/get'
+import { graphql } from 'gatsby'
 import { Layout, CenterContent } from '../components'
 import { rhythm, scale } from '../utils/typography'
-require("prismjs/themes/prism-twilight.css")
 import './blog-post.css'
+
+require('prismjs/themes/prism-twilight.css')
+
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-    const { previous, next } = this.props.pageContext
-    const data = get(this, 'props.data')
+    const { data, location } = this.props
+    const post = data.markdownRemark
     return (
-      <Layout data={data} location={this.props.location}>
+      <Layout data={data} location={location}>
         <CenterContent tag="h1" className="CenterContent">{post.frontmatter.title}</CenterContent>
         <CenterContent
           tag="p"

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Layout, RedBorderLink, CenterContent } from '../components'
-import get from 'lodash/get'
 import { graphql } from 'gatsby'
+import { Layout, RedBorderLink, CenterContent } from '../components'
+
 class Resume extends React.Component {
   render() {
-    const data = get(this, 'props.data')
-    return(
-      <Layout data={data} location={this.props.location}>
+    const { data, location } = this.props
+    return (
+      <Layout data={data} location={location}>
         <CenterContent>
           <h1>Resume</h1>
           <p>Download my current resume with the link below</p>
@@ -17,8 +17,8 @@ class Resume extends React.Component {
             Download
           </RedBorderLink>
         </CenterContent>
-        <br/>
-        <br/>
+        <br />
+        <br />
       </Layout>
     )
   }

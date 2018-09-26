@@ -8,90 +8,90 @@ module.exports = {
       {
         title: 'GitHub',
         logo: 'Github',
-        url: 'https://www.github.com'
+        url: 'https://www.github.com',
       },
       {
         title: 'Facebook',
         logo: 'Facebook',
-        url: 'https://www.facebook.com'
+        url: 'https://www.facebook.com',
       },
       {
         title: 'Codepen',
         logo: 'Codepen',
-        url: 'https://www.codepen.com'
+        url: 'https://www.codepen.com',
       },
       {
         title: 'LinkedIn',
         logo: 'Linkedin',
-        url: 'https://www.linkedin.com'
+        url: 'https://www.linkedin.com',
       },
       {
         title: 'Twitter',
         logo: 'Twitter',
-        url: 'https://www.twitter.com'
+        url: 'https://www.twitter.com',
       },
       {
         title: 'Instagram',
         logo: 'Instagram',
-        url: 'https://www.instagram.com'
-      }
-    ]
+        url: 'https://www.instagram.com',
+      },
+    ],
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          `Roboto\:100,300,400,500,700,900` // you can also specify font weights and styles
-        ]
-      }
+          'Roboto\:100,300,400,500,700,900', // eslint-disable-line
+        ],
+      },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/static/images`,
-        name: "images",
-      }
+        name: 'images',
+      },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options:{
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/src/pages/blog`,
         name: 'blog',
-      }
+      },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options:{
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/src/pages/project`,
         name: 'project',
-      }
+      },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options:{
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/src/pages/static`,
         name: 'static',
-      }
+      },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 590,
             },
           },
           {
-            resolve: `gatsby-remark-responsive-iframe`,
+            resolve: 'gatsby-remark-responsive-iframe',
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
+              wrapperStyle: 'margin-bottom: 1.0725rem',
             },
           },
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: 'gatsby-remark-prismjs',
             options: {
               // Class prefix for <pre> tags containing syntax highlighting;
               // defaults to 'language-' (eg <pre class="language-js">).
@@ -100,7 +100,7 @@ module.exports = {
               // you may use this to prevent Prism from re-processing syntax.
               // This is an uncommon use-case though;
               // If you're unsure, it's best to use the default value.
-              classPrefix: "language-",
+              classPrefix: 'language-',
               // This is used to allow setting a language for inline code
               // (i.e. single backticks) by creating a separator.
               // This separator is a string and will do no white-space
@@ -116,24 +116,24 @@ module.exports = {
             },
           },
           {
-            resolve: "gatsby-remark-component",
-            options: { components: ["project-summary"] }
+            resolve: 'gatsby-remark-component',
+            options: { components: ['project-summary'] },
           },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        // trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-remove-trailing-slashes`,
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-remove-trailing-slashes',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
