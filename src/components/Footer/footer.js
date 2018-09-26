@@ -58,7 +58,7 @@ const Footer = () => (
                 return <li key={link.node.path}><Link to={link.node.path}>{link.node.context.title}</Link></li>
               })}
             </ul>
-            <Logo outerWrapperClassName="Footer_Logo"/>
+            <Logo className="Footer_Logo"/>
             <ul className="FooterLinks" style={{textAlign: "right"}}>
               {SecondHalf_InternalLinks && SecondHalf_InternalLinks.map(link=>{
                 return <li key={link.node.path} ><Link to={link.node.path}>{link.node.context.title}</Link></li>

@@ -10,17 +10,17 @@ const Logo = (props) => {
         query {
           Logo: file(relativePath: {eq: "digitalredz.png"}) {
             childImageSharp {
-              sizes(maxWidth: 340 ) {
-                ...GatsbyImageSharpSizes_noBase64
+              fluid(maxWidth: 340, maxHeight: 340) {
+                ...GatsbyImageSharpFluid_noBase64
               }
             }
           }
         }
       `}
-      render={data =>(
+      render={data => (
         <Img
           {...props}
-          sizes={data.Logo.childImageSharp.sizes}
+          fluid={data.Logo.childImageSharp.fluid}
         />
       )}
     />

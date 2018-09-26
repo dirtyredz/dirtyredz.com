@@ -28,7 +28,7 @@ class Header extends React.Component {
           <Logo
             fadeIn={false}
             imgStyle={this.state.ImageStyle}
-            outerWrapperClassName="Header_Logo"
+            className="Header_Logo"
             onLoad={this.ImageLoaded.bind(this)}
           />
           <Menu {...this.props}/>
