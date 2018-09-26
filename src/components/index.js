@@ -1,6 +1,6 @@
 export { default as Footer } from './Footer/footer'
 export { default as Header } from './Header/header'
-export { default as GreyBox } from './GreyBox/greybox'
+export { default as GreyBox } from './GreyBox/greyBox'
 export { default as Layout } from './Layout/layout'
 export { default as Logo } from './Logo/Logo'
 export { default as Menu } from './Menu/Menu'
