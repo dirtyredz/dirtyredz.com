@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import { rhythm } from '../utils/typography'
-import { GreyBox, Layout, RecentProjects, RecentBlogs, ParagraphLink } from '../components'
+import { GreyBox, Layout, RecentProjects, RecentBlogs, ParagraphLink, CenterContent } from '../components'
 import { Timeline } from 'react-twitter-widgets'
 import './index.css'
 import { connect } from "react-redux";
@@ -34,25 +34,25 @@ class BlogIndex extends React.Component {
     return (
       <Layout data={data} location={this.props.location}>
         <Helmet title={siteTitle} />
-        <div className="CenterContent" >
+        <CenterContent>
           <h1>Full Stack Developer and Veteran</h1>
           <p>My name is David McClain, I am a web developer currently living in North West Wisconsin area. After serving in the United States Marine Corpse for 9 years, I started my development career.  I enjoy building websites, web apps and mobile apps.  If your a seeking a website or mobile application you can contact me <ParagraphLink><Link to="/Contact">here</Link></ParagraphLink>.  If your an employer looking to hire a developer visit my resume <ParagraphLink><Link to="/Resume">here</Link></ParagraphLink>.</p>
           <Link className="RedBorderButton" to="/Contact">CONTACT ME</Link>
-        </div>
+        </CenterContent>
         <GreyBox>
-          <div className="CenterContent" style={{textAlign: "center"}}>
+          <CenterContent style={{textAlign: "center"}}>
             <h1>MY LATEST PROJECTS</h1>
             <RecentProjects/>
-          </div>
+          </CenterContent>
           <h4 className="LeftText">See all my projects <ParagraphLink><Link to="/Projects">Here</Link></ParagraphLink></h4>
         </GreyBox>
-        <div className="CenterContent" style={{textAlign: "center"}}>
+        <CenterContent style={{textAlign: "center"}}>
           <h1>MY RECENT BLOG POSTS</h1>
           <RecentBlogs/>
-        </div>
+        </CenterContent>
         <h4 className="LeftText">See all my blogs <ParagraphLink><Link to="/Blog">Here</Link></ParagraphLink></h4>
-        <GreyBox NoBottomEdge>
-          <div className="CenterContent" style={{textAlign: "center"}}>
+        <GreyBox nobottomedge>
+          <CenterContent style={{textAlign: "center"}}>
             <h1>TWITTER FEED</h1>
             <Timeline
               dataSource={{
@@ -65,7 +65,7 @@ class BlogIndex extends React.Component {
               }}
               onLoad={this.updateTwitterCss}
             />
-          </div>
+          </CenterContent>
         </GreyBox>
       </Layout>
     )

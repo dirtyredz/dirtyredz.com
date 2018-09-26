@@ -60,6 +60,13 @@ module.exports = {
       }
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options:{
+        path: `${__dirname}/src/pages/static`,
+        name: 'static',
+      }
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -125,5 +132,11 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography',
       },
     },
+    // {
+    //   resolve: `gatsby-mdx`,
+    //   options: {
+    //     extensions: [".mdx", ".md"]
+    //   }
+    // },
   ],
 }

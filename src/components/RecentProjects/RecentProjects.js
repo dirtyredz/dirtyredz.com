@@ -9,11 +9,14 @@ const Recentprojects = () => {
       render={data => {
         return (
           <div id="RecentProjects_Container">
-              {data.map(project => (
-                <Link key={project.node.frontmatter.title} to={project.node.frontmatter.path} className="Recentproject_Container">
-                  <h2>{project.node.frontmatter.title}</h2>
-                </Link>
-              ))}
+            {data.length > 0
+              ? data.map(project => (
+                  <Link key={project.node.frontmatter.title} to={project.node.frontmatter.path} className="Recentproject_Container">
+                    <h2>{project.node.frontmatter.title}</h2>
+                  </Link>
+                ))
+              : <h2>Projects Section Coming Soon!</h2>
+            }
           </div>
       )}}
     />

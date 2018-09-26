@@ -11,7 +11,6 @@ import rehypeReact from "rehype-react"
 
 class BlogPostTemplate extends React.Component {
   render() {
-    console.log(this.props)
     const post = this.props.data.markdownRemark
     const data = get(this, 'props.data')
     const { keywords, title, created } = this.props.pageContext

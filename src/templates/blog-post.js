@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import get from 'lodash/get'
-import { Layout } from '../components'
+import { Layout, CenterContent } from '../components'
 import { rhythm, scale } from '../utils/typography'
 require("prismjs/themes/prism-twilight.css")
 import './blog-post.css'
@@ -13,9 +13,9 @@ class BlogPostTemplate extends React.Component {
     const data = get(this, 'props.data')
     return (
       <Layout data={data} location={this.props.location}>
-        <h1 className="CenterContent">{post.frontmatter.title}</h1>
-        <p
-          className="CenterContent"
+        <CenterContent tag="h1" className="CenterContent">{post.frontmatter.title}</CenterContent>
+        <CenterContent
+          tag="p"
           style={{
             ...scale(-1 / 5),
             display: 'block',
@@ -23,8 +23,8 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           {post.frontmatter.created}
-        </p>
-        <div className="CenterContent" dangerouslySetInnerHTML={{ __html: post.html }} />
+        </CenterContent>
+        <CenterContent dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr
           style={{
             marginBottom: rhythm(1),

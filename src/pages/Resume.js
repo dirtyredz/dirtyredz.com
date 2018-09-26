@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout } from '../components'
+import { Layout, RedBorderLink, CenterContent } from '../components'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
 class Resume extends React.Component {
@@ -7,7 +7,13 @@ class Resume extends React.Component {
     const data = get(this, 'props.data')
     return(
       <Layout data={data} location={this.props.location}>
-        <h1>Resume</h1>
+        <CenterContent>
+          <h1>Resume</h1>
+          <p>Download my current resume with the link below</p>
+          <RedBorderLink href={data.Resume.edges[0].node.publicURL}>Download</RedBorderLink>
+        </CenterContent>
+        <br/>
+        <br/>
       </Layout>
     )
   }
@@ -20,6 +26,13 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    Resume: allFile(filter: { extension: { eq: "docx" } }) {
+      edges {
+        node {
+          publicURL
+        }
       }
     }
   }

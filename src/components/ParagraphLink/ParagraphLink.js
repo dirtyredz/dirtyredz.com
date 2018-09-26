@@ -10,7 +10,6 @@ const ParagraphLink = ({children}) => {
 }
 
 ParagraphLink.propTypes = {
- children: PropTypes.isRequired
 }
 
 export default ParagraphLink

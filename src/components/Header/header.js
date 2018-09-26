@@ -13,9 +13,16 @@ class Header extends React.Component {
       BlogSubMenuOpen: false
     }
   }
+
+  componentWillUnmount() {
+    if (this.Timer) {
+      clearTimeout(this.Timer)
+    }
+  }
+
   ImageLoaded(){
     this.setState({Rotated: true},()=>{
-      setTimeout(()=>{
+      this.Timer = setTimeout(()=>{
         this.setState({ImageStyle: {opacity: 100}})
       },500)
     })

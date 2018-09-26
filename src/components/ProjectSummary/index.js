@@ -7,7 +7,6 @@ import get from 'lodash/get'
 export default (props) => {
   const { children, render } = props
   const Skills = get(props, 'data.markdownRemark.frontmatter.skills')
-
   return (
     <GreyBox id="ProjectSummary">
       <div id="Description_Skills_Container">

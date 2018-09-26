@@ -10,7 +10,6 @@ skills: ["CSS","HTML","JS","BASH","Lua","PHP","Apache","Linux","Ubuntu","Github"
 This is a project dedicated to server deployment, management, and exposing features to the client, for the game 'Avorion'
 </div>
 
-
 <project-summary>
 After getting invloved in a MP/SP game named Avorion, I quickly realized that there was an oppurtunity for me. I could take my knowledge of linux servers and web development and create a project that many can use. This project is still in development, and available as an alpha release.
 </project-summary>

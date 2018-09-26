@@ -31,11 +31,17 @@ const Footer = () => (
         }
       `}
       render={data => {
-        console.log(data)
         let SiteLinks = data.allSitePage ?
         data.allSitePage.edges
           .filter(link=>{
-            if(link.node.path.includes(".html") || link.node.path.includes("/dev") || link.node.path.includes("/404") || link.node.path.includes("/project/") || link.node.path.includes("/blog/"))
+            if(link.node.path.includes(".html")
+              || link.node.path.includes("/dev")
+              || link.node.path.includes("/404")
+              || link.node.path.includes("/project/")
+              || link.node.path.includes("/blog/")
+              || link.node.path == "/Projects"
+              || link.node.path == "/Blog"
+              || link.node.path == "/Resume")
               return false
             return true
           })
@@ -43,6 +49,8 @@ const Footer = () => (
 
         const FirstHalf_InternalLinks = SiteLinks.slice(0,SiteLinks.length / 2)
         const SecondHalf_InternalLinks = SiteLinks.slice(SiteLinks.length / 2)
+
+        
         const ExternalLinks = data.site.siteMetadata.links.map(link=>{
           return {...link, icon: Icons[link.logo]}
         })

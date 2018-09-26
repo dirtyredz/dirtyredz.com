@@ -10,5 +10,7 @@ export { default as RecentProjects } from './RecentProjects/RecentProjects'
 export { default as ProjectsQuery } from './ProjectsQuery'
 export { default as BlogsQuery } from './BlogsQuery'
 export { default as ProjectSummary } from './ProjectSummary'
+export { default as RedBorderLink } from './RedBorderLink/RedBorderLink'
+export { default as CenterContent } from './CenterContent/CenterContent'
 import * as Icons from './Icons/Icons'
 export { Icons }

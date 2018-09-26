@@ -7,6 +7,7 @@ import { slide as BurgerMenu } from 'react-burger-menu'
 import './Menu.css'
 import { Icons } from '..'
 import FlipMove from 'react-flip-move';
+import { ProjectsQuery, BlogsQuery } from '../'
 
 function mapStateToProps(state) {
   return {
@@ -83,7 +84,13 @@ class Menu extends React.Component {
         const SiteLinks = data.allSitePage ? data.allSitePage.edges.filter(link=>{
           if(link.node.path == "/")
           return false
-          if(link.node.path.includes(".html") || link.node.path.includes("/dev") || link.node.path.includes("/404") || link.node.path.includes("/project/") || link.node.path.includes("/blog/") || link.node.path == "/Projects" || link.node.path == "/Blog")
+          if(link.node.path.includes(".html")
+            || link.node.path.includes("/dev")
+            || link.node.path.includes("/404")
+            || link.node.path.includes("/project/")
+            || link.node.path.includes("/blog/")
+            || link.node.path == "/Projects"
+            || link.node.path == "/Blog")
             return false
           return true
         }) : null
@@ -102,36 +109,57 @@ class Menu extends React.Component {
               return <Link key={link.node.path} onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink" to={link.node.path}>{link.node.context.title}</Link>
             })}
             <hr className="LineBreak"/>
-            <div className="DropDownLink">
-              <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} to="/Blog" className="MenuLink">Blog</Link>
-              <div className="MenuLink" onClick={this.BlogSubMenu.bind(this)} >
-                <span className={this.state.BlogSubMenuOpen ? "active arrow" : "arrow"}></span>
-              </div>
-            </div>
-            <FlipMove
-              staggerDurationBy={50}
-              maintainContainerHeight={true}
-              style={this.state.BlogSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
-            >
-              {this.state.BlogSubMenuOpen && BlogPostLinks && BlogPostLinks.map(link=>{
-                return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink SubLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
-              })}
-            </FlipMove>
-            <div className="DropDownLink">
-              <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} to="/Projects" className="MenuLink">Projects</Link>
-              <div className="MenuLink" onClick={this.ProjectSubMenu.bind(this)} >
-                <span className={this.state.ProjectSubMenuOpen ? "active arrow" : "arrow"}></span>
-              </div>
-            </div>
-            <FlipMove
-              staggerDurationBy={50}
-              maintainContainerHeight={true}
-              style={this.state.ProjectSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
-            >
-              {this.state.ProjectSubMenuOpen && ProjectLinks && ProjectLinks.map(link=>{
-                return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink SubLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
-              })}
-            </FlipMove>
+            <BlogsQuery
+              render={data => {
+                if (data.length == 0) {
+                  return null
+                }
+                return (
+                  <div>
+                    <div className="DropDownLink">
+                      <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} to="/Blog" className="MenuLink">Blog</Link>
+                      <div className="MenuLink" onClick={this.BlogSubMenu.bind(this)} >
+                        <span className={this.state.BlogSubMenuOpen ? "active arrow" : "arrow"}></span>
+                      </div>
+                    </div>
+                    <FlipMove
+                      staggerDurationBy={50}
+                      maintainContainerHeight={true}
+                      style={this.state.BlogSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
+                    >
+                      {this.state.BlogSubMenuOpen && BlogPostLinks && BlogPostLinks.map(link=>{
+                        return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink SubLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
+                      })}
+                    </FlipMove>
+                  </div>
+              )}}
+            />
+            
+            <ProjectsQuery
+              render={data => {
+                if (data.length == 0) {
+                  return null
+                }
+                return (
+                  <div>
+                    <div className="DropDownLink">
+                      <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} to="/Projects" className="MenuLink">Projects</Link>
+                      <div className="MenuLink" onClick={this.ProjectSubMenu.bind(this)} >
+                        <span className={this.state.ProjectSubMenuOpen ? "active arrow" : "arrow"}></span>
+                      </div>
+                    </div>
+                    <FlipMove
+                      staggerDurationBy={50}
+                      maintainContainerHeight={true}
+                      style={this.state.ProjectSubMenuOpen ? {maxHeight: 300} : {maxHeight: 3}}
+                    >
+                      {this.state.ProjectSubMenuOpen && ProjectLinks && ProjectLinks.map(link=>{
+                        return <Link onClick={this.MenuStateChanged.bind(this,{isOpen: false})} className="MenuLink SubLink" to={link.node.path}>&nbsp;&nbsp;&nbsp;{link.node.context.title}</Link>
+                      })}
+                    </FlipMove>
+                  </div>
+              )}}
+            />
             <hr className="LineBreak"/>
             {data.site.siteMetadata.links && data.site.siteMetadata.links.map(link=>{
               const Logo = Icons[link.logo]
