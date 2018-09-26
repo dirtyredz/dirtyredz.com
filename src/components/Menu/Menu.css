@@ -56,10 +56,15 @@ hr.LineBreak{
   right: 36px;
   top: 29px;
 }
+#Header .bm-burger-button:hover .bm-burger-bars{
+  background: white;
+}
 
 /* Color/shape of burger icon bars */
 #Header .bm-burger-bars {
   background: black;
+  opacity: 1 !important;
+  transition: background-color 0.3s;
 }
 
 /* Position and sizing of clickable cross button */

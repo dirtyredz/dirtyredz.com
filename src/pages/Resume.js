@@ -10,7 +10,12 @@ class Resume extends React.Component {
         <CenterContent>
           <h1>Resume</h1>
           <p>Download my current resume with the link below</p>
-          <RedBorderLink href={data.Resume.edges[0].node.publicURL}>Download</RedBorderLink>
+          <RedBorderLink
+            title="Download my resume with this link."
+            href={data.Resume.edges[0].node.publicURL}
+          >
+            Download
+          </RedBorderLink>
         </CenterContent>
         <br/>
         <br/>

@@ -13,7 +13,13 @@ class Donate extends React.Component {
           <h1>Donate</h1>
           <div className="FlexMe">
             <div className="Column">
-              <a target="_blank" rel="noopener noreferrer" href="https://www.paypal.me/Dirtyredz" className="LogoLink">
+              <a
+                title="Opens new tab or window to visit my paypal donations page."
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.paypal.me/Dirtyredz"
+                className="LogoLink"
+              >
                 <Icons.Paypal style={{float: 'none', display: 'inline-block'}} width={50} />
               </a>
               <p>
@@ -21,7 +27,13 @@ class Donate extends React.Component {
               </p>
             </div>
             <div className="Column">
-              <a target="_blank" rel="noopener noreferrer" href="https://www.patreon.com/Dirtyredz" className="LogoLink">
+              <a
+                title="Opens new tab or window to visit my patreon page."
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.patreon.com/Dirtyredz"
+                className="LogoLink"
+              >
                 <Icons.Patreon style={{float: 'none', display: 'inline-block'}} width={50} />
               </a>
               <p>

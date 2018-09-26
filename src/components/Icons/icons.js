@@ -64,7 +64,9 @@ export const Patreon = (props) => {
 
 const SvgIcon = (props) => {
     return (
-      <div className={"IconContainer "+props.className} style={{ width: props.width, ...props.style }}>
+      <div
+        className={props.disableClass ? props.className : `IconContainer ${props.className}`}
+        style={{ width: props.width, ...props.style }}>
         <svg className="Icon" viewBox={props.viewbox}>
           {props.children}
         </svg>

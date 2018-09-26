@@ -59,7 +59,7 @@ const Footer = () => (
         return(
           <div id="Footer">
             <div className="IconContainer">
-              {FirstHalf_ExternalLinks && FirstHalf_ExternalLinks.map(link=><a key={link.url} style={{boxShadow: "none"}} target="blank" href={link.url}><link.icon className="FooterIcons" width={40}/></a>)}
+              {FirstHalf_ExternalLinks && FirstHalf_ExternalLinks.map(link=><a key={link.url} style={{boxShadow: "none"}} target="blank" href={link.url}><link.icon disableClass className="FooterIcons" width={40}/></a>)}
             </div>
             <ul className="FooterLinks">
               {FirstHalf_InternalLinks && FirstHalf_InternalLinks.map(link=>{
@@ -73,7 +73,7 @@ const Footer = () => (
               })}
             </ul>
             <div className="IconContainer">
-              {SecondHalf_ExternalLinks && SecondHalf_ExternalLinks.map(link=><a key={link.url} style={{boxShadow: "none"}} target="blank" href={link.url}><link.icon className="FooterIcons" width={40}/></a>)}
+              {SecondHalf_ExternalLinks && SecondHalf_ExternalLinks.map(link=><a key={link.url} style={{boxShadow: "none"}} target="blank" href={link.url}><link.icon disableClass className="FooterIcons" width={40}/></a>)}
             </div>
           </div>
         )

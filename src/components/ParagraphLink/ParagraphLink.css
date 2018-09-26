@@ -1,7 +1,12 @@
 .ParagraphLink{
-  border-bottom: #C10909 solid 1.5px;
+  border-bottom: #C10909 solid 2.5px;
   display: inline-block;
   line-height: 1;
+  transition: border-bottom 0.5s;
+}
+.ParagraphLink:focus,
+.ParagraphLink:hover{
+  border-bottom: rgb(0, 211, 248) solid 2.5px;
 }
 .ParagraphLink > a{
   text-decoration: none;

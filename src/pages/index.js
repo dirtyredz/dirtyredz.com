@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import { rhythm } from '../utils/typography'
-import { GreyBox, Layout, RecentProjects, RecentBlogs, ParagraphLink, CenterContent } from '../components'
+import { GreyBox, Layout, RecentProjects, RecentBlogs, ParagraphLink, CenterContent, RedBorderLink } from '../components'
 import { Timeline } from 'react-twitter-widgets'
 import './index.css'
 import { connect } from "react-redux";
@@ -37,7 +37,7 @@ class BlogIndex extends React.Component {
         <CenterContent>
           <h1>Full Stack Developer and Veteran</h1>
           <p>My name is David McClain, I am a web developer currently living in North West Wisconsin area. After serving in the United States Marine Corpse for 9 years, I started my development career.  I enjoy building websites, web apps and mobile apps.  If your a seeking a website or mobile application you can contact me <ParagraphLink><Link to="/Contact">here</Link></ParagraphLink>.  If your an employer looking to hire a developer visit my resume <ParagraphLink><Link to="/Resume">here</Link></ParagraphLink>.</p>
-          <Link className="RedBorderButton" to="/Contact">CONTACT ME</Link>
+          <RedBorderLink title="Contact Me" to="/Contact">CONTACT ME</RedBorderLink>
         </CenterContent>
         <GreyBox>
           <CenterContent style={{textAlign: "center"}}>

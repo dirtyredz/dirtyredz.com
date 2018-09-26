@@ -5,4 +5,13 @@
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  transition: background-color 0.5s, font-weight 0.5s;
+}
+.RedBorderButton:focus,
+.RedBorderButton:hover{
+  background-color: #bfbfbf;
+  font-weight: 900;
 }
