@@ -1,3 +1,8 @@
-import wrapWithProvider from './wrap-with-provider'
+import React from 'react'
+import Provider from './src/Context'
 
-export const wrapRootElement = wrapWithProvider // eslint-disable-line import/prefer-default-export
+export const wrapRootElement = ({ element, ...rest }) => ( // eslint-disable-line import/prefer-default-export
+  <Provider {...rest}>
+    {element}
+  </Provider>
+)

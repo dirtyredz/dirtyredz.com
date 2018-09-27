@@ -3,20 +3,17 @@ import React from 'react'
 import ScrollUpButton from 'react-scroll-up-button'
 import { Footer, Header } from '..'
 import './layout.css'
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet'
+import get from 'lodash.get'
+import { consumer } from '../../Context'
 
-function mapStateToProps(state) {
-  return {
-    menu: state.menu,
-  };
-}
 
-const Layout = connect(mapStateToProps)((props) => {
-  const { children, data } = props
-  const title = data.site.siteMetadata.title
+const Layout = consumer((props) => {
+  const { children, data, context } = props
+  const title = get(data,'site.siteMetadata.title')
+
   return (
-    <div style={props.menu.isOpen ? { overflow: 'hidden', height: '100vh' } : {}}>
+    <div style={context.isOpen ? { overflow: 'hidden', height: '100vh' } : {}}>
       <ScrollUpButton style={{ zIndex: 1000 }} />
       <Helmet defaultTitle="DigitalRedz" titleTemplate={title}>
         <html lang="en" />

@@ -1,22 +1,10 @@
 import React from 'react'
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { StaticQuery, Link, graphql } from 'gatsby';
 import { slide as BurgerMenu } from 'react-burger-menu'
 import './Menu.css'
 import FlipMove from 'react-flip-move';
-import { MenuStateChanged } from '../../redux/menu';
 import { ProjectsQuery, BlogsQuery, Icons } from '..'
-
-function mapStateToProps(state) {
-  return {
-    menu: state.menu,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ MenuStateChanged }, dispatch);
-}
+import { consumer } from '../../Context'
 
 class Menu extends React.Component {
   constructor() {
@@ -29,9 +17,9 @@ class Menu extends React.Component {
   }
 
   MenuStateChanged(state) {
-    const { MenuStateChanged } = this.props
+    const { context } = this.props
     this.setState({ MenuState: state.isOpen })
-    MenuStateChanged(state.isOpen)
+    context.toggleMenu(state.isOpen)
   }
 
   BlogSubMenu(e) {
@@ -241,4 +229,4 @@ class Menu extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu)
+export default consumer(Menu)

@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import { Timeline } from 'react-twitter-widgets'
-import { connect } from 'react-redux';
 import {
   GreyBox,
   Layout,
@@ -31,7 +30,7 @@ const updateTwitterCss = () => {
   return true
 }
 
-class BlogIndex extends React.Component {
+class Home extends React.Component {
   componentDidUpdate() {
     updateTwitterCss()
   }
@@ -91,7 +90,7 @@ class BlogIndex extends React.Component {
   }
 }
 
-export default connect()(BlogIndex)
+export default Home
 
 export const pageQuery = graphql`
   query IndexQuery {
