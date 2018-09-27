@@ -55,7 +55,7 @@ RedBorderLink.propTypes = {
 
 export default RedBorderLink
 
-const RedBorderButton = styled(props => <props.tag {...props} />)`
+const RedBorderButton = styled(({ tag: Tag, ...rest }) => <Tag {...rest} />)`
   padding: 10px;
   border: #C10909 2px solid;
   color: #000;
