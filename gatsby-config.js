@@ -76,8 +76,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/pages/static`,
-        name: 'static',
+        path: `${__dirname}/static/documents`,
+        name: 'documents',
       },
     },
     {
