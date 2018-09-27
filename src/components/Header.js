@@ -76,7 +76,7 @@ const HeaderBottomBar = styled.div`
   z-index: -1;
   box-shadow: 0 8px 10px rgba(0,0,0,0.35);
   transform-origin: bottom right;
-  transform: ${({Rotated}) => Rotated ? 'rotateZ(-5deg)' : 'none'};
+  transform: ${({ Rotated }) => (Rotated ? 'rotateZ(-5deg)' : 'none')};
 `
 
 const StyledLogo = styled(props => <Logo {...props} />)`

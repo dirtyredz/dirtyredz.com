@@ -299,7 +299,7 @@ const MenuArrow = styled.span`
   transition: 0.4s ease;
   margin-top: 2px;
   text-align: left;
-  transform: ${({ active }) => active ? "rotate(45deg) translate(-5px,-5px)" : "rotate(45deg)"};
+  transform: ${({ active }) => (active ? 'rotate(45deg) translate(-5px,-5px)' : 'rotate(45deg)')};
   float: right;
 
   &:before, &:after{
@@ -312,11 +312,11 @@ const MenuArrow = styled.span`
     transition: 0.4s ease;
   }
   &:before{
-    transform: ${({ active }) => active ? "translate(10px,0)" : "none"};
+    transform: ${({ active }) => (active ? 'translate(10px,0)' : 'none')};
   }
   &:after{
     position: absolute;
-    transform: ${({ active }) => active ? "rotate(90deg) translate(10px,0)" : "rotate(90deg)"};
+    transform: ${({ active }) => (active ? 'rotate(90deg) translate(10px,0)' : 'rotate(90deg)')};
     top: 4.5px;
     left: 9px;
   }
