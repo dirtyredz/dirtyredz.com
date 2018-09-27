@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import './icons.css'
+import styled from 'styled-components'
 
 export const Github = props => (
   <SvgIcon {...props} viewbox="0 0 32 32">
@@ -56,14 +56,34 @@ const SvgIcon = (props) => {
     viewbox,
     children,
   } = props
+  let Container = IconContainer
+  if (disableClass) {
+    Container = 'div'
+  }
   return (
-    <div
-      className={disableClass ? className : `IconContainer ${className}`}
+    <Container
+      className={className}
       style={{ width, ...style }}
     >
-      <svg className="Icon" viewBox={viewbox}>
+      <Icon viewBox={viewbox}>
         {children}
-      </svg>
-    </div>
+      </Icon>
+    </Container>
   )
 }
+
+const IconContainer = styled.div`
+  opacity: 1;
+  height: 50%;
+  transition: opacity 2s;
+  float: left;
+`
+
+const Icon = styled.svg`
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  stroke-width: 0;
+  stroke: 'currentColor';
+  fill: 'currentColor';
+`

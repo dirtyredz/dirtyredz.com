@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import './RedBorderLink.css'
+import styled from 'styled-components'
 
 class RedBorderLink extends React.Component {
   constructor() {
@@ -30,21 +30,21 @@ class RedBorderLink extends React.Component {
       children, to, title, style, ...rest
     } = this.props
     const { fontWeight } = this.state
-    let LinkComponent = Link
-    if (!to) {
-      LinkComponent = 'a'
+    let tag = 'a'
+    if (to) {
+      tag = Link
     }
     return (
-      <LinkComponent
+      <RedBorderButton
         ref={this.myRef}
         to={to}
+        tag={tag}
         style={fontWeight ? { fontWeight, ...style } : { ...style }}
         title={title}
-        className="RedBorderButton"
         {...rest}
       >
         {children}
-      </LinkComponent>
+      </RedBorderButton>
     )
   }
 }
@@ -54,3 +54,21 @@ RedBorderLink.propTypes = {
 }
 
 export default RedBorderLink
+
+const RedBorderButton = styled(props => <props.tag {...props} />)`
+  padding: 10px;
+  border: #C10909 2px solid;
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-family: 'Roboto';
+  transition: background-color 0.5s, font-weight 0.5s;
+
+  &:focus, &:hover{
+    background-color: #bfbfbf;
+    font-weight: 900;
+  }
+`;

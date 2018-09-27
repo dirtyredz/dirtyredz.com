@@ -1,6 +1,7 @@
 import React from 'react'
 import { StaticQuery, Link, graphql } from 'gatsby';
 import { slide as BurgerMenu } from 'react-burger-menu'
+import styled, { css } from 'styled-components'
 import './Menu.css'
 import FlipMove from 'react-flip-move';
 import { ProjectsQuery, BlogsQuery, Icons } from '..'
@@ -14,6 +15,8 @@ class Menu extends React.Component {
       BlogSubMenuOpen: false,
       ProjectSubMenuOpen: false,
     }
+    this.BlogSubMenu = this.BlogSubMenu.bind(this)
+    this.ProjectSubMenu = this.ProjectSubMenu.bind(this)
   }
 
   MenuStateChanged(state) {
@@ -92,25 +95,23 @@ class Menu extends React.Component {
               width={300}
               right
             >
-              <Link
+              <InternalMenuLink
                 onClick={this.MenuStateChanged.bind(this, { isOpen: false })} // eslint-disable-line react/jsx-no-bind
-                className="MenuLink"
                 to="/"
               >
                 {HomeTitle}
-              </Link>
+              </InternalMenuLink>
               {SiteLinks
                 && SiteLinks.map(link => (
-                  <Link
+                  <InternalMenuLink
                     key={link.node.path}
                     onClick={this.MenuStateChanged.bind(this, { isOpen: false })} // eslint-disable-line react/jsx-no-bind
-                    className="MenuLink"
                     to={link.node.path}
                   >
                     {link.node.context.title}
-                  </Link>
+                  </InternalMenuLink>
                 ))}
-              <hr className="LineBreak" />
+              <LineBreak />
               <BlogsQuery
                 render={(data) => {
                   if (data.length === 0) {
@@ -118,24 +119,23 @@ class Menu extends React.Component {
                   }
                   return (
                     <div>
-                      <div className="DropDownLink">
-                        <Link
+                      <MenuDropDownLink>
+                        <InternalMenuLink
                           onClick={this.MenuStateChanged.bind(this, { isOpen: false })} // eslint-disable-line react/jsx-no-bind
                           to="/Blog"
-                          className="MenuLink"
                         >
                           Blog
-                        </Link>
-                        <div
+                        </InternalMenuLink>
+                        <MenuLink
                           role="button"
                           tabIndex={0}
                           className="MenuLink"
-                          onClick={this.BlogSubMenu.bind(this)}
-                          onKeyPress={this.BlogSubMenu.bind(this)}
+                          onClick={this.BlogSubMenu}
+                          onKeyPress={this.BlogSubMenu}
                         >
-                          <span className={BlogSubMenuOpen ? 'active arrow' : 'arrow'} />
-                        </div>
-                      </div>
+                          <MenuArrow active={BlogSubMenuOpen} />
+                        </MenuLink>
+                      </MenuDropDownLink>
                       <FlipMove
                         staggerDurationBy={50}
                         maintainContainerHeight
@@ -144,13 +144,12 @@ class Menu extends React.Component {
                         {BlogSubMenuOpen
                           && BlogPostLinks
                         && BlogPostLinks.map(link => (
-                          <Link
+                          <SubLink
                             onClick={this.MenuStateChanged.bind(this, { isOpen: false })} // eslint-disable-line react/jsx-no-bind
-                            className="MenuLink SubLink"
                             to={link.node.path}
                           >
                             &nbsp;&nbsp;&nbsp;{link.node.context.title}
-                          </Link>
+                          </SubLink>
                         ))}
                       </FlipMove>
                     </div>
@@ -165,50 +164,46 @@ class Menu extends React.Component {
                   }
                   return (
                     <div>
-                      <div className="DropDownLink">
-                        <Link
+                      <MenuDropDownLink>
+                        <InternalMenuLink
                           onClick={this.MenuStateChanged.bind(this, { isOpen: false })} // eslint-disable-line react/jsx-no-bind
                           to="/Projects"
-                          className="MenuLink"
                         >
                           Projects
-                        </Link>
-                        <div
+                        </InternalMenuLink>
+                        <MenuLink
                           role="button"
                           tabIndex={0}
-                          className="MenuLink"
-                          onClick={this.ProjectSubMenu.bind(this)}
-                          onKeyPress={this.ProjectSubMenu.bind(this)}
+                          onClick={this.ProjectSubMenu}
+                          onKeyPress={this.ProjectSubMenu}
                         >
-                          <span className={ProjectSubMenuOpen ? 'active arrow' : 'arrow'} />
-                        </div>
-                      </div>
+                          <MenuArrow active={ProjectSubMenuOpen} />
+                        </MenuLink>
+                      </MenuDropDownLink>
                       <FlipMove
                         staggerDurationBy={50}
                         maintainContainerHeight
                         style={ProjectSubMenuOpen ? { maxHeight: 300 } : { maxHeight: 3 }}
                       >
                         {ProjectSubMenuOpen && ProjectLinks && ProjectLinks.map(link => (
-                          <Link
+                          <SubLink
                             onClick={this.MenuStateChanged.bind(this, { isOpen: false })} // eslint-disable-line react/jsx-no-bind
-                            className="MenuLink SubLink"
                             to={link.node.path}
                           >
                             &nbsp;&nbsp;&nbsp;{link.node.context.title}
-                          </Link>
+                          </SubLink>
                         ))}
                       </FlipMove>
                     </div>
                   )
                 }}
               />
-              <hr className="LineBreak" />
+              <LineBreak />
               {data.site.siteMetadata.links && data.site.siteMetadata.links.map((link) => {
                 const Logo = Icons[link.logo]
                 return (
-                  <a
+                  <ExternalMenuLink
                     key={link.url}
-                    className="MenuLink"
                     rel="noopener noreferrer"
                     target="_blank"
                     href={link.url}
@@ -218,7 +213,7 @@ class Menu extends React.Component {
                       width={34}
                     />
                     {link.title}
-                  </a>
+                  </ExternalMenuLink>
                 )
               })}
             </BurgerMenu>
@@ -230,3 +225,113 @@ class Menu extends React.Component {
 }
 
 export default consumer(Menu)
+
+
+const LineBreak = styled.hr`
+  background: rgb(0,0,0);
+  border: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  margin: 0;
+  margin-bottom: 8px;
+  margin-top: 8px;
+`
+const MainMenuLink = css`
+  text-decoration: none;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  padding: 3px;
+  cursor: pointer;
+  color: white;
+  overflow: hidden;
+  outline: none;
+  display: block;
+`
+
+const MenuLink = styled.div`
+  ${MainMenuLink}
+
+  & span{
+    padding: 3px;
+    cursor: pointer;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+  & ul{
+    padding-top: 5px;
+  }
+`
+
+const InternalMenuLink = styled(Link)`
+  ${MainMenuLink}
+
+  &:visited{
+    color: white;
+  }
+  &:focus, &:hover{
+    background-color: rgba(0,0,0,0.15);
+  }
+`
+
+const ExternalMenuLink = styled.a`
+  ${MainMenuLink}
+
+  &:visited{
+    color: white;
+  }
+  &:focus, &:hover{
+    background-color: rgba(0,0,0,0.15);
+  }
+`
+
+const SubLink = styled(InternalMenuLink)`
+  font-size: 75%;
+`
+
+const MenuArrow = styled.span`
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  position: relative;
+  bottom: -5px;
+  left: -6px;
+  transition: 0.4s ease;
+  margin-top: 2px;
+  text-align: left;
+  transform: ${({ active }) => active ? "rotate(45deg) translate(-5px,-5px)" : "rotate(45deg)"};
+  float: right;
+
+  &:before, &:after{
+    position: absolute;
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 3px;
+    background-color: #fff;
+    transition: 0.4s ease;
+  }
+  &:before{
+    transform: ${({ active }) => active ? "translate(10px,0)" : "none"};
+  }
+  &:after{
+    position: absolute;
+    transform: ${({ active }) => active ? "rotate(90deg) translate(10px,0)" : "rotate(90deg)"};
+    top: 4.5px;
+    left: 9px;
+  }
+`
+
+const MenuDropDownLink = styled.div`
+  display: flex !important;
+  justify-content: space-between;
+
+  & > a{
+    flex: 1;
+  }
+  & > div{
+    flex: 0.5;
+    display: flex;
+    justify-content: center;
+  }
+`

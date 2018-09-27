@@ -10,7 +10,7 @@ exports.createPages = ({ graphql, actions }) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
     const ProjectComponent = path.resolve('./src/templates/Projects.js') // eslint-disable-line
     resolve(
-      graphql(
+      graphql( // , frontmatter: { title: {ne: "Example"}}
         `
          {
           Blogs: allMarkdownRemark(limit: 500,filter: {fileAbsolutePath: { regex: "/blog/"}, frontmatter: { title: {ne: "Example"}}},sort: { fields: [frontmatter___created], order: DESC }) {

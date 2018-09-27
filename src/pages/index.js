@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import { Timeline } from 'react-twitter-widgets'
+import styled from 'styled-components'
 import {
   GreyBox,
   Layout,
@@ -11,7 +12,6 @@ import {
   CenterContent,
   RedBorderLink,
 } from '../components'
-import './index.css'
 
 const updateTwitterCss = () => {
   const widgetCSS = ''
@@ -59,16 +59,16 @@ class Home extends React.Component {
             <h1>MY LATEST PROJECTS</h1>
             <RecentProjects />
           </CenterContent>
-          <h4 className="LeftText">
+          <LeftText>
             See all my projects
             <ParagraphLink><Link to="/Projects">Here</Link></ParagraphLink>
-          </h4>
+          </LeftText>
         </GreyBox>
         <CenterContent style={{ textAlign: 'center' }}>
           <h1>MY RECENT BLOG POSTS</h1>
           <RecentBlogs />
         </CenterContent>
-        <h4 className="LeftText">See all my blogs <ParagraphLink><Link to="/Blog">Here</Link></ParagraphLink></h4>
+        <LeftText>See all my blogs <ParagraphLink><Link to="/Blog">Here</Link></ParagraphLink></LeftText>
         <GreyBox nobottomedge>
           <CenterContent style={{ textAlign: 'center' }}>
             <h1>TWITTER FEED</h1>
@@ -100,4 +100,8 @@ export const pageQuery = graphql`
       }
     }
   }
+`
+
+const LeftText = styled.h4`
+  padding-left: 20px
 `

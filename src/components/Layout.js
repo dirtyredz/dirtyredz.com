@@ -1,11 +1,10 @@
 /* eslint-disable */
 import React from 'react'
 import ScrollUpButton from 'react-scroll-up-button'
-import { Footer, Header } from '..'
-import './layout.css'
+import { Footer, Header } from '.'
 import Helmet from 'react-helmet'
 import get from 'lodash.get'
-import { consumer } from '../../Context'
+import { consumer } from '../Context'
 
 
 const Layout = consumer((props) => {

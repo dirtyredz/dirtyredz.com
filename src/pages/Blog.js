@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import styled from 'styled-components'
 import { Layout, BlogsQuery, CenterContent } from '../components'
-import './Blog.css'
 
 class Blog extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class Blog extends React.Component {
           <h1>Blog</h1>
           <BlogsQuery
             render={data => (
-              <div className="PostsContainer">
+              <PostsContainer>
                 {data.length > 0
                   ? data.map(blog => (
                     <div key={blog.node.frontmatter.title}>
@@ -31,7 +31,7 @@ class Blog extends React.Component {
                   ))
                   : <h2>Blogs Section Coming Soon!</h2>
                     }
-              </div>
+              </PostsContainer>
             )}
           />
           <br />
@@ -52,4 +52,10 @@ export const pageQuery = graphql`
       }
     }
   }
+`
+
+const PostsContainer = styled.div`
+  max-width: 1000px;
+  padding: 20px;
+  margin: auto;
 `

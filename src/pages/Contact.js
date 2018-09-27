@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 import { Layout, CenterContent } from '../components'
-import './Contact.css'
 
 class Contact extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class Contact extends React.Component {
             Feel free to contact me with my email below, I look forward to talking with you.
             <br />
             <br />
-            <a className="email" href="mailto:david.mcclain@dirtyredz.com">david.mcclain@dirtyredz.com</a>
+            <EmailLink href="mailto:david.mcclain@dirtyredz.com">david.mcclain@dirtyredz.com</EmailLink>
           </p>
         </CenterContent>
         <br />
@@ -34,4 +34,10 @@ export const pageQuery = graphql`
       }
     }
   }
+`
+
+const EmailLink = styled.a`
+  text-decoration: none;
+  color: #d63e3e;
+  font-size: 110%;
 `

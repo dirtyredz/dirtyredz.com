@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import './Donate.css'
+import styled from 'styled-components'
 import { Layout, CenterContent, Icons } from '../components'
 
 class Donate extends React.Component {
@@ -10,36 +10,34 @@ class Donate extends React.Component {
       <Layout data={data} location={location}>
         <CenterContent>
           <h1>Donate</h1>
-          <div className="FlexMe">
-            <div className="Column">
-              <a
+          <FlexMe>
+            <Column>
+              <LogoLink
                 title="Opens new tab or window to visit my paypal donations page."
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://www.paypal.me/Dirtyredz"
-                className="LogoLink"
               >
                 <Icons.Paypal style={{ float: 'none', display: 'inline-block' }} width={50} />
-              </a>
+              </LogoLink>
               <p>
                 Wanna help me out? Send me a small donation, I really appreciate it. Thanks
               </p>
-            </div>
-            <div className="Column">
-              <a
+            </Column>
+            <Column>
+              <LogoLink
                 title="Opens new tab or window to visit my patreon page."
                 target="_blank"
                 rel="noopener noreferrer"
                 href="https://www.patreon.com/Dirtyredz"
-                className="LogoLink"
               >
                 <Icons.Patreon style={{ float: 'none', display: 'inline-block' }} width={50} />
-              </a>
+              </LogoLink>
               <p>
                 I also have a Patreon that you can sign up and become a patron of mine.
               </p>
-            </div>
-          </div>
+            </Column>
+          </FlexMe>
         </CenterContent>
         <br />
         <br />
@@ -58,5 +56,27 @@ export const pageQuery = graphql`
         title
       }
     }
+  }
+`
+
+const FlexMe = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+`
+
+const Column = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 10px;
+`
+
+const LogoLink = styled.a`
+  text-align: center;
+  transition: fill 0.5s;
+  cursor: pointer;
+  &:focus, &:hover{
+    fill: #c10908;
   }
 `
