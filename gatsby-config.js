@@ -8,32 +8,32 @@ module.exports = {
       {
         title: 'GitHub',
         logo: 'Github',
-        url: 'https://www.github.com',
+        url: 'https://github.com/dirtyredz',
       },
       {
         title: 'Facebook',
         logo: 'Facebook',
-        url: 'https://www.facebook.com',
+        url: 'https://www.facebook.com/Digital-Redz-294497057750359/',
       },
       {
         title: 'Codepen',
         logo: 'Codepen',
-        url: 'https://www.codepen.com',
+        url: 'https://codepen.io/dirtyredz/',
       },
       {
         title: 'LinkedIn',
         logo: 'Linkedin',
-        url: 'https://www.linkedin.com',
+        url: 'https://www.linkedin.com/in/david-mcclain-a26847b7/',
       },
       {
         title: 'Twitter',
         logo: 'Twitter',
-        url: 'https://www.twitter.com',
+        url: 'https://twitter.com/Digitalredz',
       },
       {
         title: 'Instagram',
         logo: 'Instagram',
-        url: 'https://www.instagram.com',
+        url: 'https://www.instagram.com/digitalredz/?hl=en',
       },
     ],
   },

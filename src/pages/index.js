@@ -84,7 +84,7 @@ class BlogIndex extends React.Component {
                 height: '600',
                 chrome: 'transparent noheader',
               }}
-              onLoad={this.updateTwitterCss}
+              onLoad={updateTwitterCss}
             />
           </CenterContent>
         </GreyBox>
