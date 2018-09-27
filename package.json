@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
     "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.0.0",
     "@mdx-js/mdx": "^0.15.4",
     "@mdx-js/tag": "^0.15.0",
     "@types/bluebird": "^3.5.24",
