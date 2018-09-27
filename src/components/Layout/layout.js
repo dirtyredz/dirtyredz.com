@@ -3,7 +3,6 @@ import React from 'react'
 import ScrollUpButton from 'react-scroll-up-button'
 import { Footer, Header } from '..'
 import './layout.css'
-import get from 'lodash/get'
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet'
 
@@ -14,17 +13,13 @@ function mapStateToProps(state) {
 }
 
 const Layout = connect(mapStateToProps)((props) => {
-  const { children } = props
-  const title = get(props, 'data.site.siteMetadata.title')
+  const { children, data } = props
+  const title = data.site.siteMetadata.title
   return (
     <div style={props.menu.isOpen ? { overflow: 'hidden', height: '100vh' } : {}}>
       <ScrollUpButton style={{ zIndex: 1000 }} />
       <Helmet defaultTitle="DigitalRedz" titleTemplate={title}>
-        <meta name="twitter:site" content="@digitalredz" />
-        <meta name="og:type" content="website" />
-        <meta name="og:site_name" content="DigitalRedz" />
         <html lang="en" />
-
         <meta charset="utf-8" />
         <title>DigitalRedz</title>
         {/* <!-- Search Engine --> */}
@@ -48,6 +43,7 @@ const Layout = connect(mapStateToProps)((props) => {
         <meta name="og:url" content="https://digitalredz.com" />
         <meta name="og:site_name" content="DigitalRedz" />
         <meta name="og:type" content="website" />
+        <meta name="pinterest-rich-pin" content="false" />
       </Helmet>
       <Header siteTitle={title} maxWidth={240} />
       {children}

@@ -47,6 +47,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-favicon',
+      options: {
+        logo: './static/images/digitalredz.png',
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/static/images`,
@@ -85,12 +91,6 @@ module.exports = {
             },
           },
           {
-            resolve: 'gatsby-remark-responsive-iframe',
-            options: {
-              wrapperStyle: 'margin-bottom: 1.0725rem',
-            },
-          },
-          {
             resolve: 'gatsby-remark-prismjs',
             options: {
               // Class prefix for <pre> tags containing syntax highlighting;
@@ -120,26 +120,19 @@ module.exports = {
             options: { components: ['project-summary'] },
           },
           'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
         ],
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        // trackingId: `ADD YOUR TRACKING ID HERE`,
-      },
-    },
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-remove-trailing-slashes',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
         pathToConfigModule: 'src/utils/typography',
       },
     },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-remove-trailing-slashes',
     // {
     //   resolve: `gatsby-mdx`,
     //   options: {

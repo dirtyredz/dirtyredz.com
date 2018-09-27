@@ -1,11 +1,10 @@
 import React from 'react'
 import { GreyBox } from '..'
 import './index.css'
-import get from 'lodash/get'
 
 export default (props) => {
-  const { children } = props
-  const Skills = get(props, 'data.markdownRemark.frontmatter.skills')
+  const { children, data } = props
+  const Skills = data.markdownRemark.frontmatter.skills
   return (
     <GreyBox id="ProjectSummary">
       <div id="Description_Skills_Container">

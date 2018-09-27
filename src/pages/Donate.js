@@ -1,13 +1,11 @@
 import React from 'react'
-import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import './Donate.css'
 import { Layout, CenterContent, Icons } from '../components'
 
 class Donate extends React.Component {
   render() {
-    const data = get(this, 'props.data')
-    const { location } = this.props
+    const { location, data } = this.props
     return (
       <Layout data={data} location={location}>
         <CenterContent>

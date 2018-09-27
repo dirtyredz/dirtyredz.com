@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import { Timeline } from 'react-twitter-widgets'
 import { connect } from 'react-redux';
@@ -38,9 +37,8 @@ class BlogIndex extends React.Component {
   }
 
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const data = get(this, 'props.data')
-    const { location } = this.props
+    const { location, data } = this.props
+    const siteTitle = data.site.siteMetadata.title
     return (
       <Layout data={data} location={location}>
         <Helmet title={siteTitle} />

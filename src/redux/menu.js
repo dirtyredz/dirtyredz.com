@@ -1,5 +1,3 @@
-// menu
-// Action-Creator
 export function MenuStateChanged(MenuState) {
   return {
     type: 'MENU_STATE_CHANGED',
@@ -15,14 +13,3 @@ export default function reducer(state = {}, action) {
       return state
   }
 }
-
-// Usage inside component
-// import { MenuStateChanged } from "../redux/menu";
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ MenuStateChanged }, dispatch);
-// }
-
-// Usage in rootReducer
-// import menu from './menu'
-// const rootReducer =  combineReducers({menu})
