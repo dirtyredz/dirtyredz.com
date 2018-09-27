@@ -8,11 +8,13 @@
   },
   "dependencies": {
     "@babel/core": "^7.1.0",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
     "@mdx-js/mdx": "^0.15.4",
     "@mdx-js/tag": "^0.15.0",
     "@types/bluebird": "^3.5.24",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "bluebird": "^3.5.2",
     "gatsby": "2.0.8",
@@ -21,6 +23,7 @@
     "gatsby-plugin-google-analytics": "2.0.6",
     "gatsby-plugin-google-fonts": "0.0.4",
     "gatsby-plugin-react-helmet": "3.0.0",
+    "gatsby-plugin-remove-trailing-slashes": "^2.0.0",
     "gatsby-plugin-sharp": "2.0.5",
     "gatsby-plugin-typography": "2.2.0",
     "gatsby-remark-component": "^1.1.3",
@@ -41,7 +44,7 @@
     "react-flip-move": "^3.0.2",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
-    "react-scroll-up-button": "^1.6.1",
+    "react-scroll-up-button": "^1.6.2",
     "react-twitter-widgets": "^1.7.1",
     "react-typography": "^0.16.13",
     "redux": "^4.0.0",
@@ -49,7 +52,6 @@
     "typeface-merriweather": "0.0.54",
     "typeface-montserrat": "0.0.54",
     "typography": "^0.16.17",
-    "gatsby-plugin-remove-trailing-slashes": "^2.0.0",
     "typography-theme-wordpress-2016": "^0.15.10"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { VerticleButton as ScrollUpButton } from 'react-scroll-up-button'
+import ScrollUpButton from 'react-scroll-up-button'
 import { Footer, Header } from '..'
 import './layout.css'
 import get from 'lodash/get'

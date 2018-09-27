@@ -15,7 +15,7 @@
     [
       "@babel/preset-react",
       {
-        "useBuiltIns": false,
+        "useBuiltIns": true,
         "pragma": "React.createElement"
       }
     ]
