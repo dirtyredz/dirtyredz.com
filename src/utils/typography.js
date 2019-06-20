@@ -15,5 +15,9 @@ if (process.env.NODE_ENV !== 'production') {
   typography.injectStyles()
 }
 
-export default typography
-export const { rhythm, scale } = typography
+// Output CSS as string.
+// typography.toString()
+
+// Or insert styles directly into the <head> (works well for client-only
+// JS web apps.
+typography.injectStyles()

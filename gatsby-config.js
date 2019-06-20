@@ -117,7 +117,7 @@ module.exports = {
           },
           {
             resolve: 'gatsby-remark-component',
-            options: { components: ['project-summary'] },
+            options: { components: ['project-summary', 'center-content', 'code-display'] },
           },
           'gatsby-remark-copy-linked-files',
         ],
@@ -135,10 +135,11 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-remove-trailing-slashes',
     // {
-    //   resolve: `gatsby-mdx`,
+    //   resolve: 'gatsby-mdx',
     //   options: {
-    //     extensions: [".mdx", ".md"]
-    //   }
+    //     extensions: ['.mdx', '.md'],
+    //   },
     // },
+
   ],
 }

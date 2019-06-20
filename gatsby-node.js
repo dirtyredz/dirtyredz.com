@@ -1,7 +1,7 @@
 const Promise = require('bluebird')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
-const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope'); // eslint-disable-line
+// const componentWithMDXScope = require('gatsby-mdx/component-with-mdx-scope'); // eslint-disable-line
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -22,6 +22,25 @@ exports.createPages = ({ graphql, actions }) => {
                 frontmatter {
                   title
                   path
+                }
+              }
+            }
+          }
+          Projects: allMarkdownRemark(limit: 500,filter: {frontmatter: { path: { regex: "/project/"}}},sort: { fields: [frontmatter___created], order: DESC }) {
+            edges {
+              node {
+                fields {
+                  slug
+                }
+                id
+                tableOfContents
+                frontmatter {
+                  title
+                  path
+                  skills
+                  keywords
+                  created(formatString: "DD MMMM, YYYY")
+                  updated(formatString: "DD MMMM, YYYY")
                 }
               }
             }
@@ -51,50 +70,21 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         // Create projects pages.
-
-        // Projects: allMdx(limit: 500,filter: {frontmatter: { path: { regex: "/project/"}}},sort: { fields: [frontmatter___created], order: DESC }) {
-        //   edges {
-        //     node {
-        //       id
-        //       tableOfContents
-        //       code {
-        //         scope
-        //       }
-        //       frontmatter {
-        //         title
-        //         path
-        //         skills
-        //         keywords
-        //         created(formatString: "DD MMMM, YYYY")
-        //         updated(formatString: "DD MMMM, YYYY")
-        //       }
-        //     }
-        //   }
-        // }
-
-        // const projects = result.data.Projects.edges;
-
-        // _.each(projects, (project, index) => {
-        //   console.log(project.node.frontmatter)
-
-        //   // const previous = index === projects.length - 1 ? null : projects[index + 1].node;
-        //   // const next = index === 0 ? null : projects[index - 1].node;
-        //   const {path, ...rest} = project.node.frontmatter
-        //   createPage({
-        //     path: path,
-        //     name: project.node.frontmatter.title,
-        //     component: componentWithMDXScope(
-        //       ProjectComponent,
-        //       project.node.code.scope,
-        //       __dirname
-        //     ),
-        //     context: {
-        //       ...rest,
-
-        //       // slug: project.node.fields.slug,
-        //     },
-        //   })
-        // })
+        const projects = result.data.Projects.edges;
+        projects.forEach((project) => {
+          // const previous = index === projects.length - 1 ? null : projects[index + 1].node;
+          // const next = index === 0 ? null : projects[index - 1].node;
+          const { path, ...rest } = project.node.frontmatter
+          createPage({
+            path,
+            name: project.node.frontmatter.title,
+            component: ProjectComponent,
+            context: {
+              slug: project.node.fields.slug,
+              ...rest,
+            },
+          })
+        })
       })
     )
   })

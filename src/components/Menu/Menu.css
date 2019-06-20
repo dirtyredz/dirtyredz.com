@@ -58,6 +58,7 @@ hr.LineBreak{
 }
 #Header .bm-burger-button:hover .bm-burger-bars{
   background: white;
+  opacity: 0.3;
 }
 
 /* Color/shape of burger icon bars */

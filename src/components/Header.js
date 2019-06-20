@@ -54,6 +54,7 @@ export default Header
 
 const HeaderContainer = styled.header`
   height: calc(12vw + 115px);
+  min-height: 145px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -82,6 +83,8 @@ const HeaderBottomBar = styled.div`
 const StyledLogo = styled(props => <Logo {...props} />)`
   padding: 10px;
   max-width: 340px;
+  min-height: 130px;
+  min-width: 130px;
   transition: opacity 0.5s linear;
   float: left;
   width: calc(8vw + 100px);

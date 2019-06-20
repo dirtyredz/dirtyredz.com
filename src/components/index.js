@@ -14,4 +14,5 @@ export { default as BlogsQuery } from './BlogsQuery'
 export { default as ProjectSummary } from './ProjectSummary'
 export { default as RedBorderLink } from './RedBorderLink'
 export { default as CenterContent } from './CenterContent'
+export { default as CodeDisplay } from './CodeDisplay'
 export { Icons }

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export default class CenterContent extends Component {
   render() {
     const { children, tag, ...rest } = this.props
+    console.log(children)
     return (
       <CenterContentComponent tag={tag || 'div'} {...rest}>{children}</CenterContentComponent>
     )

@@ -44,7 +44,7 @@ class Home extends React.Component {
         <CenterContent>
           <h1>Full Stack Developer and Veteran</h1>
           <p>
-            My name is David McClain, I am a web developer currently living in North West
+            My name is David McClain, I am a web developer currently living in the North West
             Wisconsin area. After serving in the United States Marine Corpse for 9 years,
             I started my development career.  I enjoy building websites, web apps and mobile apps.
             &nbsp;&nbsp;If your a seeking a website or mobile application you can contact me
@@ -60,8 +60,7 @@ class Home extends React.Component {
             <RecentProjects />
           </CenterContent>
           <LeftText>
-            See all my projects
-            <ParagraphLink><Link to="/Projects">Here</Link></ParagraphLink>
+            See all my projects <ParagraphLink><Link to="/Projects">Here</Link></ParagraphLink>
           </LeftText>
         </GreyBox>
         <CenterContent style={{ textAlign: 'center' }}>
@@ -75,7 +74,7 @@ class Home extends React.Component {
             <Timeline
               dataSource={{
                 sourceType: 'profile',
-                screenName: 'DigitalRedz',
+                screenName: 'Koonschi',
               }}
               options={{
                 height: '600',

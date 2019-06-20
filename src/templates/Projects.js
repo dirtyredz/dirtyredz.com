@@ -1,7 +1,12 @@
 import React from 'react'
 import RehypeReact from 'rehype-react'
 import { graphql } from 'gatsby'
-import { Layout, ProjectSummary } from '../components'
+import {
+  Layout,
+  ProjectSummary,
+  CenterContent,
+  CodeDisplay,
+} from '../components'
 import { rhythm, scale } from '../utils/typography'
 import './Projects.css'
 
@@ -18,17 +23,20 @@ class BlogPostTemplate extends React.Component {
     // Pass both markdown props and template props to the component
     const renderAst = new RehypeReact({
       createElement: React.createElement,
-      components: { 'project-summary': props => <ProjectSummary {...props} {...this.props} /> },
+      components: {
+        'project-summary': props => <ProjectSummary {...this.props} {...props} />,
+        'center-content': props => <CenterContent {...props} />,
+        'code-display': props => <CodeDisplay {...props} />,
+      },
     }).Compiler
 
     return (
       <Layout data={data} location={location}>
-        <h1 className="CenterContent">{title}</h1>
+        <CenterContent tag="h1">{title}</CenterContent>
         <div className="keywords_container">
           {keywords.map(keyword => <span>{keyword}</span>)}
         </div>
-        <p
-          className="CenterContent"
+        <CenterContent
           style={{
             ...scale(-1 / 5),
             display: 'block',
@@ -36,7 +44,7 @@ class BlogPostTemplate extends React.Component {
           }}
         >
           {created}
-        </p>
+        </CenterContent>
         {/* <div className="CenterContent" dangerouslySetInnerHTML={{ __html: post.html }} /> */}
         <div>{renderAst(post.htmlAst)}</div>
         <hr
