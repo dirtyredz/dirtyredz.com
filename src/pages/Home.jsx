@@ -113,7 +113,7 @@ export default class Home extends React.Component {
                     <Content>
                         <HeaderTitle background='Welcome' title="Hello!"/>
                         <StyledP>
-                            I&#39;m <WorpPop>David McClain</WorpPop> a self taught <WorpPop>Developer</WorpPop> with over {this.GetYearsExperienc()} years experience. I started my <WorpPop>Programming</WorpPop> career while I was serving in the <WorpPop>Unites States Marine Corps</WorpPop>. Not many say they love the work they do, and in both my careers that&#39;s what I&#39;ve done.
+                            I&#39;m <WorpPop>David McClain</WorpPop> a self taught <WorpPop>Developer</WorpPop> with over {this.GetYearsExperienc()} years experience. I started my <WorpPop>Programming</WorpPop> career while I was serving in the <WorpPop>United States Marine Corps</WorpPop>. Not many say they love the work they do, and in both my careers that&#39;s what I&#39;ve done.
                         </StyledP>
                         <br />
                         <StyledP>
