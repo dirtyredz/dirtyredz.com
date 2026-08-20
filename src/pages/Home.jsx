@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom'
 import { useReveal } from '../hooks/useReveal.js'
-import Card from '../components/Card.jsx'
-import { mods } from '../data/mods.js'
-import { projects } from '../data/projects.js'
+import { useGithub } from '../hooks/useGithub.js'
+import Card, { CardSkeleton } from '../components/Card.jsx'
 import { site, github } from '../data/site.js'
 import './Home.css'
 
 export default function Home() {
-  useReveal()
+  const { loading, mods, projects } = useGithub()
+  useReveal([loading])
 
   const featuredMods = mods.slice(0, 3)
-  const featuredProjects = projects.slice(0, 2)
+  const featuredProjects = projects.slice(0, 3)
 
   return (
     <div className="home">
@@ -93,9 +93,9 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid">
-          {featuredMods.map((m) => (
-            <Card key={m.id} item={m} kind="mod" />
-          ))}
+          {loading
+            ? Array.from({ length: 3 }).map((_, i) => <CardSkeleton key={i} />)
+            : featuredMods.map((m) => <Card key={m.id} item={m} kind="mod" />)}
         </div>
       </section>
 
@@ -111,9 +111,9 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid">
-          {featuredProjects.map((p) => (
-            <Card key={p.id} item={p} kind="project" />
-          ))}
+          {loading
+            ? Array.from({ length: 3 }).map((_, i) => <CardSkeleton key={i} />)
+            : featuredProjects.map((p) => <Card key={p.id} item={p} kind="project" />)}
         </div>
       </section>
 

@@ -1,5 +1,22 @@
 import './Card.css'
 
+export function CardSkeleton() {
+  return (
+    <div className="card card--skeleton" aria-hidden="true">
+      <div className="card__body">
+        <div className="sk sk--kicker"></div>
+        <div className="sk sk--title"></div>
+        <div className="sk sk--line"></div>
+        <div className="sk sk--line" style={{ width: '80%' }}></div>
+        <div className="card__foot">
+          <div className="sk sk--chip"></div>
+          <div className="sk sk--chip" style={{ width: '54px' }}></div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const statusLabel = {
   live: 'Live',
   wip: 'In Progress',
