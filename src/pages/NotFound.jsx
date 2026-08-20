@@ -1,39 +1,20 @@
-import React from 'react';
-import { Helmet } from "react-helmet";
-import Angles from "../components/Angles";
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
-const NotFoundWrapper = styled.div`
-    display: table;
-    height: 83vh;
-    width: 100%;
-`;
-const NotFoundContent = styled.div`
-    display: table-cell;
-    width: 100%;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 2.5em;
-`;
-
-export default () => {
-    return (
-        <div>
-            <Helmet>
-                <title>Dirtyredz - Not Found</title>
-            </Helmet>
-            <Angles/>
-            <NotFoundWrapper>
-              <NotFoundContent>
-                <h1>404</h1>
-                <h2>Page not found!</h2>
-                <p>
-                  <Link to="/">Go back to the main page</Link>
-                </p>
-              </NotFoundContent>
-            </NotFoundWrapper>
-        </div>
-
-    );
+export default function NotFound() {
+  return (
+    <div className="page" style={{ display: 'grid', placeItems: 'center', textAlign: 'center', minHeight: '80vh' }}>
+      <div className="container">
+        <p className="eyebrow" style={{ justifyContent: 'center' }}>Error 404</p>
+        <h1 style={{ fontSize: 'clamp(3rem, 12vw, 7rem)', marginBottom: '12px' }}>
+          Nothing here.
+        </h1>
+        <p style={{ color: 'var(--text-dim)', maxWidth: '42ch', margin: '0 auto 28px' }}>
+          This page wandered off into the field and never came back. Let&#39;s get you home.
+        </p>
+        <Link to="/" className="btn btn-primary">
+          Back home
+        </Link>
+      </div>
+    </div>
+  )
 }

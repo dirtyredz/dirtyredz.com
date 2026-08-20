@@ -1,0 +1,190 @@
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 120px 0 60px;
+}
+.hero__grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at 30% 20%, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(circle at 30% 20%, #000, transparent 75%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+.hero__inner {
+  position: relative;
+  z-index: 1;
+}
+.hero__hi {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 22px;
+}
+.hero__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 4px var(--red-glow);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(201, 22, 26, 0.35); }
+  50% { box-shadow: 0 0 0 8px rgba(201, 22, 26, 0.05); }
+}
+.hero__title {
+  font-size: clamp(2.6rem, 8vw, 5.4rem);
+  line-height: 1.02;
+  max-width: 15ch;
+  margin-bottom: 26px;
+}
+.hl {
+  color: var(--red);
+  position: relative;
+  white-space: nowrap;
+}
+.hero__lead {
+  color: var(--text-dim);
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  max-width: 58ch;
+  margin-bottom: 34px;
+}
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.hero__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+.hero__socials a {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  transition: color 0.2s ease;
+  position: relative;
+}
+.hero__socials a:hover {
+  color: var(--text);
+}
+
+/* ---------- PILLARS ---------- */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.pillar {
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 34px 30px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.pillar:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+}
+.pillar__num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--red);
+  letter-spacing: 0.1em;
+}
+.pillar h3 {
+  font-size: 1.6rem;
+  margin: 14px 0 12px;
+}
+.pillar p {
+  color: var(--text-dim);
+  font-size: 0.98rem;
+  margin-bottom: 18px;
+}
+.pillar__link {
+  font-weight: 600;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+.pillar__link:hover {
+  color: var(--red);
+}
+
+/* ---------- SECTION HEADS ---------- */
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 34px;
+}
+.section-head__link {
+  font-weight: 600;
+  color: var(--text-dim);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.section-head__link:hover {
+  color: var(--red);
+}
+
+/* ---------- CONNECT ---------- */
+.connect {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+  background:
+    radial-gradient(500px 300px at 100% 0%, rgba(201, 22, 26, 0.14), transparent 70%),
+    linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(30px, 5vw, 56px);
+}
+.connect__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 14px;
+}
+.connect__lead {
+  color: var(--text-dim);
+  max-width: 46ch;
+}
+.connect__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.connect__pill {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.connect__pill:hover {
+  border-color: var(--red);
+  color: var(--red);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 720px) {
+  .connect {
+    grid-template-columns: 1fr;
+  }
+}

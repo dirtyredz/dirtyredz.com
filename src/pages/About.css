@@ -1,0 +1,83 @@
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.about__main p {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  margin-bottom: 22px;
+}
+.about__lead {
+  font-size: 1.3rem !important;
+  color: var(--text) !important;
+}
+.about__main strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.about__main em {
+  color: var(--red);
+  font-style: normal;
+}
+.about__h2 {
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin: 40px 0 18px;
+}
+.about__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.about__side {
+  position: sticky;
+  top: 96px;
+}
+.about__card {
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.about__card-head {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.about__facts {
+  list-style: none;
+  margin-top: 18px;
+}
+.about__facts li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.about__facts li:last-child {
+  border-bottom: none;
+}
+.about__fact-k {
+  color: var(--text-faint);
+  font-size: 0.9rem;
+}
+.about__fact-v {
+  color: var(--text);
+  font-weight: 600;
+  text-align: right;
+}
+
+@media (max-width: 820px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+  .about__side {
+    position: static;
+  }
+}

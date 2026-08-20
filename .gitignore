@@ -8,6 +8,13 @@
 
 # production
 /build
+/dist
+
+# vite / editor
+.vite
+*.local
+.idea
+.vscode
 
 # misc
 .DS_Store

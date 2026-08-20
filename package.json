@@ -1,52 +1,20 @@
 {
-    "name": "dirtyredz",
-    "version": "2.0.0",
-    "private": true,
-    "dependencies": {
-        "enzyme": "^3.3.0",
-        "enzyme-adapter-react-16": "^1.1.1",
-        "eqcss": "^1.8.0",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0",
-        "react-helmet": "^5.2.0",
-        "react-highlight": "briancappello/react-highlight#react-v16-compiled",
-        "react-lazyload": "^2.3.0",
-        "react-router-dom": "^4.2.2",
-        "react-scripts": "1.0.17",
-        "react-scroll-up-button": "^1.5.10",
-        "react-snapshot": "^1.3.0",
-        "react-test-renderer": "^16.2.0",
-        "react-transition-group": "^1.2.1",
-        "react-waypoint": "^8.0.0",
-        "serve": "^6.4.8",
-        "styled-components": "^2.4.0"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build && react-snapshot",
-        "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject",
-        "test:debug": "react-scripts --inspect-brk test --runInBand --env=jsdom",
-        "start:server": "tmux new-session -s dirtyredz 'serve -p 3000 build'",
-        "update:server": "npm run stop:server && git pull origin && npm install && npm run build && echo start server with: npm run start:server",
-        "stop:server": "tmux kill-session -t dirtyredz"
-    },
-    "jest": {
-        "coverageThreshold": {
-            "global": {
-                "branches": 50,
-                "functions": 50,
-                "lines": 50,
-                "statements": 50
-            },
-            "./src/components/": {
-                "branches": 40,
-                "statements": 40
-            },
-            "./src/pages/": {
-                "branches": 40,
-                "statements": 40
-            }
-        }
-    }
+  "name": "dirtyredz",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.4.8"
+  }
 }

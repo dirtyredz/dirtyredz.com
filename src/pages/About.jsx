@@ -1,183 +1,82 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import Angles from "../components/Angles";
-import LazyLoad from 'react-lazyload';
-import styled, { keyframes } from 'styled-components';
-import HeaderTitle from "../components/HeaderTitle";
+import { useReveal } from '../hooks/useReveal.js'
+import { site, socials } from '../data/site.js'
+import './About.css'
 
-const ScaleX = keyframes`
-  from {
-    transform: scaleX(0);
-  }
+const facts = [
+  { k: 'Based in', v: site.location },
+  { k: 'Served', v: 'USMC · 9 years' },
+  { k: 'Codes since', v: '~2012, self-taught' },
+  { k: 'Goes by', v: 'Dirtyredz' },
+]
 
-  to {
-    transform: scaleX(1);
-  }
-`;
-const ScaleY = keyframes`
-  from {
-    transform: scaleY(0);
-  }
+export default function About() {
+  useReveal()
+  return (
+    <div className="page about">
+      <header className="page-head">
+        <div className="container">
+          <span className="eyebrow">Who I am</span>
+          <h1>About me</h1>
+          <p>{site.tagline}</p>
+        </div>
+      </header>
 
-  to {
-    transform: scaleY(1);
-  }
-`;
-const AboutSection = styled.section`
-  width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  opacity: 1;
-  top: 0;
-  transition: all 500ms, opacity 2s, top 2s;
-  font-size: calc(18px + 11 * ((100vw - 320px) / 1360));
-  position: relative;
-`;
-const Content = styled.div`
-  margin: 0 auto;
-  @media (max-width: 767px) {
-    max-width: 85%;
-  }
-  @media (min-width: 1025px) {
-    max-width: 60%;
-  }
-  @media (min-width: 768px) and (max-width: 1024px) {
-    max-width: 80%;
-  }
-`;
-const Title = styled.h1`
-  padding-top: 50px;
-  @media (max-width: 700px) {
-    text-align: center;
-  }
-`;
-const StyledP = styled.p`
-  padding-left: 5%;
-  padding-right: 1%;
-  float: right;
-  width: 60%;
-  @media (max-width: 700px) {
-    float: none !important;
-    width: 90% !important;
-  }
-`;
-const StyledP2 = styled.p`
-  padding-left: 5%;
-  padding-right: 1%;
-`;
-const Img = styled.img`
-  width: 100%;
-`;
-const ImgWrapper = styled.div`
-  float: left;
-  width: 25%;
-  position: relative;;
-  @media (max-width: 700px) {
-    float: none !important;
-    width: 70% !important;
-    margin: 0 auto;
-    margin-bottom: 50px;
-  }
-  &::after{
-    content: "";
-    width: 110%;
-    height: 10px;
-    border-bottom: #8a1315 solid 2px;
-    position: absolute;
-    left: -5%;
-    bottom: 3.5%;
-    transition: transform 1s;
-    animation: ${ScaleX} 2s ease 1s forwards;
-  }
-  &::before{
-    content: "";
-    width: 110%;
-    height: 5px;
-    border-bottom: #8a1315 solid 2px;
-    position: absolute;
-    border-top: #8a1315 solid 2px;
-    left: -5%;
-    top: 1.5%;
-    transition: transform 1s;
-    animation: ${ScaleX} 2s ease forwards;
-  }
-`;
-const ImgWrapper2 = styled.div`
-  &::after{
-    content: "";
-    height: 105%;
-    border-right: #8a1315 solid 2px;
-    position: absolute;
-    right: 3%;
-    top: -3%;
-    transition: transform 1s;
-    animation: ${ScaleY} 2s ease 1s forwards;
-  }
-  &::before{
-    content: "";
-    border-left: #8a1315 solid 2px;
-    position: absolute;
-    left: 3.5%;
-    height: 105%;
-    border-right: #8a1315 solid 2px;
-    top: -3%;
-    width: 5px;
-    transition: transform 1s;
-    animation: ${ScaleY} 2s ease forwards;
-  }
-`;
-const RemoveOnScroll = {
-  top:300,
-  opacity:0
-}
+      <div className="container about__grid">
+        <div className="about__main">
+          <p className="reveal about__lead">
+            I&#39;m David — most of the internet knows me as <strong>Dirtyredz</strong>. I&#39;m a
+            self-taught developer living in {site.location}, and I&#39;ve been building things on
+            the web for over a decade.
+          </p>
 
-export default class About extends React.Component {
-    constructor(){
-      super()
-      this.state = {RemoveOnScroll: true};
-    }
-    componentDidMount(){
-      //Run on next tick to allow styles to take effect
-      setTimeout(()=>{
-        this.setState({RemoveOnScroll: false})
-      },1);
-    }
-    render() {
-        return (
-          <AboutSection style={(this.state.RemoveOnScroll) ? RemoveOnScroll : {}}>
-            <Helmet>
-                <title>Dirtyredz - About</title>
-            </Helmet>
-            <Angles/>
-            <Content>
-                <HeaderTitle centered background='Who I am' title="About Me"/>
-                <div>
-                    <LazyLoad height={200}>
-                        <ImgWrapper>
-                            <ImgWrapper2><Img src="../img/david one_edited.jpg"/></ImgWrapper2>
-                        </ImgWrapper>
-                    </LazyLoad>
-                    <StyledP>Developing websites is my passion. I started programming many years ago; while serving in the United States Marine Corps. I tried many forms of programming eventually landing on web development.
-                      I taught myself programming and more specifically web development through trial and error. As well as watching and reading various tutorials. I am constantly improving my
-                      skills and working with new technologies.
-                      <br/>
-                      <br/>
-                      I&#39;ve been expanding my knowledge on other technologies as of late. Specifically I&#39;ve recently started learning: reacte.js, NodeJS, Webpack, ES6, and varius loaders.  I actually tried to avoid as much of the javascript language as I could, so I could work more with PHP.
-                      Unfortunately the web development world headed down a different path. Single page application and javascript backend, like NodeJS, are expanding drastically. It&#39;s my hope to keep up with the web development world so that I can provide modern and powerful applications to my clients.
-                    </StyledP>
-                    <br className="clear"/>
-                    <Title>So Whats with the Dirtyredz?</Title>
-                    <br/>
-                    <StyledP2>
-                      While in the United State Marine Corps, I served as an infantryman and later as a MV-22 airframe mechanic. I spent most of my time out in the field training. Well being a red head, the longer I spent outdoors the more red my hair became.
-                      Naturally the longer I was out in the field training the dirtier I became. Thus I was given the nickname Dirty Red Head by my comrades. Which of course eventually turned to Dirtyredz.
-                      I&#39;ve been using that name for my online presence no matter what I&#39;m doing on the net.
-                    </StyledP2>
-                    <br className="clear"/>
-                    <br className="clear"/>
-                </div>
-            </Content>
-        </AboutSection>
-        );
-    }
+          <p className="reveal">
+            My path into programming started while I was serving in the United States Marine
+            Corps. I tried a bunch of different kinds of coding before web development finally
+            stuck — I taught myself through trial and error, a lot of broken builds, and more
+            tutorials than I can count. I never stopped tinkering, and I&#39;m still learning new
+            tech all the time.
+          </p>
+
+          <p className="reveal">
+            These days this site isn&#39;t a resume or a sales pitch — it&#39;s just my space. I
+            spend my time on game mods and servers, small software projects, and whatever else
+            catches my interest. If it&#39;s something I made or something I&#39;m into, it ends up
+            here.
+          </p>
+
+          <h2 className="reveal about__h2">So what&#39;s with the &quot;Dirtyredz&quot;?</h2>
+          <p className="reveal">
+            In the Marine Corps I served as an infantryman, and later as an MV-22 airframe
+            mechanic. I spent most of my time out in the field training — and being a redhead, the
+            longer I was outdoors, the redder my hair got. Naturally, the longer I was out there,
+            the dirtier I got too. My comrades started calling me the <em>Dirty Red Head</em>,
+            which eventually got shortened to <strong>Dirtyredz</strong>. It&#39;s been my name
+            online ever since, no matter what I&#39;m doing.
+          </p>
+
+          <div className="reveal about__cta">
+            {socials.map((s) => (
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="connect__pill">
+                {s.label} ↗
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <aside className="about__side reveal">
+          <div className="about__card">
+            <span className="about__card-head">The quick version</span>
+            <ul className="about__facts">
+              {facts.map((f) => (
+                <li key={f.k}>
+                  <span className="about__fact-k">{f.k}</span>
+                  <span className="about__fact-v">{f.v}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  )
 }
