@@ -5,7 +5,7 @@ import './About.css'
 const facts = [
   { k: 'Based in', v: site.location },
   { k: 'Served', v: 'USMC · 9 years' },
-  { k: 'Codes since', v: '~2012, self-taught' },
+  { k: 'Developing since', v: '~2012, self-taught' },
   { k: 'Goes by', v: 'Dirtyredz' },
 ]
 

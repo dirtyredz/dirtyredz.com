@@ -7,18 +7,6 @@
   overflow: hidden;
   padding: 120px 0 60px;
 }
-.hero__grid-lines {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(circle at 30% 20%, #000, transparent 75%);
-  -webkit-mask-image: radial-gradient(circle at 30% 20%, #000, transparent 75%);
-  opacity: 0.5;
-  pointer-events: none;
-}
 .hero__inner {
   position: relative;
   z-index: 1;

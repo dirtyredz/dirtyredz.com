@@ -16,14 +16,15 @@ export default function Home() {
     <div className="home">
       {/* HERO */}
       <section className="hero">
-        <div className="hero__grid-lines" aria-hidden="true"></div>
         <div className="container hero__inner">
           <p className="hero__hi">
             <span className="hero__dot"></span> Hey, I&#39;m {site.name.split(' ')[0]}
           </p>
           <h1 className="hero__title">
-            I&#39;m <span className="hl">Dirtyredz</span> — I build,
-            <br /> break, and <span className="hl">mod</span> things.
+            I&#39;m <span className="hl">Dirtyredz</span> —
+            <br />
+            <span className="nowrap">I build,</span> break, and{' '}
+            <span className="hl">mod</span> things.
           </h1>
           <p className="hero__lead">
             Marine Corps veteran turned self-taught developer in {site.location}. This is my

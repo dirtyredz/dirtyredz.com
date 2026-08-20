@@ -38,6 +38,7 @@
   --bg-3: #1f1f26;
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.16);
+  --grid-line: rgba(255, 255, 255, 0.07); /* full-page background grid */
 
   /* Text */
   --text: #ededf2;
@@ -73,11 +74,24 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  /* subtle red vignette from top */
+  /* subtle red vignette from top (brightened a smidge) */
   background-image:
-    radial-gradient(1200px 600px at 50% -10%, rgba(201, 22, 26, 0.12), transparent 70%),
-    radial-gradient(900px 500px at 100% 0%, rgba(201, 22, 26, 0.05), transparent 60%);
+    radial-gradient(1200px 600px at 50% -10%, rgba(201, 22, 26, 0.17), transparent 70%),
+    radial-gradient(900px 500px at 100% 0%, rgba(201, 22, 26, 0.08), transparent 60%);
   background-attachment: fixed;
+}
+
+/* Full-page grid that stays fixed while scrolling (behind all content) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 h1, h2, h3, h4 {
@@ -95,6 +109,10 @@ a {
 img {
   max-width: 100%;
   display: block;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 ::selection {
