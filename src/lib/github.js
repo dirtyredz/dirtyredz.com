@@ -35,6 +35,14 @@ const GAME_OVERRIDES = {
   'trains-via-interrupt': 'Factorio',
 }
 
+// name -> custom blurb, for repos with no GitHub "About" description you want
+// text on. (Adding a description on the repo itself takes precedence-worthy
+// priority and auto-syncs, so prefer that when you can.)
+const BLURB_OVERRIDES = {
+  StopOnInn:
+    'A Gatsby + React website built from an Adobe XD design — image-forward and fully responsive, with star ratings, modal galleries, a slide-out menu, and smooth reveal animations.',
+}
+
 const MOD_LANGS = new Set(['Lua', 'Papyrus', 'C#'])
 const TOOL_RE = /manager|boilerplate|autocomplete|website|\.com\b/i
 const MOD_RE = /\bmod(s|ding|ification)?\b|avorion|skyrim|moonlight|factorio|modpack/i
@@ -89,7 +97,7 @@ function toItem(r) {
       tag: r.language || 'Mod',
       status: r.archived ? 'archived' : 'live',
       year,
-      blurb: r.description || `A ${game} modification.`,
+      blurb: BLURB_OVERRIDES[r.name] || r.description || `A ${game} modification.`,
       links,
       stars,
       pushed: r.pushed_at,
@@ -103,7 +111,7 @@ function toItem(r) {
     tag: r.language || 'Code',
     stack: [r.language, stars ? `★ ${stars}` : null].filter(Boolean),
     year,
-    blurb: r.description || `A ${r.language || 'code'} project.`,
+    blurb: BLURB_OVERRIDES[r.name] || r.description || `A ${r.language || 'code'} project.`,
     links,
     stars,
     pushed: r.pushed_at,
