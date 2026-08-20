@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { site, socials } from '../data/site.js'
+import { site, github } from '../data/site.js'
 import './Footer.css'
 
 export default function Footer() {
@@ -24,12 +24,10 @@ export default function Footer() {
             <Link to="/about">About</Link>
           </div>
           <div className="footer__col">
-            <span className="footer__head">Elsewhere</span>
-            {socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer">
-                {s.label} ↗
-              </a>
-            ))}
+            <span className="footer__head">Code</span>
+            <a href={github} target="_blank" rel="noreferrer">
+              GitHub ↗
+            </a>
           </div>
         </div>
       </div>

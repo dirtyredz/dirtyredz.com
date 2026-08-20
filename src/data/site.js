@@ -1,4 +1,4 @@
-// Central place for identity + social links. Edit freely.
+// Central place for identity + the one external link (my code). Edit freely.
 
 export const site = {
   handle: 'Dirtyredz',
@@ -8,10 +8,5 @@ export const site = {
   tagline: 'Marine vet, self-taught dev, and career-long tinkerer.',
 }
 
-export const socials = [
-  { label: 'GitHub', href: 'https://github.com/dirtyredz' },
-  { label: 'CodePen', href: 'https://codepen.io/dirtyredz' },
-  { label: 'Twitter', href: 'https://twitter.com/dirtyredz' },
-  { label: 'Instagram', href: 'https://instagram.com/dirtyredz' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/dirtyredz' },
-]
+// Not on social media. The only place to find me elsewhere is my code.
+export const github = 'https://github.com/dirtyredz'

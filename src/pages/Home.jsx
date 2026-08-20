@@ -3,7 +3,7 @@ import { useReveal } from '../hooks/useReveal.js'
 import Card from '../components/Card.jsx'
 import { mods } from '../data/mods.js'
 import { projects } from '../data/projects.js'
-import { site, socials } from '../data/site.js'
+import { site, github } from '../data/site.js'
 import './Home.css'
 
 export default function Home() {
@@ -37,13 +37,6 @@ export default function Home() {
             <Link to="/projects" className="btn btn-ghost">
               Browse projects
             </Link>
-          </div>
-          <div className="hero__socials">
-            {socials.slice(0, 5).map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer">
-                {s.label}
-              </a>
-            ))}
           </div>
         </div>
       </section>
@@ -123,23 +116,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CONNECT */}
+      {/* CODE */}
       <section className="section container">
         <div className="connect reveal">
           <div>
-            <span className="eyebrow">Say hi</span>
-            <h2 className="connect__title">Come find me around the web.</h2>
+            <span className="eyebrow">The code</span>
+            <h2 className="connect__title">It&#39;s all on GitHub.</h2>
             <p className="connect__lead">
-              I&#39;m not looking for work here — just sharing what I&#39;m into. If any of it
-              lands with you, the door&#39;s open on any of these.
+              I&#39;m not on social media — no feeds, no DMs. If you want to see what I&#39;m
+              actually up to, the honest version lives in my repos: the mods, the tools, and this
+              very site.
             </p>
           </div>
           <div className="connect__links">
-            {socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="connect__pill">
-                {s.label} ↗
-              </a>
-            ))}
+            <a href={github} target="_blank" rel="noreferrer" className="connect__pill">
+              github.com/dirtyredz ↗
+            </a>
           </div>
         </div>
       </section>

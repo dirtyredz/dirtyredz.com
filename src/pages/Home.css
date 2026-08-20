@@ -65,23 +65,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 40px;
-}
-.hero__socials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 26px;
-}
-.hero__socials a {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  color: var(--text-faint);
-  transition: color 0.2s ease;
-  position: relative;
-}
-.hero__socials a:hover {
-  color: var(--text);
 }
 
 /* ---------- PILLARS ---------- */

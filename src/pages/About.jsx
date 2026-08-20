@@ -1,5 +1,5 @@
 import { useReveal } from '../hooks/useReveal.js'
-import { site, socials } from '../data/site.js'
+import { site, github } from '../data/site.js'
 import './About.css'
 
 const facts = [
@@ -55,11 +55,9 @@ export default function About() {
           </p>
 
           <div className="reveal about__cta">
-            {socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="connect__pill">
-                {s.label} ↗
-              </a>
-            ))}
+            <a href={github} target="_blank" rel="noreferrer" className="connect__pill">
+              github.com/dirtyredz ↗
+            </a>
           </div>
         </div>
 
