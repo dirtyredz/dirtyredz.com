@@ -24,10 +24,14 @@ const statusLabel = {
 }
 
 export default function Card({ item, kind }) {
-  const { title, blurb, links = [], year, image } = item
+  const { title, blurb, links = [], year, image, private: isPrivate } = item
   // mods have game/tag/status; projects have tag/stack
   const topLeft = kind === 'mod' ? item.game : item.tag
   const chips = kind === 'mod' ? [item.tag] : item.stack || []
+  // Never surface a repo link for private items — only non-GitHub links (e.g. a demo)
+  const shownLinks = isPrivate
+    ? links.filter((l) => !/github\.com/i.test(l.href || ''))
+    : links
 
   return (
     <article className="card reveal">
@@ -40,11 +44,23 @@ export default function Card({ item, kind }) {
         <div className="card__top">
           <span className="card__kicker">{topLeft}</span>
           <div className="card__meta">
-            {item.status && (
-              <span className={`card__status card__status--${item.status}`}>
-                <i></i>
-                {statusLabel[item.status] || item.status}
+            {isPrivate ? (
+              <span className="card__status card__status--private">
+                <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm3 8H9V6a3 3 0 0 1 6 0v3Z"
+                  />
+                </svg>
+                Private
               </span>
+            ) : (
+              item.status && (
+                <span className={`card__status card__status--${item.status}`}>
+                  <i></i>
+                  {statusLabel[item.status] || item.status}
+                </span>
+              )
             )}
             {year && <span className="card__year">{year}</span>}
           </div>
@@ -62,7 +78,7 @@ export default function Card({ item, kind }) {
             ))}
           </div>
           <div className="card__links">
-            {links.map((l) => (
+            {shownLinks.map((l) => (
               <a
                 key={l.label}
                 href={l.href}

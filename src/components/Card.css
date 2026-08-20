@@ -101,6 +101,13 @@
 .card__status--archived i {
   background: var(--text-faint);
 }
+.card__status--private {
+  gap: 5px;
+  color: var(--red);
+}
+.card__status--private svg {
+  display: block;
+}
 
 .card__title {
   font-size: 1.5rem;
