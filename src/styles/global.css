@@ -188,13 +188,16 @@ img {
   box-shadow: 0 14px 40px -8px var(--red-glow);
 }
 .btn-ghost {
-  background: transparent;
+  background: rgba(18, 18, 22, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--text);
   border-color: var(--line-strong);
 }
 .btn-ghost:hover {
   border-color: var(--red);
   color: #fff;
+  background: rgba(28, 20, 21, 0.82);
   transform: translateY(-2px);
 }
 

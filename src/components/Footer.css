@@ -1,7 +1,7 @@
 .footer {
   border-top: 1px solid var(--line);
   background: var(--bg-1);
-  padding: 64px 0 28px;
+  padding: 64px 0 calc(52px + env(safe-area-inset-bottom, 0px));
   margin-top: 40px;
 }
 .footer__inner {
