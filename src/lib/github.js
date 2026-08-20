@@ -22,19 +22,28 @@ const CACHE_KEY = 'dr_gh_repos_v1'
 const CACHE_TTL = 30 * 60 * 1000 // 30 min
 
 // name -> 'mod' | 'project' | 'hide'
+// Use for repos the heuristic can't classify — e.g. empty/near-empty repos
+// that report no language and have no description.
 export const OVERRIDES = {
-  // 'SomeRepo': 'mod',
-  // 'OldExperiment': 'hide',
+  Vampscape: 'mod',
+  'trains-via-interrupt': 'mod',
+}
+
+// name -> game, for mods whose game can't be inferred from language/keywords.
+const GAME_OVERRIDES = {
+  Vampscape: 'Moonlight Peaks',
+  'trains-via-interrupt': 'Factorio',
 }
 
 const MOD_LANGS = new Set(['Lua', 'Papyrus', 'C#'])
 const TOOL_RE = /manager|boilerplate|autocomplete|website|\.com\b/i
-const MOD_RE = /\bmod(s|ding|ification)?\b|avorion|skyrim|moonlight|modpack/i
+const MOD_RE = /\bmod(s|ding|ification)?\b|avorion|skyrim|moonlight|factorio|modpack/i
 
 const GAME_RULES = [
   [/avorion/i, 'Avorion'],
   [/skyrim/i, 'Skyrim SE'],
   [/moonlight/i, 'Moonlight Peaks'],
+  [/factorio/i, 'Factorio'],
   [/\bsims\b/i, 'The Sims 4'],
 ]
 const LANG_GAME = { Papyrus: 'Skyrim SE', Lua: 'Avorion', 'C#': 'Moonlight Peaks' }
@@ -42,6 +51,7 @@ const LANG_GAME = { Papyrus: 'Skyrim SE', Lua: 'Avorion', 'C#': 'Moonlight Peaks
 const blob = (r) => `${r.name} ${r.description || ''} ${(r.topics || []).join(' ')}`
 
 function detectGame(r) {
+  if (GAME_OVERRIDES[r.name]) return GAME_OVERRIDES[r.name]
   const b = blob(r)
   for (const [re, game] of GAME_RULES) if (re.test(b)) return game
   return LANG_GAME[r.language] || 'Game'
