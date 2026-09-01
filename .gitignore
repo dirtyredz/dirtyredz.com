@@ -27,3 +27,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 Thumbs.db
+# structure-review gate marker (local state, never committed)
+.structure-review-pending*
+.structure-review-paused
