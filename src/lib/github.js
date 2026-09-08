@@ -35,6 +35,27 @@ const GAME_OVERRIDES = {
   'trains-via-interrupt': 'Factorio',
 }
 
+// repo name -> Nexus Mods page URL. Nexus pages can't be inferred from a repo (the mod id is
+// Nexus-side), so map them by hand here; `toItem` surfaces a "Nexus" link on the card when present.
+// Avorion mods live on the Steam Workshop and Factorio mods on mods.factorio.com, so those games
+// generally have no Nexus entry — leave them out rather than inventing a link.
+const NEXUS_OVERRIDES = {
+  // Skyrim SE
+  'Re-Equip': 'https://www.nexusmods.com/skyrimspecialedition/mods/22627',
+  // Moonlight Peaks
+  'chest-labels': 'https://www.nexusmods.com/moonlightpeaks/mods/119',
+  'Plant-Peek': 'https://www.nexusmods.com/moonlightpeaks/mods/120',
+  'Coffin-Break': 'https://www.nexusmods.com/moonlightpeaks/mods/121',
+  'Last-Swing': 'https://www.nexusmods.com/moonlightpeaks/mods/122',
+  Transplant: 'https://www.nexusmods.com/moonlightpeaks/mods/126',
+  'Mod-Nook': 'https://www.nexusmods.com/moonlightpeaks/mods/127',
+  Vampscape: 'https://www.nexusmods.com/moonlightpeaks/mods/128',
+  FormLock: 'https://www.nexusmods.com/moonlightpeaks/mods/141',
+  'Purrtastic-Palette': 'https://www.nexusmods.com/moonlightpeaks/mods/142',
+  'Fangtastic-Palette': 'https://www.nexusmods.com/moonlightpeaks/mods/143',
+  'Dead-Reckoning': 'https://www.nexusmods.com/moonlightpeaks/mods/144',
+}
+
 // name -> custom blurb, for repos with no GitHub "About" description you want
 // text on. (Adding a description on the repo itself takes precedence-worthy
 // priority and auto-syncs, so prefer that when you can.)
@@ -85,6 +106,8 @@ function toItem(r) {
   const year = Number.isNaN(created.getTime()) ? '' : String(created.getFullYear())
   const links = [{ label: 'GitHub', href: r.html_url }]
   if (r.homepage) links.unshift({ label: 'Site', href: r.homepage })
+  // Nexus is the primary place players get a mod, so lead with it when we have one.
+  if (NEXUS_OVERRIDES[r.name]) links.unshift({ label: 'Nexus', href: NEXUS_OVERRIDES[r.name] })
   const stars = r.stargazers_count || 0
 
   if (category === 'mod') {

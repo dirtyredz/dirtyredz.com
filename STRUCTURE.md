@@ -24,8 +24,8 @@ unreachable. Every page renders the same `Card` component off that one shape.
     ├── main.jsx         # Vite entry: mounts <App> in <BrowserRouter>, imports global.css
     ├── App.jsx          # app shell: Nav + <Routes> + Footer, ScrollToTop on navigation
     ├── pages/           # one default-export component per route (+ its co-located .css)
-    │   ├── Home.jsx/.css  About.jsx/.css
-    │   └── Mods.jsx  Projects.jsx  NotFound.jsx
+    │   ├── Home.jsx/.css  About.jsx/.css  Mods.jsx/.css
+    │   └── Projects.jsx  NotFound.jsx
     ├── components/      # shared UI reused across pages (each with co-located .css)
     │   ├── Nav.jsx/.css   Footer.jsx/.css
     │   └── Card.jsx/.css  # + CardSkeleton loading state

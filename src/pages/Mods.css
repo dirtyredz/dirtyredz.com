@@ -1,0 +1,47 @@
+/* Per-game grouping on the Mods page. Each game is its own section with a labelled header rule,
+   then the usual card grid. */
+
+.mod-group {
+  margin-top: clamp(40px, 6vw, 72px);
+}
+.mod-group:first-of-type {
+  margin-top: 0;
+}
+
+.mod-group__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.mod-group__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  margin: 0;
+  /* Accent bar echoing the .eyebrow motif so game headers read as brand chrome. */
+  padding-left: 16px;
+  position: relative;
+}
+.mod-group__title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  bottom: 0.18em;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--red);
+}
+
+.mod-group__count {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
