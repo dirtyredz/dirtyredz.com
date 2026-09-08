@@ -38,8 +38,9 @@ const GAME_OVERRIDES = {
 
 // repo name -> the mod's home on its game's mod site, as { label, href }. These pages can't be
 // inferred from a repo (the id/slug is host-side), so map them by hand; `toItem` surfaces this as
-// the lead link on the card. One map across hosts (Nexus, the Factorio Mod Portal, …) rather than a
-// per-host map. Avorion's old mod site is defunct, so those stay GitHub-only.
+// the lead link on the card. One map across hosts (Nexus, the Factorio Mod Portal, the Avorion
+// community forum) rather than a per-host map. (The Avorion forum moved from avorion.net to
+// community.boxelware.com with new thread ids — the ids below are the migrated ones.)
 const MOD_PAGE = {
   // Skyrim SE — Nexus Mods
   'Re-Equip': { label: 'Nexus', href: 'https://www.nexusmods.com/skyrimspecialedition/mods/22627' },
@@ -59,6 +60,33 @@ const MOD_PAGE = {
   'trains-via-interrupt': {
     label: 'Mod Portal',
     href: 'https://mods.factorio.com/mod/trains-via-interrupt',
+  },
+  // Avorion — the official community forum (Boxelware). Four other Avorion repos (DirtySecure,
+  // AvorionBoilerPlate, DirtyCargoExtender, Subspace-Corridor) were never posted as their own
+  // thread, so they stay GitHub-only.
+  MoveUI: {
+    label: 'Forum',
+    href: 'https://community.boxelware.com/index.php?/topic/3620-mod-moveui-v221/',
+  },
+  'Regenerative-Asteroids': {
+    label: 'Forum',
+    href: 'https://community.boxelware.com/index.php?/topic/2844-mod-regenerative-asteroid-fields-update-152/',
+  },
+  ShipScriptLoader: {
+    label: 'Forum',
+    href: 'https://community.boxelware.com/index.php?/topic/3704-mod-ship-script-loader-a-small-mod-to-auto-load-scripts-onto-a-players-ship/',
+  },
+  LogLevels: {
+    label: 'Forum',
+    href: 'https://community.boxelware.com/index.php?/topic/3585-mod-loglevels-v110-for-modders-and-server-owners/',
+  },
+  NoNeutralCore: {
+    label: 'Forum',
+    href: 'https://community.boxelware.com/index.php?/topic/3259-mod-noneutralcore/',
+  },
+  DockBuilder: {
+    label: 'Forum',
+    href: 'https://community.boxelware.com/index.php?/topic/3698-dockbuilder-a-culmination-of-multiple-modders-work/',
   },
 }
 

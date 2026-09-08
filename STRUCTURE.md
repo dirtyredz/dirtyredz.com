@@ -81,8 +81,8 @@ the reverse). Four minor notes, none worth acting on today:
   the seam is not worth the file.
 - `github.js` holds **four** parallel `repo-name → X` override maps (`OVERRIDES`,
   `GAME_OVERRIDES`, `BLURB_OVERRIDES`, `MOD_PAGE`), each with its own `map[r.name]` lookup.
-  `MOD_PAGE` is `{ label, href }` and spans hosts (Nexus, Factorio Mod Portal) so a new host does
-  NOT add a map. Fine at four; if a fifth axis appears, collapse them into one
+  `MOD_PAGE` is `{ label, href }` and spans hosts (Nexus, Factorio Mod Portal, Avorion/Boxelware
+  forum) so a new host does NOT add a map. Fine at four; if a fifth axis appears, collapse them into one
   `REPO_OVERRIDES = { name: { category, game, blurb, modPage } }` rather than adding another map.
 - `src/data/` holds both hand-authored content (`site.js`, `manual.js`) and *offline
   fallback copies* of GitHub data (`mods.js`, `projects.js`). Those fallbacks can silently

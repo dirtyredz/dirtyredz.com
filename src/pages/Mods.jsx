@@ -39,8 +39,9 @@ export default function Mods() {
           <p>
             Game modifications for Avorion, Skyrim, Moonlight Peaks and more — pulled live from my
             GitHub, so this list stays current as I keep building. Grouped by game, with a link to
-            each mod&#39;s home on its game&#39;s mod site (Nexus, the Factorio Mod Portal) where it lives
-            there. Some are polished, some are experiments, all of them scratched an itch.
+            each mod&#39;s home on its game&#39;s mod site (Nexus, the Factorio Mod Portal, the Avorion
+            forum) where it lives there. Some are polished, some are experiments, all of them
+            scratched an itch.
           </p>
         </div>
       </header>
