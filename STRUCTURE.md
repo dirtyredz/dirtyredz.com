@@ -79,10 +79,11 @@ the reverse). Four minor notes, none worth acting on today:
   mod-vs-project classification heuristics (regexes, overrides, game inference). If the
   heuristics keep growing, split the classifier out as `src/lib/classify.js`; at this size
   the seam is not worth the file.
-- `github.js` now holds **four** parallel `repo-name → X` override maps (`OVERRIDES`,
-  `GAME_OVERRIDES`, `BLURB_OVERRIDES`, `NEXUS_OVERRIDES`), each with its own `map[r.name]`
-  lookup. Fine at four; if a fifth axis appears, collapse them into one
-  `REPO_OVERRIDES = { name: { category, game, blurb, nexus } }` rather than adding another map.
+- `github.js` holds **four** parallel `repo-name → X` override maps (`OVERRIDES`,
+  `GAME_OVERRIDES`, `BLURB_OVERRIDES`, `MOD_PAGE`), each with its own `map[r.name]` lookup.
+  `MOD_PAGE` is `{ label, href }` and spans hosts (Nexus, Factorio Mod Portal) so a new host does
+  NOT add a map. Fine at four; if a fifth axis appears, collapse them into one
+  `REPO_OVERRIDES = { name: { category, game, blurb, modPage } }` rather than adding another map.
 - `src/data/` holds both hand-authored content (`site.js`, `manual.js`) and *offline
   fallback copies* of GitHub data (`mods.js`, `projects.js`). Those fallbacks can silently
   drift from reality since nothing regenerates them. A comment in each naming them as
