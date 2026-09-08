@@ -71,11 +71,11 @@ verbatim and holds assets only, never code.
 
 ## Structural debt
 
-**None material.** 18 source modules, largest is 185 lines, no directory holds more than
+**None material.** 17 source modules, largest is 192 lines, no directory holds more than
 5 code files, and the dependency direction is clean (`pages → hooks → lib → data`, never
 the reverse). Four minor notes, none worth acting on today:
 
-- `src/lib/github.js` (185 lines) carries two jobs: the HTTP/cache client and the
+- `src/lib/github.js` (192 lines) carries two jobs: the HTTP/cache client and the
   mod-vs-project classification heuristics (regexes, overrides, game inference). If the
   heuristics keep growing, split the classifier out as `src/lib/classify.js`; at this size
   the seam is not worth the file.
