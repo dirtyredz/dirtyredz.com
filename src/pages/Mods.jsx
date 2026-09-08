@@ -3,9 +3,15 @@ import { useGithub } from '../hooks/useGithub.js'
 import Card, { CardSkeleton } from '../components/Card.jsx'
 import './Mods.css'
 
-// Group mods by their game, then order the groups by size (largest first), tie-broken by the most
-// recently pushed mod so an active game floats up. Mods arrive already sorted newest-first, so each
-// group keeps that order.
+// A group's recency = its most-recently-pushed mod. Computed across the whole group rather than
+// trusting position: mods arrive newest-first, but manual entries (data/manual.js) are prepended by
+// mergeManual and carry no `pushed`, so a positional [0] tie-break would misread epoch 0.
+function groupRecency(items) {
+  return Math.max(0, ...items.map((m) => new Date(m.pushed || 0).getTime()))
+}
+
+// Group mods by their game, then order the groups by size (largest first), tie-broken by recency so
+// an active game floats up. Within a group, the incoming order is kept (manual first, then newest).
 function groupByGame(mods) {
   const groups = new Map()
   for (const m of mods) {
@@ -14,9 +20,7 @@ function groupByGame(mods) {
     groups.get(game).push(m)
   }
   return [...groups.entries()].sort(
-    (a, b) =>
-      b[1].length - a[1].length ||
-      new Date(b[1][0]?.pushed || 0) - new Date(a[1][0]?.pushed || 0),
+    ([, a], [, b]) => b.length - a.length || groupRecency(b) - groupRecency(a),
   )
 }
 

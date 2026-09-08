@@ -71,14 +71,18 @@ verbatim and holds assets only, never code.
 
 ## Structural debt
 
-**None material.** 17 source modules, largest is 162 lines, no directory holds more than
+**None material.** 18 source modules, largest is 185 lines, no directory holds more than
 5 code files, and the dependency direction is clean (`pages → hooks → lib → data`, never
-the reverse). Two minor notes, neither worth acting on today:
+the reverse). Four minor notes, none worth acting on today:
 
-- `src/lib/github.js` (162 lines) carries two jobs: the HTTP/cache client and the
+- `src/lib/github.js` (185 lines) carries two jobs: the HTTP/cache client and the
   mod-vs-project classification heuristics (regexes, overrides, game inference). If the
   heuristics keep growing, split the classifier out as `src/lib/classify.js`; at this size
   the seam is not worth the file.
+- `github.js` now holds **four** parallel `repo-name → X` override maps (`OVERRIDES`,
+  `GAME_OVERRIDES`, `BLURB_OVERRIDES`, `NEXUS_OVERRIDES`), each with its own `map[r.name]`
+  lookup. Fine at four; if a fifth axis appears, collapse them into one
+  `REPO_OVERRIDES = { name: { category, game, blurb, nexus } }` rather than adding another map.
 - `src/data/` holds both hand-authored content (`site.js`, `manual.js`) and *offline
   fallback copies* of GitHub data (`mods.js`, `projects.js`). Those fallbacks can silently
   drift from reality since nothing regenerates them. A comment in each naming them as
