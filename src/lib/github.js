@@ -12,7 +12,7 @@
 //  Levers if you ever want to nudge it (both optional):
 //   1. Add a topic on GitHub: `mod` forces Mods, `project` forces Projects,
 //      `hidden` hides the repo.
-//   2. Or add an entry to OVERRIDES below: name -> 'mod' | 'project' | 'hide'
+//   2. Or add an entry to REPO_OVERRIDES below (its `category` field: 'mod' | 'project' | 'hide').
 // ============================================================
 
 export const GITHUB_USER = 'dirtyredz'
@@ -21,81 +21,59 @@ const API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort
 const CACHE_KEY = 'dr_gh_repos_v1'
 const CACHE_TTL = 30 * 60 * 1000 // 30 min
 
-// name -> 'mod' | 'project' | 'hide'
-// Use for repos the heuristic can't classify — e.g. empty/near-empty repos
-// that report no language and have no description.
-export const OVERRIDES = {
-  Vampscape: 'mod',
-  'trains-via-interrupt': 'mod',
-  'Factorio-BP': 'project', // a blueprint utility website, not a game mod (name trips the mod regex)
-}
-
-// name -> game, for mods whose game can't be inferred from language/keywords.
-const GAME_OVERRIDES = {
-  Vampscape: 'Moonlight Peaks',
-  'trains-via-interrupt': 'Factorio',
-}
-
-// repo name -> the mod's home on its game's mod site, as { label, href }. These pages can't be
-// inferred from a repo (the id/slug is host-side), so map them by hand; `toItem` surfaces this as
-// the lead link on the card. One map across hosts (Nexus, the Factorio Mod Portal, the Avorion
-// community forum) rather than a per-host map. (The Avorion forum moved from avorion.net to
-// community.boxelware.com with new thread ids — the ids below are the migrated ones.)
-const MOD_PAGE = {
+// Per-repo hand overrides — one entry per repo, for the things the GitHub API can't tell us.
+// Collapses what used to be four parallel `name -> X` maps into one (so a repo's every override
+// lives in one place and each is a single lookup). Each field is optional:
+//   category : 'mod' | 'project' | 'hide' — force a classification the heuristic gets wrong
+//   game     : the mod's game, when language/keywords can't infer it
+//   title    : display name, when the repo name reads badly as a card title
+//   blurb    : card text, when the repo has no GitHub "About" description (prefer setting the
+//              repo description on GitHub itself, which auto-syncs)
+//   modPage  : { label, href } — the mod's home on its game's mod site (Nexus, the Factorio Mod
+//              Portal, the Avorion/Boxelware forum); surfaced by `toItem` as the lead link. These
+//              can't be inferred (the id/slug is host-side). (The Avorion forum moved from
+//              avorion.net to community.boxelware.com with new thread ids — those are used below.)
+const NEXUS = (id, game) => ({ label: 'Nexus', href: `https://www.nexusmods.com/${game}/mods/${id}` })
+const FORUM = (slug) => ({ label: 'Forum', href: `https://community.boxelware.com/index.php?/topic/${slug}/` })
+export const REPO_OVERRIDES = {
+  // Moonlight Peaks (C#) — Nexus Mods
+  'chest-labels': { modPage: NEXUS(119, 'moonlightpeaks') },
+  'Plant-Peek': { modPage: NEXUS(120, 'moonlightpeaks') },
+  'Coffin-Break': { modPage: NEXUS(121, 'moonlightpeaks') },
+  'Last-Swing': { modPage: NEXUS(122, 'moonlightpeaks') },
+  Transplant: { modPage: NEXUS(126, 'moonlightpeaks') },
+  'Mod-Nook': { modPage: NEXUS(127, 'moonlightpeaks') },
+  Vampscape: { category: 'mod', game: 'Moonlight Peaks', modPage: NEXUS(128, 'moonlightpeaks') },
+  FormLock: { modPage: NEXUS(141, 'moonlightpeaks') },
+  'Purrtastic-Palette': { modPage: NEXUS(142, 'moonlightpeaks') },
+  'Fangtastic-Palette': { modPage: NEXUS(143, 'moonlightpeaks') },
+  'Dead-Reckoning': { modPage: NEXUS(144, 'moonlightpeaks') },
   // Skyrim SE — Nexus Mods
-  'Re-Equip': { label: 'Nexus', href: 'https://www.nexusmods.com/skyrimspecialedition/mods/22627' },
-  // Moonlight Peaks — Nexus Mods
-  'chest-labels': { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/119' },
-  'Plant-Peek': { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/120' },
-  'Coffin-Break': { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/121' },
-  'Last-Swing': { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/122' },
-  Transplant: { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/126' },
-  'Mod-Nook': { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/127' },
-  Vampscape: { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/128' },
-  FormLock: { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/141' },
-  'Purrtastic-Palette': { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/142' },
-  'Fangtastic-Palette': { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/143' },
-  'Dead-Reckoning': { label: 'Nexus', href: 'https://www.nexusmods.com/moonlightpeaks/mods/144' },
-  // Factorio — Factorio Mod Portal
-  'trains-via-interrupt': {
-    label: 'Mod Portal',
-    href: 'https://mods.factorio.com/mod/trains-via-interrupt',
-  },
-  // Avorion — the official community forum (Boxelware). Four other Avorion repos (DirtySecure,
+  'Re-Equip': { modPage: NEXUS(22627, 'skyrimspecialedition') },
+  // Avorion — the Boxelware community forum. Four other Avorion repos (DirtySecure,
   // AvorionBoilerPlate, DirtyCargoExtender, Subspace-Corridor) were never posted as their own
   // thread, so they stay GitHub-only.
-  MoveUI: {
-    label: 'Forum',
-    href: 'https://community.boxelware.com/index.php?/topic/3620-mod-moveui-v221/',
-  },
-  'Regenerative-Asteroids': {
-    label: 'Forum',
-    href: 'https://community.boxelware.com/index.php?/topic/2844-mod-regenerative-asteroid-fields-update-152/',
-  },
+  MoveUI: { modPage: FORUM('3620-mod-moveui-v221') },
+  'Regenerative-Asteroids': { modPage: FORUM('2844-mod-regenerative-asteroid-fields-update-152') },
   ShipScriptLoader: {
-    label: 'Forum',
-    href: 'https://community.boxelware.com/index.php?/topic/3704-mod-ship-script-loader-a-small-mod-to-auto-load-scripts-onto-a-players-ship/',
+    modPage: FORUM('3704-mod-ship-script-loader-a-small-mod-to-auto-load-scripts-onto-a-players-ship'),
   },
-  LogLevels: {
-    label: 'Forum',
-    href: 'https://community.boxelware.com/index.php?/topic/3585-mod-loglevels-v110-for-modders-and-server-owners/',
+  LogLevels: { modPage: FORUM('3585-mod-loglevels-v110-for-modders-and-server-owners') },
+  NoNeutralCore: { modPage: FORUM('3259-mod-noneutralcore') },
+  DockBuilder: { modPage: FORUM('3698-dockbuilder-a-culmination-of-multiple-modders-work') },
+  // Factorio — Factorio Mod Portal
+  'trains-via-interrupt': {
+    category: 'mod',
+    game: 'Factorio',
+    modPage: { label: 'Mod Portal', href: 'https://mods.factorio.com/mod/trains-via-interrupt' },
   },
-  NoNeutralCore: {
-    label: 'Forum',
-    href: 'https://community.boxelware.com/index.php?/topic/3259-mod-noneutralcore/',
+  // Classification / display fixes
+  'Factorio-BP': { category: 'project' }, // a blueprint utility website, not a game mod
+  'BrownsKarateAcademy.com': { title: 'Browns Karate Academy' }, // repo name reads badly as a title
+  StopOnInn: {
+    blurb:
+      'A Gatsby + React website built from an Adobe XD design — image-forward and fully responsive, with star ratings, modal galleries, a slide-out menu, and smooth reveal animations.',
   },
-  DockBuilder: {
-    label: 'Forum',
-    href: 'https://community.boxelware.com/index.php?/topic/3698-dockbuilder-a-culmination-of-multiple-modders-work/',
-  },
-}
-
-// name -> custom blurb, for repos with no GitHub "About" description you want
-// text on. (Adding a description on the repo itself takes precedence-worthy
-// priority and auto-syncs, so prefer that when you can.)
-const BLURB_OVERRIDES = {
-  StopOnInn:
-    'A Gatsby + React website built from an Adobe XD design — image-forward and fully responsive, with star ratings, modal galleries, a slide-out menu, and smooth reveal animations.',
 }
 
 const MOD_LANGS = new Set(['Lua', 'Papyrus', 'C#'])
@@ -114,14 +92,15 @@ const LANG_GAME = { Papyrus: 'Skyrim SE', Lua: 'Avorion', 'C#': 'Moonlight Peaks
 const blob = (r) => `${r.name} ${r.description || ''} ${(r.topics || []).join(' ')}`
 
 function detectGame(r) {
-  if (GAME_OVERRIDES[r.name]) return GAME_OVERRIDES[r.name]
+  const g = REPO_OVERRIDES[r.name]?.game
+  if (g) return g
   const b = blob(r)
   for (const [re, game] of GAME_RULES) if (re.test(b)) return game
   return LANG_GAME[r.language] || 'Game'
 }
 
 function categorize(r) {
-  const ov = OVERRIDES[r.name]
+  const ov = REPO_OVERRIDES[r.name]?.category
   if (ov) return ov
   const topics = r.topics || []
   if (topics.includes('hidden')) return 'hide'
@@ -135,27 +114,28 @@ function categorize(r) {
 }
 
 function toItem(r) {
+  const ov = REPO_OVERRIDES[r.name] || {}
   const category = categorize(r) // 'mod' | 'project' (hide already filtered)
   const created = new Date(r.created_at)
   const year = Number.isNaN(created.getTime()) ? '' : String(created.getFullYear())
   const links = [{ label: 'GitHub', href: r.html_url }]
   if (r.homepage) links.unshift({ label: 'Site', href: r.homepage })
   // The mod's home on its game's mod site is where players actually get it, so lead with it.
-  const modPage = MOD_PAGE[r.name]
-  if (modPage) links.unshift({ label: modPage.label, href: modPage.href })
+  if (ov.modPage) links.unshift({ label: ov.modPage.label, href: ov.modPage.href })
   const stars = r.stargazers_count || 0
+  const title = ov.title || r.name
 
   if (category === 'mod') {
     const game = detectGame(r)
     return {
       id: 'gh-' + r.id,
       category,
-      title: r.name,
+      title,
       game,
       tag: r.language || 'Mod',
       status: r.archived ? 'archived' : 'live',
       year,
-      blurb: BLURB_OVERRIDES[r.name] || r.description || `A ${game} modification.`,
+      blurb: ov.blurb || r.description || `A ${game} modification.`,
       links,
       stars,
       pushed: r.pushed_at,
@@ -165,11 +145,11 @@ function toItem(r) {
   return {
     id: 'gh-' + r.id,
     category,
-    title: r.name,
+    title,
     tag: r.language || 'Code',
     stack: [r.language, stars ? `★ ${stars}` : null].filter(Boolean),
     year,
-    blurb: BLURB_OVERRIDES[r.name] || r.description || `A ${r.language || 'code'} project.`,
+    blurb: ov.blurb || r.description || `A ${r.language || 'code'} project.`,
     links,
     stars,
     pushed: r.pushed_at,

@@ -67,7 +67,7 @@ export default function Card({ item, kind }) {
         </div>
 
         <h3 className="card__title">{title}</h3>
-        <p className="card__blurb">{blurb}</p>
+        {blurb && <p className="card__blurb">{blurb}</p>}
 
         <div className="card__foot">
           <div className="card__chips">

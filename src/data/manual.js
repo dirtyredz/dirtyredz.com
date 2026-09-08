@@ -18,6 +18,18 @@
 //    links    : [{ label, href }]    (omit or leave [] for private repos)
 // ============================================================
 
+// Private repos shown by NAME ONLY (they carry the "Private" badge; the public GitHub auto-pull
+// can't see private repos). The client fetches the *public* API with no token, so these can't be
+// pulled at runtime — list them here. Name only, no blurb, per the owner's request (2026-09-07).
+const priv = (title) => ({
+  id: 'manual-' + title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+  category: 'project',
+  title,
+  tag: 'Project',
+  private: true,
+  links: [],
+})
+
 export const manualEntries = [
   {
     id: 'manual-vex',
@@ -31,4 +43,21 @@ export const manualEntries = [
     stack: [],
     links: [], // private: no public repo link
   },
+  // VelvetEmberX is the repo behind VEX above, so it is not repeated here.
+  priv('Agentic-Harness'),
+  priv('Maoin'),
+  priv('Family-HQ'),
+  priv('Grotti'),
+  priv('Resumes'),
+  priv('Mia-Sync'),
+  priv('Moonlight-Peaks-Agentic-Modding'),
+  priv('MoonlightTogether'),
+  priv('DigitalRedz-Command-Center'),
+  priv('dr_pet_needs'),
+  priv('starbucks_take_home'),
+  priv('Orange_Notification_Killer'),
+  priv('GrytFit-app'),
+  priv('paypal-bot'),
+  priv('DirtyBot'),
+  priv('api.dirtyredz.com'),
 ]

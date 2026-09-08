@@ -71,19 +71,18 @@ verbatim and holds assets only, never code.
 
 ## Structural debt
 
-**None material.** 17 source modules, largest is 192 lines, no directory holds more than
+**None material.** 17 source modules, largest is 200 lines, no directory holds more than
 5 code files, and the dependency direction is clean (`pages → hooks → lib → data`, never
 the reverse). Four minor notes, none worth acting on today:
 
-- `src/lib/github.js` (192 lines) carries two jobs: the HTTP/cache client and the
+- `src/lib/github.js` (200 lines) carries two jobs: the HTTP/cache client and the
   mod-vs-project classification heuristics (regexes, overrides, game inference). If the
   heuristics keep growing, split the classifier out as `src/lib/classify.js`; at this size
   the seam is not worth the file.
-- `github.js` holds **four** parallel `repo-name → X` override maps (`OVERRIDES`,
-  `GAME_OVERRIDES`, `BLURB_OVERRIDES`, `MOD_PAGE`), each with its own `map[r.name]` lookup.
-  `MOD_PAGE` is `{ label, href }` and spans hosts (Nexus, Factorio Mod Portal, Avorion/Boxelware
-  forum) so a new host does NOT add a map. Fine at four; if a fifth axis appears, collapse them into one
-  `REPO_OVERRIDES = { name: { category, game, blurb, modPage } }` rather than adding another map.
+- Per-repo hand overrides live in ONE map, `REPO_OVERRIDES = { name: { category, game, title,
+  blurb, modPage } }`, one lookup per repo — consolidated from four parallel `name → X` maps once a
+  fifth axis (`title`) appeared. `modPage` is `{ label, href }` spanning hosts (Nexus, Factorio Mod
+  Portal, Avorion/Boxelware forum) so a new host adds a row, not a map.
 - `src/data/` holds both hand-authored content (`site.js`, `manual.js`) and *offline
   fallback copies* of GitHub data (`mods.js`, `projects.js`). Those fallbacks can silently
   drift from reality since nothing regenerates them. A comment in each naming them as
