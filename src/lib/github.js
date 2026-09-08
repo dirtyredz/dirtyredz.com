@@ -33,7 +33,7 @@ const CACHE_TTL = 30 * 60 * 1000 // 30 min
 //              Portal, the Avorion/Boxelware forum); surfaced by `toItem` as the lead link. These
 //              can't be inferred (the id/slug is host-side). (The Avorion forum moved from
 //              avorion.net to community.boxelware.com with new thread ids — those are used below.)
-const NEXUS = (id, game) => ({ label: 'Nexus', href: `https://www.nexusmods.com/${game}/mods/${id}` })
+const NEXUS = (id, gameSlug) => ({ label: 'Nexus', href: `https://www.nexusmods.com/${gameSlug}/mods/${id}` })
 const FORUM = (slug) => ({ label: 'Forum', href: `https://community.boxelware.com/index.php?/topic/${slug}/` })
 export const REPO_OVERRIDES = {
   // Moonlight Peaks (C#) — Nexus Mods
@@ -100,8 +100,8 @@ function detectGame(r) {
 }
 
 function categorize(r) {
-  const ov = REPO_OVERRIDES[r.name]?.category
-  if (ov) return ov
+  const overrideCategory = REPO_OVERRIDES[r.name]?.category
+  if (overrideCategory) return overrideCategory
   const topics = r.topics || []
   if (topics.includes('hidden')) return 'hide'
   if (topics.includes('mod')) return 'mod'

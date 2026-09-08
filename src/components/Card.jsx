@@ -69,28 +69,30 @@ export default function Card({ item, kind }) {
         <h3 className="card__title">{title}</h3>
         {blurb && <p className="card__blurb">{blurb}</p>}
 
-        <div className="card__foot">
-          <div className="card__chips">
-            {chips.filter(Boolean).map((c) => (
-              <span key={c} className="chip">
-                {c}
-              </span>
-            ))}
+        {(chips.some(Boolean) || shownLinks.length > 0) && (
+          <div className="card__foot">
+            <div className="card__chips">
+              {chips.filter(Boolean).map((c) => (
+                <span key={c} className="chip">
+                  {c}
+                </span>
+              ))}
+            </div>
+            <div className="card__links">
+              {shownLinks.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  target={l.href.startsWith('http') ? '_blank' : undefined}
+                  rel="noreferrer"
+                  className="card__link"
+                >
+                  {l.label} →
+                </a>
+              ))}
+            </div>
           </div>
-          <div className="card__links">
-            {shownLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                target={l.href.startsWith('http') ? '_blank' : undefined}
-                rel="noreferrer"
-                className="card__link"
-              >
-                {l.label} →
-              </a>
-            ))}
-          </div>
-        </div>
+        )}
       </div>
     </article>
   )
