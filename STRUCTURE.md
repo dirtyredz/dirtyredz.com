@@ -4,9 +4,11 @@
 
 Personal portfolio site for David "Dirtyredz" McClain — game mods & servers, software
 projects, and an about page. **Vite 5 + React 18 + react-router-dom 6**, plain CSS (no
-CSS framework, no state library, no test runner). Static SPA deployed on **Netlify**
-(`netlify.toml`: `npm run build` → publish `dist/`, with a `/*` → `/index.html` fallback
-so React Router owns client-side routes).
+CSS framework, no state library, no test runner). Static SPA deployed on **Cloudflare
+Pages** (project `dirtyredz-com`, production branch `master`: `npm run build` → publish
+`dist/`, Node pinned via `.node-version`; `public/_redirects` provides the `/*` →
+`/index.html` SPA fallback so React Router owns client-side routes). Build command,
+output dir and production branch live in the CF Pages dashboard, not in a repo file.
 
 The distinguishing idea: the portfolio **auto-pulls itself from the GitHub API** rather
 than being hand-maintained. `src/lib/github.js` fetches public repos, classifies each as
@@ -18,7 +20,7 @@ unreachable. Every page renders the same `Card` component off that one shape.
 ## Layout
 
 ```
-.                        # config + docs only (package.json, vite.config.js, netlify.toml, index.html, README)
+.                        # config + docs only (package.json, vite.config.js, .node-version, index.html, README)
 ├── public/              # served verbatim at / — fonts, img, favicon, manifest, _redirects
 └── src/
     ├── main.jsx         # Vite entry: mounts <App> in <BrowserRouter>, imports global.css
@@ -67,7 +69,7 @@ verbatim and holds assets only, never code.
 | Presentation behaviour | Scroll-into-view reveal animation | `src/hooks/useReveal.js` | IntersectionObserver |
 | Content | Everything editable without touching a component | `src/data/*.js` | — |
 | Styling | Design tokens + base rules; page/component CSS co-located with its JSX | `src/styles/global.css`, `src/**/*.css` | — |
-| Build & deploy | Dev server (tunnel hosts allowed), production build, SPA redirect | `vite.config.js`, `netlify.toml`, `public/_redirects` | Vite, Netlify |
+| Build & deploy | Dev server (tunnel hosts allowed), production build, SPA redirect | `vite.config.js`, `.node-version`, `public/_redirects` | Vite, Cloudflare Pages |
 
 ## Structural debt
 

@@ -1,7 +1,7 @@
 # dirtyredz.com
 
 My personal site — game mods & servers, software I build for fun, and the story
-behind the name. Built with **Vite + React 18**, deployed on **Netlify**.
+behind the name. Built with **Vite + React 18**, deployed on **Cloudflare Pages**.
 
 ## Develop
 
@@ -36,5 +36,8 @@ tokens (colors, fonts, spacing) are all CSS variables at the top of
 
 ## Deploy
 
-`netlify.toml` is configured (`npm run build` → publish `dist/`, with an SPA
-redirect for React Router). Push to the connected branch and Netlify builds it.
+Deployed on **Cloudflare Pages** (project `dirtyredz-com`, production branch
+`master`). Build command `npm run build`, output `dist/`, Node pinned via
+`.node-version`; `public/_redirects` provides the SPA redirect for React Router.
+Push to `master` and Cloudflare Pages auto-builds and deploys. Build settings
+(command, output dir, production branch) live in the CF Pages dashboard.
