@@ -1,8 +1,18 @@
 // ============================================================
-//  MODS & SERVERS
-//  Edit this list to add your game mods, modpacks, and servers.
-//  status: 'live' | 'wip' | 'archived'
-//  Drop screenshots in /public/img and reference them as "/img/yourfile.png"
+//  MODS & SERVERS — OFFLINE FALLBACK SNAPSHOT
+//  This is NOT where the site's mod list lives. src/lib/github.js
+//  fetches your repos from the GitHub API and classifies them; this
+//  list is rendered only when that fetch throws — network down, or
+//  GitHub's unauthenticated 60-requests/hour-per-IP limit spent — at
+//  which point useGithub.js serves these entries and sets usingFallback.
+//  While the API answers (nearly always), edits here are invisible.
+//  Nothing regenerates this snapshot, so it drifts silently: when the
+//  fallback does fire, visitors see plausible but outdated mods.
+//  To change a real mod, push it to GitHub, or nudge it via
+//  REPO_OVERRIDES in src/lib/github.js, or — if it isn't a public repo
+//  — add it to src/data/manual.js.
+//  Entry shape: status is 'live' | 'wip' | 'archived'; screenshots go
+//  in /public/img and are referenced as "/img/yourfile.png".
 // ============================================================
 
 export const mods = [

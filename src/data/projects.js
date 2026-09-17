@@ -1,7 +1,19 @@
 // ============================================================
-//  PROJECTS
-//  Software you built — for fun, for yourself, or just to learn.
-//  This is NOT a "hire me" list. It's "here's what I make."
+//  PROJECTS — OFFLINE FALLBACK SNAPSHOT
+//  Not the project list the site shows. src/lib/github.js pulls your
+//  public repos from the GitHub API and every non-hidden one it doesn't
+//  classify as a mod becomes a project (repos hidden by topic or by
+//  override never reach either bucket, and forks are hidden by default
+//  unless an override or a `mod`/`project` topic classifies them first);
+//  useGithub.js drops back to this list only when that fetch throws — no
+//  network, or GitHub's unauthenticated 60-requests/hour-per-IP limit
+//  exhausted — and sets usingFallback.
+//  Any other time, editing this file changes nothing you can see.
+//  Nothing regenerates it either, so it goes stale quietly and the
+//  fallback then serves an out-of-date portfolio that still reads real.
+//  To change a real project, push it to GitHub (its About text and
+//  topics drive the card), tune REPO_OVERRIDES in src/lib/github.js, or
+//  list it in src/data/manual.js for private / off-GitHub work.
 // ============================================================
 
 export const projects = [

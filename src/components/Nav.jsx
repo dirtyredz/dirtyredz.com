@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { github } from '../data/site.js'
 import './Nav.css'
 
 const links = [
@@ -45,7 +46,7 @@ export default function Nav() {
           ))}
           <a
             className="nav__link nav__link--out"
-            href="https://github.com/dirtyredz"
+            href={github}
             target="_blank"
             rel="noreferrer"
           >
@@ -79,7 +80,7 @@ export default function Nav() {
         ))}
         <a
           className="nav__mobile-link"
-          href="https://github.com/dirtyredz"
+          href={github}
           target="_blank"
           rel="noreferrer"
           onClick={() => setOpen(false)}
