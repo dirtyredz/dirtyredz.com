@@ -30,3 +30,6 @@ Thumbs.db
 # structure-review gate marker (local state, never committed)
 .structure-review-pending*
 .structure-review-paused
+
+# local launch scratch (recreated by the dev-server launcher)
+.claude-launch-tmp*
