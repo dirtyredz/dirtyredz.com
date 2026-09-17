@@ -13,14 +13,15 @@ output dir and production branch live in the CF Pages dashboard, not in a repo f
 The distinguishing idea: the portfolio **auto-pulls itself from the GitHub API** rather
 than being hand-maintained. `src/lib/github.js` fetches public repos, classifies each as
 a *mod* or a *project* by language/keyword/topic heuristics, and caches to
-`localStorage`. `src/hooks/useGithub.js` merges in hand-written entries (private/off-GitHub
+`sessionStorage`. `src/hooks/useGithub.js` merges in hand-written entries (private/off-GitHub
 work) and falls back to the curated static lists in `src/data/` when the API is
 unreachable. Every page renders the same `Card` component off that one shape.
 
 ## Layout
 
 ```
-.                        # config + docs only (package.json, vite.config.js, .node-version, index.html, README)
+.                        # config + docs only (package.json, vite.config.js, .node-version, index.html, README, STRUCTURE.md)
+├── docs/                # the living-doc set (ARCHITECTURE, DECISIONS, FEATURES, ROADMAP, BACKLOG, GOTCHAS)
 ├── public/              # served verbatim at / — fonts, img, favicon, manifest, _redirects
 └── src/
     ├── main.jsx         # Vite entry: mounts <App> in <BrowserRouter>, imports global.css
@@ -52,6 +53,7 @@ unreachable. Every page renders the same `Card` component off that one shape.
 - `src/data/` — hand-edited content and offline fallback lists; no logic
 - `src/lib/` — external-service clients and their domain rules (GitHub API + classification)
 - `src/styles/` — global CSS: design tokens and base/layout rules
+- `docs/` — the living-doc set; only `README.md` and `STRUCTURE.md` stay at the root
 - `src/main.jsx` — Vite's mandated entry module, referenced by `index.html`
 - `src/App.jsx` — router shell; the only place routes are declared
 
@@ -65,7 +67,7 @@ verbatim and holds assets only, never code.
 | Entry / shell | Mount React, declare routes, scroll-reset, frame every page | `src/main.jsx`, `src/App.jsx` | react-router-dom, `components/`, `pages/`, `styles/global.css` |
 | Pages | One per route; compose cards + copy, own their page CSS | `src/pages/*.jsx` | `hooks/`, `components/Card.jsx`, `data/site.js` |
 | Shared UI | Nav (scroll state, mobile menu), Footer, Card + CardSkeleton | `src/components/*.jsx` | react-router-dom, `data/site.js` |
-| Data access | Fetch/classify GitHub repos; merge manual entries; fall back offline | `src/lib/github.js`, `src/hooks/useGithub.js` | `data/manual.js`, `data/mods.js`, `data/projects.js`, `localStorage` |
+| Data access | Fetch/classify GitHub repos; merge manual entries; fall back offline | `src/lib/github.js`, `src/hooks/useGithub.js` | `data/manual.js`, `data/mods.js`, `data/projects.js`, `sessionStorage` |
 | Presentation behaviour | Scroll-into-view reveal animation | `src/hooks/useReveal.js` | IntersectionObserver |
 | Content | Everything editable without touching a component | `src/data/*.js` | — |
 | Styling | Design tokens + base rules; page/component CSS co-located with its JSX | `src/styles/global.css`, `src/**/*.css` | — |
@@ -73,21 +75,46 @@ verbatim and holds assets only, never code.
 
 ## Structural debt
 
-**None material.** 17 source modules, largest is 200 lines, no directory holds more than
-5 code files, and the dependency direction is clean (`pages → hooks → lib → data`, never
-the reverse). Four minor notes, none worth acting on today:
+**Last full review: 2026-09-17** — baseline, whole codebase. Three Claude lenses
+(componentization, abstraction, topology) plus a Codex `gpt-5.6-sol` cross-model sign-off,
+which returned **PASS with no P0**.
 
-- `src/lib/github.js` (200 lines) carries two jobs: the HTTP/cache client and the
-  mod-vs-project classification heuristics (regexes, overrides, game inference). If the
-  heuristics keep growing, split the classifier out as `src/lib/classify.js`; at this size
-  the seam is not worth the file.
-- Per-repo hand overrides live in ONE map, `REPO_OVERRIDES = { name: { category, game, title,
-  blurb, modPage } }`, one lookup per repo — consolidated from four parallel `name → X` maps once a
-  fifth axis (`title`) appeared. `modPage` is `{ label, href }` spanning hosts (Nexus, Factorio Mod
-  Portal, Avorion/Boxelware forum) so a new host adds a row, not a map.
-- `src/data/` holds both hand-authored content (`site.js`, `manual.js`) and *offline
-  fallback copies* of GitHub data (`mods.js`, `projects.js`). Those fallbacks can silently
-  drift from reality since nothing regenerates them. A comment in each naming them as
-  stale-tolerant snapshots would cost nothing.
-- No test setup and no linter at all — deliberate for a static personal site, but worth
-  knowing before anything non-trivial is added to `lib/`.
+17 JS modules, largest is `lib/github.js` at 200 lines — nothing near the 800-line cap. No
+directory holds more than 5 code files. Dependency graph verified acyclic, with nothing in
+`lib/` or `data/` importing upward: `pages → hooks → {lib, data}`, plus pages → components
+and pages → `data/site.js`. Note `lib/github.js` imports nothing at all — the older
+`pages → hooks → lib → data` shorthand in this file implied a `lib → data` edge that has
+never existed, and was corrected at the 2026-09-17 sign-off. The Layout block above was
+checked against the real tree in both directions and matches.
+
+**The structure is sound.** Every deferred finding is tracked in
+[`docs/BACKLOG.md`](docs/BACKLOG.md) — P0 is empty and that is the correct state. In summary:
+
+- **P1 ×3** — the `data/mods.js` / `projects.js` snapshots are undocumented stale-tolerant
+  fallbacks (B1); the card item shape is re-asserted by four producers with no TypeScript
+  or test to catch drift (B2); `fetchRepos` has no request timeout, so a *hanging* GitHub
+  request never reaches the fallback the way a *failing* one does (B3).
+- **P2 ×5** — `sessionStorage` cache scope (B4), the 100-repo fetch ceiling (B5), GitHub
+  identity split across sources (B6), and two earned-but-deferred extractions: `CardGrid`
+  (B7) and `PageHeader` (B8).
+
+**Examined and deliberately left alone** — recorded in BACKLOG's watch list with the
+trigger that would change each verdict, so a future baseline need not re-litigate them:
+
+- Splitting `lib/github.js` into HTTP client + classifier. The two jobs are ~35 and ~65
+  lines and share the same `REPO_OVERRIDES` / `blob()` helpers, so a split today yields two
+  files that always change together. Revisit if the classifier grows materially.
+- Renaming `src/lib/` to `src/github/`. The topology lens flagged `lib/` as a generic
+  bucket; the Codex sign-off overruled it — the folder has a precise responsibility in the
+  Layout above, and a second client is not required to justify a conventional
+  external-integration boundary. Revisit when a second client appears.
+- Extracting the duplicated `usingFallback` / empty-state block. Two four-line call sites;
+  both the abstraction lens and Codex declined to extract at this size. Revisit at a third
+  list page.
+- Adding a test runner or linter — a decision, not an oversight. See
+  [`docs/DECISIONS.md`](docs/DECISIONS.md).
+
+**Fixed during the baseline itself:** the `sessionStorage` / `localStorage` error in this
+file (caught independently by two lenses), `Nav.jsx` bypassing the `data/site.js` seam with
+two hardcoded URLs, the README pointing contributors at the fallback files as though they
+were primary content, and a stray tracked `.claude-launch-tmp` at the repo root.

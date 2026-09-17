@@ -19,13 +19,25 @@ npm run preview  # preview the production build locally
 
 ## Editing content
 
-Most content lives in plain data files — no need to touch components:
+**Most of the site edits itself.** Mods and projects are pulled live from the
+GitHub API and sorted automatically — push a repo and it shows up. You usually
+do not edit anything here.
 
-| What                 | File                  |
-| -------------------- | --------------------- |
-| Mods & servers       | `src/data/mods.js`    |
-| Software projects    | `src/data/projects.js`|
-| Name, tagline, socials | `src/data/site.js`  |
+When you do need to intervene, work down this list:
+
+| What you want | Where |
+| ------------- | ----- |
+| Add a mod or project | **Push it to GitHub.** That is the whole step. |
+| Fix how a repo is classified or labelled | GitHub topics (`mod`, `project`, `hidden`), or `REPO_OVERRIDES` in `src/lib/github.js` for a forced category, game, title, blurb, or mod-page link |
+| Show something that is not a public repo | `src/data/manual.js` — private or off-GitHub work; wins on title collision |
+| Name, tagline, location, GitHub link | `src/data/site.js` |
+| Offline fallback lists | `src/data/mods.js`, `src/data/projects.js` — see below |
+
+> ⚠️ `src/data/mods.js` and `src/data/projects.js` are **not** where content
+> lives. They are stale-tolerant snapshots shown only when the GitHub API is
+> unreachable or rate-limited. Editing them has no visible effect while GitHub
+> is working, and nothing regenerates them — so they drift. See
+> [`docs/GOTCHAS.md`](docs/GOTCHAS.md).
 
 Add images to `public/img/` and reference them as `/img/yourfile.png`
 (set the `image` field on a mod to show a screenshot on its card).
@@ -33,6 +45,18 @@ Add images to `public/img/` and reference them as `/img/yourfile.png`
 Pages live in `src/pages/`, shared UI in `src/components/`, and the design
 tokens (colors, fonts, spacing) are all CSS variables at the top of
 `src/styles/global.css`.
+
+## Docs
+
+| | |
+|---|---|
+| [`STRUCTURE.md`](STRUCTURE.md) | where the code lives |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | how it works |
+| [`docs/DECISIONS.md`](docs/DECISIONS.md) | why it is built this way |
+| [`docs/FEATURES.md`](docs/FEATURES.md) | what it does |
+| [`docs/GOTCHAS.md`](docs/GOTCHAS.md) | what bites |
+| [`docs/BACKLOG.md`](docs/BACKLOG.md) | what is next |
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | the plan (there isn't one, deliberately) |
 
 ## Deploy
 
