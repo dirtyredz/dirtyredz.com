@@ -182,6 +182,19 @@ social media. The only place to find me elsewhere is my code."
 
 ---
 
+## Rejected / not doing (do not re-raise)
+
+Moved from the old BACKLOG.md "Watch list" on 2026-10-05. Each was examined by the 2026-09-17 review and judged correct as it stands; the last column is the trigger that changes that.
+
+| Item | Verdict | Trigger to revisit |
+|---|---|---|
+| Splitting `lib/github.js` into client + classifier | **Not yet.** The two jobs are ~35 and ~65 lines inside a 200-line file and share the same `REPO_OVERRIDES`/`blob()` helpers — splitting today yields two files that always change together. | The classifier (currently lines 79–114) grows materially. |
+| Renaming `src/lib/` to `src/github/` | **Leave it.** The topology lens flagged `lib/` as a generic bucket; Codex overruled — the folder has a precise responsibility in STRUCTURE.md's authoritative Layout, and a second client is not required to justify a conventional external-integration boundary. | A second external-service client appears. Then split by responsibility. |
+| Extracting the `usingFallback` / empty-state block | **Leave it.** Two four-line call sites in `Mods.jsx` and `Projects.jsx`. Both the abstraction lens and Codex explicitly declined to extract at this size. | A third list page adopts the pattern. |
+| Adding a test runner or linter | **Leave it.** A deliberate decision, not an oversight — see `DECISIONS.md`. | Real logic accumulates in `lib/github.js`; the heuristics are the one uncovered thing worth testing. |
+| `src/data/` mixing hand-authored content with offline snapshots | **Leave it.** Pragmatic for a site with no build-time regeneration step. | B1's regeneration script lands — then the snapshots become generated artefacts and want separating. |
+| `categorize()` running twice per repo | **Leave it.** Harmless at this scale. | Expensive logic is added to the classifier. |
+
 ## Pre-2026 (inferred from history, not decisions of the current codebase)
 
 - **2018-09** — migrated to **Gatsby v2** (`082e1d6`), with MDX content and markdown-driven

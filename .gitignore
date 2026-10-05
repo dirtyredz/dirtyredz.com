@@ -33,3 +33,4 @@ Thumbs.db
 
 # local launch scratch (recreated by the dev-server launcher)
 .claude-launch-tmp*
+.docket/
