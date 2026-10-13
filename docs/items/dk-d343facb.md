@@ -2,8 +2,8 @@
 id: dk-d343facb
 type: bug
 created: 2026-10-05
-status: todo
-since: 2026-10-05
+status: done
+since: 2026-10-13
 area:
 priority: P1
 rank: w

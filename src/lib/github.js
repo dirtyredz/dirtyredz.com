@@ -20,6 +20,7 @@ export const GITHUB_USER = 'dirtyredz'
 const API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
 const CACHE_KEY = 'dr_gh_repos_v1'
 const CACHE_TTL = 30 * 60 * 1000 // 30 min
+export const FETCH_TIMEOUT_MS = 8000 // a hung request aborts -> rejects -> existing fallback path
 
 // Per-repo hand overrides — one entry per repo, for the things the GitHub API can't tell us.
 // Collapses what used to be four parallel `name -> X` maps into one (so a repo's every override
@@ -178,9 +179,20 @@ export async function fetchRepos() {
   const cached = readCache()
   if (cached) return cached
 
-  const res = await fetch(API, { headers: { Accept: 'application/vnd.github+json' } })
-  if (!res.ok) throw new Error(`GitHub API ${res.status}`)
-  const raw = await res.json()
+  // The timer covers headers AND body: abort() rejects a pending fetch() or res.json().
+  const ctrl = new AbortController()
+  const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS)
+  let raw
+  try {
+    const res = await fetch(API, {
+      headers: { Accept: 'application/vnd.github+json' },
+      signal: ctrl.signal,
+    })
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`)
+    raw = await res.json()
+  } finally {
+    clearTimeout(timer)
+  }
   if (!Array.isArray(raw)) throw new Error('Unexpected GitHub response')
 
   const items = raw

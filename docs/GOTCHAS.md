@@ -42,12 +42,11 @@ they drift. They are stale-tolerant snapshots and should be read as such.
 The UI does surface it — `usingFallback: true` renders a notice — but the content still
 looks plausible, which is exactly what makes it easy to miss.
 
-## There is no request timeout
+## The GitHub request times out after 8 s
 
-`fetchRepos` calls `fetch(API, { headers })` with no `AbortController` and no timeout.
-A hanging connection never rejects, so the `.catch()` never runs, so the fallback never
-engages — the page sits on skeleton cards indefinitely. A *failing* request degrades
-gracefully; a *hanging* one does not. Tracked as B3 in [`BACKLOG.md`](BACKLOG.md).
+`fetchRepos` aborts its `fetch` (headers and body) via `AbortController` after
+`FETCH_TIMEOUT_MS` (8 s, `src/lib/github.js`). The abort rejects, so a hung connection
+takes the same `.catch()` -> bundled-fallback path as any other failure.
 
 ## Only the 100 most recently-updated repos are fetched
 
