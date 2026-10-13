@@ -98,10 +98,9 @@ TypeScript and no runtime validator.
 Common: `id, title, blurb, links[], year, tag`.
 Mods add `game`, `status`. Projects add `stack[]`. GitHub items add `stars`, `pushed`.
 
-**Known asymmetry:** `category` is required on `toItem()` output and on `manual.js` entries
-(both are filtered on it, in `splitRepos` and `mergeManual`), but is absent from
-`mods.js`/`projects.js`, which rely on being pre-partitioned into separate exports instead.
-The typedef marks `category` optional and records this split.
+**`category`** is required on every `CardItem`: `toItem()` sets it, `manual.js` entries carry it,
+and `mods.js`/`projects.js` are generated from real `toItem()` output (`npm run gen:fallback`),
+so they include it too. `splitRepos` and `mergeManual` filter on it.
 
 ## Routing and delivery
 

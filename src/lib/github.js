@@ -28,9 +28,9 @@
  * @property {string} tag  Kicker label. Mods: language/kind; projects: shown top-left.
  * @property {string} [year]
  * @property {Array<{label: string, href: string}>} links  May be empty (private entries).
- * @property {'mod'|'project'} [category]  Present on `toItem()` and `manual.js` output (they are
- *   filtered on it in `splitRepos`/`mergeManual`); ABSENT from `mods.js`/`projects.js`, which
- *   are pre-partitioned into separate exports.
+ * @property {'mod'|'project'} category  Set by every producer: `toItem()` (and so the generated
+ *   `mods.js`/`projects.js` fallbacks, built from its real output) and `manual.js` entries.
+ *   `splitRepos`/`mergeManual` filter on it.
  * @property {string} [game]  Mods only.
  * @property {'live'|'wip'|'archived'} [status]  Mods only.
  * @property {string[]} [stack]  Projects only; chip labels.
