@@ -84,7 +84,7 @@ verbatim and holds assets only, never code.
 (componentization, abstraction, topology) plus a Codex `gpt-5.6-sol` cross-model sign-off,
 which returned **PASS with no P0**.
 
-17 JS modules under `src/` plus `scripts/generate-fallback.mjs`; largest is `lib/github.js` at ~243 lines (the `CardItem` typedef, fetch timeout and `useCache` option added ~40) — nothing near the 800-line cap. No
+17 JS modules under `src/` plus `scripts/generate-fallback.mjs`; largest is `lib/github.js` at ~243 lines (the `CardItem` typedef, fetch timeout and the `fetchLiveItems()`/`fetchRepos()` split added ~40) — nothing near the 800-line cap. No
 directory holds more than 5 code files. Dependency graph verified acyclic, with nothing in
 `lib/` or `data/` importing upward: `pages → hooks → {lib, data}`, plus pages → components
 and pages → `data/site.js`. Note `lib/github.js` imports nothing at all — the older
@@ -109,7 +109,7 @@ trigger that would change each verdict, so a future baseline need not re-litigat
 
 - Splitting `lib/github.js` into HTTP client + classifier. The two jobs are ~35 and ~65
   lines and share the same `REPO_OVERRIDES` / `blob()` helpers, so a split today yields two
-  files that always change together. Verdict kept at ~243 lines. Next split trigger: extract a pure `fetchLiveItems()` (transport + timeout + classify) under a cached `fetchRepos()` wrapper; also revisit if the classifier grows materially.
+  files that always change together. Verdict kept at ~243 lines. The `fetchLiveItems()` extraction (pure transport + timeout + classify + sort, under a thin cached `fetchRepos()` wrapper) is done (dk-9e99a9a0); revisit if the classifier grows materially.
 - Renaming `src/lib/` to `src/github/`. The topology lens flagged `lib/` as a generic
   bucket; the Codex sign-off overruled it — the folder has a precise responsibility in the
   Layout above, and a second client is not required to justify a conventional

@@ -50,7 +50,7 @@ site classified as a mod or a project, with no edit here.
 directly.
 
 The same classifier also runs offline: `scripts/generate-fallback.mjs` (`npm run gen:fallback`)
-calls `fetchRepos({ useCache: false })` + `splitRepos` and rewrites the bundled snapshots
+calls the pure, cache-free `fetchLiveItems()` + `splitRepos` and rewrites the bundled snapshots
 `data/mods.js` / `data/projects.js`.
 
 ## External interfaces

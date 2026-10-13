@@ -1,12 +1,12 @@
 // Regenerates src/data/mods.js and src/data/projects.js from a live GitHub fetch.
 // Run manually, commit the output like a lockfile:  npm run gen:fallback
 //
-// Reuses the site's own classification (fetchRepos / splitRepos in src/lib/github.js), so the
+// Reuses the site's own classification (fetchLiveItems / splitRepos in src/lib/github.js), so the
 // fallback matches what the live site would show. Manual entries (src/data/manual.js) are NOT
 // included: useGithub.js merges them in at runtime, fallback or not.
 import { writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { fetchRepos, splitRepos } from '../src/lib/github.js'
+import { fetchLiveItems, splitRepos } from '../src/lib/github.js'
 
 const dataDir = new URL('../src/data/', import.meta.url)
 
@@ -60,7 +60,7 @@ const render = (name, items) =>
 export const ${name} = ${JSON.stringify(items, null, 2)}
 `
 
-const items = await fetchRepos({ useCache: false })
+const items = await fetchLiveItems()
 const { mods, projects } = splitRepos(items)
 
 for (const [name, list] of Object.entries({ mods, projects })) {

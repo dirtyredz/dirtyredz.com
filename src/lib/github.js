@@ -202,14 +202,11 @@ function writeCache(data) {
 }
 
 /**
- * @param {{ useCache?: boolean }} [opts] `useCache: false` skips the browser-only sessionStorage
- *   cache; scripts/generate-fallback.mjs passes it so Node always classifies a live fetch.
+ * Pure live fetch: transport (with the 8 s timeout), classification and sort. No cache and no
+ * browser APIs, so Node (scripts/generate-fallback.mjs) and the browser share it.
  * @returns {Promise<CardItem[]>}
  */
-export async function fetchRepos({ useCache = true } = {}) {
-  const cached = useCache ? readCache() : null
-  if (cached) return cached
-
+export async function fetchLiveItems() {
   // The timer covers headers AND body: abort() rejects a pending fetch() or res.json().
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS)
@@ -226,12 +223,21 @@ export async function fetchRepos({ useCache = true } = {}) {
   }
   if (!Array.isArray(raw)) throw new Error('Unexpected GitHub response')
 
-  const items = raw
+  return raw
     .filter((r) => categorize(r) !== 'hide')
     .map(toItem)
     .sort((a, b) => new Date(b.pushed) - new Date(a.pushed))
+}
 
-  if (useCache) writeCache(items)
+/**
+ * Browser entry point: the sessionStorage cache in front of `fetchLiveItems()`.
+ * @returns {Promise<CardItem[]>}
+ */
+export async function fetchRepos() {
+  const cached = readCache()
+  if (cached) return cached
+  const items = await fetchLiveItems()
+  writeCache(items)
   return items
 }
 
