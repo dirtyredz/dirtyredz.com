@@ -44,7 +44,7 @@ export const GITHUB_USER = 'dirtyredz'
 
 const API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
 export const MAX_PAGES = 10 // hard cap on pagination (1000 repos); a runaway Link chain can't loop forever
-const CACHE_KEY = 'dr_gh_repos_v1'
+const CACHE_KEY = 'dr_gh_repos_v2'
 const CACHE_TTL = 30 * 60 * 1000 // 30 min
 export const FETCH_TIMEOUT_MS = 8000 // a hung request aborts -> rejects -> existing fallback path
 
@@ -186,7 +186,7 @@ function toItem(r) {
 
 function readCache() {
   try {
-    const c = JSON.parse(sessionStorage.getItem(CACHE_KEY) || 'null')
+    const c = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null')
     if (c && Date.now() - c.t < CACHE_TTL) return c.data
   } catch {
     /* ignore */
@@ -196,7 +196,7 @@ function readCache() {
 
 function writeCache(data) {
   try {
-    sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data }))
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data }))
   } catch {
     /* ignore */
   }
@@ -246,7 +246,7 @@ export async function fetchLiveItems() {
 }
 
 /**
- * Browser entry point: the sessionStorage cache in front of `fetchLiveItems()`.
+ * Browser entry point: the localStorage cache (survives tabs and visits; 30 min TTL) in front of `fetchLiveItems()`.
  * @returns {Promise<CardItem[]>}
  */
 export async function fetchRepos() {

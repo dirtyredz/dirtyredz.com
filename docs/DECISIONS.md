@@ -123,7 +123,7 @@ below.
 down. Bundled data ships with the app and cannot itself fail.
 
 **Rejected.** Serving the last cached response — the cache may be empty on a cold tab
-(`sessionStorage`), and an expired entry is deliberately discarded. Rendering an error
+(`localStorage`), and an expired entry is deliberately discarded. Rendering an error
 state — a portfolio showing an error is worse than one showing slightly old content.
 
 **Consequences.** The snapshots drift silently, since nothing regenerates them. Accepted

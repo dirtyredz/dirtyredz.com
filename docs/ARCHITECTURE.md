@@ -16,8 +16,8 @@ site classified as a mod or a project, with no edit here.
 ## Data flow
 
 ```
-                       ┌─ sessionStorage cache (30 min, per-tab) ─┐
-                       │                                          │
+                       ┌─ localStorage cache (30 min, shared by tabs) ─┐
+                       │                                              │
   page mounts          ▼                                          │
       │        ┌──────────────┐   miss    ┌─────────────────┐      │
       └──────► │ fetchRepos() │ ────────► │ api.github.com  │      │
@@ -63,12 +63,12 @@ There is exactly one, and it is unauthenticated:
 | Endpoint | `GET https://api.github.com/users/dirtyredz/repos?per_page=100&sort=updated`, then `Link: rel="next"` pages (max `MAX_PAGES` = 10); one request when there is one page |
 | Auth | none — no token is shipped to the browser, by design |
 | Rate limit | 60 requests/hour **per originating IP**, shared by every visitor behind that IP |
-| Cache | `sessionStorage`, key `dr_gh_repos_v1`, TTL 30 minutes, **per browser tab** |
+| Cache | `localStorage`, key `dr_gh_repos_v2`, TTL 30 minutes (older entries ignored), shared across tabs and visits |
 | Timeout | 8 s (`FETCH_TIMEOUT_MS`); an abort rejects and takes the fallback path |
 | On failure | throw → `useGithub` catches → bundled snapshots, `usingFallback: true` |
 
-Because the cache is `sessionStorage`, it dies with the tab. A visitor opening three tabs
-makes three API calls. This is the single most consequential runtime fact about the site.
+The cache is `localStorage`, so it survives tabs and returning visits within the TTL; three tabs
+make one API call. Blocked storage (private mode, quota) fails silently and just refetches.
 
 ## Classification
 

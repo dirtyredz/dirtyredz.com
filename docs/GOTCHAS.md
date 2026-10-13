@@ -3,21 +3,13 @@
 Non-obvious traps. Everything here was verified against the source during the
 2026-09-17 baseline review, not assumed.
 
-## The cache is `sessionStorage`, not `localStorage`
+## The cache is `localStorage`; bump the key when the item shape changes
 
-`readCache`/`writeCache` in `src/lib/github.js`. They read and write `sessionStorage`, key `dr_gh_repos_v1`,
-TTL 30 minutes (`CACHE_TTL = 30 * 60 * 1000`).
-
-`STRUCTURE.md` said `localStorage` for two weeks and the error propagated into briefings
-before two independent reviewers caught it. It matters because **`sessionStorage` dies
-with the tab**:
-
-- Every new tab is a cold start and a fresh API call.
-- The cache never helps a returning visitor, only a visitor navigating within one tab.
-- Three open tabs = three requests against a 60/hour budget.
-
-If you ever want genuine repeat-visit caching, that is a `localStorage` change, not a TTL
-change. Tracked as dk-517a7ebf.
+`readCache`/`writeCache` in `src/lib/github.js` use `localStorage`, key `dr_gh_repos_v2`, TTL 30 minutes
+(`CACHE_TTL = 30 * 60 * 1000`; older entries are ignored and refetched). It survives tabs and returning
+visits, so a visitor carries a stored copy of the `CardItem` shape: **change that shape and you must
+bump `CACHE_KEY`**, or returning visitors render stale-shaped data for up to 30 minutes. (v1 was
+`sessionStorage`; its entries are simply abandoned.) Blocked storage fails silently.
 
 ## The GitHub API is unauthenticated and rate-limited per IP
 

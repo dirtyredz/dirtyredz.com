@@ -50,3 +50,28 @@ test('a failing later page rejects', async () => {
     url.includes('page=2') ? { ok: false, status: 403 } : page([repo(1)], 'https://api.github.com/x?page=2')
   await assert.rejects(fetchLiveItems(), /GitHub API 403/)
 })
+
+test('fetchRepos reads localStorage within the TTL and ignores it past the TTL', async () => {
+  const { fetchRepos } = await import('./github.js')
+  const store = new Map()
+  globalThis.localStorage = { getItem: (k) => store.get(k) ?? null, setItem: (k, v) => store.set(k, v) }
+  let calls = 0
+  globalThis.fetch = async () => (calls++, page([repo(1)]))
+
+  const first = await fetchRepos() // cold: fetches and writes
+  assert.equal(calls, 1)
+  const [key] = [...store.keys()]
+  assert.equal(key, 'dr_gh_repos_v2')
+
+  assert.deepEqual(await fetchRepos(), first) // warm: served from cache
+  assert.equal(calls, 1)
+
+  const entry = JSON.parse(store.get(key))
+  store.set(key, JSON.stringify({ ...entry, t: Date.now() - 31 * 60 * 1000 })) // expired
+  await fetchRepos()
+  assert.equal(calls, 2)
+
+  delete globalThis.localStorage // blocked/absent storage fails silently
+  await fetchRepos()
+  assert.equal(calls, 3)
+})

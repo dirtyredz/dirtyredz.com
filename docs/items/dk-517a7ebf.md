@@ -2,8 +2,8 @@
 id: dk-517a7ebf
 type: task
 created: 2026-10-05
-status: todo
-since: 2026-10-05
+status: done
+since: 2026-10-13
 area:
 priority: P2
 rank: n
