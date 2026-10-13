@@ -121,14 +121,16 @@ can resolve it. Losing that file breaks every URL except `/`.
 ## Dependency direction
 
 ```
-pages ──┬──► hooks ──┬──► lib/github.js
+pages ──┬──► hooks ──┬──► lib/github.js ──► data/site.js  (githubUser only)
         │            └──► data/  (manual, mods, projects)
         ├──► components
         └──► data/site.js
 ```
 
-`lib/github.js` imports **nothing at all** — not even from `data/`. `REPO_OVERRIDES` lives
-inside it rather than in `data/`, so the classifier is self-contained. `useGithub` is the
+`lib/github.js` has exactly one import: `githubUser` from `data/site.js`, the single source of
+the GitHub handle (dk-f6f1db50). `site.js` itself imports nothing, so `lib/` stays Node-safe for
+the fallback generator and `npm test`. `REPO_OVERRIDES` lives inside `lib/github.js` rather than in
+`data/`, so the classifier is self-contained. `useGithub` is the
 only module that depends on both `lib/` and `data/`, and it is what joins them.
 
 Nothing in `lib/` or `data/` imports upward; the graph is acyclic. Verified during the

@@ -89,9 +89,9 @@ which returned **PASS with no P0**.
 17 JS modules under `src/` plus `src/lib/github.test.mjs` and `scripts/generate-fallback.mjs`; largest is `lib/github.js` at ~264 lines (the `CardItem` typedef, fetch timeout, the `fetchLiveItems()`/`fetchRepos()` split and pagination) — nothing near the 800-line cap. No
 directory holds more than 5 code files. Dependency graph verified acyclic, with nothing in
 `lib/` or `data/` importing upward: `pages → hooks → {lib, data}`, plus pages → components
-and pages → `data/site.js`. Note `lib/github.js` imports nothing at all — the older
-`pages → hooks → lib → data` shorthand in this file implied a `lib → data` edge that has
-never existed, and was corrected at the 2026-09-17 sign-off. The Layout block above was
+and pages → `data/site.js`. `lib/github.js` has one import, `githubUser` from `data/site.js` (dk-f6f1db50,
+2026-10-13); `site.js` imports nothing, so the edge points downward and stays Node-safe. No other
+`lib → data` edge exists. The Layout block above was
 checked against the real tree in both directions and matches.
 
 **The structure is sound.** Every deferred finding is tracked in
