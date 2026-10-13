@@ -16,34 +16,35 @@ site classified as a mod or a project, with no edit here.
 ## Data flow
 
 ```
-                       ┌─ localStorage cache (30 min, shared by tabs) ─┐
-                       │                                              │
-  page mounts          ▼                                          │
-      │        ┌──────────────┐   miss    ┌─────────────────┐      │
-      └──────► │ fetchRepos() │ ────────► │ api.github.com  │      │
-               └──────────────┘           │ /users/:u/repos │      │
-                       │  ok              └─────────────────┘      │
-                       ▼                           │ throw         │
-               ┌──────────────────┐                │               │
-               │ fetchLiveItems() │◄───────────────┼───────────────┘
-               │ 8s timeout,      │                │
-               │ classify + sort  │                │
-               └──────────────────┘                │
-                       │  card items               │
-                       ▼                           ▼
-               ┌──────────────┐          ┌────────────────────┐
-               │ splitRepos() │          │ data/mods.js       │
-               │ mods|projects│          │ data/projects.js   │  (bundled snapshots)
-               └──────────────┘          └────────────────────┘
-                       │                           │
-                       └───────────┬───────────────┘
-                                   ▼
-                         ┌───────────────────┐
-                         │ mergeManual()     │◄── data/manual.js (private / off-GitHub)
-                         │ manual wins ties  │
-                         └───────────────────┘
-                                   ▼
-                            <Card /> × N
+  page mounts → useGithub()
+      │
+      ▼
+┌──────────────────┐  hit (< 30 min)   localStorage
+│ fetchRepos()     │ ◄──────────────── dr_gh_repos_v2
+│ cache wrapper    │ ────────────────► (write on success)
+└──────────────────┘
+      │ miss
+      ▼
+┌──────────────────┐   Link rel="next"   ┌─────────────────┐
+│ fetchLiveItems() │ ──────────────────► │ api.github.com  │
+│ 8s timeout,      │ ◄────────────────── │ /users/:u/repos │
+│ classify + sort  │   ≤ 10 pages        └─────────────────┘
+└──────────────────┘
+      │ card items                  │ any throw (rate limit, timeout, 5xx)
+      ▼                             ▼
+┌──────────────┐          ┌────────────────────┐
+│ splitRepos() │          │ data/mods.js       │
+│ mods|projects│          │ data/projects.js   │  (bundled snapshots,
+└──────────────┘          └────────────────────┘   usingFallback: true)
+      │                             │
+      └──────────────┬──────────────┘
+                     ▼
+           ┌───────────────────┐
+           │ mergeManual()     │◄── data/manual.js (private / off-GitHub)
+           │ manual wins ties  │
+           └───────────────────┘
+                     ▼
+              <Card /> × N
 ```
 
 `src/hooks/useGithub.js` owns that whole pipeline and hands pages a single state object:
