@@ -9,4 +9,5 @@ export const site = {
 }
 
 // Not on social media. The only place to find me elsewhere is my code.
-export const github = 'https://github.com/dirtyredz'
+export const githubUser = 'dirtyredz'
+export const github = `https://github.com/${githubUser}`

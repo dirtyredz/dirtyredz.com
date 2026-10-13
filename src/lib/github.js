@@ -40,9 +40,9 @@
  * @property {string} [pushed]  GitHub items only; ISO timestamp of last push.
  */
 
-export const GITHUB_USER = 'dirtyredz'
+import { githubUser } from '../data/site.js'
 
-const API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
+const API = `https://api.github.com/users/${githubUser}/repos?per_page=100&sort=updated`
 export const MAX_PAGES = 10 // hard cap on pagination (1000 repos); a runaway Link chain can't loop forever
 const CACHE_KEY = 'dr_gh_repos_v2'
 const CACHE_TTL = 30 * 60 * 1000 // 30 min

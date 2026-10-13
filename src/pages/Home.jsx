@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { useReveal } from '../hooks/useReveal.js'
 import { useGithub } from '../hooks/useGithub.js'
 import Card, { CardSkeleton } from '../components/Card.jsx'
-import { site, github } from '../data/site.js'
+import { site, github, githubUser } from '../data/site.js'
 import './Home.css'
 
 export default function Home() {
@@ -131,7 +131,7 @@ export default function Home() {
           </div>
           <div className="connect__links">
             <a href={github} target="_blank" rel="noreferrer" className="connect__pill">
-              github.com/dirtyredz ↗
+              github.com/{githubUser} ↗
             </a>
           </div>
         </div>

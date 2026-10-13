@@ -39,7 +39,7 @@ unreachable. Every page renders the same `Card` component off that one shape, de
     │   ├── useGithub.js   # fetch → classify → merge manual → fallback
     │   └── useReveal.js   # IntersectionObserver scroll-in animation
     ├── data/            # content: hand-edited (site, manual) + generated fallback snapshots
-    │   ├── site.js       # identity, tagline, github link
+    │   ├── site.js       # identity, tagline, githubUser (single source) + derived github URL
     │   ├── manual.js     # entries not in the public GitHub feed (wins on title collision)
     │   └── mods.js  projects.js   # GENERATED offline fallback lists — never hand-edit
     ├── lib/             # external-service clients + their domain rules
@@ -102,8 +102,7 @@ Docket items in [`docs/items/`](docs/items/) (`dk list`) — P0 is empty and tha
   stale between runs but never by hand-drift; the card item shape was re-asserted by four producers
   (now documented once as `CardItem`, still no TypeScript or test to catch drift; dk-788efc26); `fetchRepos` has no request timeout, so a *hanging* GitHub
   request never reaches the fallback the way a *failing* one does (dk-d343facb) — **fixed in 71065b6** (8 s `FETCH_TIMEOUT_MS`).
-- **P2 ×3** — GitHub
-  identity split across sources (dk-f6f1db50), and two earned-but-deferred extractions: `CardGrid`
+- **P2 ×2** — two earned-but-deferred extractions: `CardGrid`
   (dk-ee92652e) and `PageHeader` (dk-a5431344).
 
 **Examined and deliberately left alone** — recorded in the watch list in `docs/DECISIONS.md` with the

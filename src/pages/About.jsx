@@ -1,5 +1,5 @@
 import { useReveal } from '../hooks/useReveal.js'
-import { site, github } from '../data/site.js'
+import { site, github, githubUser } from '../data/site.js'
 import './About.css'
 
 const facts = [
@@ -56,7 +56,7 @@ export default function About() {
 
           <div className="reveal about__cta">
             <a href={github} target="_blank" rel="noreferrer" className="connect__pill">
-              github.com/dirtyredz ↗
+              github.com/{githubUser} ↗
             </a>
           </div>
         </div>
