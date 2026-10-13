@@ -204,7 +204,7 @@ function writeCache(data) {
 
 /** The `rel="next"` URL from a GitHub `Link` header, or null when this is the last page. */
 function nextPageUrl(res) {
-  const m = /<([^>]+)>\s*;\s*rel="next"/.exec(res.headers?.get?.('link') || '')
+  const m = /<([^>]+)>\s*;\s*rel="next"/.exec(res.headers.get('link') || '')
   return m ? m[1] : null
 }
 
@@ -216,7 +216,7 @@ async function fetchAllPages(signal) {
     const res = await fetch(url, { headers: { Accept: 'application/vnd.github+json' }, signal })
     if (!res.ok) throw new Error(`GitHub API ${res.status}`)
     const body = await res.json()
-    if (!Array.isArray(body)) return body // surfaces as 'Unexpected GitHub response' below
+    if (!Array.isArray(body)) throw new Error('Unexpected GitHub response')
     all = all.concat(body)
     url = nextPageUrl(res)
   }
@@ -238,7 +238,6 @@ export async function fetchLiveItems() {
   } finally {
     clearTimeout(timer)
   }
-  if (!Array.isArray(raw)) throw new Error('Unexpected GitHub response')
 
   return raw
     .filter((r) => categorize(r) !== 'hide')

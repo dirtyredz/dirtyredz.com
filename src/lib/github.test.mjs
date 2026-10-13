@@ -1,7 +1,7 @@
 // Run with `npm test` (node's built-in runner; no dependency). Mocks fetch, so no network.
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { fetchLiveItems, MAX_PAGES } from '../src/lib/github.js'
+import { fetchLiveItems, MAX_PAGES } from './github.js'
 
 const repo = (id) => ({
   id,

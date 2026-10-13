@@ -12,7 +12,7 @@ commit dates. Entries before 2026-08 are inferred from the historical tree and m
 ## 2026-10-13 — `node:test` for logic in `lib/` (partly reverses "No test runner")
 
 **Decision.** `npm test` runs Node's built-in `node:test` runner over `scripts/*.test.mjs`. It has no
-dependency and no config. The first file, `scripts/github.test.mjs`, covers the pagination added to
+dependency and no config. The first file, `src/lib/github.test.mjs`, covers the pagination added to
 `fetchLiveItems()` (dk-a6af2fff) with a mocked `fetch`. Tests are for real logic in `src/lib/`,
 not for rendering. The "no linter" half of the 2026-08-19 entry stands.
 

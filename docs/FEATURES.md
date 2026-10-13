@@ -41,7 +41,7 @@ What the site actually does. Status is `live` unless noted.
 Not gaps — choices. See [`DECISIONS.md`](DECISIONS.md).
 
 - No backend, database, or auth
-- No test runner, linter, or typechecker
+- No linter or typechecker; `npm test` (node:test) covers `lib/github.js` pagination
 - No state management library
 - No CSS framework or CSS-in-JS
 - No social links beyond GitHub

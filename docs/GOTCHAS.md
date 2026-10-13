@@ -54,7 +54,7 @@ takes the same `.catch()` -> bundled-fallback path as any other failure.
 
 `fetchLiveItems` follows the `Link: rel="next"` header (`MAX_PAGES = 10`, i.e. 1000 repos). Each extra
 page costs one request against the 60/hour unauthenticated limit, so a 101st repo doubles the calls
-per visit. Fixed dk-a6af2fff; `npm test` covers it (`scripts/github.test.mjs`, node's built-in runner).
+per visit. Fixed dk-a6af2fff; `npm test` covers it (`src/lib/github.test.mjs`, node's built-in runner).
 
 ## `npm run build` is nearly the only check that exists
 

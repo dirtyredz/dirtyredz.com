@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "gen:fallback": "node scripts/generate-fallback.mjs",
-    "test": "node --test scripts/github.test.mjs"
+    "test": "node --test src/lib/*.test.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
