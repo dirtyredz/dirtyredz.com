@@ -5,7 +5,7 @@ Non-obvious traps. Everything here was verified against the source during the
 
 ## The cache is `sessionStorage`, not `localStorage`
 
-`src/lib/github.js:161,171`. It reads and writes `sessionStorage`, key `dr_gh_repos_v1`,
+`readCache`/`writeCache` in `src/lib/github.js`. They read and write `sessionStorage`, key `dr_gh_repos_v1`,
 TTL 30 minutes (`CACHE_TTL = 30 * 60 * 1000`).
 
 `STRUCTURE.md` said `localStorage` for two weeks and the error propagated into briefings

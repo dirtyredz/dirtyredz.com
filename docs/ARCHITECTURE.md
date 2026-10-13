@@ -49,6 +49,10 @@ site classified as a mod or a project, with no edit here.
 `{ loading, error, usingFallback, mods, projects }`. Pages never talk to `src/lib/github.js`
 directly.
 
+The same classifier also runs offline: `scripts/generate-fallback.mjs` (`npm run gen:fallback`)
+calls `fetchRepos({ useCache: false })` + `splitRepos` and rewrites the bundled snapshots
+`data/mods.js` / `data/projects.js`.
+
 ## External interfaces
 
 There is exactly one, and it is unauthenticated:
@@ -59,7 +63,7 @@ There is exactly one, and it is unauthenticated:
 | Auth | none — no token is shipped to the browser, by design |
 | Rate limit | 60 requests/hour **per originating IP**, shared by every visitor behind that IP |
 | Cache | `sessionStorage`, key `dr_gh_repos_v1`, TTL 30 minutes, **per browser tab** |
-| Timeout | none — see [`GOTCHAS.md`](GOTCHAS.md) |
+| Timeout | 8 s (`FETCH_TIMEOUT_MS`); an abort rejects and takes the fallback path |
 | On failure | throw → `useGithub` catches → bundled snapshots, `usingFallback: true` |
 
 Because the cache is `sessionStorage`, it dies with the tab. A visitor opening three tabs

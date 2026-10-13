@@ -192,7 +192,7 @@ Moved from the old BACKLOG.md "Watch list" on 2026-10-05. Each was examined by t
 
 | Item | Verdict | Trigger to revisit |
 |---|---|---|
-| Splitting `lib/github.js` into client + classifier | **Not yet.** The two jobs are ~35 and ~65 lines inside a 200-line file and share the same `REPO_OVERRIDES`/`blob()` helpers — splitting today yields two files that always change together. | The classifier (currently lines 79–114) grows materially. |
+| Splitting `lib/github.js` into client + classifier | **Not yet.** The two jobs are ~35 and ~65 lines inside a ~243-line file (typedef, timeout and `useCache` added ~40) and share the same `REPO_OVERRIDES`/`blob()` helpers — splitting today yields two files that always change together. | The classifier grows materially, or `fetchLiveItems()` (transport + timeout + classify) is extracted under a cached `fetchRepos()` wrapper. |
 | Renaming `src/lib/` to `src/github/` | **Leave it.** The topology lens flagged `lib/` as a generic bucket; Codex overruled — the folder has a precise responsibility in STRUCTURE.md's authoritative Layout, and a second client is not required to justify a conventional external-integration boundary. | A second external-service client appears. Then split by responsibility. |
 | Extracting the `usingFallback` / empty-state block | **Leave it.** Two four-line call sites in `Mods.jsx` and `Projects.jsx`. Both the abstraction lens and Codex explicitly declined to extract at this size. | A third list page adopts the pattern. |
 | Adding a test runner or linter | **Leave it.** A deliberate decision, not an oversight — see `DECISIONS.md`. | Real logic accumulates in `lib/github.js`; the heuristics are the one uncovered thing worth testing. |
