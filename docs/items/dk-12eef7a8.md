@@ -2,7 +2,7 @@
 id: dk-12eef7a8
 type: feature
 created: 2026-10-13
-status: todo
+status: done
 since: 2026-10-13
 area:
 priority: P2

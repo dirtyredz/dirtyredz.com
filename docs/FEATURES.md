@@ -8,7 +8,7 @@ What the site actually does. Status is `live` unless noted.
 |---|---|---|
 | `/` | `Home.jsx` | Hero, plus the first 3 mods and first 3 projects of the merged list |
 | `/mods` | `Mods.jsx` | All mods & servers, grouped by game |
-| `/projects` | `Projects.jsx` | All software projects, including private/name-only entries |
+| `/projects` | `Projects.jsx` | All software projects, including private entries (Private badge, blurb, year and stack) |
 | `/about` | `About.jsx` | Bio — Marine vet, self-taught dev, the story behind the name |
 | `*` | `NotFound.jsx` | 404 |
 

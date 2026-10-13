@@ -24,7 +24,7 @@
  * @typedef {object} CardItem
  * @property {string} id
  * @property {string} title
- * @property {string} [blurb]  Absent on private manual entries (name only).
+ * @property {string} [blurb]  Optional in the type; every producer sets one (private manual entries carry owner-written blurbs).
  * @property {string} tag  Kicker label. Mods: language/kind; projects: shown top-left.
  * @property {string} [year]
  * @property {Array<{label: string, href: string}>} links  May be empty (private entries).

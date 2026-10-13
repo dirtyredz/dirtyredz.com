@@ -9,6 +9,21 @@ commit dates. Entries before 2026-08 are inferred from the historical tree and m
 
 ---
 
+## 2026-10-13 — Private project cards carry descriptions
+
+**Decision.** Private entries in `src/data/manual.js` now each carry an owner-approved `blurb`,
+`year` and `stack` (via `priv(title, { blurb, year, stack })`). This supersedes the 2026-09-07
+ruling that private repos be shown by name only. Six private repos with nothing worth showing
+(dr_pet_needs, starbucks_take_home, GrytFit-app, DirtyBot, api.dirtyredz.com,
+Moonlight-Peaks-Agentic-Modding) were removed rather than described. Docket: dk-12eef7a8.
+
+**Why.** Owner request: name-only cards told a visitor nothing. The text is hand-written, so
+nothing private leaks beyond what the owner approved.
+
+**Rejected.** Pulling descriptions from the private repos at runtime (the client has no token).
+
+---
+
 ## 2026-10-13 — Vite 6 and `react-router` 7, in library mode
 
 **Decision.** The site moved from Vite 5.4 to 6.4.4 and from `react-router-dom` 6 to
