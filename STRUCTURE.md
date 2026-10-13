@@ -24,7 +24,7 @@ unreachable. Every page renders the same `Card` component off that one shape, de
 .                        # config + docs only (package.json, vite.config.js, .node-version, index.html, README, STRUCTURE.md, AGENTS.md, CLAUDE.md, docket.json)
 ├── scripts/             # manual maintenance tooling (Node, run via npm scripts)
 │   └── generate-fallback.mjs  # npm run gen:fallback — rewrites data/mods.js + projects.js
-├── docs/                # the living-doc set (ARCHITECTURE, DECISIONS, FEATURES, ROADMAP, GOTCHAS) + items/ (Docket work items)
+├── docs/                # the living-doc set (ARCHITECTURE, DECISIONS, FEATURES, ROADMAP, GOTCHAS, BACKLOG (pointer to items/)) + items/ (Docket work items)
 ├── public/              # served verbatim at / — fonts, img, favicon, manifest, _redirects
 └── src/
     ├── main.jsx         # Vite entry: mounts <App> in <BrowserRouter>, imports global.css
