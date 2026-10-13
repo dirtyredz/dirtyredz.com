@@ -9,6 +9,22 @@ commit dates. Entries before 2026-08 are inferred from the historical tree and m
 
 ---
 
+## 2026-10-13 — `node:test` for logic in `lib/` (partly reverses "No test runner")
+
+**Decision.** `npm test` runs Node's built-in `node:test` runner over `scripts/*.test.mjs`. It has no
+dependency and no config. The first file, `scripts/github.test.mjs`, covers the pagination added to
+`fetchLiveItems()` (dk-a6af2fff) with a mocked `fetch`. Tests are for real logic in `src/lib/`,
+not for rendering. The "no linter" half of the 2026-08-19 entry stands.
+
+**Why.** The 2026-08-19 entry named its own trigger: real logic accumulating in `lib/github.js`.
+Pagination is logic that can fail silently (a dropped repo, a runaway loop), and you can't see it in a
+render. A built-in runner gives the repo a sub-second fast gate at no maintenance cost.
+
+**Rejected.** Vitest/Jest: a dependency and config for four tests. Dropping the test: that
+would leave pagination unverified, with nothing to show if it broke.
+
+---
+
 ## 2026-10-13 — Private project cards carry descriptions
 
 **Decision.** Private entries in `src/data/manual.js` now each carry an owner-approved `blurb`,
@@ -228,7 +244,7 @@ Moved from the old backlog watch list on 2026-10-05. Each was examined by the 20
 | Splitting `lib/github.js` into client + classifier | **Not yet.** The two jobs are ~35 and ~65 lines inside a ~243-line file (typedef and timeout added ~40; the `fetchLiveItems()` extraction is since done, dk-9e99a9a0) and share the same `REPO_OVERRIDES`/`blob()` helpers — splitting today yields two files that always change together. | The classifier grows materially. (The `fetchLiveItems()` extraction under a thin cached `fetchRepos()` wrapper is done; the `useCache` flag is gone.) |
 | Renaming `src/lib/` to `src/github/` | **Leave it.** The topology lens flagged `lib/` as a generic bucket; Codex overruled — the folder has a precise responsibility in STRUCTURE.md's authoritative Layout, and a second client is not required to justify a conventional external-integration boundary. | A second external-service client appears. Then split by responsibility. |
 | Extracting the `usingFallback` / empty-state block | **Leave it.** Two four-line call sites in `Mods.jsx` and `Projects.jsx`. Both the abstraction lens and Codex explicitly declined to extract at this size. | A third list page adopts the pattern. |
-| Adding a test runner or linter | **Leave it.** A deliberate decision, not an oversight — see `DECISIONS.md`. | Real logic accumulates in `lib/github.js`; the heuristics are the one uncovered thing worth testing. |
+| Adding a linter | **Leave it.** A deliberate decision, not an oversight — see the 2026-08-19 entry. (The test half was revisited 2026-10-13: `node:test` now covers `lib/` logic.) | Lint-class bugs start escaping review. Extend `npm test` to the classification heuristics when they next change. |
 | `src/data/` mixing hand-authored content with offline snapshots | **Leave it (re-confirmed after the generator landed, 7a4e059).** `mods.js` / `projects.js` are now generated artefacts with a GENERATED header; `site.js` / `manual.js` stay hand-edited; one folder, headers mark which is which (see `STRUCTURE.md`). | More generated files appear — then split into `src/data/generated/`. |
 | `categorize()` running twice per repo | **Leave it.** Harmless at this scale. | Expensive logic is added to the classifier. |
 
