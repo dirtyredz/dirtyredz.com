@@ -23,6 +23,10 @@ const statusLabel = {
   archived: 'Archived',
 }
 
+/**
+ * Item shape is declared once, as `CardItem` in src/lib/github.js.
+ * @param {{ item: import('../lib/github.js').CardItem, kind: 'mod'|'project' }} props
+ */
 export default function Card({ item, kind }) {
   const { title, blurb, links = [], year, image, private: isPrivate } = item
   // mods have game/tag/status; projects have tag/stack

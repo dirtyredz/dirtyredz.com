@@ -15,6 +15,31 @@
 //   2. Or add an entry to REPO_OVERRIDES below (its `category` field: 'mod' | 'project' | 'hide').
 // ============================================================
 
+/**
+ * The card item shape: the one contract between every producer and `<Card>`.
+ * Producers: `toItem()` below, `src/data/mods.js`, `src/data/projects.js`, `src/data/manual.js`.
+ * Consumer: `src/components/Card.jsx`. Renaming a field here means updating all of them
+ * (no TypeScript, no runtime validator; this typedef is documentation only).
+ *
+ * @typedef {object} CardItem
+ * @property {string} id
+ * @property {string} title
+ * @property {string} [blurb]  Absent on private manual entries (name only).
+ * @property {string} tag  Kicker label. Mods: language/kind; projects: shown top-left.
+ * @property {string} [year]
+ * @property {Array<{label: string, href: string}>} links  May be empty (private entries).
+ * @property {'mod'|'project'} [category]  Present on `toItem()` and `manual.js` output (they are
+ *   filtered on it in `splitRepos`/`mergeManual`); ABSENT from `mods.js`/`projects.js`, which
+ *   are pre-partitioned into separate exports.
+ * @property {string} [game]  Mods only.
+ * @property {'live'|'wip'|'archived'} [status]  Mods only.
+ * @property {string[]} [stack]  Projects only; chip labels.
+ * @property {string|null} [image]  Optional screenshot path, e.g. "/img/x.png".
+ * @property {boolean} [private]  Shows a "Private" badge; no repo link.
+ * @property {number} [stars]  GitHub items only.
+ * @property {string} [pushed]  GitHub items only; ISO timestamp of last push.
+ */
+
 export const GITHUB_USER = 'dirtyredz'
 
 const API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
@@ -114,6 +139,7 @@ function categorize(r) {
   return 'project'
 }
 
+/** @param {object} r GitHub API repo object @returns {CardItem} */
 function toItem(r) {
   const ov = REPO_OVERRIDES[r.name] || {}
   const category = categorize(r) // 'mod' | 'project' (hide already filtered)

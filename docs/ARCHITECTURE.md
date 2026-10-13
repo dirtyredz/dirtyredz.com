@@ -90,8 +90,10 @@ a one-line change. This is deliberate and worth preserving.
 ## The card contract
 
 Every page renders the same `<Card>` off one item shape. Four independent producers emit
-it — `toItem()` in `lib/github.js`, and the three files in `src/data/`. The shape is not
-declared anywhere, and there is no TypeScript and no test to catch a mismatch.
+it — `toItem()` in `lib/github.js`, and the three files in `src/data/`. The shape is
+declared once, as the JSDoc `@typedef CardItem` at the top of `src/lib/github.js` (the data
+boundary); all four producers and `Card.jsx` reference it. Documentation only: there is no
+TypeScript and no runtime validator.
 
 Common: `id, title, blurb, links[], year, tag`.
 Mods add `game`, `status`. Projects add `stack[]`. GitHub items add `stars`, `pushed`.
@@ -99,7 +101,7 @@ Mods add `game`, `status`. Projects add `stack[]`. GitHub items add `stars`, `pu
 **Known asymmetry:** `category` is required on `toItem()` output and on `manual.js` entries
 (both are filtered on it, in `splitRepos` and `mergeManual`), but is absent from
 `mods.js`/`projects.js`, which rely on being pre-partitioned into separate exports instead.
-Tracked as B2 in [`BACKLOG.md`](BACKLOG.md).
+The typedef marks `category` optional and records this split.
 
 ## Routing and delivery
 

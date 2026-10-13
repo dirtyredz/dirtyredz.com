@@ -15,7 +15,8 @@ than being hand-maintained. `src/lib/github.js` fetches public repos, classifies
 a *mod* or a *project* by language/keyword/topic heuristics, and caches to
 `sessionStorage`. `src/hooks/useGithub.js` merges in hand-written entries (private/off-GitHub
 work) and falls back to the curated static lists in `src/data/` when the API is
-unreachable. Every page renders the same `Card` component off that one shape.
+unreachable. Every page renders the same `Card` component off that one shape, declared as the JSDoc
+`@typedef CardItem` at the top of `src/lib/github.js`.
 
 ## Layout
 
@@ -91,8 +92,8 @@ checked against the real tree in both directions and matches.
 [`docs/BACKLOG.md`](docs/BACKLOG.md) — P0 is empty and that is the correct state. In summary:
 
 - **P1 ×3** — the `data/mods.js` / `projects.js` snapshots are undocumented stale-tolerant
-  fallbacks (B1); the card item shape is re-asserted by four producers with no TypeScript
-  or test to catch drift (B2); `fetchRepos` has no request timeout, so a *hanging* GitHub
+  fallbacks (B1); the card item shape was re-asserted by four producers (now documented once as `CardItem`, still no TypeScript
+  or test to catch drift; B2); `fetchRepos` has no request timeout, so a *hanging* GitHub
   request never reaches the fallback the way a *failing* one does (B3).
 - **P2 ×5** — `sessionStorage` cache scope (B4), the 100-repo fetch ceiling (B5), GitHub
   identity split across sources (B6), and two earned-but-deferred extractions: `CardGrid`

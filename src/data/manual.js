@@ -30,6 +30,7 @@ const priv = (title) => ({
   links: [],
 })
 
+/** @type {import('../lib/github.js').CardItem[]} (`category` required here: mergeManual filters on it) */
 export const manualEntries = [
   {
     id: 'manual-vex',

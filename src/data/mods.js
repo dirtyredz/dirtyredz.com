@@ -15,6 +15,7 @@
 //  in /public/img and are referenced as "/img/yourfile.png".
 // ============================================================
 
+/** @type {import('../lib/github.js').CardItem[]} (no `category`: pre-partitioned) */
 export const mods = [
   {
     id: 'dirty-server-manager',

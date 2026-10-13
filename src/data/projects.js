@@ -16,6 +16,7 @@
 //  list it in src/data/manual.js for private / off-GitHub work.
 // ============================================================
 
+/** @type {import('../lib/github.js').CardItem[]} (no `category`: pre-partitioned) */
 export const projects = [
   {
     id: 'react-scroll-up-button',
