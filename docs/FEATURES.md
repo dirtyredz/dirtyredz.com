@@ -28,7 +28,7 @@ What the site actually does. Status is `live` unless noted.
 | **Per-repo overrides** | `REPO_OVERRIDES` | Force a category, game, title, blurb, or mod-page link when the heuristics get it wrong. |
 | **Mod-host deep links** | `modPage` override | Links a mod to where players actually get it — Nexus, Factorio Mod Portal, Boxelware/Avorion forum. Leads the link list. |
 | **Manual & private entries** | `data/manual.js` | Work that is not a public repo. Merges ahead of fetched repos; wins on title collision. |
-| **Offline fallback** | `data/mods.js`, `projects.js` | Bundled snapshots served when the API fails, with a `usingFallback` notice. See B1 in [`BACKLOG.md`](BACKLOG.md). |
+| **Offline fallback** | `data/mods.js`, `projects.js` | Generated (`npm run gen:fallback`) bundled snapshots served when the API fails, with a `usingFallback` notice. See B1 in [`BACKLOG.md`](BACKLOG.md). |
 | **Response caching** | `sessionStorage` | 30-min TTL, per tab. See [`GOTCHAS.md`](GOTCHAS.md). |
 | **Loading skeletons** | `CardSkeleton` | Mirrors `Card`'s DOM so layout does not shift on load. |
 | **Scroll-reveal animation** | `useReveal.js` | IntersectionObserver; progressive enhancement. |

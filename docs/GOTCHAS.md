@@ -32,12 +32,14 @@ token. See [`DECISIONS.md`](DECISIONS.md).
 ## "Fallback" means bundled snapshots, not the last good fetch
 
 On any error `useGithub` catches and serves `src/data/mods.js` + `src/data/projects.js` —
-the **hand-written files committed to the repo**, not whatever the cache last held. An
+the **generated files committed to the repo** (`npm run gen:fallback`), not whatever the cache last held. An
 expired cache entry is discarded, never served stale.
 
 So the failure mode is: *the site silently reverts to whatever those two files said the
-last time someone remembered to edit them.* Nothing regenerates them; nothing warns when
-they drift. They are stale-tolerant snapshots and should be read as such.
+last time someone remembered to regenerate them.* Run `npm run gen:fallback` (needs GitHub
+reachable and not rate-limited) and commit the result; nothing runs it automatically and
+nothing warns when they drift. Never hand-edit them — the next run overwrites it. Volatile
+fields (`stars`, `pushed`) change between runs, so expect small diffs.
 
 The UI does surface it — `usingFallback: true` renders a notice — but the content still
 looks plausible, which is exactly what makes it easy to miss.

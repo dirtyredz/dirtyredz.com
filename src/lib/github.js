@@ -201,8 +201,13 @@ function writeCache(data) {
   }
 }
 
-export async function fetchRepos() {
-  const cached = readCache()
+/**
+ * @param {{ useCache?: boolean }} [opts] `useCache: false` skips the browser-only sessionStorage
+ *   cache; scripts/generate-fallback.mjs passes it so Node always classifies a live fetch.
+ * @returns {Promise<CardItem[]>}
+ */
+export async function fetchRepos({ useCache = true } = {}) {
+  const cached = useCache ? readCache() : null
   if (cached) return cached
 
   // The timer covers headers AND body: abort() rejects a pending fetch() or res.json().
@@ -226,7 +231,7 @@ export async function fetchRepos() {
     .map(toItem)
     .sort((a, b) => new Date(b.pushed) - new Date(a.pushed))
 
-  writeCache(items)
+  if (useCache) writeCache(items)
   return items
 }
 
