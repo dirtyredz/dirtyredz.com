@@ -55,7 +55,7 @@ tokens (colors, fonts, spacing) are all CSS variables at the top of
 | [`docs/DECISIONS.md`](docs/DECISIONS.md) | why it is built this way |
 | [`docs/FEATURES.md`](docs/FEATURES.md) | what it does |
 | [`docs/GOTCHAS.md`](docs/GOTCHAS.md) | what bites |
-| [`docs/BACKLOG.md`](docs/BACKLOG.md) | what is next |
+| [`docs/items/`](docs/items/) | what is next (Docket: `dk list`) |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | the plan (there isn't one, deliberately) |
 
 ## Deploy

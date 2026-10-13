@@ -17,7 +17,7 @@ with the tab**:
 - Three open tabs = three requests against a 60/hour budget.
 
 If you ever want genuine repeat-visit caching, that is a `localStorage` change, not a TTL
-change. Tracked as B4 in [`BACKLOG.md`](BACKLOG.md).
+change. Tracked as dk-517a7ebf.
 
 ## The GitHub API is unauthenticated and rate-limited per IP
 
@@ -54,7 +54,7 @@ takes the same `.catch()` -> bundled-fallback path as any other failure.
 
 `per_page=100&sort=updated`, no pagination. Under 100 public repos this is invisible.
 At 101, the least-recently-updated repo silently disappears from the site with no error
-and no warning — and it will be an *old* repo, so nobody notices. Tracked as B5.
+and no warning — and it will be an *old* repo, so nobody notices. Tracked as dk-a6af2fff.
 
 ## `npm run build` is the only check that exists
 

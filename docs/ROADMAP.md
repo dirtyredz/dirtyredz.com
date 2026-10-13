@@ -13,7 +13,7 @@ when a repo is pushed. It does not need to grow.
 
 | Question | Where the answer lives |
 |---|---|
-| What should I fix next? | [`BACKLOG.md`](BACKLOG.md) — prioritised, P0 empty, nothing urgent |
+| What should I fix next? | `dk list` (Docket items in `docs/items/`) — prioritised, P0 empty, nothing urgent |
 | What will bite me? | [`GOTCHAS.md`](GOTCHAS.md) |
 | Why is it built this way? | [`DECISIONS.md`](DECISIONS.md) |
 | What does it do? | [`FEATURES.md`](FEATURES.md) |
@@ -28,13 +28,13 @@ schedule.
 ## Triggers worth watching
 
 Not planned work — conditions that would *create* work if they occur. Each is recorded with
-its response in [`BACKLOG.md`](BACKLOG.md)'s watch list.
+its response in the watch list in [`DECISIONS.md`](DECISIONS.md).
 
-- Public repo count approaches **100** → pagination becomes necessary (B5)
+- Public repo count approaches **100** → pagination becomes necessary (dk-a6af2fff)
 - A **second external-service client** appears → `src/lib/` splits by responsibility
 - A **third list page** is added → the shared-grid and empty-state extractions earn themselves
 - The **classifier grows materially** → split `lib/github.js`, and reconsider having no tests
-- The **offline snapshots drift far enough to embarrass** → build the regeneration script (B1)
+- The **offline snapshots drift far enough to embarrass** → build the regeneration script (done: dk-77bae980, `npm run gen:fallback`)
 
 ---
 
