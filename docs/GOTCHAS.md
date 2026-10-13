@@ -50,15 +50,15 @@ looks plausible, which is exactly what makes it easy to miss.
 `FETCH_TIMEOUT_MS` (8 s, `src/lib/github.js`). The abort rejects, so a hung connection
 takes the same `.catch()` -> bundled-fallback path as any other failure.
 
-## Only the 100 most recently-updated repos are fetched
+## Repo fetch is paginated, capped at 10 pages
 
-`per_page=100&sort=updated`, no pagination. Under 100 public repos this is invisible.
-At 101, the least-recently-updated repo silently disappears from the site with no error
-and no warning — and it will be an *old* repo, so nobody notices. Tracked as dk-a6af2fff.
+`fetchLiveItems` follows the `Link: rel="next"` header (`MAX_PAGES = 10`, i.e. 1000 repos). Each extra
+page costs one request against the 60/hour unauthenticated limit, so a 101st repo doubles the calls
+per visit. Fixed dk-a6af2fff; `npm test` covers it (`scripts/github.test.mjs`, node's built-in runner).
 
-## `npm run build` is the only check that exists
+## `npm run build` is nearly the only check that exists
 
-No test runner, no linter, no typechecker, no CI. This is deliberate for a static personal
+No test framework (one node:test file covers github.js pagination), no linter, no typechecker, no CI. This is deliberate for a static personal
 site (see [`DECISIONS.md`](DECISIONS.md)), but it means:
 
 - A typo in a `src/data/` entry surfaces as a broken card in production, not a failed build.

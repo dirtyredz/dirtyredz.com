@@ -43,6 +43,7 @@
 export const GITHUB_USER = 'dirtyredz'
 
 const API = `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`
+export const MAX_PAGES = 10 // hard cap on pagination (1000 repos); a runaway Link chain can't loop forever
 const CACHE_KEY = 'dr_gh_repos_v1'
 const CACHE_TTL = 30 * 60 * 1000 // 30 min
 export const FETCH_TIMEOUT_MS = 8000 // a hung request aborts -> rejects -> existing fallback path
@@ -201,23 +202,39 @@ function writeCache(data) {
   }
 }
 
+/** The `rel="next"` URL from a GitHub `Link` header, or null when this is the last page. */
+function nextPageUrl(res) {
+  const m = /<([^>]+)>\s*;\s*rel="next"/.exec(res.headers?.get?.('link') || '')
+  return m ? m[1] : null
+}
+
+/** Follow `Link: rel="next"` (at most MAX_PAGES) and concatenate the pages. One page = one request. */
+async function fetchAllPages(signal) {
+  let url = API
+  let all = []
+  for (let page = 0; url && page < MAX_PAGES; page++) {
+    const res = await fetch(url, { headers: { Accept: 'application/vnd.github+json' }, signal })
+    if (!res.ok) throw new Error(`GitHub API ${res.status}`)
+    const body = await res.json()
+    if (!Array.isArray(body)) return body // surfaces as 'Unexpected GitHub response' below
+    all = all.concat(body)
+    url = nextPageUrl(res)
+  }
+  return all
+}
+
 /**
  * Pure live fetch: transport (with the 8 s timeout), classification and sort. No cache and no
  * browser APIs, so Node (scripts/generate-fallback.mjs) and the browser share it.
  * @returns {Promise<CardItem[]>}
  */
 export async function fetchLiveItems() {
-  // The timer covers headers AND body: abort() rejects a pending fetch() or res.json().
+  // The timer covers every page's headers AND body: abort() rejects a pending fetch() or res.json().
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS)
   let raw
   try {
-    const res = await fetch(API, {
-      headers: { Accept: 'application/vnd.github+json' },
-      signal: ctrl.signal,
-    })
-    if (!res.ok) throw new Error(`GitHub API ${res.status}`)
-    raw = await res.json()
+    raw = await fetchAllPages(ctrl.signal)
   } finally {
     clearTimeout(timer)
   }
