@@ -2,7 +2,7 @@
 id: dk-3f243eba
 type: task
 created: 2026-10-13
-status: todo
+status: wip
 since: 2026-10-13
 area:
 priority: P2

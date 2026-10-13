@@ -23,7 +23,7 @@ export default function Projects() {
         <div className="grid">
           {loading
             ? Array.from({ length: 6 }).map((_, i) => <CardSkeleton key={i} />)
-            : projects.map((p) => <Card key={p.id} item={p} kind="project" />)}
+            : projects.map((p) => <Card key={p.id} item={p} />)}
         </div>
         {!loading && projects.length === 0 && (
           <p className="feed-note">No projects found right now.</p>

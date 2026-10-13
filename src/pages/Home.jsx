@@ -95,7 +95,7 @@ export default function Home() {
         <div className="grid">
           {loading
             ? Array.from({ length: 3 }).map((_, i) => <CardSkeleton key={i} />)
-            : featuredMods.map((m) => <Card key={m.id} item={m} kind="mod" />)}
+            : featuredMods.map((m) => <Card key={m.id} item={m} />)}
         </div>
       </section>
 
@@ -113,7 +113,7 @@ export default function Home() {
         <div className="grid">
           {loading
             ? Array.from({ length: 3 }).map((_, i) => <CardSkeleton key={i} />)
-            : featuredProjects.map((p) => <Card key={p.id} item={p} kind="project" />)}
+            : featuredProjects.map((p) => <Card key={p.id} item={p} />)}
         </div>
       </section>
 

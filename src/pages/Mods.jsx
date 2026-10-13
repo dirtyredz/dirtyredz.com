@@ -63,7 +63,7 @@ export default function Mods() {
               </div>
               <div className="grid">
                 {items.map((m) => (
-                  <Card key={m.id} item={m} kind="mod" />
+                  <Card key={m.id} item={m} />
                 ))}
               </div>
             </section>

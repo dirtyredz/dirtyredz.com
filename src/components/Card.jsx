@@ -25,13 +25,14 @@ const statusLabel = {
 
 /**
  * Item shape is declared once, as `CardItem` in src/lib/github.js.
- * @param {{ item: import('../lib/github.js').CardItem, kind: 'mod'|'project' }} props
+ * @param {{ item: import('../lib/github.js').CardItem }} props
  */
-export default function Card({ item, kind }) {
+export default function Card({ item }) {
   const { title, blurb, links = [], year, image, private: isPrivate } = item
+  const isMod = item.category === 'mod'
   // mods have game/tag/status; projects have tag/stack
-  const topLeft = kind === 'mod' ? item.game : item.tag
-  const chips = kind === 'mod' ? [item.tag] : item.stack || []
+  const topLeft = isMod ? item.game : item.tag
+  const chips = isMod ? [item.tag] : item.stack || []
   // Never surface a repo link for private items — only non-GitHub links (e.g. a demo)
   const shownLinks = isPrivate
     ? links.filter((l) => !/github\.com/i.test(l.href || ''))
