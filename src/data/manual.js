@@ -33,7 +33,7 @@ const priv = (title, { blurb, year, stack }) => ({
   links: [],
 })
 
-/** @type {import('../lib/github.js').CardItem[]} (`category` required here: mergeManual filters on it) */
+/** @type {import('../lib/github.js').CardItem[]} (`category` required here: splitRepos splits on it) */
 export const manualEntries = [
   // VelvetEmberX is the repo behind VEX, so it is not repeated here.
   priv('VEX', {

@@ -8,8 +8,7 @@ import { projects as fallbackProjects } from '../data/projects.js'
 // auto-pulled repos. Manual entries come first and override any public
 // repo that shares the same title.
 function mergeManual(mods, projects) {
-  const manualMods = manualEntries.filter((e) => e.category === 'mod')
-  const manualProjects = manualEntries.filter((e) => e.category === 'project')
+  const { mods: manualMods, projects: manualProjects } = splitRepos(manualEntries)
   const claimed = new Set(manualEntries.map((e) => e.title.toLowerCase()))
   return {
     mods: [...manualMods, ...mods.filter((m) => !claimed.has(m.title.toLowerCase()))],

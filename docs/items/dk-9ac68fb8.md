@@ -2,7 +2,7 @@
 id: dk-9ac68fb8
 type: task
 created: 2026-10-13
-status: todo
+status: done
 since: 2026-10-13
 area:
 priority: P3

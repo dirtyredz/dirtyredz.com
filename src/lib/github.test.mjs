@@ -1,7 +1,7 @@
 // Run with `npm test` (node's built-in runner; no dependency). Mocks fetch, so no network.
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { fetchLiveItems, MAX_PAGES } from './github.js'
+import { fetchLiveItems, splitRepos, MAX_PAGES } from './github.js'
 
 const repo = (id) => ({
   id,
@@ -74,4 +74,11 @@ test('fetchRepos reads localStorage within the TTL and ignores it past the TTL',
   delete globalThis.localStorage // blocked/absent storage fails silently
   await fetchRepos()
   assert.equal(calls, 3)
+})
+
+test("splitRepos partitions items by category", () => {
+  const b = { title: "b", category: "project" }
+  const { mods, projects } = splitRepos([{ title: "a", category: "mod" }, b, { title: "c", category: "mod" }])
+  assert.deepEqual(mods.map((m) => m.title), ["a", "c"])
+  assert.deepEqual(projects, [b])
 })

@@ -30,7 +30,7 @@
  * @property {Array<{label: string, href: string}>} links  May be empty (private entries).
  * @property {'mod'|'project'} category  Set by every producer: `toItem()` (and so the generated
  *   `mods.js`/`projects.js` fallbacks, built from its real output) and `manual.js` entries.
- *   `splitRepos`/`mergeManual` filter on it.
+ *   Only `splitRepos` splits on it.
  * @property {string} [game]  Mods only.
  * @property {'live'|'wip'|'archived'} [status]  Mods only.
  * @property {string[]} [stack]  Projects only; chip labels.

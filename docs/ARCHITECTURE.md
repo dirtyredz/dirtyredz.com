@@ -106,7 +106,7 @@ Mods add `game`, `status`. Projects add `stack[]`. GitHub items add `stars`, `pu
 
 **`category`** is required on every `CardItem`: `toItem()` sets it, `manual.js` entries carry it,
 and `mods.js`/`projects.js` are generated from real `toItem()` output (`npm run gen:fallback`),
-so they include it too. `splitRepos` and `mergeManual` filter on it.
+so they include it too. Only `splitRepos` filters on it (`mergeManual` calls it).
 
 ## Routing and delivery
 
