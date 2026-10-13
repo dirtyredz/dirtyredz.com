@@ -9,6 +9,25 @@ commit dates. Entries before 2026-08 are inferred from the historical tree and m
 
 ---
 
+## 2026-10-13 — Vite 6 and `react-router` 7, in library mode
+
+**Decision.** The site moved from Vite 5.4 to 6.4.4 and from `react-router-dom` 6 to
+`react-router` 7.18.4. The router stays in declarative library mode (`BrowserRouter` in
+`main.jsx`, `<Routes>` in `App.jsx`, `Link`/`NavLink` elsewhere) and is imported directly
+from `react-router`. `react-router-dom` is now a retired import path. Docket: dk-406039fa.
+
+**Why.** Both upgrades were security-driven: Dependabot alerts on vite, esbuild and
+source-map-js (two of them high) and on react-router, whose fixes exist only on the new
+majors. For this SPA each upgrade was mechanical: no config change for Vite, and an
+import-path swap for the router. Both were verified by build and a browser click-through.
+
+**Rejected.** Router v7 framework mode (file routes, loaders, SSR), since the site has no
+data loading or server to use them. Keeping `react-router-dom@7` as a re-export shim, since it
+is a second name for the same package. A router wrapper module, since six direct
+importers is fine for a six-page site.
+
+---
+
 ## 2026-09-07 — One `REPO_OVERRIDES` map, not parallel maps per axis
 
 **Decision.** Per-repo hand overrides live in a single map keyed by repo name:
