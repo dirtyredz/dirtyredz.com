@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useReveal } from '../hooks/useReveal.js'
 import { useGithub } from '../hooks/useGithub.js'
 import Card, { CardSkeleton } from '../components/Card.jsx'

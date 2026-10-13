@@ -3,7 +3,7 @@
 ## Overview
 
 Personal portfolio site for David "Dirtyredz" McClain — game mods & servers, software
-projects, and an about page. **Vite 5 + React 18 + react-router-dom 6**, plain CSS (no
+projects, and an about page. **Vite 6 + React 18 + react-router 7**, plain CSS (no
 CSS framework, no state library, no test runner). Static SPA deployed on **Cloudflare
 Pages** (project `dirtyredz-com`, production branch `master`: `npm run build` → publish
 `dist/`, Node pinned via `.node-version`; `public/_redirects` provides the `/*` →
@@ -68,9 +68,9 @@ verbatim and holds assets only, never code.
 
 | Component | Responsibility | Key files | Depends on |
 |---|---|---|---|
-| Entry / shell | Mount React, declare routes, scroll-reset, frame every page | `src/main.jsx`, `src/App.jsx` | react-router-dom, `components/`, `pages/`, `styles/global.css` |
+| Entry / shell | Mount React, declare routes, scroll-reset, frame every page | `src/main.jsx`, `src/App.jsx` | react-router, `components/`, `pages/`, `styles/global.css` |
 | Pages | One per route; compose cards + copy, own their page CSS | `src/pages/*.jsx` | `hooks/`, `components/Card.jsx`, `data/site.js` |
-| Shared UI | Nav (scroll state, mobile menu), Footer, Card + CardSkeleton | `src/components/*.jsx` | react-router-dom, `data/site.js` |
+| Shared UI | Nav (scroll state, mobile menu), Footer, Card + CardSkeleton | `src/components/*.jsx` | react-router, `data/site.js` |
 | Data access | Fetch/classify GitHub repos; merge manual entries; fall back offline | `src/lib/github.js`, `src/hooks/useGithub.js` | `data/manual.js`, `data/mods.js`, `data/projects.js`, `sessionStorage` |
 | Presentation behaviour | Scroll-into-view reveal animation | `src/hooks/useReveal.js` | IntersectionObserver |
 | Content | Everything editable without touching a component (`mods.js`/`projects.js` excepted: generated) | `src/data/*.js` | — |

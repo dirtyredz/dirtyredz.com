@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { site, github } from '../data/site.js'
 import './Footer.css'
 

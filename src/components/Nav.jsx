@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router'
 import { github } from '../data/site.js'
 import './Nav.css'
 
