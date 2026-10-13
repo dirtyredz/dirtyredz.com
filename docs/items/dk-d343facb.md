@@ -16,12 +16,12 @@ relates: []
 
 From docs/BACKLOG.md (P1 — real debt, worth a task), originally B3.
 
-`fetch(API, { headers })` uses no `AbortController`. A *failing* request degrades gracefully
-to the bundled fallback; a *hanging* one never rejects, so `.catch()` never runs and the
-page sits on skeleton cards indefinitely. The failure mode the fallback exists to handle is
-the one it cannot catch.
+Done. `fetchRepos` now aborts after 8 s via an `AbortController` (`FETCH_TIMEOUT_MS`, commit
+71065b6), so a hang becomes a rejection and takes the existing fallback path.
 
-**Direction.** Wrap the fetch in an `AbortController` with a short timeout (5–10s) so a hang
-becomes a rejection and takes the existing fallback path.
+`fetch(API, { headers })` previously used no `AbortController`. A *failing* request degraded
+gracefully to the bundled fallback; a *hanging* one never rejected, so `.catch()` never ran
+and the page sat on skeleton cards indefinitely. The failure mode the fallback exists to
+handle was the one it could not catch.
 
 *Raised by: Codex sign-off.*
