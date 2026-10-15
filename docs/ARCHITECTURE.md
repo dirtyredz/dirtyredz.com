@@ -57,7 +57,7 @@ calls the pure, cache-free `fetchLiveItems()` + `splitRepos` and rewrites the bu
 
 ## External interfaces
 
-There is exactly one, and it is unauthenticated:
+At runtime the browser has exactly one, and it is unauthenticated:
 
 |            |                                                                                                                                                                           |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -70,6 +70,13 @@ There is exactly one, and it is unauthenticated:
 
 The cache is `localStorage`, so it survives tabs and returning visits within the TTL; three tabs
 make one API call. Blocked storage (private mode, quota) fails silently and just refetches.
+
+**Delivery (build time, authenticated).** The `deploy` job in `.github/workflows/ci.yml` runs
+after `check` passes on a push to `master` and uploads `dist/` to Cloudflare Pages project
+`dirtyredz-com` via `cloudflare/wrangler-action` (`pages deploy`). It authenticates with GitHub
+secrets `CLOUDFLARE_API_TOKEN` (Pages: Edit) and `CLOUDFLARE_ACCOUNT_ID`; no credential reaches
+the browser bundle. Until Pages auto-deploy is switched off, Cloudflare's Git integration also
+deploys `master` (see `GOTCHAS.md`).
 
 ## Classification
 
