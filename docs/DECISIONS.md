@@ -32,7 +32,7 @@ watch is configured.
 **Decision.** `npm test` runs Node's built-in `node:test` runner over `src/lib/*.test.mjs`. It has no
 dependency and no config. The first file, `src/lib/github.test.mjs`, covers the pagination added to
 `fetchLiveItems()` (dk-a6af2fff) with a mocked `fetch`. Tests are for real logic in `src/lib/`,
-not for rendering. The "no linter" half of the 2026-08-19 entry stands.
+not for rendering. The "no linter" half of the 2026-08-19 entry stood until the 2026-10-15 ESLint/Prettier/CI entry superseded it.
 
 **Why.** The 2026-08-19 entry named its own trigger: real logic accumulating in `lib/github.js`.
 Pagination is logic that can fail silently (a dropped repo, a runaway loop), and you can't see it in a
