@@ -39,7 +39,7 @@ Prettier (no semicolons, single quotes, width 100, matching existing code) and `
 **Why.** Cheap guards against style drift and broken builds on a repo with few other checks.
 Supersedes the "no linter" half of the 2026-08-19 entry.
 
-**Known limitation.** CI only reports. Cloudflare Pages still deploys every push to `master` via its
+**Known limitation (resolved by the CI-gated deploy entry above).** CI only reported at first. Cloudflare Pages still deploys every push to `master` via its
 Git integration, so a red CI run does not block a deploy unless branch protection or a CF build
 watch is configured.
 
