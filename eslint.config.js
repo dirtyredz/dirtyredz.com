@@ -22,6 +22,8 @@ export default [
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
+      // Plain JS, no prop-types dependency; the <Card> item shape is documented in STRUCTURE.md.
+      'react/prop-types': 'off',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
   },
