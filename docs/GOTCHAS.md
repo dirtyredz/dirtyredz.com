@@ -48,16 +48,19 @@ takes the same `.catch()` -> bundled-fallback path as any other failure.
 page costs one request against the 60/hour unauthenticated limit, so a 101st repo doubles the calls
 per visit. Fixed dk-a6af2fff; `npm test` covers it (`src/lib/github.test.mjs`, node's built-in runner).
 
-## `npm run build` is nearly the only check that exists
+## Checks are thin, and CI does not gate the deploy
 
-No test framework (one node:test file covers github.js pagination), no linter, no typechecker, no CI. This is deliberate for a static personal
+One node:test file covers github.js pagination; ESLint, Prettier and a GitHub Actions workflow
+(`.github/workflows/ci.yml`) check style and build. There is no typechecker, and CI only reports:
+Cloudflare Pages still deploys every push to `master` regardless of CI status unless branch
+protection or a CF build watch is set up. This is deliberate for a static personal
 site (see [`DECISIONS.md`](DECISIONS.md)), but it means:
 
 - A typo in a `src/data/` entry surfaces as a broken card in production, not a failed build.
 - Renaming a field on `<Card>` silently breaks the other three producers of that shape.
 - "It builds" is a much weaker signal here than on a typical repo.
 
-Do not add a test runner or linter casually — the absence is a choice, and reversing it is
+Do not add a typechecker or heavier test framework casually — the absence is a choice, and reversing it is
 a [`DECISIONS.md`](DECISIONS.md) entry, not a drive-by.
 
 ## Deleting `public/_redirects` breaks every URL except `/`

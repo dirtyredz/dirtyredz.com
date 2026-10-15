@@ -10,6 +10,15 @@ npm install
 npm run dev      # http://localhost:5173
 ```
 
+Checks (also run by GitHub Actions CI on push/PR to `master`):
+
+```bash
+npm run lint          # ESLint 9 (flat config)
+npm run format        # Prettier, write
+npm run format:check  # Prettier, check only
+npm test              # node:test for src/lib
+```
+
 ## Build
 
 ```bash

@@ -9,6 +9,24 @@ commit dates. Entries before 2026-08 are inferred from the historical tree and m
 
 ---
 
+## 2026-10-15 — ESLint, Prettier and GitHub Actions CI
+
+**Decision.** ESLint 9 flat config (react, react-hooks, react-refresh, eslint-config-prettier last),
+Prettier (no semicolons, single quotes, width 100, matching existing code) and `.editorconfig`.
+`.github/workflows/ci.yml` runs `npm ci`, `format:check`, `lint`, `test`, `build` on push and PR to
+`master`. `react/prop-types` is off (plain JS, no prop-types). `public/` is Prettier-ignored.
+
+**Why.** Cheap guards against style drift and broken builds on a repo with few other checks.
+Supersedes the "no linter" half of the 2026-08-19 entry.
+
+**Known limitation.** CI only reports. Cloudflare Pages still deploys every push to `master` via its
+Git integration, so a red CI run does not block a deploy unless branch protection or a CF build
+watch is configured.
+
+**Rejected.** A typechecker (no TS in the repo); a CI deploy step (CF Pages already deploys).
+
+---
+
 ## 2026-10-13 — `node:test` for logic in `lib/` (partly reverses "No test runner")
 
 **Decision.** `npm test` runs Node's built-in `node:test` runner over `src/lib/*.test.mjs`. It has no

@@ -118,9 +118,9 @@ trigger that would change each verdict, so a future baseline need not re-litigat
 - Extracting the duplicated `usingFallback` / empty-state block. Two four-line call sites;
   both the abstraction lens and Codex declined to extract at this size. Revisit at a third
   list page.
-- Adding a linter or typechecker — a decision, not an oversight; the test runner was added
-  deliberately, `node:test` for `lib/` logic only (2026-10-13 ADR). See
-  [`docs/DECISIONS.md`](docs/DECISIONS.md).
+- Adding a typechecker — a decision, not an oversight. ESLint + Prettier + a GitHub Actions CI
+  workflow (`.github/workflows/ci.yml`, config in `eslint.config.js`, `.prettierrc.json`) were added
+  deliberately (2026-10-15 ADR). See [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 **Fixed during the baseline itself:** the `sessionStorage` / `localStorage` error in this
 file (caught independently by two lenses), `Nav.jsx` bypassing the `data/site.js` seam with
