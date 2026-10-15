@@ -74,12 +74,14 @@ Deployed on **Cloudflare Pages** (project `dirtyredz-com`, production branch
 `.node-version`; `public/_redirects` provides the SPA redirect for React Router.
 Deploys are **gated by CI**: a push to `master` runs the `check` job, and only if it passes the
 `deploy` job in `.github/workflows/ci.yml` builds and publishes `dist/` with
-`wrangler pages deploy`. Pages' own automatic production deploys are turned off.
+`wrangler pages deploy`. Once the first Actions deploy succeeds, Pages' own automatic production
+deploys get turned off (setup step below); until then both paths deploy `master`.
 
 One-time setup (owner, outside the repo):
 
 - Cloudflare API token with **Cloudflare Pages: Edit**, stored as GitHub secret `CLOUDFLARE_API_TOKEN`.
 - Cloudflare account ID stored as GitHub secret `CLOUDFLARE_ACCOUNT_ID`.
-- Pages project `dirtyredz-com`: automatic production deployments disabled.
+- After the first Actions deploy succeeds: in Pages project `dirtyredz-com`, disable automatic
+  production deployments.
 
 Without the secrets the `deploy` job fails (`check` still runs).

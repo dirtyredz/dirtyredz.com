@@ -9,7 +9,7 @@ Pages** (project `dirtyredz-com`, production branch `master`: `npm run build` �
 `dist/`, Node pinned via `.node-version`; `public/_redirects` provides the `/*` →
 `/index.html` SPA fallback so React Router owns client-side routes). Production deploys
 are CI-gated: the `deploy` job in `.github/workflows/ci.yml` runs after `check` on pushes to `master`
-and publishes `dist/` via `wrangler pages deploy` (Pages' automatic deploys are disabled).
+and publishes `dist/` via `wrangler pages deploy` (Pages' automatic deploys are to be disabled once the first Actions deploy succeeds).
 
 The distinguishing idea: the portfolio **auto-pulls itself from the GitHub API** rather
 than being hand-maintained. `src/lib/github.js` fetches public repos, classifies each as
@@ -83,7 +83,7 @@ verbatim and holds assets only, never code.
 | Fallback regeneration          | Manual: live fetch → site's own classifier → rewrite the two fallback files                    | `scripts/generate-fallback.mjs`                                                                                                             | `src/lib/github.js`, GitHub API                                      |
 | Styling                        | Design tokens + base rules; page/component CSS co-located with its JSX                         | `src/styles/global.css`, `src/**/*.css`                                                                                                     | —                                                                    |
 | Quality gates (lint/format/CI) | ESLint + Prettier checks and CI on push/PR                                                     | `eslint.config.js`, `.prettierrc.json`, `.prettierignore`, `.github/workflows/ci.yml`; npm scripts `lint`, `format`, `format:check`, `test` | npm scripts, GitHub Actions                                          |
-| Build & deploy                 | Dev server (tunnel hosts allowed), production build, SPA redirect                              | `vite.config.js`, `.node-version`, `public/_redirects`                                                                                      | Vite, Cloudflare Pages                                               |
+| Build & deploy                 | Dev server (tunnel hosts allowed), production build, SPA redirect                              | `vite.config.js`, `.node-version`, `public/_redirects`, `.github/workflows/ci.yml` (deploy job)                                             | Vite, Cloudflare Pages, `cloudflare/wrangler-action`                 |
 
 ## Structural debt
 

@@ -54,9 +54,16 @@ One node:test file covers github.js pagination; ESLint, Prettier and a GitHub Ac
 (`.github/workflows/ci.yml`) check style and build. There is no typechecker. Since 2026-10-15 the workflow's `deploy` job
 (`needs: check`, pushes to `master` only) is the only production deploy path, so a red `check`
 blocks the deploy. It needs GitHub secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`;
-without them `deploy` fails while `check` still runs. Pages automatic production deploys must stay
-disabled in the dashboard or the gate is bypassed (see [`DECISIONS.md`](DECISIONS.md)). The checks
-are still thin, so:
+without them `deploy` fails while `check` still runs. Pages automatic production deploys must be
+disabled in the dashboard or the gate is bypassed (see [`DECISIONS.md`](DECISIONS.md)).
+
+**Pending (2026-10-15).** Pages auto-deploy is still on until the first Actions deploy is confirmed;
+until then a red `check` does not block Cloudflare's own deploy. Remove this note when flipped.
+
+The deploy concurrency group keeps only one pending run, so rapid pushes can skip an intermediate
+commit; each deploy builds its own SHA. Accepted for a solo site.
+
+The checks are still thin, so:
 
 - A typo in a `src/data/` entry surfaces as a broken card in production, not a failed build.
 - Renaming a field on `<Card>` silently breaks the other three producers of that shape.
@@ -71,11 +78,11 @@ It contains the SPA fallback (`/* /index.html 200`). Without it, Cloudflare Page
 a real file at `/mods` and 404s. Client-side routing means the file is load-bearing even
 though it looks like boilerplate.
 
-## Build config lives in the Cloudflare dashboard, not the repo
+## Pages project settings and deploy secrets live in dashboards, not the repo
 
 Build and deploy run in GitHub Actions (`npm run build`, then `wrangler pages deploy dist
 --project-name=dirtyredz-com --branch=master`), but the Pages project `dirtyredz-com`, its
-production-branch setting, the disabled automatic deploys, and the API token / account ID secrets
+production-branch setting, the (eventually) disabled automatic deploys, and the API token / account ID secrets
 live in the Cloudflare and GitHub dashboards. There is no `wrangler.toml`
 and no `netlify.toml` — a dead `netlify.toml` was removed in `30d6608`. Grepping the repo
 for deploy config finds nothing; the dashboard is the source of truth.

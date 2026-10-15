@@ -18,8 +18,13 @@ It rebuilds instead of passing an artifact: simpler, same commit and lockfile. `
 is copied from `public/` into `dist/` by Vite, so the SPA fallback still ships.
 
 **Owner-side setup (not in the repo).** Cloudflare API token with "Cloudflare Pages: Edit" as GitHub
-secret `CLOUDFLARE_API_TOKEN`; account ID as `CLOUDFLARE_ACCOUNT_ID`; Pages automatic production
-deployments disabled in the dashboard. Without the secrets `deploy` fails while `check` still runs.
+secret `CLOUDFLARE_API_TOKEN`; account ID as `CLOUDFLARE_ACCOUNT_ID`; then, once the first Actions
+deploy succeeds, disable Pages automatic production deployments in the dashboard. Without the
+secrets `deploy` fails while `check` still runs.
+
+**Pending (2026-10-15).** Pages auto-deploy is still on until the first Actions deploy is confirmed,
+so both paths deploy `master` and a red `check` does not block Cloudflare's own deploy. Remove this
+line when auto-deploy is flipped off.
 
 **Why.** Supersedes the "CI only reports" limitation of the entry below: a red check should stop a
 broken build reaching production.
@@ -39,11 +44,12 @@ Prettier (no semicolons, single quotes, width 100, matching existing code) and `
 **Why.** Cheap guards against style drift and broken builds on a repo with few other checks.
 Supersedes the "no linter" half of the 2026-08-19 entry.
 
-**Known limitation (resolved by the CI-gated deploy entry above).** CI only reported at first. Cloudflare Pages still deploys every push to `master` via its
-Git integration, so a red CI run does not block a deploy unless branch protection or a CF build
-watch is configured.
+**Known limitation (resolved by the CI-gated deploy entry above).** CI only reported at first.
+Cloudflare Pages still deploys every push to `master` via its Git integration, so a red CI run
+does not block a deploy unless branch protection or a CF build watch is configured.
 
-**Rejected.** A typechecker (no TS in the repo); a CI deploy step (CF Pages already deploys).
+**Rejected.** A typechecker (no TS in the repo); a CI deploy step (CF Pages already deploys) — reversed the same day, see the CI-gated deploy
+entry above.
 
 ---
 
@@ -194,6 +200,8 @@ fragments the portfolio over an implementation detail.
 ---
 
 ## 2026-08-19 — Cloudflare Pages, with the SPA fallback in-repo
+
+_Superseded in part by 2026-10-15 (CI-gated deploy)._
 
 **Decision.** Deploy to Cloudflare Pages, project `dirtyredz-com`, production branch
 `master`. Node pinned via `.node-version`; SPA fallback via `public/_redirects` (`1be1b7e`).
