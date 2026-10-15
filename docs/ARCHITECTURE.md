@@ -75,8 +75,7 @@ make one API call. Blocked storage (private mode, quota) fails silently and just
 after `check` passes on a push to `master` and uploads `dist/` to Cloudflare Pages project
 `dirtyredz-com` via `cloudflare/wrangler-action` (`pages deploy`). It authenticates with GitHub
 secrets `CLOUDFLARE_API_TOKEN` (Pages: Edit) and `CLOUDFLARE_ACCOUNT_ID`; no credential reaches
-the browser bundle. Until Pages auto-deploy is switched off, Cloudflare's Git integration also
-deploys `master` (see `GOTCHAS.md`).
+the browser bundle.
 
 ## Classification
 

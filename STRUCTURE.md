@@ -9,7 +9,7 @@ Pages** (project `dirtyredz-com`, production branch `master`: `npm run build` â†
 `dist/`, Node pinned via `.node-version`; `public/_redirects` provides the `/*` â†’
 `/index.html` SPA fallback so React Router owns client-side routes). Production deploys
 are CI-gated: the `deploy` job in `.github/workflows/ci.yml` runs after `check` on pushes to `master`
-and publishes `dist/` via `wrangler pages deploy` (Pages' automatic deploys are to be disabled once the first Actions deploy succeeds).
+and publishes `dist/` via `wrangler pages deploy` (Pages' automatic deploys are disabled).
 
 The distinguishing idea: the portfolio **auto-pulls itself from the GitHub API** rather
 than being hand-maintained. `src/lib/github.js` fetches public repos, classifies each as

@@ -53,12 +53,9 @@ per visit. Fixed dk-a6af2fff; `npm test` covers it (`src/lib/github.test.mjs`, n
 One node:test file covers github.js pagination; ESLint, Prettier and a GitHub Actions workflow
 (`.github/workflows/ci.yml`) check style and build. There is no typechecker. Since 2026-10-15 the workflow's `deploy` job
 (`needs: check`, pushes to `master` only) is the intended sole production deploy path, so a red `check`
-blocks it (once Pages auto-deploy is off — see the Pending note below). It needs GitHub secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`;
+blocks it. It needs GitHub secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`;
 without them `deploy` fails while `check` still runs. Pages automatic production deploys must be
 disabled in the dashboard or the gate is bypassed (see [`DECISIONS.md`](DECISIONS.md)).
-
-**Pending (2026-10-15).** Pages auto-deploy is still on until the first Actions deploy is confirmed;
-until then a red `check` does not block Cloudflare's own deploy. Remove this note when flipped.
 
 The deploy concurrency group keeps only one pending run, so rapid pushes can skip an intermediate
 commit; each deploy builds its own SHA. Accepted for a solo site.
@@ -82,7 +79,7 @@ though it looks like boilerplate.
 
 Build and deploy run in GitHub Actions (`npm run build`, then `wrangler pages deploy dist
 --project-name=dirtyredz-com --branch=master`), but the Pages project `dirtyredz-com`, its
-production-branch setting, the (eventually) disabled automatic deploys, and the API token / account ID secrets
+production-branch setting, the disabled automatic deploys, and the API token / account ID secrets
 live in the Cloudflare and GitHub dashboards. There is no `wrangler.toml`
 and no `netlify.toml` — a dead `netlify.toml` was removed in `30d6608`. The build and deploy
 command, project name, branch and output dir live in `.github/workflows/ci.yml`; everything else

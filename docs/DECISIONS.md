@@ -18,13 +18,9 @@ It rebuilds instead of passing an artifact: simpler, same commit and lockfile. `
 is copied from `public/` into `dist/` by Vite, so the SPA fallback still ships.
 
 **Owner-side setup (not in the repo).** Cloudflare API token with "Cloudflare Pages: Edit" as GitHub
-secret `CLOUDFLARE_API_TOKEN`; account ID as `CLOUDFLARE_ACCOUNT_ID`; then, once the first Actions
-deploy succeeds, disable Pages automatic production deployments in the dashboard. Without the
+secret `CLOUDFLARE_API_TOKEN`; account ID as `CLOUDFLARE_ACCOUNT_ID`; Pages automatic production
+deployments disabled in the dashboard (done 2026-10-15, after the first Actions deploy succeeded). Without the
 secrets `deploy` fails while `check` still runs.
-
-**Pending (2026-10-15).** Pages auto-deploy is still on until the first Actions deploy is confirmed,
-so both paths deploy `master` and a red `check` does not block Cloudflare's own deploy. Remove this
-line when auto-deploy is flipped off.
 
 **Why.** Supersedes the "CI only reports" limitation of the entry below: a red check should stop a
 broken build reaching production.
