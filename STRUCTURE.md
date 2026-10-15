@@ -7,8 +7,9 @@ projects, and an about page. **Vite 6 + React 18 + react-router 7**, plain CSS (
 CSS framework, no state library; node:test for `src/lib` logic). Static SPA deployed on **Cloudflare
 Pages** (project `dirtyredz-com`, production branch `master`: `npm run build` → publish
 `dist/`, Node pinned via `.node-version`; `public/_redirects` provides the `/*` →
-`/index.html` SPA fallback so React Router owns client-side routes). Build command,
-output dir and production branch live in the CF Pages dashboard, not in a repo file.
+`/index.html` SPA fallback so React Router owns client-side routes). Production deploys
+are CI-gated: the `deploy` job in `.github/workflows/ci.yml` runs after `check` on pushes to `master`
+and publishes `dist/` via `wrangler pages deploy` (Pages' automatic deploys are disabled).
 
 The distinguishing idea: the portfolio **auto-pulls itself from the GitHub API** rather
 than being hand-maintained. `src/lib/github.js` fetches public repos, classifies each as
@@ -24,7 +25,7 @@ unreachable. Every page renders the same `Card` component off that one shape, de
 .                        # config + docs only (package.json, vite.config.js, .node-version, index.html, README, STRUCTURE.md, AGENTS.md, CLAUDE.md, docket.json, eslint.config.js, .prettierrc.json, .prettierignore, .editorconfig)
 ├── scripts/             # manual maintenance tooling (Node, run via npm scripts)
 │   └── generate-fallback.mjs  # npm run gen:fallback — rewrites data/mods.js + projects.js
-├── .github/workflows/   # CI: ci.yml (format:check, lint, test, build)
+├── .github/workflows/   # CI + gated deploy: ci.yml (check: format:check, lint, test, build; deploy)
 ├── docs/                # the living-doc set (ARCHITECTURE, DECISIONS, FEATURES, ROADMAP, GOTCHAS, BACKLOG (pointer to items/)) + items/ (Docket work items)
 ├── public/              # served verbatim at / — fonts, img, favicon, manifest, _redirects
 └── src/

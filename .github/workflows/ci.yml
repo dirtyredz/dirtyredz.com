@@ -20,3 +20,30 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
+
+  # Production deploy, gated on `check`. Only runs for pushes to master.
+  # Needs repo secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID.
+  # Rebuilds rather than passing an artifact: one fewer moving part, and the build is deterministic
+  # from the same commit and lockfile.
+  deploy:
+    needs: check
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: production-deploy
+      cancel-in-progress: false
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=dirtyredz-com --branch=master

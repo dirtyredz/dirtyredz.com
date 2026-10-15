@@ -72,5 +72,14 @@ tokens (colors, fonts, spacing) are all CSS variables at the top of
 Deployed on **Cloudflare Pages** (project `dirtyredz-com`, production branch
 `master`). Build command `npm run build`, output `dist/`, Node pinned via
 `.node-version`; `public/_redirects` provides the SPA redirect for React Router.
-Push to `master` and Cloudflare Pages auto-builds and deploys. Build settings
-(command, output dir, production branch) live in the CF Pages dashboard.
+Deploys are **gated by CI**: a push to `master` runs the `check` job, and only if it passes the
+`deploy` job in `.github/workflows/ci.yml` builds and publishes `dist/` with
+`wrangler pages deploy`. Pages' own automatic production deploys are turned off.
+
+One-time setup (owner, outside the repo):
+
+- Cloudflare API token with **Cloudflare Pages: Edit**, stored as GitHub secret `CLOUDFLARE_API_TOKEN`.
+- Cloudflare account ID stored as GitHub secret `CLOUDFLARE_ACCOUNT_ID`.
+- Pages project `dirtyredz-com`: automatic production deployments disabled.
+
+Without the secrets the `deploy` job fails (`check` still runs).

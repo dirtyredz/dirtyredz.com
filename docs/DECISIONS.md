@@ -9,6 +9,26 @@ commit dates. Entries before 2026-08 are inferred from the historical tree and m
 
 ---
 
+## 2026-10-15 — Production deploy moved to a CI-gated GitHub Actions job
+
+**Decision.** `ci.yml` gains a `deploy` job (`needs: check`, push to `master` only, concurrency group
+`production-deploy`, `contents: read`) that runs `npm run build` and publishes `dist/` with
+`cloudflare/wrangler-action@v3` (`pages deploy dist --project-name=dirtyredz-com --branch=master`).
+It rebuilds instead of passing an artifact: simpler, same commit and lockfile. `public/_redirects`
+is copied from `public/` into `dist/` by Vite, so the SPA fallback still ships.
+
+**Owner-side setup (not in the repo).** Cloudflare API token with "Cloudflare Pages: Edit" as GitHub
+secret `CLOUDFLARE_API_TOKEN`; account ID as `CLOUDFLARE_ACCOUNT_ID`; Pages automatic production
+deployments disabled in the dashboard. Without the secrets `deploy` fails while `check` still runs.
+
+**Why.** Supersedes the "CI only reports" limitation of the entry below: a red check should stop a
+broken build reaching production.
+
+**Rejected.** Leaving deploy ungated (CI would stay advisory); a branch-promotion flow (a deploy
+branch fed from `master` after green CI), which adds a branch to maintain for one developer.
+
+---
+
 ## 2026-10-15 — ESLint, Prettier and GitHub Actions CI
 
 **Decision.** ESLint 9 flat config (react, react-hooks, react-refresh, eslint-config-prettier last),

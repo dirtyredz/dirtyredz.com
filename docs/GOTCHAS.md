@@ -48,13 +48,15 @@ takes the same `.catch()` -> bundled-fallback path as any other failure.
 page costs one request against the 60/hour unauthenticated limit, so a 101st repo doubles the calls
 per visit. Fixed dk-a6af2fff; `npm test` covers it (`src/lib/github.test.mjs`, node's built-in runner).
 
-## Checks are thin, and CI does not gate the deploy
+## Checks are thin, but CI gates the deploy
 
 One node:test file covers github.js pagination; ESLint, Prettier and a GitHub Actions workflow
-(`.github/workflows/ci.yml`) check style and build. There is no typechecker, and CI only reports:
-Cloudflare Pages still deploys every push to `master` regardless of CI status unless branch
-protection or a CF build watch is set up. This is deliberate for a static personal
-site (see [`DECISIONS.md`](DECISIONS.md)), but it means:
+(`.github/workflows/ci.yml`) check style and build. There is no typechecker. Since 2026-10-15 the workflow's `deploy` job
+(`needs: check`, pushes to `master` only) is the only production deploy path, so a red `check`
+blocks the deploy. It needs GitHub secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`;
+without them `deploy` fails while `check` still runs. Pages automatic production deploys must stay
+disabled in the dashboard or the gate is bypassed (see [`DECISIONS.md`](DECISIONS.md)). The checks
+are still thin, so:
 
 - A typo in a `src/data/` entry surfaces as a broken card in production, not a failed build.
 - Renaming a field on `<Card>` silently breaks the other three producers of that shape.
@@ -71,8 +73,10 @@ though it looks like boilerplate.
 
 ## Build config lives in the Cloudflare dashboard, not the repo
 
-Build command (`npm run build`), output directory (`dist/`) and production branch (`master`)
-are configured in the Cloudflare Pages project `dirtyredz-com`. There is no `wrangler.toml`
+Build and deploy run in GitHub Actions (`npm run build`, then `wrangler pages deploy dist
+--project-name=dirtyredz-com --branch=master`), but the Pages project `dirtyredz-com`, its
+production-branch setting, the disabled automatic deploys, and the API token / account ID secrets
+live in the Cloudflare and GitHub dashboards. There is no `wrangler.toml`
 and no `netlify.toml` — a dead `netlify.toml` was removed in `30d6608`. Grepping the repo
 for deploy config finds nothing; the dashboard is the source of truth.
 
