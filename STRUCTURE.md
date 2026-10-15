@@ -21,9 +21,10 @@ unreachable. Every page renders the same `Card` component off that one shape, de
 ## Layout
 
 ```
-.                        # config + docs only (package.json, vite.config.js, .node-version, index.html, README, STRUCTURE.md, AGENTS.md, CLAUDE.md, docket.json)
+.                        # config + docs only (package.json, vite.config.js, .node-version, index.html, README, STRUCTURE.md, AGENTS.md, CLAUDE.md, docket.json, eslint.config.js, .prettierrc.json, .prettierignore, .editorconfig)
 ├── scripts/             # manual maintenance tooling (Node, run via npm scripts)
 │   └── generate-fallback.mjs  # npm run gen:fallback — rewrites data/mods.js + projects.js
+├── .github/workflows/   # CI: ci.yml (format:check, lint, test, build)
 ├── docs/                # the living-doc set (ARCHITECTURE, DECISIONS, FEATURES, ROADMAP, GOTCHAS, BACKLOG (pointer to items/)) + items/ (Docket work items)
 ├── public/              # served verbatim at / — fonts, img, favicon, manifest, _redirects
 └── src/
@@ -59,6 +60,8 @@ unreachable. Every page renders the same `Card` component off that one shape, de
 - `src/lib/` — external-service clients and their domain rules (GitHub API + classification), plus co-located `*.test.mjs` (node:test, run by `npm test`; nothing imports them, so Vite never bundles them)
 - `src/styles/` — global CSS: design tokens and base/layout rules
 - `docs/` — the living-doc set; the repo root is config and docs only
+- `.github/workflows/` — GitHub Actions workflows (`ci.yml`); config only, no code
+- Root tooling config: `eslint.config.js`, `.prettierrc.json`, `.prettierignore`, `.editorconfig`
 - `src/main.jsx` — Vite's mandated entry module, referenced by `index.html`
 - `src/App.jsx` — router shell; the only place routes are declared
 
@@ -67,18 +70,19 @@ verbatim and holds assets only, never code.
 
 ## Components
 
-| Component              | Responsibility                                                                                 | Key files                                              | Depends on                                                           |
-| ---------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------- |
-| Entry / shell          | Mount React, declare routes, scroll-reset, frame every page                                    | `src/main.jsx`, `src/App.jsx`                          | react-router, `components/`, `pages/`, `styles/global.css`           |
-| Pages                  | One per route; compose cards + copy, own their page CSS                                        | `src/pages/*.jsx`                                      | `hooks/`, `components/Card.jsx`, `data/site.js`                      |
-| Shared UI              | Nav (scroll state, mobile menu), Footer, Card + CardSkeleton                                   | `src/components/*.jsx`                                 | react-router, `data/site.js`                                         |
-| Data access            | Fetch/classify GitHub repos; merge manual entries; fall back offline                           | `src/lib/github.js`, `src/hooks/useGithub.js`          | `data/manual.js`, `data/mods.js`, `data/projects.js`, `localStorage` |
-| Presentation behaviour | Scroll-into-view reveal animation                                                              | `src/hooks/useReveal.js`                               | IntersectionObserver                                                 |
-| Content                | Everything editable without touching a component (`mods.js`/`projects.js` excepted: generated) | `src/data/*.js`                                        | —                                                                    |
-| Tests                  | node:test for `lib/` logic (GitHub pagination), run by `npm test`                              | `src/lib/github.test.mjs`                              | `src/lib/github.js`                                                  |
-| Fallback regeneration  | Manual: live fetch → site's own classifier → rewrite the two fallback files                    | `scripts/generate-fallback.mjs`                        | `src/lib/github.js`, GitHub API                                      |
-| Styling                | Design tokens + base rules; page/component CSS co-located with its JSX                         | `src/styles/global.css`, `src/**/*.css`                | —                                                                    |
-| Build & deploy         | Dev server (tunnel hosts allowed), production build, SPA redirect                              | `vite.config.js`, `.node-version`, `public/_redirects` | Vite, Cloudflare Pages                                               |
+| Component                      | Responsibility                                                                                 | Key files                                                                                                                                   | Depends on                                                           |
+| ------------------------------ | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Entry / shell                  | Mount React, declare routes, scroll-reset, frame every page                                    | `src/main.jsx`, `src/App.jsx`                                                                                                               | react-router, `components/`, `pages/`, `styles/global.css`           |
+| Pages                          | One per route; compose cards + copy, own their page CSS                                        | `src/pages/*.jsx`                                                                                                                           | `hooks/`, `components/Card.jsx`, `data/site.js`                      |
+| Shared UI                      | Nav (scroll state, mobile menu), Footer, Card + CardSkeleton                                   | `src/components/*.jsx`                                                                                                                      | react-router, `data/site.js`                                         |
+| Data access                    | Fetch/classify GitHub repos; merge manual entries; fall back offline                           | `src/lib/github.js`, `src/hooks/useGithub.js`                                                                                               | `data/manual.js`, `data/mods.js`, `data/projects.js`, `localStorage` |
+| Presentation behaviour         | Scroll-into-view reveal animation                                                              | `src/hooks/useReveal.js`                                                                                                                    | IntersectionObserver                                                 |
+| Content                        | Everything editable without touching a component (`mods.js`/`projects.js` excepted: generated) | `src/data/*.js`                                                                                                                             | —                                                                    |
+| Tests                          | node:test for `lib/` logic (GitHub pagination), run by `npm test`                              | `src/lib/github.test.mjs`                                                                                                                   | `src/lib/github.js`                                                  |
+| Fallback regeneration          | Manual: live fetch → site's own classifier → rewrite the two fallback files                    | `scripts/generate-fallback.mjs`                                                                                                             | `src/lib/github.js`, GitHub API                                      |
+| Styling                        | Design tokens + base rules; page/component CSS co-located with its JSX                         | `src/styles/global.css`, `src/**/*.css`                                                                                                     | —                                                                    |
+| Quality gates (lint/format/CI) | ESLint + Prettier checks and CI on push/PR                                                     | `eslint.config.js`, `.prettierrc.json`, `.prettierignore`, `.github/workflows/ci.yml`; npm scripts `lint`, `format`, `format:check`, `test` | npm scripts, GitHub Actions                                          |
+| Build & deploy                 | Dev server (tunnel hosts allowed), production build, SPA redirect                              | `vite.config.js`, `.node-version`, `public/_redirects`                                                                                      | Vite, Cloudflare Pages                                               |
 
 ## Structural debt
 
@@ -118,9 +122,8 @@ trigger that would change each verdict, so a future baseline need not re-litigat
 - Extracting the duplicated `usingFallback` / empty-state block. Two four-line call sites;
   both the abstraction lens and Codex declined to extract at this size. Revisit at a third
   list page.
-- Adding a typechecker — a decision, not an oversight. ESLint + Prettier + a GitHub Actions CI
-  workflow (`.github/workflows/ci.yml`, config in `eslint.config.js`, `.prettierrc.json`) were added
-  deliberately (2026-10-15 ADR). See [`docs/DECISIONS.md`](docs/DECISIONS.md).
+- Adding a typechecker — a decision, not an oversight (no TypeScript in the repo; rejected in the
+  2026-10-15 ADR). See [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 **Fixed during the baseline itself:** the `sessionStorage` / `localStorage` error in this
 file (caught independently by two lenses), `Nav.jsx` bypassing the `data/site.js` seam with

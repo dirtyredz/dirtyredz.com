@@ -234,6 +234,8 @@ ceremony.
 
 ## 2026-08-19 — No test runner and no linter
 
+_Superseded in part by 2026-10-13 (`node:test`) and 2026-10-15 (ESLint/Prettier/CI)._
+
 **Decision.** Ship with `npm run build` as the only automated check.
 
 **Why.** A static personal portfolio with no backend, no auth and no business logic. The
