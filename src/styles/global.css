@@ -5,30 +5,33 @@
 
 @font-face {
   font-family: 'Futura PT';
-  src: url('/fonts/FuturaPT-Book.woff2') format('woff2'),
-       url('/fonts/FuturaPT-Book.woff') format('woff');
+  src:
+    url('/fonts/FuturaPT-Book.woff2') format('woff2'),
+    url('/fonts/FuturaPT-Book.woff') format('woff');
   font-weight: 400;
   font-display: swap;
 }
 @font-face {
   font-family: 'Futura PT';
-  src: url('/fonts/FuturaPT-Heavy.woff2') format('woff2'),
-       url('/fonts/FuturaPT-Heavy.woff') format('woff');
+  src:
+    url('/fonts/FuturaPT-Heavy.woff2') format('woff2'),
+    url('/fonts/FuturaPT-Heavy.woff') format('woff');
   font-weight: 800;
   font-display: swap;
 }
 @font-face {
   font-family: 'Futura PT';
-  src: url('/fonts/FuturaPT-Light.woff2') format('woff2'),
-       url('/fonts/FuturaPT-Light.woff') format('woff');
+  src:
+    url('/fonts/FuturaPT-Light.woff2') format('woff2'),
+    url('/fonts/FuturaPT-Light.woff') format('woff');
   font-weight: 300;
   font-display: swap;
 }
 
 :root {
   /* Brand */
-  --red: #c9161a;          /* brighter, punchier take on the classic #8a1315 */
-  --red-deep: #8a1315;     /* the original brand red, kept for depth */
+  --red: #c9161a; /* brighter, punchier take on the classic #8a1315 */
+  --red-deep: #8a1315; /* the original brand red, kept for depth */
   --red-glow: rgba(201, 22, 26, 0.45);
 
   /* Surfaces */
@@ -94,7 +97,10 @@ body::before {
   background-size: 64px 64px;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-display);
   font-weight: 800;
   line-height: 1.05;
@@ -176,7 +182,11 @@ img {
   border-radius: 999px;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 .btn-primary {
   background: var(--red);
@@ -205,7 +215,9 @@ img {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 .reveal.in {
   opacity: 1;
@@ -213,8 +225,14 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { scroll-behavior: auto !important; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  * {
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Card grid */
@@ -224,7 +242,9 @@ img {
   gap: 24px;
 }
 @media (max-width: 520px) {
-  .grid { grid-template-columns: 1fr; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Inner page header (Mods / Projects / About) */

@@ -23,13 +23,13 @@ export default function Home() {
           <h1 className="hero__title">
             I&#39;m <span className="hl">Dirtyredz</span> —
             <br />
-            <span className="nowrap">I build,</span> break, and{' '}
-            <span className="hl">mod</span> things.
+            <span className="nowrap">I build,</span> break, and <span className="hl">mod</span>{' '}
+            things.
           </h1>
           <p className="hero__lead">
-            Marine Corps veteran turned self-taught developer in {site.location}. This is my
-            corner of the internet — the game mods and servers I run, the software I make for
-            fun, and whatever else I&#39;m tinkering with. No sales pitch, just my stuff.
+            Marine Corps veteran turned self-taught developer in {site.location}. This is my corner
+            of the internet — the game mods and servers I run, the software I make for fun, and
+            whatever else I&#39;m tinkering with. No sales pitch, just my stuff.
           </p>
           <div className="hero__cta">
             <Link to="/mods" className="btn btn-primary">
@@ -49,8 +49,8 @@ export default function Home() {
             <span className="pillar__num">01</span>
             <h3>Mods &amp; servers</h3>
             <p>
-              Game modifications, modpacks, and the servers I host for friends and communities.
-              The stuff that made &quot;Dirtyredz&quot; a name in the first place.
+              Game modifications, modpacks, and the servers I host for friends and communities. The
+              stuff that made &quot;Dirtyredz&quot; a name in the first place.
             </p>
             <Link to="/mods" className="pillar__link">
               Explore mods →

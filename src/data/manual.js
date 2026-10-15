@@ -42,22 +42,26 @@ export const manualEntries = [
     stack: ['Next.js', 'TypeScript', 'Postgres', 'Docker'],
   }),
   priv('Agentic-Harness', {
-    blurb: 'My personal Claude Code setup: hooks, agents, skills and review gates for AI-assisted development.',
+    blurb:
+      'My personal Claude Code setup: hooks, agents, skills and review gates for AI-assisted development.',
     year: '2026',
     stack: ['Node', 'PowerShell', 'Python'],
   }),
   priv('Maoin', {
-    blurb: 'A personal budgeting PWA that models when money is available, replacing a spreadsheet cash-flow workflow.',
+    blurb:
+      'A personal budgeting PWA that models when money is available, replacing a spreadsheet cash-flow workflow.',
     year: '2026',
     stack: ['React', 'TypeScript', 'Cloudflare'],
   }),
   priv('Family-HQ', {
-    blurb: 'A family command-center PWA for a wall touchscreen and phones, with chores, routines and a calendar.',
+    blurb:
+      'A family command-center PWA for a wall touchscreen and phones, with chores, routines and a calendar.',
     year: '2026',
     stack: ['React', 'TypeScript', 'Cloudflare D1'],
   }),
   priv('Grotti', {
-    blurb: 'A top-down 2D factory game in the Factorio tradition, set in Norse myth, with a C# simulation core.',
+    blurb:
+      'A top-down 2D factory game in the Factorio tradition, set in Norse myth, with a C# simulation core.',
     year: '2026',
     stack: ['C#', 'Lua'],
   }),
@@ -67,22 +71,26 @@ export const manualEntries = [
     stack: ['Markdown', 'JavaScript'],
   }),
   priv('Mia-Sync', {
-    blurb: 'A headless service that syncs grades, attendance and assignments from a K-12 school parent portal.',
+    blurb:
+      'A headless service that syncs grades, attendance and assignments from a K-12 school parent portal.',
     year: '2026',
     stack: ['TypeScript', 'Node'],
   }),
   priv('MoonlightTogether', {
-    blurb: 'A planned multiplayer mod for Moonlight Peaks that shows friends as live ghost players over Steam.',
+    blurb:
+      'A planned multiplayer mod for Moonlight Peaks that shows friends as live ghost players over Steam.',
     year: '2026',
     stack: ['C#', 'Steam'],
   }),
   priv('DigitalRedz-Command-Center', {
-    blurb: 'A Sims 4 mod toolchain in Python with Node scripts to build and copy mod files into the game.',
+    blurb:
+      'A Sims 4 mod toolchain in Python with Node scripts to build and copy mod files into the game.',
     year: '2019–2023',
     stack: ['Python', 'Node'],
   }),
   priv('Orange_Notification_Killer', {
-    blurb: "A small tool that silences a popular Sims 4 mod's error pop-ups for players who don't want them.",
+    blurb:
+      "A small tool that silences a popular Sims 4 mod's error pop-ups for players who don't want them.",
     year: '2018–2019',
     stack: ['Python', 'JavaScript'],
   }),

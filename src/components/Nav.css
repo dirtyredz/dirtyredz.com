@@ -4,7 +4,10 @@
   left: 0;
   right: 0;
   z-index: 100;
-  transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    backdrop-filter 0.3s ease;
   border-bottom: 1px solid transparent;
 }
 .nav--scrolled {
@@ -57,7 +60,9 @@
   color: var(--text-dim);
   font-weight: 500;
   font-size: 0.95rem;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 }
 .nav__link:hover {
   color: var(--text);
@@ -98,7 +103,9 @@
   height: 2px;
   margin: 0 auto;
   background: var(--text);
-  transition: transform 0.25s ease, opacity 0.2s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
 }
 .nav__burger.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
@@ -124,7 +131,9 @@
   transform: translateY(-12px);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 }
 .nav__mobile.is-open {
   transform: none;

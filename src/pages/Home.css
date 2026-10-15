@@ -29,8 +29,13 @@
   animation: pulse 2.4s ease-in-out infinite;
 }
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 4px rgba(201, 22, 26, 0.35); }
-  50% { box-shadow: 0 0 0 8px rgba(201, 22, 26, 0.05); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px rgba(201, 22, 26, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(201, 22, 26, 0.05);
+  }
 }
 .hero__title {
   font-size: clamp(2.6rem, 8vw, 5.4rem);
@@ -66,7 +71,9 @@
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 34px 30px;
-  transition: border-color 0.25s ease, transform 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 .pillar:hover {
   border-color: var(--line-strong);
@@ -146,7 +153,10 @@
   padding: 11px 20px;
   font-weight: 600;
   font-size: 0.92rem;
-  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 .connect__pill:hover {
   border-color: var(--red);

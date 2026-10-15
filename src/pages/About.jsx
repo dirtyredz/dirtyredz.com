@@ -30,11 +30,10 @@ export default function About() {
           </p>
 
           <p className="reveal">
-            My path into programming started while I was serving in the United States Marine
-            Corps. I tried a bunch of different kinds of coding before web development finally
-            stuck — I taught myself through trial and error, a lot of broken builds, and more
-            tutorials than I can count. I never stopped tinkering, and I&#39;m still learning new
-            tech all the time.
+            My path into programming started while I was serving in the United States Marine Corps.
+            I tried a bunch of different kinds of coding before web development finally stuck — I
+            taught myself through trial and error, a lot of broken builds, and more tutorials than I
+            can count. I never stopped tinkering, and I&#39;m still learning new tech all the time.
           </p>
 
           <p className="reveal">
@@ -46,12 +45,12 @@ export default function About() {
 
           <h2 className="reveal about__h2">So what&#39;s with the &quot;Dirtyredz&quot;?</h2>
           <p className="reveal">
-            In the Marine Corps I served as an infantryman, and later as an MV-22 airframe
-            mechanic. I spent most of my time out in the field training — and being a redhead, the
-            longer I was outdoors, the redder my hair got. Naturally, the longer I was out there,
-            the dirtier I got too. My comrades started calling me the <em>Dirty Red Head</em>,
-            which eventually got shortened to <strong>Dirtyredz</strong>. It&#39;s been my name
-            online ever since, no matter what I&#39;m doing.
+            In the Marine Corps I served as an infantryman, and later as an MV-22 airframe mechanic.
+            I spent most of my time out in the field training — and being a redhead, the longer I
+            was outdoors, the redder my hair got. Naturally, the longer I was out there, the dirtier
+            I got too. My comrades started calling me the <em>Dirty Red Head</em>, which eventually
+            got shortened to <strong>Dirtyredz</strong>. It&#39;s been my name online ever since, no
+            matter what I&#39;m doing.
           </p>
 
           <div className="reveal about__cta">

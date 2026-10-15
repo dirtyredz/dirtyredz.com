@@ -12,10 +12,7 @@ function mergeManual(mods, projects) {
   const claimed = new Set(manualEntries.map((e) => e.title.toLowerCase()))
   return {
     mods: [...manualMods, ...mods.filter((m) => !claimed.has(m.title.toLowerCase()))],
-    projects: [
-      ...manualProjects,
-      ...projects.filter((p) => !claimed.has(p.title.toLowerCase())),
-    ],
+    projects: [...manualProjects, ...projects.filter((p) => !claimed.has(p.title.toLowerCase()))],
   }
 }
 

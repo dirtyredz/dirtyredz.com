@@ -12,7 +12,7 @@ output dir and production branch live in the CF Pages dashboard, not in a repo f
 
 The distinguishing idea: the portfolio **auto-pulls itself from the GitHub API** rather
 than being hand-maintained. `src/lib/github.js` fetches public repos, classifies each as
-a *mod* or a *project* by language/keyword/topic heuristics, and caches to
+a _mod_ or a _project_ by language/keyword/topic heuristics, and caches to
 `localStorage`. `src/hooks/useGithub.js` merges in hand-written entries (private/off-GitHub
 work) and falls back to the curated static lists in `src/data/` when the API is
 unreachable. Every page renders the same `Card` component off that one shape, declared as the JSDoc
@@ -67,18 +67,18 @@ verbatim and holds assets only, never code.
 
 ## Components
 
-| Component | Responsibility | Key files | Depends on |
-|---|---|---|---|
-| Entry / shell | Mount React, declare routes, scroll-reset, frame every page | `src/main.jsx`, `src/App.jsx` | react-router, `components/`, `pages/`, `styles/global.css` |
-| Pages | One per route; compose cards + copy, own their page CSS | `src/pages/*.jsx` | `hooks/`, `components/Card.jsx`, `data/site.js` |
-| Shared UI | Nav (scroll state, mobile menu), Footer, Card + CardSkeleton | `src/components/*.jsx` | react-router, `data/site.js` |
-| Data access | Fetch/classify GitHub repos; merge manual entries; fall back offline | `src/lib/github.js`, `src/hooks/useGithub.js` | `data/manual.js`, `data/mods.js`, `data/projects.js`, `localStorage` |
-| Presentation behaviour | Scroll-into-view reveal animation | `src/hooks/useReveal.js` | IntersectionObserver |
-| Content | Everything editable without touching a component (`mods.js`/`projects.js` excepted: generated) | `src/data/*.js` | — |
-| Tests | node:test for `lib/` logic (GitHub pagination), run by `npm test` | `src/lib/github.test.mjs` | `src/lib/github.js` |
-| Fallback regeneration | Manual: live fetch → site's own classifier → rewrite the two fallback files | `scripts/generate-fallback.mjs` | `src/lib/github.js`, GitHub API |
-| Styling | Design tokens + base rules; page/component CSS co-located with its JSX | `src/styles/global.css`, `src/**/*.css` | — |
-| Build & deploy | Dev server (tunnel hosts allowed), production build, SPA redirect | `vite.config.js`, `.node-version`, `public/_redirects` | Vite, Cloudflare Pages |
+| Component              | Responsibility                                                                                 | Key files                                              | Depends on                                                           |
+| ---------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------------------------- |
+| Entry / shell          | Mount React, declare routes, scroll-reset, frame every page                                    | `src/main.jsx`, `src/App.jsx`                          | react-router, `components/`, `pages/`, `styles/global.css`           |
+| Pages                  | One per route; compose cards + copy, own their page CSS                                        | `src/pages/*.jsx`                                      | `hooks/`, `components/Card.jsx`, `data/site.js`                      |
+| Shared UI              | Nav (scroll state, mobile menu), Footer, Card + CardSkeleton                                   | `src/components/*.jsx`                                 | react-router, `data/site.js`                                         |
+| Data access            | Fetch/classify GitHub repos; merge manual entries; fall back offline                           | `src/lib/github.js`, `src/hooks/useGithub.js`          | `data/manual.js`, `data/mods.js`, `data/projects.js`, `localStorage` |
+| Presentation behaviour | Scroll-into-view reveal animation                                                              | `src/hooks/useReveal.js`                               | IntersectionObserver                                                 |
+| Content                | Everything editable without touching a component (`mods.js`/`projects.js` excepted: generated) | `src/data/*.js`                                        | —                                                                    |
+| Tests                  | node:test for `lib/` logic (GitHub pagination), run by `npm test`                              | `src/lib/github.test.mjs`                              | `src/lib/github.js`                                                  |
+| Fallback regeneration  | Manual: live fetch → site's own classifier → rewrite the two fallback files                    | `scripts/generate-fallback.mjs`                        | `src/lib/github.js`, GitHub API                                      |
+| Styling                | Design tokens + base rules; page/component CSS co-located with its JSX                         | `src/styles/global.css`, `src/**/*.css`                | —                                                                    |
+| Build & deploy         | Dev server (tunnel hosts allowed), production build, SPA redirect                              | `vite.config.js`, `.node-version`, `public/_redirects` | Vite, Cloudflare Pages                                               |
 
 ## Structural debt
 
@@ -100,8 +100,8 @@ Docket items in [`docs/items/`](docs/items/) (`dk list`) — P0 is empty and tha
 - **P1 ×3** — the `data/mods.js` / `projects.js` snapshots were undocumented stale-tolerant
   fallbacks (dk-77bae980) — now generated by `npm run gen:fallback` (7a4e059), so they can still go
   stale between runs but never by hand-drift; the card item shape was re-asserted by four producers
-  (now documented once as `CardItem`, still no TypeScript or test to catch drift; dk-788efc26); `fetchRepos` has no request timeout, so a *hanging* GitHub
-  request never reaches the fallback the way a *failing* one does (dk-d343facb) — **fixed in 71065b6** (8 s `FETCH_TIMEOUT_MS`).
+  (now documented once as `CardItem`, still no TypeScript or test to catch drift; dk-788efc26); `fetchRepos` has no request timeout, so a _hanging_ GitHub
+  request never reaches the fallback the way a _failing_ one does (dk-d343facb) — **fixed in 71065b6** (8 s `FETCH_TIMEOUT_MS`).
 - **P2 ×2** — two earned-but-deferred extractions: `CardGrid`
   (dk-ee92652e) and `PageHeader` (dk-a5431344).
 

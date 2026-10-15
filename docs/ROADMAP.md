@@ -11,13 +11,13 @@ when a repo is pushed. It does not need to grow.
 
 ## What actually drives work here
 
-| Question | Where the answer lives |
-|---|---|
-| What should I fix next? | `dk list` (Docket items in `docs/items/`) — prioritised, P0 empty, nothing urgent |
-| What will bite me? | [`GOTCHAS.md`](GOTCHAS.md) |
-| Why is it built this way? | [`DECISIONS.md`](DECISIONS.md) |
-| What does it do? | [`FEATURES.md`](FEATURES.md) |
-| Where does the code live? | [`../STRUCTURE.md`](../STRUCTURE.md) |
+| Question                  | Where the answer lives                                                            |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| What should I fix next?   | `dk list` (Docket items in `docs/items/`) — prioritised, P0 empty, nothing urgent |
+| What will bite me?        | [`GOTCHAS.md`](GOTCHAS.md)                                                        |
+| Why is it built this way? | [`DECISIONS.md`](DECISIONS.md)                                                    |
+| What does it do?          | [`FEATURES.md`](FEATURES.md)                                                      |
+| Where does the code live? | [`../STRUCTURE.md`](../STRUCTURE.md)                                              |
 
 ## The only scheduled work
 
@@ -27,7 +27,7 @@ schedule.
 
 ## Triggers worth watching
 
-Not planned work — conditions that would *create* work if they occur. Each is recorded with
+Not planned work — conditions that would _create_ work if they occur. Each is recorded with
 its response in the watch list in [`DECISIONS.md`](DECISIONS.md).
 
 - Public repo count approaches **100** → pagination becomes necessary (dk-a6af2fff)
@@ -38,5 +38,5 @@ its response in the watch list in [`DECISIONS.md`](DECISIONS.md).
 
 ---
 
-*If this file ever fills up with phases, ask whether the site changed or whether the
-document just wanted to look busy.*
+_If this file ever fills up with phases, ask whether the site changed or whether the
+document just wanted to look busy._

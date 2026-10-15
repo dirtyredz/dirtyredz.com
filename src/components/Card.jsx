@@ -34,9 +34,7 @@ export default function Card({ item }) {
   const topLeft = isMod ? item.game : item.tag
   const chips = isMod ? [item.tag] : item.stack || []
   // Never surface a repo link for private items — only non-GitHub links (e.g. a demo)
-  const shownLinks = isPrivate
-    ? links.filter((l) => !/github\.com/i.test(l.href || ''))
-    : links
+  const shownLinks = isPrivate ? links.filter((l) => !/github\.com/i.test(l.href || '')) : links
 
   return (
     <article className="card reveal">

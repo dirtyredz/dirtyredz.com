@@ -16,7 +16,10 @@ const repo = (id) => ({
 const page = (repos, next) => ({
   ok: true,
   status: 200,
-  headers: { get: (h) => (h.toLowerCase() === 'link' && next ? `<${next}>; rel="next", <x>; rel="last"` : null) },
+  headers: {
+    get: (h) =>
+      h.toLowerCase() === 'link' && next ? `<${next}>; rel="next", <x>; rel="last"` : null,
+  },
   json: async () => repos,
 })
 
@@ -24,7 +27,9 @@ test('follows Link rel=next and merges both pages', async () => {
   const urls = []
   globalThis.fetch = async (url) => {
     urls.push(url)
-    return url.includes('page=2') ? page([repo(3)]) : page([repo(1), repo(2)], 'https://api.github.com/x?page=2')
+    return url.includes('page=2')
+      ? page([repo(3)])
+      : page([repo(1), repo(2)], 'https://api.github.com/x?page=2')
   }
   const items = await fetchLiveItems()
   assert.equal(urls.length, 2)
@@ -47,14 +52,19 @@ test('a Link chain that never ends stops at MAX_PAGES', async () => {
 
 test('a failing later page rejects', async () => {
   globalThis.fetch = async (url) =>
-    url.includes('page=2') ? { ok: false, status: 403 } : page([repo(1)], 'https://api.github.com/x?page=2')
+    url.includes('page=2')
+      ? { ok: false, status: 403 }
+      : page([repo(1)], 'https://api.github.com/x?page=2')
   await assert.rejects(fetchLiveItems(), /GitHub API 403/)
 })
 
 test('fetchRepos reads localStorage within the TTL and ignores it past the TTL', async () => {
   const { fetchRepos } = await import('./github.js')
   const store = new Map()
-  globalThis.localStorage = { getItem: (k) => store.get(k) ?? null, setItem: (k, v) => store.set(k, v) }
+  globalThis.localStorage = {
+    getItem: (k) => store.get(k) ?? null,
+    setItem: (k, v) => store.set(k, v),
+  }
   let calls = 0
   globalThis.fetch = async () => (calls++, page([repo(1)]))
 
@@ -76,9 +86,16 @@ test('fetchRepos reads localStorage within the TTL and ignores it past the TTL',
   assert.equal(calls, 3)
 })
 
-test("splitRepos partitions items by category", () => {
-  const b = { title: "b", category: "project" }
-  const { mods, projects } = splitRepos([{ title: "a", category: "mod" }, b, { title: "c", category: "mod" }])
-  assert.deepEqual(mods.map((m) => m.title), ["a", "c"])
+test('splitRepos partitions items by category', () => {
+  const b = { title: 'b', category: 'project' }
+  const { mods, projects } = splitRepos([
+    { title: 'a', category: 'mod' },
+    b,
+    { title: 'c', category: 'mod' },
+  ])
+  assert.deepEqual(
+    mods.map((m) => m.title),
+    ['a', 'c'],
+  )
   assert.deepEqual(projects, [b])
 })

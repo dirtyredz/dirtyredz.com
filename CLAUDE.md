@@ -1,6 +1,7 @@
 # dirtyredz.com
 
 <!-- docket:agent-snippet begin v2 -->
+
 ## Work items (Docket)
 
 Track work in `docs/items/` through `dk`. Use filtered `dk list --json` and `dk show --json`; change

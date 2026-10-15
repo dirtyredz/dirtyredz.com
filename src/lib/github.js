@@ -60,8 +60,14 @@ export const FETCH_TIMEOUT_MS = 8000 // a hung request aborts -> rejects -> exis
 //              Portal, the Avorion/Boxelware forum); surfaced by `toItem` as the lead link. These
 //              can't be inferred (the id/slug is host-side). (The Avorion forum moved from
 //              avorion.net to community.boxelware.com with new thread ids — those are used below.)
-const NEXUS = (id, gameSlug) => ({ label: 'Nexus', href: `https://www.nexusmods.com/${gameSlug}/mods/${id}` })
-const FORUM = (slug) => ({ label: 'Forum', href: `https://community.boxelware.com/index.php?/topic/${slug}/` })
+const NEXUS = (id, gameSlug) => ({
+  label: 'Nexus',
+  href: `https://www.nexusmods.com/${gameSlug}/mods/${id}`,
+})
+const FORUM = (slug) => ({
+  label: 'Forum',
+  href: `https://community.boxelware.com/index.php?/topic/${slug}/`,
+})
 export const REPO_OVERRIDES = {
   // Moonlight Peaks (C#) — Nexus Mods
   'chest-labels': { modPage: NEXUS(119, 'moonlightpeaks') },
@@ -83,7 +89,9 @@ export const REPO_OVERRIDES = {
   MoveUI: { modPage: FORUM('3620-mod-moveui-v221') },
   'Regenerative-Asteroids': { modPage: FORUM('2844-mod-regenerative-asteroid-fields-update-152') },
   ShipScriptLoader: {
-    modPage: FORUM('3704-mod-ship-script-loader-a-small-mod-to-auto-load-scripts-onto-a-players-ship'),
+    modPage: FORUM(
+      '3704-mod-ship-script-loader-a-small-mod-to-auto-load-scripts-onto-a-players-ship',
+    ),
   },
   LogLevels: { modPage: FORUM('3585-mod-loglevels-v110-for-modders-and-server-owners') },
   NoNeutralCore: { modPage: FORUM('3259-mod-noneutralcore') },

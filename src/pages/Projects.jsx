@@ -13,9 +13,9 @@ export default function Projects() {
           <span className="eyebrow">What I make</span>
           <h1>Projects</h1>
           <p>
-            Software I build for fun, for myself, or just to figure something out — pulled live
-            from my GitHub. Tools, components, sites, and experiments. Not a portfolio to hire
-            from; more like a workshop bench.
+            Software I build for fun, for myself, or just to figure something out — pulled live from
+            my GitHub. Tools, components, sites, and experiments. Not a portfolio to hire from; more
+            like a workshop bench.
           </p>
         </div>
       </header>

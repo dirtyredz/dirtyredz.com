@@ -32,7 +32,9 @@ export default function Footer() {
         </div>
       </div>
       <div className="container footer__bottom">
-        <span>© {year} {site.name} — {site.handle}</span>
+        <span>
+          © {year} {site.name} — {site.handle}
+        </span>
         <span>Built with React + Vite · {site.location}</span>
       </div>
     </footer>

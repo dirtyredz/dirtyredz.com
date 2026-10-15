@@ -1,7 +1,7 @@
 # ARCHITECTURE — dirtyredz.com
 
-> How the system works. For *where the code lives*, see [`STRUCTURE.md`](../STRUCTURE.md).
-> For *why it is this way*, see [`DECISIONS.md`](DECISIONS.md).
+> How the system works. For _where the code lives_, see [`STRUCTURE.md`](../STRUCTURE.md).
+> For _why it is this way_, see [`DECISIONS.md`](DECISIONS.md).
 
 ## The shape of the thing
 
@@ -59,14 +59,14 @@ calls the pure, cache-free `fetchLiveItems()` + `splitRepos` and rewrites the bu
 
 There is exactly one, and it is unauthenticated:
 
-| | |
-|---|---|
-| Endpoint | `GET https://api.github.com/users/<githubUser>/repos?per_page=100&sort=updated`, then `Link: rel="next"` pages (max `MAX_PAGES` = 10); one request when there is one page |
-| Auth | none — no token is shipped to the browser, by design |
-| Rate limit | 60 requests/hour **per originating IP**, shared by every visitor behind that IP |
-| Cache | `localStorage`, key `dr_gh_repos_v2`, TTL 30 minutes (older entries ignored), shared across tabs and visits |
-| Timeout | 8 s (`FETCH_TIMEOUT_MS`); an abort rejects and takes the fallback path |
-| On failure | throw → `useGithub` catches → bundled snapshots, `usingFallback: true` |
+|            |                                                                                                                                                                           |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Endpoint   | `GET https://api.github.com/users/<githubUser>/repos?per_page=100&sort=updated`, then `Link: rel="next"` pages (max `MAX_PAGES` = 10); one request when there is one page |
+| Auth       | none — no token is shipped to the browser, by design                                                                                                                      |
+| Rate limit | 60 requests/hour **per originating IP**, shared by every visitor behind that IP                                                                                           |
+| Cache      | `localStorage`, key `dr_gh_repos_v2`, TTL 30 minutes (older entries ignored), shared across tabs and visits                                                               |
+| Timeout    | 8 s (`FETCH_TIMEOUT_MS`); an abort rejects and takes the fallback path                                                                                                    |
+| On failure | throw → `useGithub` catches → bundled snapshots, `usingFallback: true`                                                                                                    |
 
 The cache is `localStorage`, so it survives tabs and returning visits within the TTL; three tabs
 make one API call. Blocked storage (private mode, quota) fails silently and just refetches.

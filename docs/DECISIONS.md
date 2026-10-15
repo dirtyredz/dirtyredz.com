@@ -84,13 +84,14 @@ and confirmed still cohesive, not a grab-bag.
 project by heuristics, rather than reading a hand-maintained list (`a43836f`).
 
 **Why.** A hand-maintained portfolio is always out of date, because updating it is a
-separate chore from doing the work. Pushing a repo *is* the update.
+separate chore from doing the work. Pushing a repo _is_ the update.
 
 **Rejected.**
-- *Hand-maintained lists* — the previous design; the thing being fixed.
-- *Build-time fetch* — would pin content to deploy time and require a rebuild per repo
+
+- _Hand-maintained lists_ — the previous design; the thing being fixed.
+- _Build-time fetch_ — would pin content to deploy time and require a rebuild per repo
   change, losing the main benefit.
-- *A server or serverless proxy* — would solve rate limiting and allow a token, but adds
+- _A server or serverless proxy_ — would solve rate limiting and allow a token, but adds
   infrastructure to a site whose entire appeal is having none.
 
 **Consequences.** Runtime dependency on a third-party API from the browser; per-IP rate
@@ -194,7 +195,7 @@ component CSS co-located beside its JSX.
 **Why.** No build-time styling dependency, no runtime styling cost, and tokens in one file
 give theming without a system.
 
-**Rejected.** *styled-components* — actually adopted in 2018 (`f76f487`, "Transition to
+**Rejected.** _styled-components_ — actually adopted in 2018 (`f76f487`, "Transition to
 Styled Components") and dropped in the rebuild; a runtime CSS-in-JS dependency was not
 earning its place. Tailwind and similar — a class vocabulary to learn for a five-page site.
 
@@ -208,7 +209,7 @@ Context for app state.
 **Why.** There is one piece of shared async state and one consumer pattern. A store would be
 ceremony.
 
-**Rejected.** *Redux* — used in 2018 and already abandoned once in favour of Context
+**Rejected.** _Redux_ — used in 2018 and already abandoned once in favour of Context
 (`b37c2bd`, "Swapped redux for context"); the rebuild dropped that too.
 
 ---
@@ -244,14 +245,14 @@ social media. The only place to find me elsewhere is my code."
 
 Moved from the old backlog watch list on 2026-10-05. Each was examined by the 2026-09-17 review and judged correct as it stands; the last column is the trigger that changes that.
 
-| Item | Verdict | Trigger to revisit |
-|---|---|---|
-| Splitting `lib/github.js` into client + classifier | **Not yet.** The two jobs are ~35 and ~65 lines inside a ~243-line file (typedef and timeout added ~40; the `fetchLiveItems()` extraction is since done, dk-9e99a9a0) and share the same `REPO_OVERRIDES`/`blob()` helpers — splitting today yields two files that always change together. | The classifier grows materially. (The `fetchLiveItems()` extraction under a thin cached `fetchRepos()` wrapper is done; the `useCache` flag is gone.) |
-| Renaming `src/lib/` to `src/github/` | **Leave it.** The topology lens flagged `lib/` as a generic bucket; Codex overruled — the folder has a precise responsibility in STRUCTURE.md's authoritative Layout, and a second client is not required to justify a conventional external-integration boundary. | A second external-service client appears. Then split by responsibility. |
-| Extracting the `usingFallback` / empty-state block | **Leave it.** Two four-line call sites in `Mods.jsx` and `Projects.jsx`. Both the abstraction lens and Codex explicitly declined to extract at this size. | A third list page adopts the pattern. |
-| Adding a linter | **Leave it.** A deliberate decision, not an oversight — see the 2026-08-19 entry. (The test half was revisited 2026-10-13: `node:test` now covers `lib/` logic.) | Lint-class bugs start escaping review. Extend `npm test` to the classification heuristics when they next change. |
-| `src/data/` mixing hand-authored content with offline snapshots | **Leave it (re-confirmed after the generator landed, 7a4e059).** `mods.js` / `projects.js` are now generated artefacts with a GENERATED header; `site.js` / `manual.js` stay hand-edited; one folder, headers mark which is which (see `STRUCTURE.md`). | More generated files appear — then split into `src/data/generated/`. |
-| `categorize()` running twice per repo | **Leave it.** Harmless at this scale. | Expensive logic is added to the classifier. |
+| Item                                                            | Verdict                                                                                                                                                                                                                                                                                    | Trigger to revisit                                                                                                                                    |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Splitting `lib/github.js` into client + classifier              | **Not yet.** The two jobs are ~35 and ~65 lines inside a ~243-line file (typedef and timeout added ~40; the `fetchLiveItems()` extraction is since done, dk-9e99a9a0) and share the same `REPO_OVERRIDES`/`blob()` helpers — splitting today yields two files that always change together. | The classifier grows materially. (The `fetchLiveItems()` extraction under a thin cached `fetchRepos()` wrapper is done; the `useCache` flag is gone.) |
+| Renaming `src/lib/` to `src/github/`                            | **Leave it.** The topology lens flagged `lib/` as a generic bucket; Codex overruled — the folder has a precise responsibility in STRUCTURE.md's authoritative Layout, and a second client is not required to justify a conventional external-integration boundary.                         | A second external-service client appears. Then split by responsibility.                                                                               |
+| Extracting the `usingFallback` / empty-state block              | **Leave it.** Two four-line call sites in `Mods.jsx` and `Projects.jsx`. Both the abstraction lens and Codex explicitly declined to extract at this size.                                                                                                                                  | A third list page adopts the pattern.                                                                                                                 |
+| Adding a linter                                                 | **Leave it.** A deliberate decision, not an oversight — see the 2026-08-19 entry. (The test half was revisited 2026-10-13: `node:test` now covers `lib/` logic.)                                                                                                                           | Lint-class bugs start escaping review. Extend `npm test` to the classification heuristics when they next change.                                      |
+| `src/data/` mixing hand-authored content with offline snapshots | **Leave it (re-confirmed after the generator landed, 7a4e059).** `mods.js` / `projects.js` are now generated artefacts with a GENERATED header; `site.js` / `manual.js` stay hand-edited; one folder, headers mark which is which (see `STRUCTURE.md`).                                    | More generated files appear — then split into `src/data/generated/`.                                                                                  |
+| `categorize()` running twice per repo                           | **Leave it.** Harmless at this scale.                                                                                                                                                                                                                                                      | Expensive logic is added to the classifier.                                                                                                           |
 
 ## Pre-2026 (inferred from history, not decisions of the current codebase)
 

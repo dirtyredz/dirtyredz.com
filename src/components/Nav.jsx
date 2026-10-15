@@ -44,12 +44,7 @@ export default function Nav() {
               {l.label}
             </NavLink>
           ))}
-          <a
-            className="nav__link nav__link--out"
-            href={github}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a className="nav__link nav__link--out" href={github} target="_blank" rel="noreferrer">
             GitHub ↗
           </a>
         </nav>

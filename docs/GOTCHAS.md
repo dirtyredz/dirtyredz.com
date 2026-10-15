@@ -27,8 +27,8 @@ On any error `useGithub` catches and serves `src/data/mods.js` + `src/data/proje
 the **generated files committed to the repo** (`npm run gen:fallback`), not whatever the cache last held. An
 expired cache entry is discarded, never served stale.
 
-So the failure mode is: *the site silently reverts to whatever those two files said the
-last time someone remembered to regenerate them.* Run `npm run gen:fallback` (needs GitHub
+So the failure mode is: _the site silently reverts to whatever those two files said the
+last time someone remembered to regenerate them._ Run `npm run gen:fallback` (needs GitHub
 reachable and not rate-limited) and commit the result; nothing runs it automatically and
 nothing warns when they drift. Never hand-edit them — the next run overwrites it. Volatile
 fields (`stars`, `pushed`) change between runs, so expect small diffs.
@@ -73,7 +73,7 @@ are configured in the Cloudflare Pages project `dirtyredz-com`. There is no `wra
 and no `netlify.toml` — a dead `netlify.toml` was removed in `30d6608`. Grepping the repo
 for deploy config finds nothing; the dashboard is the source of truth.
 
-Node version *is* pinned in-repo, via `.node-version`.
+Node version _is_ pinned in-repo, via `.node-version`.
 
 ## `categorize()` runs twice per repo
 
